@@ -1,0 +1,12 @@
+/AppManager.java/1.1/Thu Apr 23 11:35:56 2009/-kkv/
+/ConfigEntry.java/1.1/Wed Apr 22 19:49:41 2009/-kkv/
+/ConfigEntryTransformer.java/1.1/Thu Apr 23 11:34:40 2009/-kkv/
+/ConfigurationException.java/1.1/Fri Apr 24 09:57:58 2009/-kkv/
+/ConfigurationSource.java/1.2/Sat Apr 25 14:18:20 2009/-kkv/
+/DefaultConfigEntry.java/1.4/Mon Apr 27 14:25:00 2009/-kkv/
+/FontCache.java/0/dummy timestamp/-kkv/
+/GenericRuntimeUserException.java/1.1/Mon May 04 16:49:56 2009/-kkv/
+/NonUniqueException.java/1.1/Wed Apr 22 15:15:19 2009/-kkv/
+/PersistableConfigEntry.java/1.1/Wed Apr 22 19:52:05 2009/-kkv/
+/ValidationException.java/1.1/Wed Apr 22 15:08:06 2009/-kkv/
+/Validator.java/1.2/Sat Apr 25 14:18:20 2009/-kkv/
