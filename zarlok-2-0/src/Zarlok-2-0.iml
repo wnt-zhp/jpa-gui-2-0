@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module relativePaths="true" type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="jpa" name="JPA">
+      <configuration>
+        <setting name="validation-enabled" value="true" />
+        <setting name="provider-name" value="Hibernate" />
+        <setting name="targe-facet" value="" />
+        <datasource-mapping>
+          <factory-entry name="zarlok-pu" value="5d7875ad-102a-4799-bd9d-b1ab4f903bd3" />
+        </datasource-mapping>
+        <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/../resources/java/META-INF/persistence.xml" optional="false" version="1.0" />
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_6" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../resources">
+      <sourceFolder url="file://$MODULE_DIR$/../resources/java" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/test" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="module" module-name="jpa-framework" />
+    <orderEntry type="module" module-name="FamFamIcons" />
+  </component>
+</module>
+

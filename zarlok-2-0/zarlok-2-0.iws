@@ -1,0 +1,934 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project relativePaths="false" version="4">
+  <component name="AnalysisUIOptions">
+    <option name="ANALYZE_TEST_SOURCES" value="false" />
+    <option name="SCOPE_TYPE" value="10" />
+    <option name="CUSTOM_SCOPE_NAME" value="Project Files" />
+    <option name="ANALYSIS_IN_BACKGROUND" value="true" />
+  </component>
+  <component name="CCaseConfig">
+    <option name="checkoutReserved" value="false" />
+    <option name="markExternalChangeAsUpToDate" value="true" />
+    <option name="checkInUseHijack" value="true" />
+    <option name="useUcmModel" value="true" />
+    <option name="isOffline" value="false" />
+    <option name="synchOutside" value="false" />
+    <option name="isHistoryResticted" value="true" />
+    <option name="useIdenticalSwitch" value="true" />
+    <option name="synchActivitiesOnRefresh" value="true" />
+    <option name="lastScr" value="" />
+    <option name="scrTextFileName" value="" />
+    <option name="historyRevisionsNumber" value="4" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/cx/ath/jbzdak/zarlok/entities/Produkt.java" afterPath="$PROJECT_DIR$/src/java/cx/ath/jbzdak/zarlok/entities/Produkt.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/cx/ath/jbzdak/zarlok/main/AppLauncher.java" afterPath="$PROJECT_DIR$/src/java/cx/ath/jbzdak/zarlok/main/AppLauncher.java" />
+      <change type="MODIFICATION" beforePath="/home/jb/Programs/idea-zarlock/jpa-framework/src/java/cx/ath/jbzdak/jpaGui/autoComplete/ComboBoxElement.java" afterPath="/home/jb/Programs/idea-zarlock/jpa-framework/src/java/cx/ath/jbzdak/jpaGui/autoComplete/ComboBoxElement.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zarlok-2-0.ipr" afterPath="$PROJECT_DIR$/zarlok-2-0.ipr" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zarlok-2-0.iml" afterPath="$PROJECT_DIR$/src/Zarlok-2-0.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/cx/ath/jbzdak/zarlok/db/DBSetup.java" afterPath="$PROJECT_DIR$/src/java/cx/ath/jbzdak/zarlok/db/DBSetup.java" />
+      <change type="MODIFICATION" beforePath="/home/jb/Programs/idea-zarlock/jpa-framework/src/java/cx/ath/jbzdak/jpaGui/ui/form/AbstractFormElement.java" afterPath="/home/jb/Programs/idea-zarlock/jpa-framework/src/java/cx/ath/jbzdak/jpaGui/ui/form/AbstractFormElement.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/cx/ath/jbzdak/zarlok/entities/Dzien.java" afterPath="$PROJECT_DIR$/src/java/cx/ath/jbzdak/zarlok/entities/Dzien.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zarlock.xml" afterPath="$PROJECT_DIR$/zarlock.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/cx/ath/jbzdak/zarlok/config/Preferences.java" afterPath="$PROJECT_DIR$/src/java/cx/ath/jbzdak/zarlok/config/Preferences.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/cx/ath/jbzdak/zarlok/ui/produkt/ProductEditPanel.java" afterPath="$PROJECT_DIR$/src/java/cx/ath/jbzdak/zarlok/ui/produkt/ProductEditPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/cx/ath/jbzdak/zarlok/config/RootFolderDefault.java" afterPath="$PROJECT_DIR$/src/java/cx/ath/jbzdak/zarlok/config/RootFolderDefault.java" />
+      <change type="MODIFICATION" beforePath="/home/jb/Programs/idea-zarlock/jpa-framework/src/java/cx/ath/jbzdak/jpaGui/Utils.java" afterPath="/home/jb/Programs/idea-zarlock/jpa-framework/src/java/cx/ath/jbzdak/jpaGui/Utils.java" />
+      <change type="MODIFICATION" beforePath="/home/jb/Programs/idea-zarlock/jpa-framework/src/java/cx/ath/jbzdak/jpaGui/ui/error/ErrorDialog.java" afterPath="/home/jb/Programs/idea-zarlock/jpa-framework/src/java/cx/ath/jbzdak/jpaGui/ui/error/ErrorDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/cx/ath/jbzdak/zarlok/raport/stany/StanMagazynuEntryBean.java" afterPath="$PROJECT_DIR$/src/java/cx/ath/jbzdak/zarlok/raport/stany/StanMagazynuEntryBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/cx/ath/jbzdak/zarlok/ui/produkt/ProductAddPanel.java" afterPath="$PROJECT_DIR$/src/java/cx/ath/jbzdak/zarlok/ui/produkt/ProductAddPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/cx/ath/jbzdak/zarlok/raport/stany/StanMagazynuFactory.java" afterPath="$PROJECT_DIR$/src/java/cx/ath/jbzdak/zarlok/raport/stany/StanMagazynuFactory.java" />
+      <change type="MODIFICATION" beforePath="/home/jb/Programs/idea-zarlock/jpa-framework/src/java/cx/ath/jbzdak/jpaGui/ui/form/AbstractForm.java" afterPath="/home/jb/Programs/idea-zarlock/jpa-framework/src/java/cx/ath/jbzdak/jpaGui/ui/form/AbstractForm.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zarlok-2-0.iws" afterPath="$PROJECT_DIR$/zarlok-2-0.iws" />
+    </list>
+    <ignored path=".idea/workspace.xml" />
+    <ignored path="zarlok-2-0.iws" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="Commander">
+    <leftPanel />
+    <rightPanel />
+    <splitter proportion="0.5" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+    <option name="REVERSE_PATCH" value="false" />
+  </component>
+  <component name="Cvs2Configuration">
+    <option name="UPDATE_DATE_OR_REVISION_SETTINGS">
+      <DateOrRevisionSettings>
+        <option name="date" value="Mon Apr 20 01:43:18 2009" />
+        <option name="DATE" value="Mon Apr 20 01:43:18 2009" />
+      </DateOrRevisionSettings>
+    </option>
+    <option name="UPDATE_KEYWORD_SUBSTITUTION" value="NONE" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="DebuggerManager">
+    <breakpoint_any>
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </breakpoint_any>
+    <breakpoint_rules />
+    <ui_properties>
+      <property name="line_breakpoints_groupByMethods" value="false" />
+      <property name="line_breakpoints_viewId" value="TABLE" />
+      <property name="exception_breakpoints_flattenPackages" value="true" />
+      <property name="method_breakpoints_flattenPackages" value="true" />
+      <property name="field_breakpoints_flattenPackages" value="true" />
+      <property name="exception_breakpoints_groupByMethods" value="false" />
+      <property name="line_breakpoints_groupByClasses" value="true" />
+      <property name="method_breakpoints_viewId" value="TABLE" />
+      <property name="field_breakpoints_groupByMethods" value="false" />
+      <property name="line_breakpoints_flattenPackages" value="true" />
+      <property name="field_breakpoints_groupByClasses" value="true" />
+      <property name="method_breakpoints_groupByClasses" value="true" />
+      <property name="exception_breakpoints_viewId" value="TABLE" />
+      <property name="exception_breakpoints_groupByClasses" value="true" />
+      <property name="field_breakpoints_viewId" value="TABLE" />
+      <property name="method_breakpoints_groupByMethods" value="false" />
+    </ui_properties>
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="zarlok-2-0" />
+  </component>
+  <component name="FavoritesProjectViewPane">
+    <subPane subId="zarlok-2-0" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="StanMagazynuFactory.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/java/cx/ath/jbzdak/zarlok/raport/stany/StanMagazynuFactory.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="75" column="21" selection-start="3197" selection-end="3197" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainWindowModel.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/java/cx/ath/jbzdak/zarlok/main/MainWindowModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="32" column="13" selection-start="1038" selection-end="1038" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AppLauncher.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/java/cx/ath/jbzdak/zarlok/main/AppLauncher.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="7" selection-start="7" selection-end="33" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="zarlock.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/zarlock.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="74" column="32" selection-start="2600" selection-end="2600" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="zarlok-2-0.ipr" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/zarlok-2-0.ipr">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="290" column="31" selection-start="16159" selection-end="16171" vertical-scroll-proportion="0.022522522">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/java/cx/ath/jbzdak/zarlok/db/DBBackup.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/java/cx/ath/jbzdak/zarlok/ui/danie/SelectPartiaAdaptor.java" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="J2EEProjectPane">
+    <subPane />
+    <subPane subId="file" />
+  </component>
+  <component name="ModuleEditorState">
+    <option name="LAST_EDITED_MODULE_NAME" />
+    <option name="LAST_EDITED_TAB_NAME" />
+  </component>
+  <component name="PackagesPane">
+    <subPane>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="zarlok-2-0" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+        </PATH_ELEMENT>
+      </PATH>
+    </subPane>
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <OptionsSetting value="true" id="Undo Check Out" />
+    <OptionsSetting value="true" id="Get Latest Version" />
+    <ConfirmationsSetting value="2" id="Add" />
+    <ConfirmationsSetting value="1" id="Remove" />
+  </component>
+  <component name="ProjectPane">
+    <subPane>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="zarlok-2-0" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+      </PATH>
+    </subPane>
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="0.5" version="1" splitterProportion="0.5">
+      <flattenPackages PackagesPane="false" ProjectPane="true" />
+      <showMembers PackagesPane="false" ProjectPane="true" />
+      <showModules PackagesPane="true" />
+      <showLibraryContents PackagesPane="true" />
+      <hideEmptyPackages ProjectPane="true" />
+      <abbreviatePackageNames ProjectPane="true" />
+      <showStructure ProjectPane="false" J2EEPane="false" Scope="false" PackagesPane="false" Favorites="false" />
+      <autoscrollToSource Scope="false" PackagesPane="true" ProjectPane="true" />
+      <autoscrollFromSource Scope="false" PackagesPane="true" ProjectPane="true" />
+      <sortByType Scope="true" PackagesPane="true" ProjectPane="false" />
+    </navigator>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="GenerateAntBuildDialog.generateIdeaHomeProperty" value="false" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="Persistence.ERD.GroupObjects" value="false" />
+    <property name="RunManagerConfig.showSettingsBeforeRunnig" value="false" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="FileHistory.com.intellij.cvsSupport2.history.CvsHistoryProvider_treeWidth5" value="77" />
+    <property name="FileHistory.com.intellij.cvsSupport2.history.CvsHistoryProvider_treeWidth6" value="874" />
+    <property name="FileHistory.com.intellij.cvsSupport2.history.CvsHistoryProvider_treeWidth3" value="77" />
+    <property name="FileHistory.com.intellij.cvsSupport2.history.CvsHistoryProvider_treeWidth4" value="76" />
+    <property name="FileHistory.com.intellij.cvsSupport2.history.CvsHistoryProvider_treeWidth1" value="98" />
+    <property name="GoToClass.includeLibraries" value="false" />
+    <property name="FileHistory.com.intellij.cvsSupport2.history.CvsHistoryProvider_treeWidth2" value="81" />
+    <property name="FileHistory.com.intellij.cvsSupport2.history.CvsHistoryProvider_treeWidth0" value="76" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="RESOURCE_BUNDLE_SPLITTER_PROPORTION" value="0.5" />
+    <property name="options.lastSelected" value="preferences.pluginManager" />
+    <property name="Persistence.ERD.SimpleMode" value="false" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="FileHistory.com.intellij.cvsSupport2.history.CvsHistoryProvider_treeOrder4" value="4" />
+    <property name="FileHistory.com.intellij.cvsSupport2.history.CvsHistoryProvider_treeOrder3" value="3" />
+    <property name="FileHistory.com.intellij.cvsSupport2.history.CvsHistoryProvider_treeOrder6" value="6" />
+    <property name="FileHistory.com.intellij.cvsSupport2.history.CvsHistoryProvider_treeOrder5" value="5" />
+    <property name="FileHistory.com.intellij.cvsSupport2.history.CvsHistoryProvider_treeOrder0" value="0" />
+    <property name="FileHistory.com.intellij.cvsSupport2.history.CvsHistoryProvider_treeOrder2" value="2" />
+    <property name="FileHistory.com.intellij.cvsSupport2.history.CvsHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.com.intellij.cvsSupport2.history.CvsHistoryProvider_flatWidth3" value="79" />
+    <property name="FileHistory.com.intellij.cvsSupport2.history.CvsHistoryProvider_flatWidth2" value="83" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="FileHistory.com.intellij.cvsSupport2.history.CvsHistoryProvider_flatWidth1" value="100" />
+    <property name="FileHistory.com.intellij.cvsSupport2.history.CvsHistoryProvider_flatWidth0" value="64" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="Persistence.ERD.MergeEmbedded" value="false" />
+    <property name="GenerateAntBuildDialog.generateSingleFile" value="false" />
+    <property name="FileHistory.com.intellij.cvsSupport2.history.CvsHistoryProvider_flatOrder4" value="4" />
+    <property name="FileHistory.com.intellij.cvsSupport2.history.CvsHistoryProvider_flatOrder5" value="5" />
+    <property name="GenerateAntBuildDialog.inclineRuntiemClasspath" value="false" />
+    <property name="FileHistory.com.intellij.cvsSupport2.history.CvsHistoryProvider_flatOrder6" value="6" />
+    <property name="JdbcConsole.OpenEditorOnStart" value="false" />
+    <property name="FileHistory.com.intellij.cvsSupport2.history.CvsHistoryProvider_flatWidth6" value="876" />
+    <property name="FileHistory.com.intellij.cvsSupport2.history.CvsHistoryProvider_flatWidth5" value="79" />
+    <property name="GoToClass.includeJavaFiles" value="false" />
+    <property name="FileHistory.com.intellij.cvsSupport2.history.CvsHistoryProvider_flatWidth4" value="78" />
+    <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
+    <property name="FileHistory.com.intellij.cvsSupport2.history.CvsHistoryProvider_flatOrder3" value="3" />
+    <property name="FileHistory.com.intellij.cvsSupport2.history.CvsHistoryProvider_flatOrder2" value="2" />
+    <property name="FileHistory.com.intellij.cvsSupport2.history.CvsHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.com.intellij.cvsSupport2.history.CvsHistoryProvider_flatOrder0" value="0" />
+    <property name="Persistence.ERD.MergeInherited" value="false" />
+    <property name="GenerateAntBuildDialog.backupFiles" value="true" />
+    <property name="dynamic.classpath" value="false" />
+    <property name="options.searchVisible" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="cx.ath.jbzdak.zarlok.raport" />
+    </key>
+    <key name="IntroduceConstantDialog.RECENTS_KEY">
+      <recent name="cx.ath.jbzdak.jpaGui.ui.tabbed.JBTabbedPane" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="cx.ath.jbzdak.zarlok.raport.stany" />
+      <recent name="cx.ath.jbzdak.jpaGui.ui.query" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="cx.ath.jbzdak.zarlok.main.initTasks" />
+      <recent name="cx.ath.jbzdak.zarlok.raport" />
+      <recent name="cx.ath.jbzdak.zarlok" />
+      <recent name="cx.ath.jbzdak.zarlok.ui" />
+      <recent name="cx.ath.jbzdak.zarlok.ui.query" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.App launcher">
+    <tempConfiguration default="false" name="NewConsoleConfiguration" type="com.intellij.persistence.run.ConsoleRunConfigurationType" factoryName="Query Language Console">
+      <option name="VM_PARAMETERS" value="" />
+      <option name="USER_CFG_CLASS" value="" />
+      <option name="CONTEXT_PROVIDER" value="Hibernate" />
+      <persistenceUnit facet="" unit="" />
+      <RunnerSettings RunnerId="database.ConsoleRunner" />
+      <ConfigurationWrapper RunnerId="database.ConsoleRunner" />
+      <method>
+        <option name="Make" value="true" />
+      </method>
+    </tempConfiguration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+    </configuration>
+    <configuration default="true" type="XSLT" factoryName="XSLT">
+      <option name="myOutputFile" />
+      <option name="myOpenOutputFile" value="false" />
+      <option name="myOpenInBrowser" value="false" />
+      <option name="mySmartErrorHandling" value="true" />
+      <option name="myRunnerPort" value="34873" />
+      <option name="myVmArguments" />
+      <option name="myWorkingDirectory" />
+      <option name="myModule" />
+      <option name="myJdk" />
+      <parameters />
+      <OutputType value="CONSOLE" />
+      <FileType name="XML" />
+      <JdkChoice value="FROM_MODULE" />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application" enabled="false" merge="false" runner="emma">
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit" enabled="false" merge="false" runner="emma">
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="ADDITIONAL_CLASS_PATH" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+    </configuration>
+    <configuration default="true" type="com.intellij.persistence.run.ConsoleRunConfigurationType" factoryName="Query Language Console">
+      <option name="VM_PARAMETERS" value="" />
+      <option name="USER_CFG_CLASS" />
+      <option name="CONTEXT_PROVIDER" />
+    </configuration>
+    <configuration default="false" name="App launcher" type="Application" factoryName="Application" enabled="false" merge="false" sample_coverage="true" runner="idea">
+      <option name="MAIN_CLASS_NAME" value="cx.ath.jbzdak.zarlok.main.AppLauncher" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/resources/java" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Zarlok-2-0" />
+      <envs />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="58015" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Profile CPU">
+        <option name="startFromMode" value="MAIN_CLASS" />
+        <option name="otherClassesToStartFrom" value="" />
+        <option name="profileNewRunnables" value="true" />
+        <option name="filteringMode" value="EXCLUDE" />
+        <option name="filterIncludeClasses" value="" />
+        <option name="filterExcludeClasses" value="java.*, javax.*,&#10;sun.*, sunw.*, com.sun.*" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Profile Memory">
+        <option name="profileAllocMode" value="ALLOC_AND_GC" />
+        <option name="profileAllocInterval" value="10" />
+        <option name="recordAllocTraces" value="false" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Profile CPU" />
+      <ConfigurationWrapper RunnerId="Profile Memory" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method>
+        <option name="Run Ant target" value="false" />
+        <option name="Make" value="true" />
+      </method>
+    </configuration>
+    <configuration default="false" name="Unnamed" type="Application" factoryName="Application" enabled="false" merge="false" sample_coverage="true" runner="emma">
+      <option name="MAIN_CLASS_NAME" value="cx.ath.jbzdak.zarlok.ui.Access" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Zarlok-2-0" />
+      <envs />
+      <RunnerSettings RunnerId="Profile CPU">
+        <option name="startFromMode" value="MAIN_CLASS" />
+        <option name="otherClassesToStartFrom" value="" />
+        <option name="profileNewRunnables" value="true" />
+        <option name="filteringMode" value="EXCLUDE" />
+        <option name="filterIncludeClasses" value="" />
+        <option name="filterExcludeClasses" value="java.*, javax.*,&#10;sun.*, sunw.*, com.sun.*" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Profile Memory">
+        <option name="profileAllocMode" value="ALLOC_AND_GC" />
+        <option name="profileAllocInterval" value="10" />
+        <option name="recordAllocTraces" value="false" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method>
+        <option name="Make" value="true" />
+      </method>
+    </configuration>
+    <configuration default="false" name="Unnamed1" type="Application" factoryName="Application" enabled="false" merge="false" sample_coverage="true" runner="emma">
+      <option name="MAIN_CLASS_NAME" value="cx.ath.jbzdak.jpaGui.ui.error.CurrentDir" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Zarlok-2-0" />
+      <envs />
+      <RunnerSettings RunnerId="Profile CPU">
+        <option name="startFromMode" value="MAIN_CLASS" />
+        <option name="otherClassesToStartFrom" value="" />
+        <option name="profileNewRunnables" value="true" />
+        <option name="filteringMode" value="EXCLUDE" />
+        <option name="filterIncludeClasses" value="" />
+        <option name="filterExcludeClasses" value="java.*, javax.*,&#10;sun.*, sunw.*, com.sun.*" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Profile Memory">
+        <option name="profileAllocMode" value="ALLOC_AND_GC" />
+        <option name="profileAllocInterval" value="10" />
+        <option name="recordAllocTraces" value="false" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method>
+        <option name="Make" value="true" />
+      </method>
+    </configuration>
+    <list size="4">
+      <item index="0" class="java.lang.String" itemvalue="Query Language Console.NewConsoleConfiguration" />
+      <item index="1" class="java.lang.String" itemvalue="Application.App launcher" />
+      <item index="2" class="java.lang.String" itemvalue="Application.Unnamed" />
+      <item index="3" class="java.lang.String" itemvalue="Application.Unnamed1" />
+    </list>
+    <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
+      <Host>localhost</Host>
+      <Port>5050</Port>
+    </configuration>
+  </component>
+  <component name="ScopeViewComponent">
+    <subPane>
+      <PATH>
+        <PATH_ELEMENT USER_OBJECT="Root">
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="" />
+        </PATH_ELEMENT>
+      </PATH>
+    </subPane>
+    <subPane subId="Problems" />
+    <subPane subId="All">
+      <PATH>
+        <PATH_ELEMENT USER_OBJECT="Root">
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="" />
+        </PATH_ELEMENT>
+      </PATH>
+    </subPane>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="StarteamConfiguration">
+    <option name="SERVER" value="" />
+    <option name="PORT" value="49201" />
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="PROJECT" value="" />
+    <option name="VIEW" value="" />
+    <option name="ALTERNATIVE_WORKING_PATH" value="" />
+    <option name="LOCK_ON_CHECKOUT" value="false" />
+    <option name="UNLOCK_ON_CHECKIN" value="false" />
+  </component>
+  <component name="StructureViewFactory">
+    <option name="AUTOSCROLL_MODE" value="true" />
+    <option name="AUTOSCROLL_FROM_SOURCE" value="false" />
+    <option name="ACTIVE_ACTIONS" value="ALPHA_COMPARATOR,SHOW_INTERFACES,GROUP_BY_PREFIXES" />
+  </component>
+  <component name="SvnConfiguration">
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="LAST_MERGED_REVISION" />
+    <option name="UPDATE_RUN_STATUS" value="false" />
+    <option name="MERGE_DRY_RUN" value="false" />
+    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
+    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
+    <configuration useDefault="true">/home/jb/.subversion</configuration>
+    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
+  </component>
+  <component name="TodoView" selected-index="0">
+    <todo-panel id="selected-file">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="default-changelist">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-1" y="25" width="1442" height="855" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29661018" sideWeight="0.5" order="7" side_tool="false" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.62059236" order="1" side_tool="false" />
+      <window_info id="Dataflow to this" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32863188" sideWeight="0.5" order="18" side_tool="false" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32722145" sideWeight="0.5" order="16" side_tool="false" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3220339" sideWeight="0.5" order="6" side_tool="false" />
+      <window_info id="Code-Amnesia" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32485875" sideWeight="0.5" order="9" side_tool="false" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3283046" sideWeight="0.62059236" order="0" side_tool="false" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36953455" sideWeight="0.5" order="2" side_tool="false" x="-95" y="208" width="1442" height="855" />
+      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32805756" sideWeight="0.4513399" order="3" side_tool="false" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297414" sideWeight="0.0" order="7" side_tool="false" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31779662" sideWeight="0.5" order="1" side_tool="false" x="113" y="165" width="846" height="507" />
+      <window_info id="Daily Tasks" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294881" sideWeight="0.66101694" order="2" side_tool="false" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.53672314" sideWeight="0.5" order="3" side_tool="false" />
+      <window_info id="UML Diagrams" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.3294964" sideWeight="0.5" order="4" side_tool="false" />
+      <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32344633" sideWeight="0.5" order="15" side_tool="false" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3121469" sideWeight="0.5" order="19" side_tool="false" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24784483" sideWeight="0.6770099" order="1" side_tool="false" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39928058" sideWeight="0.4519774" order="0" side_tool="false" />
+      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32863188" sideWeight="0.5" order="17" side_tool="false" />
+      <window_info id="Web Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32627118" sideWeight="0.5" order="10" side_tool="false" />
+      <window_info id="Graphical Navigator" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.56546766" sideWeight="0.5" order="5" side_tool="false" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4957627" sideWeight="0.5" order="5" side_tool="false" />
+      <window_info id="Profile CPU" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32768363" sideWeight="0.0" order="11" side_tool="false" />
+      <window_info id="Profile Memory" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32909605" sideWeight="0.5" order="12" side_tool="false" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297414" sideWeight="0.0" order="3" side_tool="false" />
+      <window_info id="DSM" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" x="100" y="125" width="1240" height="650" />
+      <window_info id="Class Cloud" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.80225986" sideWeight="0.5" order="8" side_tool="false" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24928162" sideWeight="0.6200565" order="2" side_tool="false" />
+      <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328125" sideWeight="0.5" order="13" side_tool="false" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" />
+      <window_info id="IntelliJad Console" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32627118" sideWeight="0.5" order="14" side_tool="false" />
+    </layout>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="PERFORM_UPDATE_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_COMMIT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_EDIT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_CHECKOUT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
+    <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
+    <option name="LAST_COMMIT_MESSAGE" value="Wywakenie System.outów itepe + bug z dodawaniem dnia + ..." />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
+    <option name="FILE_HISTORY_DIALOG_COMMENTS_SPLITTER_PROPORTION" value="0.8" />
+    <option name="FILE_HISTORY_DIALOG_SPLITTER_PROPORTION" value="0.5" />
+    <option name="ACTIVE_VCS_NAME" />
+    <option name="UPDATE_GROUP_BY_PACKAGES" value="false" />
+    <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
+    <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
+    <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
+    <MESSAGE value="Nowa metoda dodawania wyprowadzeń" />
+    <MESSAGE value="Różna zmiany ;)" />
+    <MESSAGE value="Dodnie interfejsu productSearchable + zmiany powiązane" />
+    <MESSAGE value="Ładniejszy tag&#10;" />
+    <MESSAGE value="Jakieś pierwsze przymiarki do zarządzania cyklem życia bazy danych. &#10;&#10;Backupowanie bazy danych." />
+    <MESSAGE value="Updejt kosztów przy starcie bazy danych, usunięcie buga z metody Utils.round" />
+    <MESSAGE value="Konfiguracja - przed czyszczeniem; nie działą" />
+    <MESSAGE value="Konfiguracja + formualrze gotowe do obsługi konfiguracji..." />
+    <MESSAGE value="Panel edycji opcji" />
+    <MESSAGE value="Naprawienie tego co nie działało" />
+    <MESSAGE value="Działające opcje" />
+    <MESSAGE value="Sprawdzenie findbugiem" />
+    <MESSAGE value="Wyświetlanie ZZ" />
+    <MESSAGE value="Stany Magazynów + poprawki code analysis" />
+    <MESSAGE value="Kartoreki + code analisys&#10;" />
+    <MESSAGE value="Wywakenie System.outów itepe + bug z dodawaniem dnia + ..." />
+  </component>
+  <component name="VssConfiguration">
+    <option name="CLIENT_PATH" value="" />
+    <option name="SRCSAFEINI_PATH" value="" />
+    <option name="USER_NAME" value="" />
+    <option name="PWD" value="" />
+    <CheckoutOptions>
+      <option name="COMMENT" value="" />
+      <option name="DO_NOT_GET_LATEST_VERSION" value="false" />
+      <option name="REPLACE_WRITABLE" value="false" />
+      <option name="RECURSIVE" value="false" />
+    </CheckoutOptions>
+    <CheckinOptions>
+      <option name="COMMENT" value="" />
+      <option name="KEEP_CHECKED_OUT" value="false" />
+      <option name="RECURSIVE" value="false" />
+    </CheckinOptions>
+    <AddOptions>
+      <option name="STORE_ONLY_LATEST_VERSION" value="false" />
+      <option name="CHECK_OUT_IMMEDIATELY" value="false" />
+    </AddOptions>
+    <UndocheckoutOptions>
+      <option name="MAKE_WRITABLE" value="false" />
+      <option name="REPLACE_LOCAL_COPY" value="2" />
+      <option name="RECURSIVE" value="false" />
+    </UndocheckoutOptions>
+    <GetOptions>
+      <option name="REPLACE_WRITABLE" value="0" />
+      <option name="MAKE_WRITABLE" value="false" />
+      <option name="ANSWER_NEGATIVELY" value="false" />
+      <option name="ANSWER_POSITIVELY" value="false" />
+      <option name="RECURSIVE" value="false" />
+      <option name="VERSION" />
+    </GetOptions>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+  </component>
+  <component name="XPathView.XPathProjectComponent">
+    <history />
+    <find-history />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+    <buildFile url="file://$PROJECT_DIR$/zarlock.xml">
+      <antCommandLine value="" />
+      <runInBackground value="true" />
+      <targetFilters />
+      <treeView value="true" />
+      <verbose value="true" />
+      <viewClosedWhenNoErrors value="false" />
+    </buildFile>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/java/cx/ath/jbzdak/zarlok/entities/Partia.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="85" column="13" selection-start="3385" selection-end="3385" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/cx/ath/jbzdak/zarlok/entities/Produkt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="55" column="20" selection-start="1980" selection-end="1980" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/cx/ath/jbzdak/zarlok/raport/stany/StanMagazynuEntryBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="30" selection-start="685" selection-end="685" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/cx/ath/jbzdak/zarlok/db/ZarlockDBManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="114" column="0" selection-start="3055" selection-end="3055" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/cx/ath/jbzdak/zarlok/db/DBSetup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="144" column="23" selection-start="4769" selection-end="4769" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/cx/ath/jbzdak/zarlok/config/Preferences.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="58" selection-start="445" selection-end="445" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/cx/ath/jbzdak/zarlok/config/PreferencesKeys.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="30" selection-start="207" selection-end="207" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/cx/ath/jbzdak/zarlok/config/RootFolderDefault.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="0" selection-start="89" selection-end="89" vertical-scroll-proportion="0.09049774">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/cx/ath/jbzdak/zarlok/raport/stany/StanMagazynuFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="75" column="21" selection-start="3197" selection-end="3197" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/cx/ath/jbzdak/zarlok/main/MainWindowModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="13" selection-start="1038" selection-end="1038" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/cx/ath/jbzdak/zarlok/main/AppLauncher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="7" selection-start="7" selection-end="33" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zarlock.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="74" column="32" selection-start="2600" selection-end="2600" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zarlok-2-0.ipr">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="290" column="31" selection-start="16159" selection-end="16171" vertical-scroll-proportion="0.022522522">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <option name="states">
+      <map>
+        <entry key="Copyright.UI">
+          <value>
+            <UIState>
+              <option name="proportions">
+                <SplitterProportionsDataImpl />
+              </option>
+            </UIState>
+          </value>
+        </entry>
+        <entry key="Errors.UI">
+          <value>
+            <UIState>
+              <option name="proportions">
+                <SplitterProportionsDataImpl>
+                  <option name="proportions">
+                    <list>
+                      <option value="0.2" />
+                      <option value="0.51857144" />
+                    </list>
+                  </option>
+                </SplitterProportionsDataImpl>
+              </option>
+              <option name="lastEditedConfigurable" value="Default|IDE Profiles" />
+            </UIState>
+          </value>
+        </entry>
+        <entry key="ProjectJDKs.UI">
+          <value>
+            <UIState>
+              <option name="proportions">
+                <SplitterProportionsDataImpl>
+                  <option name="proportions">
+                    <list>
+                      <option value="0.2" />
+                    </list>
+                  </option>
+                </SplitterProportionsDataImpl>
+              </option>
+              <option name="lastEditedConfigurable" value="1.6" />
+            </UIState>
+          </value>
+        </entry>
+        <entry key="ScopeChooserConfigurable.UI">
+          <value>
+            <UIState>
+              <option name="proportions">
+                <SplitterProportionsDataImpl>
+                  <option name="proportions">
+                    <list>
+                      <option value="0.2" />
+                    </list>
+                  </option>
+                </SplitterProportionsDataImpl>
+              </option>
+            </UIState>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="myStates">
+      <map>
+        <entry key="Copyright.UI">
+          <value>
+            <UIState>
+              <option name="proportions">
+                <SplitterProportionsDataImpl />
+              </option>
+            </UIState>
+          </value>
+        </entry>
+        <entry key="Errors.UI">
+          <value>
+            <UIState>
+              <option name="proportions">
+                <SplitterProportionsDataImpl>
+                  <option name="proportions">
+                    <list>
+                      <option value="0.2" />
+                      <option value="0.51857144" />
+                    </list>
+                  </option>
+                </SplitterProportionsDataImpl>
+              </option>
+              <option name="lastEditedConfigurable" value="Default|IDE Profiles" />
+            </UIState>
+          </value>
+        </entry>
+        <entry key="ProjectJDKs.UI">
+          <value>
+            <UIState>
+              <option name="proportions">
+                <SplitterProportionsDataImpl>
+                  <option name="proportions">
+                    <list>
+                      <option value="0.2" />
+                    </list>
+                  </option>
+                </SplitterProportionsDataImpl>
+              </option>
+              <option name="lastEditedConfigurable" value="1.6" />
+            </UIState>
+          </value>
+        </entry>
+        <entry key="ScopeChooserConfigurable.UI">
+          <value>
+            <UIState>
+              <option name="proportions">
+                <SplitterProportionsDataImpl>
+                  <option name="proportions">
+                    <list>
+                      <option value="0.2" />
+                    </list>
+                  </option>
+                </SplitterProportionsDataImpl>
+              </option>
+            </UIState>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
+

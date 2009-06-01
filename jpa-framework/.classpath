@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+    <classpathentry kind="src" path="resources/java" />
+    <classpathentry kind="src" path="resources/test" />
+    <classpathentry kind="src" path="src/java" />
+    <classpathentry kind="src" path="src/test" />
+    <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" />
+    <classpathentry kind="src" path="/FamFamIcons" combineaccessrules="false" />
+    <classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/lib" />
+    <classpathentry kind="output" path="bin" />
+</classpath>
+

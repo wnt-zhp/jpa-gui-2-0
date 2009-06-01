@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. -->
+<project basedir="." default="build" name="zarlok-2-0">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../../Eclipses/eclipse-zarl"/>
+    <property name="junit.output.dir" value="junit"/>
+    <property name="jpa-framework.location" value="../jpa-framework"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+    <path id="JUnit 4.libraryclasspath">
+        <pathelement location="${ECLIPSE_HOME}/plugins/org.junit4_4.3.1/junit.jar"/>
+    </path>
+    <path id="jpa-framework.classpath">
+        <pathelement location="${jpa-framework.location}/bin"/>
+    </path>
+    <path id="zarlok-2-0.classpath">
+        <pathelement location="bin"/>
+        <pathelement location="lib/commons-lang-2.4.jar"/>
+        <pathelement location="lib/dom4j.jar"/>
+        <pathelement location="lib/ejb3-persistence.jar"/>
+        <pathelement location="lib/hibernate-annotations.jar"/>
+        <pathelement location="lib/hibernate-commons-annotations.jar"/>
+        <pathelement location="lib/hibernate-core.jar"/>
+        <pathelement location="lib/hibernate-entitymanager.jar"/>
+        <pathelement location="lib/jta.jar"/>
+        <pathelement location="lib/log4j-1.2.15.jar"/>
+        <pathelement location="lib/hsqldb-1.8.0.7.jar"/>
+        <pathelement location="lib/slf4j-api-1.5.6.jar"/>
+        <pathelement location="lib/slf4j-log4j12-1.5.6.jar"/>
+        <pathelement location="lib/commons-collections-3.2.1.jar"/>
+        <pathelement location="lib/jcl-over-slf4j-1.5.6.jar"/>
+        <pathelement location="lib/antlr-2.7.6.jar"/>
+        <pathelement location="lib/javassist.jar"/>
+        <pathelement location="lib/hibernate-validator.jar"/>
+        <pathelement location="lib/miglayout-3.7-javadoc.jar"/>
+        <pathelement location="lib/miglayout-3.7-swing.jar"/>
+        <pathelement location="lib/miglayout-3.7.jar"/>
+        <pathelement location="lib/beansbinding-1.2.1.jar"/>
+        <pathelement location="lib/famfam.jar"/>
+        <pathelement location="lib/annotations.jar"/>
+        <pathelement location="lib/jsr305.jar"/>
+        <pathelement location="lib/commons-math-1.2.jar"/>
+        <pathelement location="lib/swingx-0.9.6.jar"/>
+        <pathelement location="lib/zz.jar"/>
+        <path refid="JUnit 4.libraryclasspath"/>
+        <path refid="jpa-framework.classpath"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="resources/java" excludes="**/*.launch, **/*.java"/>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="resources/test" excludes="**/*.launch, **/*.java"/>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src/java" excludes="**/*.launch, **/*.java"/>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src/test" excludes="**/*.launch, **/*.java"/>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall">
+        <ant antfile="${jpa-framework.location}/build.xml" inheritAll="false" target="clean"/>
+    </target>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects">
+        <ant antfile="${jpa-framework.location}/build.xml" inheritAll="false" target="build-project">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+    </target>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="resources/java"/>
+            <classpath refid="zarlok-2-0.classpath"/>
+        </javac>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="resources/test"/>
+            <classpath refid="zarlok-2-0.classpath"/>
+        </javac>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="src/java"/>
+            <classpath refid="zarlok-2-0.classpath"/>
+        </javac>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="src/test"/>
+            <classpath refid="zarlok-2-0.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="TescConfigEntry">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.entities.TescConfigEntry" todir="${junit.output.dir}"/>
+            <classpath refid="zarlok-2-0.classpath"/>
+        </junit>
+    </target>
+    <target name="ModelTest">
+        <java classname="cx.ath.jbzdak.zarlok.ui.autocolmpete.test.ModelTest" failonerror="true" fork="yes">
+            <classpath refid="zarlok-2-0.classpath"/>
+        </java>
+    </target>
+    <target name="PriorizedTasksExecutor">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.PriorizedTasksExecutor" todir="${junit.output.dir}"/>
+            <classpath refid="zarlok-2-0.classpath"/>
+        </junit>
+    </target>
+    <target name="PatternBeanFormatterTest (1)">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.ui.PatternBeanFormatterTest" todir="${junit.output.dir}"/>
+            <classpath refid="zarlok-2-0.classpath"/>
+        </junit>
+    </target>
+    <target name="ProductAddPanel (1)">
+        <java classname="cx.ath.jbzdak.zarlok.ui.produkt.ProductAddPanel" failonerror="true" fork="yes">
+            <classpath refid="zarlok-2-0.classpath"/>
+        </java>
+    </target>
+    <target name="DBManagerTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.entities.DBManagerTest" todir="${junit.output.dir}"/>
+            <classpath refid="zarlok-2-0.classpath"/>
+        </junit>
+    </target>
+    <target name="AutocompleteComboBox (1)">
+        <java classname="cx.ath.jbzdak.zarlok.ui.autocolmpete.AutocompleteComboBox" failonerror="true" fork="yes">
+            <classpath refid="zarlok-2-0.classpath"/>
+        </java>
+    </target>
+    <target name="AppLauncher">
+        <java classname="cx.ath.jbzdak.zarlok.main.AppLauncher" failonerror="true" fork="yes">
+            <jvmarg line="-splash:splash.png"/>
+            <classpath refid="zarlok-2-0.classpath"/>
+        </java>
+    </target>
+    <target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
+    </target>
+</project>
