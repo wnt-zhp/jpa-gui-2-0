@@ -40,7 +40,7 @@ public class DniTab extends JSplitPane{
 		entityManager = manager.createEntityManager();
 		sidebarDao.setEntityManager(entityManager);
 		dniTreePanel.setEntityManager(entityManager);
-		dniTreePanel.setDni(entityManager.createQuery("SELECT d FROM Dzien d").getResultList());
+      dniTreePanel.setDni(entityManager.createQuery("SELECT d FROM Dzien d").getResultList());
 	}
 
 	public void tabHidden(){

@@ -105,6 +105,7 @@ public class DBSetup {
 
 	@SuppressWarnings({"WeakerAccess"})
    protected Map<String, String> createProperties(){
+
 		Map<String, String> properties = new HashMap<String, String>();
 		properties.put("hibernate.connection.url", manager.getJDBCURL());
 		properties.put("hibernate.hbm2ddl.auto", "update");
@@ -113,7 +114,7 @@ public class DBSetup {
 	}
 
 	private void dbSetup() {
-		logger.info("Starting setting up the database");
+		logger.info("Starting setting up the database for url {}", manager.getJDBCURL());
 		dbSetup.executeSwallow(manager);
 
 	}

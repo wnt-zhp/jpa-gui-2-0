@@ -1,5 +1,7 @@
 package cx.ath.jbzdak.zarlok.ui.dzien;
 
+import cx.ath.jbzdak.jpaGui.Transaction;
+import cx.ath.jbzdak.jpaGui.db.DBManager;
 import cx.ath.jbzdak.jpaGui.genericListeners.DoStuffMouseListener;
 import cx.ath.jbzdak.jpaGui.task.Task;
 import cx.ath.jbzdak.jpaGui.ui.form.DAOForm;
@@ -9,6 +11,7 @@ import cx.ath.jbzdak.zarlok.entities.DzienUtils;
 import cx.ath.jbzdak.zarlok.entities.Posilek;
 import cx.ath.jbzdak.zarlok.main.MainWindowModel;
 import cx.ath.jbzdak.zarlok.raport.RaportFactory;
+import cx.ath.jbzdak.zarlok.ui.iloscOsob.IloscOsobDialog;
 import cx.ath.jbzdak.zarlok.ui.posilek.PosilekPanel;
 import cx.ath.jbzdak.zarlok.ui.posilek.PosilekPanelCache;
 import javax.annotation.Nullable;
@@ -48,22 +51,24 @@ class DniTreePanelModel {
 
    boolean onlyDniSelected;
 
-   @SuppressWarnings({"FieldCanBeLocal"})
-   private boolean onlyPosilkiSelected;
+   boolean onlyPosilkiSelected;
 
    private final DAOForm<Dzien,?> form;
 
    private final DzienDao dzienDao;
 
+   private final DBManager manager;
+
    final RaportFactory raportFactory;
 
-   public DniTreePanelModel(DAOForm<Dzien, ?> form, DzienDao dzienDao, MainWindowModel mainWindowModel) {
+   public DniTreePanelModel(DAOForm<Dzien, ?> form, DzienDao dzienDao, MainWindowModel mainWindowModel, DBManager manager) {
       this.form = form;
       this.dzienDao = dzienDao;
       form.setDao(dzienDao);
       form.setEntity(new Dzien());
       form.startEditing();
       raportFactory = mainWindowModel.getRaportFactory();
+      this.manager = manager;
    }
 
    private final Timer selectionTimer;
@@ -79,6 +84,24 @@ class DniTreePanelModel {
 		return Collections.unmodifiableSet(dni);
 	}
 
+   void setContentsFromDb(){
+      setDni(entityManager.createQuery("SELECT d FROM Dzien d").getResultList());
+   }
+
+   public void removeDzien(final Dzien d){
+      Transaction.execute(entityManager, new Transaction() {
+         @Override
+         public void doTransaction(EntityManager entityManager) throws Exception {
+            entityManager.remove(entityManager.find(Dzien.class, d.getId()));
+            setContentsFromDb();
+            JOptionPane.showMessageDialog(null, "Udało się usunąć");
+            selectedItems.clear();
+            updateDetailsPanel();
+         }
+      });
+
+   }
+
 	public void setDni(Collection<Dzien> dni) {
 		this.dni.clear();
 		this.dni.addAll(dni);
@@ -86,7 +109,7 @@ class DniTreePanelModel {
       generateTree();
 	}
 
-   	private void generateTree(){
+   void generateTree(){
 		DefaultMutableTreeNode root = new DefaultMutableTreeNode();
 		for(Dzien d: dni){
 			DefaultMutableTreeNode dzienNode = new DefaultMutableTreeNode(d, true);
@@ -149,14 +172,13 @@ class DniTreePanelModel {
 		@Override
 		public void valueChanged(TreeSelectionEvent e) {
          TreePath[] paths = e.getPaths();
-         for (int i = 0; i <paths.length; i++) {
-            TreePath treePath = paths[i];
-            if(e.isAddedPath(treePath)){
+         for (TreePath treePath : paths) {
+            if (e.isAddedPath(treePath)) {
                selectedPaths.add(treePath);
-               selectedItems.add(((DefaultMutableTreeNode)treePath.getLastPathComponent()).getUserObject());
-            }else{
+               selectedItems.add(((DefaultMutableTreeNode) treePath.getLastPathComponent()).getUserObject());
+            } else {
                selectedPaths.remove(treePath);
-               selectedItems.remove(((DefaultMutableTreeNode)treePath.getLastPathComponent()).getUserObject());
+               selectedItems.remove(((DefaultMutableTreeNode) treePath.getLastPathComponent()).getUserObject());
             }
          }
          onlyDniSelected = true;
@@ -224,7 +246,7 @@ class DniTreePanelModel {
    class ShowPopupMenuListener extends DoStuffMouseListener{
       private final JTree tree;
 
-      private final TreePopupMenu treePopupMenu = new TreePopupMenu(DniTreePanelModel.this);
+      private final TreePopupMenu treePopupMenu = new TreePopupMenu(manager, DniTreePanelModel.this);
 
       ShowPopupMenuListener(JTree tree) {
          this.tree = tree;
@@ -241,10 +263,7 @@ class DniTreePanelModel {
    private class TimerAction implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-         for (int ii = 0; ii < selectedPaths.size(); ii++) {
-            updateDetailsPanel();
-         }
-
+         updateDetailsPanel();
 		}
    }
 

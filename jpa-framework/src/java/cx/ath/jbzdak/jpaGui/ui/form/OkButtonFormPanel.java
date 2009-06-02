@@ -13,15 +13,17 @@ public class OkButtonFormPanel<T> extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 
-	DAOForm<? extends T, ? extends FormElement> form;
+	private DAOForm<? extends T, ? extends FormElement> form;
 
-	JButton okButton, cancelButton;
+	private final JButton okButton;
+   private final JButton cancelButton;
 
-	boolean commitOnOK = true, rollbackOnCancel = true;
+	private boolean commitOnOK = true;
+   private boolean rollbackOnCancel = true;
 
-	TasksExecutor<DAOForm<? extends T, ? extends FormElement>>  okTasks = new TasksExecutor<DAOForm<? extends T, ? extends FormElement>>();
+	private TasksExecutor<DAOForm<? extends T, ? extends FormElement>>  okTasks = new TasksExecutor<DAOForm<? extends T, ? extends FormElement>>();
 
-	TasksExecutor<DAOForm<? extends T, ? extends FormElement>> cancelTasks = new TasksExecutor<DAOForm<? extends T, ? extends FormElement>>();
+	private TasksExecutor<DAOForm<? extends T, ? extends FormElement>> cancelTasks = new TasksExecutor<DAOForm<? extends T, ? extends FormElement>>();
 
 	public OkButtonFormPanel() {
 		setLayout(new MigLayout());
@@ -39,7 +41,9 @@ public class OkButtonFormPanel<T> extends JPanel{
 		cancelButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				form.rollback();
+            if(form!=null){
+				   form.rollback();
+            }
 				cancelTasks.executeSwallow(form);
 			}
 		});

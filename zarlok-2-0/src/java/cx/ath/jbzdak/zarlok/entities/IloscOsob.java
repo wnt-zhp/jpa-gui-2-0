@@ -7,7 +7,7 @@ import org.hibernate.validator.NotNull;
 import org.hibernate.validator.Range;
 
 @Embeddable
-public class IloscOsob {
+public class IloscOsob implements Cloneable{
 
 
 	@NotNull
@@ -73,4 +73,12 @@ public class IloscOsob {
 		return result;
 	}
 
+   @Override
+   public final IloscOsob clone() {
+      try {
+         return (IloscOsob) super.clone();
+      } catch (CloneNotSupportedException e) {
+         throw  new RuntimeException(e);
+      }
+   }
 }

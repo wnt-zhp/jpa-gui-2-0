@@ -9,6 +9,7 @@ import cx.ath.jbzdak.jpaGui.ui.formatted.formatters.DateFormatter;
 import cx.ath.jbzdak.zarlok.db.dao.DzienDao;
 import cx.ath.jbzdak.zarlok.entities.Dzien;
 import cx.ath.jbzdak.zarlok.main.MainWindowModel;
+import cx.ath.jbzdak.zarlok.ui.iloscOsob.IloscOsobDialog;
 import javax.persistence.EntityManager;
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeCellRenderer;
@@ -36,13 +37,16 @@ public class DniTreePanel extends JPanel {
 
    private final IloscOsobDialog iloscOsobDialog;
 
+   @SuppressWarnings({"FieldCanBeLocal"})
    private final JTree tree = new DniTree();
 
+   @SuppressWarnings({"FieldCanBeLocal"})
    private final FormPanel<MyFormattedTextField> dzienAddPanel;
 
+   @SuppressWarnings({"FieldCanBeLocal"})
    private final JButton addDzienButton = new JButton("Dodaj", IconManager.getIconSafe("dzien_add"));
 
-   @SuppressWarnings("unchecked")
+   @SuppressWarnings({"unchecked", "FieldCanBeLocal"})
    private final
    Binding binding;
 
@@ -51,7 +55,7 @@ public class DniTreePanel extends JPanel {
       FormFactory<Dzien> ffactory = new FormFactory<Dzien>();
       ffactory.setLayout("compact");
       dzienAddPanel = ffactory.decorateFormattedTextField("Dodaj dzien", "data", new DateFormatter());
-      model = new DniTreePanelModel(ffactory.getCreatedForm(), dao, mainWindowModel);
+      model = new DniTreePanelModel(ffactory.getCreatedForm(), dao, mainWindowModel, mainWindowModel.getManager());
       DefaultTreeCellRenderer treeRenderer = new DniTreeRenderer();
       tree.setModel(model.getModel());
       tree.setCellRenderer(treeRenderer);

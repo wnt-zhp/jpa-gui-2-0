@@ -50,7 +50,7 @@ public class Posilek {
 	public Posilek(String nazwa, Dzien d) {
 		super();
 		this.nazwa = nazwa;
-		this.iloscOsob = d.getIloscOsob();
+		this.iloscOsob = d.getIloscOsob().clone();
 		this.dzien = d;
 	}
 

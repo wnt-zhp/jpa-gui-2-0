@@ -21,24 +21,28 @@ import java.util.List;
         )
 }
 )
-public class Dzien {
+public class Dzien{
 
 	@Id
 	@GeneratedValue
 	@Column(name = "ID")
-	Long id;
+   private
+   Long id;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "DATA", unique = true)
-	Date data;
+   private
+   Date data;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="dzien")
-	List<Posilek> posilki = new ArrayList<Posilek>();
+   private
+   List<Posilek> posilki = new ArrayList<Posilek>();
 
 	@Embedded
-	IloscOsob iloscOsob = new  IloscOsob();
+   private
+   IloscOsob iloscOsob = new  IloscOsob();
 
-   BigDecimal stawkaDzienna;
+   private BigDecimal stawkaDzienna;
 
    @PreUpdate @PrePersist
    public void recalculateDzienKoszt(){
