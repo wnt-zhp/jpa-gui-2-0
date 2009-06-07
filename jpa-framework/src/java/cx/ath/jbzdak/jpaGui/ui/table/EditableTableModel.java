@@ -1,10 +1,10 @@
 package cx.ath.jbzdak.jpaGui.ui.table;
 
+import cx.ath.jbzdak.jpaGui.Transaction;
 import static cx.ath.jbzdak.jpaGui.Utils.getId;
 import static cx.ath.jbzdak.jpaGui.Utils.isIdNull;
 import cx.ath.jbzdak.jpaGui.db.DBManager;
 import cx.ath.jbzdak.jpaGui.db.dao.DAO;
-import cx.ath.jbzdak.jpaGui.db.dao.RefreshType;
 import javax.persistence.EntityManager;
 import javax.swing.JTable;
 import javax.swing.event.TableModelEvent;
@@ -19,6 +19,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -98,7 +99,8 @@ public abstract class EditableTableModel<T> {
       this.clazz = clazz;
       this.table = table;
       this.dao = dbManager.getDao(clazz);
-      dao.setRefreshType(RefreshType.FIND);
+      //dao.setRefreshType(RefreshType.FIND);
+      dao.setAutoCreateEntity(false);
       manager = this.dbManager.createEntityManager();
       table.addPropertyChangeListener("model", new PropertyChangeListener(){
          @Override
@@ -128,6 +130,7 @@ public abstract class EditableTableModel<T> {
     * @return
     */
    public boolean isHighlighted(int idx){
+      System.out.println(((!isEditingDone(idx)) || maySave(idx)));
       return (!isEditingDone(idx)) || maySave(idx);
    }
 
@@ -180,7 +183,8 @@ public abstract class EditableTableModel<T> {
     */
    public void remove(final T t){
       dao.setEntity(t);
-      dao.remove(t);
+      removeEntry(t, manager);
+      dao.remove();
       removeEntity(entities.indexOf(t));
       manager.clear();
    }
@@ -206,10 +210,21 @@ public abstract class EditableTableModel<T> {
     * Dodaje encję do {@link #entities} i {@link #entitiesCompare}
     * @param t
     */
-   protected void addEntity(T t){
+   public void addEntity(T t){
       entities.add(t);
       entitiesCompare.add(clone(t));
    }
+
+   /**
+     * Dodaje encję do {@link #entities} i {@link #entitiesCompare}
+     * @param col
+     */
+    public void addAll(Collection<T> col){
+      for(T t : col){
+         addEntity(t);
+      }
+   }
+
 
    /**
     * Ustawia zawartość wiersza ii w tabeli. (
@@ -243,9 +258,18 @@ public abstract class EditableTableModel<T> {
       if(isIdNull(t)){
         persistingEntityEntry(t, manager);
       }
-      preMergeEntry(t, manager);
+      Transaction.execute(manager, new Transaction() {
+         @Override
+         public void doTransaction(EntityManager entityManager) throws Exception {
+            preMergeEntry(t, entityManager);
+         }
+      });
+      int index = entities.indexOf(t);
       dao.setEntity(t);
       dao.persistOrUpdate();
+      if(index!=-1){ //Żeby do entietesCompare trafiła wersja zustawionym id jeśli było odpalone persist
+         setEntity(index, dao.getEntity());
+      }
       manager.clear();
    }
 
@@ -286,7 +310,7 @@ public abstract class EditableTableModel<T> {
    public void refresh(final T t){
       manager.clear();
       dao.find(getId(t));
-            setEntity(entities.indexOf(t), dao.getEntity());
+      setEntity(entities.indexOf(t), dao.getEntity());
       dao.clearEntity();
       manager.clear();
    }
@@ -315,9 +339,9 @@ public abstract class EditableTableModel<T> {
       this.insertNewRow = insertNewRow;
    }
 
-
    public List<T> getEntities() {
-      return entities;
+      //return BeansbindingUtils.observableUnmodifiableList(entities);
+      return  entities;
    }
 
    public void setEntities(List<T> entities) {
@@ -331,7 +355,16 @@ public abstract class EditableTableModel<T> {
       if(insertNewRow){
          addEntity(createNewEntity());
       }
+      boolean added = false;
+      if(this.entities.size()==0){
+         this.entities.add(createNewEntity());
+         added = true;
+      }
       support.firePropertyChange("entities", old, this.entities);
+      if(added){
+         this.entities.remove(0);
+      }
+
    }
 
    public void addPropertyChangeListener(PropertyChangeListener listener) {

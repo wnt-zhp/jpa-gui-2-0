@@ -84,8 +84,8 @@ public class AbstractDAO<T> implements DAO<T> {
       }
       if (beginCount == 0) {
          entityManager.getTransaction().begin();
-         if (!isIdNull(getEntity())) {
-            entity = refreshType.perform(entityManager, entity, null);
+         if (entity != null && !isIdNull(getEntity())) {
+            entity = refreshType.perform(entityManager, entity, manager);
          }
       }
       beginCount++;
@@ -99,7 +99,6 @@ public class AbstractDAO<T> implements DAO<T> {
          return;
       beginCount--;
       if (beginCount == 0) {
-         entityManager.flush();
          entityManager.getTransaction().commit();
          if (transactionWideEntityManager) {
             entityManager.close();
@@ -112,7 +111,9 @@ public class AbstractDAO<T> implements DAO<T> {
    * @see cx.ath.jbzdak.zarlok.db.dao.DAO#rollback()
    */
    public void rollback() {
-      entityManager.getTransaction().rollback();
+      if(entityManager.getTransaction().isActive()){
+         entityManager.getTransaction().rollback();
+      }
       beginCount = 0;
       if (transactionWideEntityManager) {
          entityManager.close();
@@ -152,14 +153,11 @@ public class AbstractDAO<T> implements DAO<T> {
    * @see cx.ath.jbzdak.zarlok.db.dao.DAO#update()
    */
    public void update() {
-      if (entityManager == null) {
-         throw new IllegalStateException();
-      }
-      if (!getEntityManager().contains(getEntity())) {
-         throw new IllegalStateException();
-      }
       beginTransaction();
-      try {
+       try {
+         if (!getEntityManager().contains(getEntity())) {
+            throw new IllegalStateException();
+         }
          firePersistenceEVT(LifecyclePhase.PreUpdate);
          getEntityManager().flush();
          closeTransaction();
@@ -174,11 +172,18 @@ public class AbstractDAO<T> implements DAO<T> {
    * @see cx.ath.jbzdak.zarlok.db.dao.DAO#persistOrUpdate()
    */
    public void persistOrUpdate() {
-      if (!isIdNull(getEntity())) {
-         getEntityManager().merge(getEntity());
-         getEntityManager().flush();
-      } else {
-         getEntityManager().persist(getEntity());
+      beginTransaction();
+      try{
+         if (!isIdNull(getEntity())) {
+            getEntityManager().merge(getEntity());
+            getEntityManager().flush();
+         } else {
+            getEntityManager().persist(getEntity());
+         }
+         closeTransaction();
+      }catch (RuntimeException e){
+         rollback();
+         throw e;
       }
    }
 
@@ -201,7 +206,7 @@ public class AbstractDAO<T> implements DAO<T> {
 
    }
 
-   public void remove(T entity){
+   public void remove(){
       beginTransaction();
       try{
          firePersistenceEVT(LifecyclePhase.PreRemove);

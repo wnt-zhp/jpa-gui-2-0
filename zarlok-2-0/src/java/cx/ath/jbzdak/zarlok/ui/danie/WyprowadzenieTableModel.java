@@ -20,10 +20,11 @@ public class WyprowadzenieTableModel extends EditableTableModel<Wyprowadzenie>{
 
 	@Override
 	protected void removeEntry(Wyprowadzenie t, EntityManager manager) {
-		danie = manager.merge(danie);
-		danie.getWyprowadzenia().remove(t);
-        danie.updateKoszt();
-        danie.getPosilek().recalculateCost();
+      t.setDanie(null);
+		danie = manager.find(Danie.class, danie.getId());
+//		danie.getWyprowadzenia().remove(t);
+      danie.updateKoszt();
+      danie.getPosilek().recalculateCost();
 	}
 
 	@Override
@@ -31,18 +32,19 @@ public class WyprowadzenieTableModel extends EditableTableModel<Wyprowadzenie>{
 		t.setDataWyprowadzenia(danie.getPosilek().getDzien().getData());
 		t.setTytulem(WyprowadzenieUtils
 				.getTytulemFromDanie(danie));
-		danie = manager.merge(danie);
-		danie.getWyprowadzenia().add(t);
-        danie.updateKoszt();
-        danie.getPosilek().recalculateCost();
+		danie = manager.find(Danie.class, danie.getId());
+      t.setDanie(danie);
+      danie.updateKoszt();
+      danie.getPosilek().recalculateCost();
 	}
 
 	@Override
 	protected void preMergeEntry(Wyprowadzenie t, EntityManager entityManager) {
 		t.setPartia(entityManager.find(Partia.class, t.getPartia().getId()));
-        danie = entityManager.merge(danie);
-        danie.updateKoszt();
-        danie.getPosilek().recalculateCost();
+      danie = entityManager.merge(danie);
+      danie.updateKoszt();
+      danie.getPosilek().recalculateCost();
+      t.getPartia().recalculateIloscTeraz();
 	}
 
 	public void setDanie(final Danie danie) {
@@ -57,8 +59,9 @@ public class WyprowadzenieTableModel extends EditableTableModel<Wyprowadzenie>{
 
 	@Override
 	public boolean isEditingDone(int idx) {
-		Wyprowadzenie w = getEntities().get(idx);
-		return w.getPartia()!=null && w.getIloscJednostek() != null;
+		//Wyprowadzenie w = getEntities().get(idx);
+		//return w.getPartia()!=null && w.getIloscJednostek() != null;
+      return  true;
 	}
 
 	@Override

@@ -44,10 +44,10 @@ public class Danie {
 	@Column(name = "NAZWA")
 	String nazwa;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "danie")
+	@OneToMany(cascade = CascadeType.REMOVE, mappedBy = "danie")
 	List<Wyprowadzenie> wyprowadzenia = new ArrayList<Wyprowadzenie>();
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "danie")
+	@OneToMany(cascade = CascadeType.REMOVE, mappedBy = "danie")
 	List<PlanowaneWyprowadzenie> planowaneWyprowadzenia = new ArrayList<PlanowaneWyprowadzenie>();
 
 	@Nullable

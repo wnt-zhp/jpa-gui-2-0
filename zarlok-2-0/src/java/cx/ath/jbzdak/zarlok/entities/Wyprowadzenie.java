@@ -69,11 +69,7 @@ public class Wyprowadzenie implements Cloneable, ProductSeachCacheSearchable{
 	@SuppressWarnings({"WeakerAccess"})
    @PreUpdate @PreRemove
 	public void recalculatePartia(){
-        getPartia().recalculateIloscTeraz();
         iloscJednostek = Utils.round(iloscJednostek, 2);
-      if(getDanie()!=null){
-         getDanie().updateKoszt();
-      }
 	}
 
 	public Long getId() {
@@ -198,4 +194,5 @@ public class Wyprowadzenie implements Cloneable, ProductSeachCacheSearchable{
       update.executeUpdate();
       LOGGER.info("Koszt dania updated");
    }
+
 }

@@ -3,7 +3,6 @@ package cx.ath.jbzdak.zarlok.ui.danie;
 import cx.ath.jbzdak.jpaGui.autoComplete.AutoCompleteValueHolder;
 import cx.ath.jbzdak.jpaGui.autoComplete.AutocompleteComboBox;
 import cx.ath.jbzdak.jpaGui.db.DBManager;
-import cx.ath.jbzdak.jpaGui.genericListeners.DebugPropertyChangeListener;
 import cx.ath.jbzdak.jpaGui.ui.table.HighlightCellRenderer;
 import cx.ath.jbzdak.jpaGui.ui.table.TableObjectProperty;
 import cx.ath.jbzdak.zarlok.entities.Danie;
@@ -33,6 +32,7 @@ public class WyprowadzeniaTable extends JTable {
 
 	public WyprowadzeniaTable(DBManager manager){
 		wyprowadzeniaModel = new WyprowadzenieTableModel(manager, this);
+        wyprowadzeniaModel.setInsertNewRow(false);
 		setRowHeight(25);
 		initBinding();
 		TableColumnModel columnModel = getColumnModel();
@@ -51,8 +51,6 @@ public class WyprowadzeniaTable extends JTable {
 		akcjeColumn.setCellEditor(wyprowadzeniaModel.createRendererEditor());
 		iloscColumn.setMaxWidth(75);
 		akcjeColumn.setMaxWidth(90);
-		iloscColumn.addPropertyChangeListener(new DebugPropertyChangeListener("width", "ilosc"));
-		akcjeColumn.addPropertyChangeListener(new DebugPropertyChangeListener("width", "akcje"));
 	}
 
 
@@ -62,11 +60,11 @@ public class WyprowadzeniaTable extends JTable {
 				UpdateStrategy.READ, wyprowadzeniaModel,
 				BeanProperty.<WyprowadzenieTableModel, List<Wyprowadzenie>>create("entities"), this);
 		wyprowadzoneBinding.addColumnBinding(BeanProperty.create("partia"))
-				.setColumnName("Nazwa").setEditable(true).setConverter(
+				.setColumnName("Nazwa").setEditable(false).setConverter(
 						new Cnvtr());
 		wyprowadzoneBinding.addColumnBinding(
 				BeanProperty.create("iloscJednostek")).setColumnName("Ilość")
-				.setEditable(true);
+				.setEditable(false);
 		wyprowadzoneBinding.addColumnBinding(new TableObjectProperty())
 				.setColumnName("Akcje").setEditable(true);
 		wyprowadzoneBinding.bind();

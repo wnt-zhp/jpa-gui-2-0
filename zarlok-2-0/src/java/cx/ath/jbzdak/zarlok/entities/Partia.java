@@ -56,8 +56,8 @@ import java.util.List;
                    "(:nazwa IS NULL OR p.produkt.nazwa = :nazwa) AND " +
                    "(:specyfikator IS NULL OR p.specyfikator = :specyfikator ) AND " +
                    "(:jednostka IS NULL OR p.jednostka = :jednostka) AND " +
-                   "p.dataWaznosci > :dzien AND " +
-                   "p.dataKsiegowania < :dzien AND " +
+                   "(p.dataWaznosci IS NULL OR p.dataWaznosci > :dzien) AND " +
+                   "p.dataKsiegowania <= :dzien AND " +
                    "p.iloscTeraz > 0 " +
                    "ORDER BY p.dataWaznosci ASC, " +
                    "p.dataKsiegowania DESC, " +
@@ -184,6 +184,7 @@ public class Partia implements ProductSeachCacheSearchable{
 	public void prePersist(){
 		dataWprowadzenia = new Date();
 		recalculateIloscTeraz();
+      cena = Utils.round(cena, 2);
 	}
 
 	@PreUpdate

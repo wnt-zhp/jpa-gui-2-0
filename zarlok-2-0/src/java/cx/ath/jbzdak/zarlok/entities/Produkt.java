@@ -43,7 +43,7 @@ import java.util.List;
            query = "SELECT new cx.ath.jbzdak.zarlok.raport.stany.StanMagazynuEntryBean(" +
                    " p " +
                    ") FROM Partia p\n" +
-                   "WHERE p.dataKsiegowania <= :data AND p.dataWaznosci > :data\n " +
+                   "WHERE p.dataKsiegowania <= :data AND (p.dataWaznosci IS NULL OR p.dataWaznosci > :data)\n " +
                    "AND (SELECT COUNT(w) FROM Wyprowadzenie w WHERE w.dataWyprowadzenia < :data AND w.partia = p) = 0"
 
    )

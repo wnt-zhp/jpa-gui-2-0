@@ -45,5 +45,5 @@ public interface DAO<T> {
 
    void setRefreshType(RefreshType refreshType);
 
-   void remove(T entity);
+   void remove();
 }

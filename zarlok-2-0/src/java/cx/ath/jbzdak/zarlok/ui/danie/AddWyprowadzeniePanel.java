@@ -37,7 +37,7 @@ import java.util.Map;
  */
 public class AddWyprowadzeniePanel extends JPanel{
 
-    private final AddWyprowadzenieDialogModel model;
+    private final AddWyprowadzeniePanelModel model;
 
     private final AutocompleteComboBox partiaBox;
 
@@ -52,7 +52,7 @@ public class AddWyprowadzeniePanel extends JPanel{
    @SuppressWarnings("unchecked")
     public AddWyprowadzeniePanel(DBManager dbManager, WyprowadzeniaTable wyprowadzeniaTable) {
         super(new MigLayout("fillx", "[fill,grow||]"));
-        this.model = new AddWyprowadzenieDialogModel(dbManager, wyprowadzeniaTable);
+        this.model = new AddWyprowadzeniePanelModel(dbManager, wyprowadzeniaTable);
         partiaBox = new AutocompleteComboBox(model.new Adapter(dbManager));
         partiaBox.setStrict(true);
         iloscField = new MyFormattedTextField(model.new IloscJednostekFormatter());
@@ -113,7 +113,7 @@ public class AddWyprowadzeniePanel extends JPanel{
 
     }
 
-    public AddWyprowadzenieDialogModel getModel() {
+    public AddWyprowadzeniePanelModel getModel() {
         return model;
     }
 

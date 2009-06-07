@@ -60,7 +60,7 @@ class StanMagazynuRaport extends Raport{
       table.setHeaderRows(1);
       for(StanMagazynuEntryBean bean : this.stanMagazynuRaportBean.getPartie()){
          table.addCell(getDefaultCell(formatMessage("{produkt.nazwa} {specyfikator}", bean)));
-         table.addCell(getDefaultCell(bean.getSpecyfikator()));
+         table.addCell(getDefaultCell(bean.getJednostka()));
          table.addCell(String.valueOf(Utils.round(bean.getIloscJednostek(), 2)));
       }
       document.add(table);

@@ -25,7 +25,7 @@ import java.util.List;
  */
 
 @SuppressWarnings({"WeakerAccess"})
-public class AddWyprowadzenieDialogModel {
+public class AddWyprowadzeniePanelModel {
 
     private static final Logger LOGGER = makeLogger();
 
@@ -47,12 +47,12 @@ public class AddWyprowadzenieDialogModel {
 
     private BigDecimal maxQuantity = BigDecimal.ZERO;
 
-    AddWyprowadzenieDialogModel(DBManager dbManager, WyprowadzeniaTable wyprowadzeniaTable) {
+    AddWyprowadzeniePanelModel(DBManager dbManager, WyprowadzeniaTable wyprowadzeniaTable) {
         this.dbManager = dbManager;
         this.wyprowadzeniaTable = wyprowadzeniaTable;
     }
 
-    public void setInsertedProduct(final ProductSearchCache insertedProduct) {
+   public void setInsertedProduct(final ProductSearchCache insertedProduct) {
         ProductSearchCache oldInsertedCach = this.insertedProduct;
         this.insertedProduct = insertedProduct;
         support.firePropertyChange("insertedProduct", oldInsertedCach, this.insertedProduct);
@@ -166,7 +166,7 @@ public class AddWyprowadzenieDialogModel {
 
     public void sendWyprowadzenia(){
         List<Wyprowadzenie> wyprowadzenia = PartieUtils.wydajPoKolei(partie, quantity);
-        wyprowadzeniaTable.wyprowadzeniaModel.getEntities().addAll(wyprowadzenia);
+        wyprowadzeniaTable.wyprowadzeniaModel.addAll(wyprowadzenia);
     }
 
 
@@ -182,7 +182,7 @@ public class AddWyprowadzenieDialogModel {
                             "new cx.ath.jbzdak.zarlok.entities.ProductSearchCache(p.produkt.nazwa, p.specyfikator, p.jednostka, p.produkt.id)" +
                             "FROM Partia p WHERE " +
                             "p.dataKsiegowania < :dzien AND " +
-                            "p.dataWaznosci > :dzien AND " +
+                            "(p.dataWaznosci IS NULL OR p.dataWaznosci > :dzien) AND " +
                             "p.iloscTeraz > 0 AND " +
                             "((:nazwa IS NULL) OR  LOWER(p.produkt.nazwa) LIKE LOWER('%' || :nazwa || '%')) AND" +
                             "((:specyfikator IS NULL) OR LOWER(p.specyfikator) LIKE LOWER('%' || :specyfikator || '%')) AND " +

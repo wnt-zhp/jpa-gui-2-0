@@ -3,6 +3,8 @@ package cx.ath.jbzdak.jpaGui.db.dao;
 import cx.ath.jbzdak.jpaGui.Utils;
 import cx.ath.jbzdak.jpaGui.db.DBManager;
 import cx.ath.jbzdak.jpaGui.db.dao.annotations.LifecyclePhase;
+import edu.umd.cs.findbugs.annotations.NonNull;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.persistence.EntityManager;
 
 /**
@@ -12,12 +14,12 @@ import javax.persistence.EntityManager;
 public enum RefreshType {
    NONE() {
       @Override
-      <T> T perform(EntityManager manager, T entity, DBManager dbManager) {
+      <T> T perform(@Nullable EntityManager manager,@Nullable  T entity,@Nullable  DBManager dbManager) {
          return entity;
       }},
    MERGE() {
       @Override
-      <T> T perform(EntityManager manager, T entity, DBManager dbManager) {
+      <T> T perform(@NonNull EntityManager manager,@NonNull  T entity,@NonNull  DBManager dbManager) {
          if(!(Utils.isIdNull(entity) || manager.contains(entity))){
             return manager.merge(entity);
          }
@@ -31,5 +33,5 @@ public enum RefreshType {
          return entity;
       }};
 
-   abstract <T> T perform(EntityManager manager, T entity, DBManager dbManager);
+   abstract <T> T perform(@NonNull EntityManager manager, @NonNull T entity, @NonNull DBManager dbManager);
 }

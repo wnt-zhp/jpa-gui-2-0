@@ -92,7 +92,7 @@ public class NoopDao<T> implements DAO<T> {
    }
 
    @Override
-   public void remove(T entity) {
+   public void remove() {
    }
 
    @Override
