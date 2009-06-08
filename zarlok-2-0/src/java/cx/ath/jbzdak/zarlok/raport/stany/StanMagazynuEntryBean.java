@@ -25,6 +25,7 @@ public class StanMagazynuEntryBean {
       this.produkt = p.getProdukt();
       this.specyfikator = p.getSpecyfikator();
       this.jednostka = p.getJednostka();
+      iloscWyprowadzona=iloscWyprowadzona!=null?iloscWyprowadzona:BigDecimal.ZERO;
       this.iloscJednostek =  p.getIloscPocz().subtract(iloscWyprowadzona, MathContext.DECIMAL32);
    }
 
@@ -64,9 +65,8 @@ public class StanMagazynuEntryBean {
 
       if (!jednostka.equals(that.jednostka)) return false;
       if (!produkt.getNazwa().equals(that.produkt.getNazwa())) return false;
-      if (!specyfikator.equals(that.specyfikator)) return false;
+      return specyfikator.equals(that.specyfikator);
 
-      return true;
    }
 
    @Override

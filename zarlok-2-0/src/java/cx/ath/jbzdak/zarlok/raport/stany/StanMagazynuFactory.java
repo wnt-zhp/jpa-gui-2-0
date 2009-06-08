@@ -40,11 +40,7 @@ public class StanMagazynuFactory {
          public Raport doTransaction(EntityManager entityManager) {
             Query q = entityManager.createNamedQuery("getStanMagazynu");
             q.setParameter("data", dzien.getData());
-            List<StanMagazynuEntryBean> results = new ArrayList<StanMagazynuEntryBean>(q.getResultList());
-            q = entityManager.createNamedQuery("getStanMagazynu2");
-            q.setParameter("data", dzien.getData());
-            List<StanMagazynuEntryBean> results2 = q.getResultList();
-            results.addAll(results2);
+            List<StanMagazynuEntryBean> results = new ArrayList<StanMagazynuEntryBean>( q.getResultList());
             List<StanMagazynuEntryBean> toRemove = new ArrayList<StanMagazynuEntryBean>();
             for(StanMagazynuEntryBean result : results){
                if(Math.abs(result.getIloscJednostek().doubleValue()) < 0.01){

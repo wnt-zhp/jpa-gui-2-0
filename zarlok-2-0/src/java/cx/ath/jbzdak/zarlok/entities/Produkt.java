@@ -34,17 +34,11 @@ import java.util.List;
            query = "SELECT new cx.ath.jbzdak.zarlok.raport.stany.StanMagazynuEntryBean(\n" +
                    " p,\n " +
                    " SUM(w.iloscJednostek)" +
-                   ") FROM Partia p, IN(p.wyprowadzenia) w\n" +
-                   "WHERE p.dataKsiegowania <= :data AND p.dataWaznosci > :data\n " +
-                   "AND w.dataWyprowadzenia < :data GROUP BY p, p.iloscPocz \n"
-
-   ),@NamedQuery(
-           name = "getStanMagazynu2",
-           query = "SELECT new cx.ath.jbzdak.zarlok.raport.stany.StanMagazynuEntryBean(" +
-                   " p " +
-                   ") FROM Partia p\n" +
+                   ") FROM Partia p LEFT OUTER JOIN p.wyprowadzenia w\n" +
                    "WHERE p.dataKsiegowania <= :data AND (p.dataWaznosci IS NULL OR p.dataWaznosci > :data)\n " +
-                   "AND (SELECT COUNT(w) FROM Wyprowadzenie w WHERE w.dataWyprowadzenia < :data AND w.partia = p) = 0"
+                   "AND (w IS NULL OR (w.dataWyprowadzenia < :data))\n " +
+                   "GROUP BY p, p.produkt.nazwa \n" + 
+                   "ORDER BY p.produkt.nazwa\n"
 
    )
 })
