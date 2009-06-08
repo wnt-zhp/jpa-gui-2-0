@@ -21,30 +21,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="&#10;# Brief commit desciption here&#10;&#10;# Full commit description here (comment lines starting with '#' will not be included)&#10;&#10;">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jpa-framework/src/java/cx/ath/jbzdak/jpaGui/beansbinding/UnmodifiableObserwableList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/entities/Produkt.java" afterPath="$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/entities/Produkt.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jpa-framework/src/java/cx/ath/jbzdak/jpaGui/ui/table/AkcjeRendererEditor.java" afterPath="$PROJECT_DIR$/jpa-framework/src/java/cx/ath/jbzdak/jpaGui/ui/table/AkcjeRendererEditor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/ui/danie/WyprowadzeniaTable.java" afterPath="$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/ui/danie/WyprowadzeniaTable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/raport/stany/StanMagazynuRaport.java" afterPath="$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/raport/stany/StanMagazynuRaport.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jpa-framework/src/java/cx/ath/jbzdak/jpaGui/beansbinding/BeansbindingUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/ui/danie/WyprowadzenieTableModel.java" afterPath="$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/ui/danie/WyprowadzenieTableModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jpa-framework/src/java/cx/ath/jbzdak/jpaGui/db/dao/NoopDao.java" afterPath="$PROJECT_DIR$/jpa-framework/src/java/cx/ath/jbzdak/jpaGui/db/dao/NoopDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/idea-zarlock.iml" afterPath="$PROJECT_DIR$/idea-zarlock.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/idea-zarlock.ipr" afterPath="$PROJECT_DIR$/idea-zarlock.ipr" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jpa-framework/src/java/cx/ath/jbzdak/jpaGui/db/dao/DAO.java" afterPath="$PROJECT_DIR$/jpa-framework/src/java/cx/ath/jbzdak/jpaGui/db/dao/DAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/entities/WyprowadzenieUtils.java" afterPath="$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/entities/WyprowadzenieUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jpa-framework/src/java/cx/ath/jbzdak/jpaGui/db/dao/RefreshType.java" afterPath="$PROJECT_DIR$/jpa-framework/src/java/cx/ath/jbzdak/jpaGui/db/dao/RefreshType.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/ui/danie/AddWyprowadzeniePanel.java" afterPath="$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/ui/danie/AddWyprowadzeniePanel.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/ui/danie/AddWyprowadzenieDialogModel.java" afterPath="$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/ui/danie/AddWyprowadzeniePanelModel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/db/SetCollation.java" afterPath="$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/db/SetCollation.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/idea-zarlock.iws" afterPath="$PROJECT_DIR$/idea-zarlock.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jpa-framework/src/java/cx/ath/jbzdak/jpaGui/db/dao/AbstractDAO.java" afterPath="$PROJECT_DIR$/jpa-framework/src/java/cx/ath/jbzdak/jpaGui/db/dao/AbstractDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/entities/Danie.java" afterPath="$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/entities/Danie.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/entities/Wyprowadzenie.java" afterPath="$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/entities/Wyprowadzenie.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jpa-framework/src/java/cx/ath/jbzdak/jpaGui/ui/table/EditableTableModel.java" afterPath="$PROJECT_DIR$/jpa-framework/src/java/cx/ath/jbzdak/jpaGui/ui/table/EditableTableModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/entities/Partia.java" afterPath="$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/entities/Partia.java" />
     </list>
-    <ignored path="idea-zarlock.iws" />
     <ignored path=".idea/workspace.xml" />
+    <ignored path="idea-zarlock.iws" />
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="ClassPatternConfiguration">
@@ -105,109 +86,95 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AddWyprowadzeniePanel.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/ui/danie/AddWyprowadzeniePanel.java">
+      <file leaf-file-name="DBSetup.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/db/DBSetup.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="13" selection-start="1380" selection-end="1380" vertical-scroll-proportion="0.32967034">
-              <folding>
-                <element signature="class#3008:3172" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AddWyprowadzeniePanelModel.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/ui/danie/AddWyprowadzeniePanelModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="172" column="0" selection-start="5862" selection-end="5862" vertical-scroll-proportion="0.0">
+            <state line="111" column="57" selection-start="3739" selection-end="3739" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EditableTableModel.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jpa-framework/src/java/cx/ath/jbzdak/jpaGui/ui/table/EditableTableModel.java">
+      <file leaf-file-name="log4j.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/zarlok-2-0/resources/java/log4j.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="273" column="43" selection-start="8954" selection-end="8954" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="docComment;method#save#0;class#EditableTableModel#0" expanded="true" />
-                <element signature="class#8614:8795" expanded="true" />
-                <element signature="docComment;method#preMergeEntry#0;class#EditableTableModel#0" expanded="true" />
-                <element signature="method#setInsertNewRow#0;class#EditableTableModel#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AkcjeRendererEditor.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jpa-framework/src/java/cx/ath/jbzdak/jpaGui/ui/table/AkcjeRendererEditor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="69" column="0" selection-start="2151" selection-end="2151" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="class#807:1239" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Wyprowadzenie.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/entities/Wyprowadzenie.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="196" column="0" selection-start="4682" selection-end="4682" vertical-scroll-proportion="0.0">
+            <state line="13" column="34" selection-start="522" selection-end="522" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WyprowadzenieTableModel.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/ui/danie/WyprowadzenieTableModel.java">
+      <file leaf-file-name="SetCollation.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/db/SetCollation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="41" selection-start="866" selection-end="866" vertical-scroll-proportion="0.0">
+            <state line="12" column="26" selection-start="350" selection-end="350" vertical-scroll-proportion="0.371134">
               <folding>
-                <element signature="class#1721:1978" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="docComment;class#SetCollation#0" expanded="true" />
+                <element signature="class#547:781" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WyprowadzenieUtils.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/entities/WyprowadzenieUtils.java">
+      <file leaf-file-name="Produkt.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/entities/Produkt.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="46" selection-start="219" selection-end="219" vertical-scroll-proportion="0.0">
+            <state line="31" column="3" selection-start="986" selection-end="986" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="docComment;field#dataWaznosci#0;class#Produkt#0" expanded="true" />
+                <element signature="method#getId#0;class#Produkt#0" expanded="true" />
+                <element signature="method#setId#0;class#Produkt#0" expanded="true" />
+                <element signature="method#getNazwa#0;class#Produkt#0" expanded="true" />
+                <element signature="method#setNazwa#0;class#Produkt#0" expanded="true" />
+                <element signature="method#getJednostka#0;class#Produkt#0" expanded="true" />
+                <element signature="method#setJednostka#0;class#Produkt#0" expanded="true" />
+                <element signature="method#getDataWaznosci#0;class#Produkt#0" expanded="true" />
+                <element signature="method#setDataWaznosci#0;class#Produkt#0" expanded="true" />
+                <element signature="method#getPartie#0;class#Produkt#0" expanded="true" />
+                <element signature="method#setPartie#0;class#Produkt#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StanMagazynuRaport.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/raport/stany/StanMagazynuRaport.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="41" column="33" selection-start="1247" selection-end="1247" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ObservableList.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/zarlok-2-0/lib-src/beansbinding.zip!/src/org/jdesktop/observablecollections/ObservableList.java">
+      <file leaf-file-name="StanMagazynuFactory.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/raport/stany/StanMagazynuFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="0" selection-start="619" selection-end="619" vertical-scroll-proportion="0.0">
+            <state line="73" column="13" selection-start="3018" selection-end="3018" vertical-scroll-proportion="0.0">
               <folding>
-                <element signature="docComment;method#removeObservableListListener#0;class#ObservableList#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="docComment;class#StanMagazynuFactory#0" expanded="true" />
+                <element signature="method#setManager#0;class#StanMagazynuFactory#0" expanded="true" />
+                <element signature="class#1953:2446" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ObservableCollections.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/zarlok-2-0/lib-src/beansbinding.zip!/src/org/jdesktop/observablecollections/ObservableCollections.java">
+      <file leaf-file-name="StanMagazynuEntryBean.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/raport/stany/StanMagazynuEntryBean.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="290" column="0" selection-start="9270" selection-end="9270" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="docComment;method#observableList#0;class#ObservableCollections#0" expanded="true" />
-                <element signature="docComment;method#observableListHelper#0;class#ObservableCollections#0" expanded="true" />
-                <element signature="class#ObservableListHelper#0;class#ObservableCollections#0" expanded="true" />
-                <element signature="method#getObservableList#0;class#ObservableListHelper#0;class#ObservableCollections#0" expanded="true" />
-              </folding>
+            <state line="13" column="13" selection-start="321" selection-end="321" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WyprowadzeniaTable.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/ui/danie/WyprowadzeniaTable.java">
+      <file leaf-file-name="ZarlockDBManager.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/db/ZarlockDBManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="63" selection-start="2149" selection-end="2149" vertical-scroll-proportion="0.0">
+            <state line="167" column="60" selection-start="4636" selection-end="4636" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -220,7 +187,11 @@
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
   </component>
+  <component name="Git.Settings">
+    <option name="CHECKOUT_INCLUDE_TAGS" value="true" />
+  </component>
   <component name="J2EEProjectPane">
+    <subPane />
     <subPane subId="file" />
   </component>
   <component name="JUnitClassTemplateConfiguration">
@@ -263,18 +234,7 @@
     <option name="LAST_EDITED_TAB_NAME" />
   </component>
   <component name="PackagesPane">
-    <subPane>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="idea-zarlock" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="idea-zarlock" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-        </PATH_ELEMENT>
-      </PATH>
-    </subPane>
+    <subPane />
   </component>
   <component name="ProjectLevelVcsManager">
     <OptionsSetting value="true" id="Add" />
@@ -289,13 +249,20 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectPane">
-    <subPane />
+    <subPane>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="idea-zarlock" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+      </PATH>
+    </subPane>
   </component>
   <component name="ProjectReloadState">
     <option name="STATE" value="0" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="PackagesPane" proportions="0.5" version="1" splitterProportion="0.5">
+    <navigator currentView="ProjectPane" proportions="0.5" version="1" splitterProportion="0.5">
       <flattenPackages />
       <showMembers PackagesPane="true" />
       <showModules />
@@ -309,26 +276,43 @@
     </navigator>
   </component>
   <component name="PropertiesComponent">
-    <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="project.structure.last.edited" value="Project" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="123" />
     <property name="project.structure.proportion" value="0.15" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="158" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="RunManagerConfig.showSettingsBeforeRunnig" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="134" />
     <property name="MemberChooser.sorted" value="false" />
-    <property name="options.lastSelected" value="errors" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="JdbcConsole.OpenEditorOnStart" value="false" />
-    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="143" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="933" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="937" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="139" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="155" />
     <property name="GoToClass.includeJavaFiles" value="false" />
-    <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
+    <property name="options.lastSelected" value="errors" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="options.searchVisible" value="true" />
     <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="cx.ath.jbzdak.zarlok.db" />
       <recent name="cx.ath.jbzdak.jpaGui.beansbinding" />
       <recent name="cx.ath.jbzdak.zarlok.ui.iloscOsob" />
     </key>
@@ -432,6 +416,7 @@
       </RunnerSettings>
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Profile CPU" />
       <ConfigurationWrapper RunnerId="Run" />
       <method>
         <option name="Make" value="true" />
@@ -500,22 +485,22 @@
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32806325" sideWeight="0.5" order="7" side_tool="false" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.11997127" sideWeight="0.6614951" order="1" side_tool="false" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.11997127" sideWeight="0.69828725" order="1" side_tool="false" />
       <window_info id="Dataflow to this" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="17" side_tool="false" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32938075" sideWeight="0.5" order="8" side_tool="false" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32806325" sideWeight="0.5" order="8" side_tool="false" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" />
       <window_info id="Code-Amnesia" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3297414" sideWeight="0.3662714" order="0" side_tool="false" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.62450594" sideWeight="0.5" order="2" side_tool="false" />
-      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297414" sideWeight="0.36530325" order="8" side_tool="false" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22916667" sideWeight="0.69828725" order="0" side_tool="false" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.74703556" sideWeight="0.5" order="2" side_tool="false" x="1440" y="135" width="1360" height="567" />
+      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297414" sideWeight="0.24374177" order="8" side_tool="false" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32806325" sideWeight="0.5" order="1" side_tool="false" />
       <window_info id="Daily Tasks" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5823452" sideWeight="0.0" order="3" side_tool="false" />
       <window_info id="UML Diagrams" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" />
       <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32806325" sideWeight="0.5" order="10" side_tool="false" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29380766" sideWeight="0.5" order="11" side_tool="false" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.36530325" order="1" side_tool="false" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29249012" sideWeight="0.5" order="11" side_tool="false" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.6627141" order="1" side_tool="false" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297414" sideWeight="0.5923836" order="5" side_tool="false" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" />
@@ -533,14 +518,14 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
-    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="PERFORM_UPDATE_IN_BACKGROUND" value="true" />
     <option name="PERFORM_COMMIT_IN_BACKGROUND" value="true" />
     <option name="PERFORM_EDIT_IN_BACKGROUND" value="true" />
     <option name="PERFORM_CHECKOUT_IN_BACKGROUND" value="true" />
     <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="&#10;# Brief commit desciption here&#10;Wywalenie tego czego w repo winno nie by c&#10;&#10;# Full commit description here (comment lines starting with '#' will not be included)&#10;&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="&#10;# Brief commit desciption here&#10;&#10;# Full commit description here (comment lines starting with '#' will not be included)&#10;&#10;" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
@@ -554,8 +539,12 @@
     <MESSAGE value="&#10;# Brief commit desciption here&#10;&#10;Zasiew repo&#10;&#10;# Full commit description here (comment lines starting with '#' will not be included)&#10;&#10;" />
     <MESSAGE value="&#10;# Brief commit desciption here&#10;Zasiew repo&#10;# Full commit description here (comment lines starting with '#' will not be included)&#10;&#10;" />
     <MESSAGE value="&#10;# Brief commit desciption here&#10;Dodanie dodawania posiłków&#10;&#10;# Full commit description here (comment lines starting with '#' will not be included)&#10;&#10;" />
-    <MESSAGE value="&#10;# Brief commit desciption here&#10;&#10;# Full commit description here (comment lines starting with '#' will not be included)&#10;&#10;" />
     <MESSAGE value="&#10;# Brief commit desciption here&#10;Wywalenie tego czego w repo winno nie by c&#10;&#10;# Full commit description here (comment lines starting with '#' will not be included)&#10;&#10;" />
+    <MESSAGE value="&#10;# Brief commit desciption here&#10;Włączenie tabelki dodawanai wyprowadzeń&#10;# Full commit description here (comment lines starting with '#' will not be included)&#10;&#10;" />
+    <MESSAGE value="&#10;# Brief commit desciption here&#10;Poprawki w raporcie ze stanami magazynu. &#10;# Full commit description here (comment lines starting with '#' will not be included)&#10;&#10;" />
+    <MESSAGE value="&#10;# Brief commit desciption here&#10;Poprawki w raporcie ze stanami magazynow&#10;# Full commit description here (comment lines starting with '#' will not be included)&#10;&#10;" />
+    <MESSAGE value="&#10;# Brief commit desciption here&#10;Poprawka działania raportu ze stanami magazynów&#10;&#10;# Full commit description here (comment lines starting with '#' will not be included)&#10;&#10;" />
+    <MESSAGE value="&#10;# Brief commit desciption here&#10;&#10;# Full commit description here (comment lines starting with '#' will not be included)&#10;&#10;" />
   </component>
   <component name="VssConfiguration">
     <option name="CLIENT_PATH" value="" />
@@ -623,44 +612,9 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/ui/danie/DaniePanel.java">
+    <entry file="jar://$PROJECT_DIR$/zarlok-2-0/lib-src/beansbinding.zip!/src/org/jdesktop/observablecollections/ObservableCollections.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="42" selection-start="1651" selection-end="1651" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/zarlok-2-0/lib-src/beansbinding.zip!/src/org/jdesktop/swingbinding/JTableBinding.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/entities/PartieUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="0" selection-start="2747" selection-end="2747" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jpa-framework/src/java/cx/ath/jbzdak/jpaGui/beansbinding/UnmodifiableObserwableList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="15" selection-start="787" selection-end="787" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/zarlok-2-0/lib-src/beansbinding.zip!/src/org/jdesktop/swingbinding/impl/ListBindingManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="0" selection-start="1898" selection-end="1898" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jpa-framework/src/java/cx/ath/jbzdak/jpaGui/Transaction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="437" selection-end="437" vertical-scroll-proportion="0.0">
+        <state line="290" column="0" selection-start="9270" selection-end="9270" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -668,87 +622,126 @@
     <entry file="jar://$PROJECT_DIR$/zarlok-2-0/lib-src/beansbinding.zip!/src/org/jdesktop/observablecollections/ObservableList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="27" column="0" selection-start="619" selection-end="619" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="docComment;method#removeObservableListListener#0;class#ObservableList#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/ui/danie/WyprowadzeniaTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="63" selection-start="2149" selection-end="2149" vertical-scroll-proportion="0.0">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/zarlok-2-0/lib-src/beansbinding.zip!/src/org/jdesktop/observablecollections/ObservableCollections.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="290" column="0" selection-start="9270" selection-end="9270" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="docComment;method#observableList#0;class#ObservableCollections#0" expanded="true" />
-            <element signature="docComment;method#observableListHelper#0;class#ObservableCollections#0" expanded="true" />
-            <element signature="class#ObservableListHelper#0;class#ObservableCollections#0" expanded="true" />
-            <element signature="method#getObservableList#0;class#ObservableListHelper#0;class#ObservableCollections#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/ui/danie/AddWyprowadzeniePanelModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="172" column="0" selection-start="5862" selection-end="5862" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jpa-framework/src/java/cx/ath/jbzdak/jpaGui/ui/table/AkcjeRendererEditor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="0" selection-start="2151" selection-end="2151" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="class#807:1239" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/entities/Wyprowadzenie.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="196" column="0" selection-start="4682" selection-end="4682" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jpa-framework/src/java/cx/ath/jbzdak/jpaGui/ui/table/EditableTableModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="273" column="43" selection-start="8954" selection-end="8954" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="docComment;method#save#0;class#EditableTableModel#0" expanded="true" />
-            <element signature="class#8614:8795" expanded="true" />
-            <element signature="docComment;method#preMergeEntry#0;class#EditableTableModel#0" expanded="true" />
-            <element signature="method#setInsertNewRow#0;class#EditableTableModel#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/entities/WyprowadzenieUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="46" selection-start="219" selection-end="219" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/ui/danie/WyprowadzenieTableModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="41" selection-start="866" selection-end="866" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="class#1721:1978" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/ui/danie/AddWyprowadzeniePanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="13" selection-start="1380" selection-end="1380" vertical-scroll-proportion="0.32967034">
+        <state line="77" column="37" selection-start="3298" selection-end="3298" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/db/tasks/UpdateIloscTeraz.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="13" selection-start="316" selection-end="316" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jpa-framework/src/java/cx/ath/jbzdak/jpaGui/task/TasksExecutor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="44" selection-start="1279" selection-end="1280" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/entities/Wyprowadzenie.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="13" selection-start="643" selection-end="643" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/db/DBSetup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="111" column="57" selection-start="3739" selection-end="3739" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/entities/Partia.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="47" column="49" selection-start="1667" selection-end="1672" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/zarlok-2-0/lib-src/hsql-src.zip!/org/hsqldb/Collation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="116" column="38" selection-start="5153" selection-end="5158" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/entities/Produkt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="3" selection-start="986" selection-end="986" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="class#3008:3172" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;field#dataWaznosci#0;class#Produkt#0" expanded="true" />
+            <element signature="method#getId#0;class#Produkt#0" expanded="true" />
+            <element signature="method#setId#0;class#Produkt#0" expanded="true" />
+            <element signature="method#getNazwa#0;class#Produkt#0" expanded="true" />
+            <element signature="method#setNazwa#0;class#Produkt#0" expanded="true" />
+            <element signature="method#getJednostka#0;class#Produkt#0" expanded="true" />
+            <element signature="method#setJednostka#0;class#Produkt#0" expanded="true" />
+            <element signature="method#getDataWaznosci#0;class#Produkt#0" expanded="true" />
+            <element signature="method#setDataWaznosci#0;class#Produkt#0" expanded="true" />
+            <element signature="method#getPartie#0;class#Produkt#0" expanded="true" />
+            <element signature="method#setPartie#0;class#Produkt#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/raport/stany/StanMagazynuRaport.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="33" selection-start="1247" selection-end="1247" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/db/ZarlockDBManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="167" column="60" selection-start="4636" selection-end="4636" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/raport/stany/StanMagazynuEntryBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="13" selection-start="321" selection-end="321" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/raport/stany/StanMagazynuFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="73" column="13" selection-start="3018" selection-end="3018" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#StanMagazynuFactory#0" expanded="true" />
+            <element signature="method#setManager#0;class#StanMagazynuFactory#0" expanded="true" />
+            <element signature="class#1953:2446" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zarlok-2-0/resources/java/log4j.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="34" selection-start="522" selection-end="522" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zarlok-2-0/src/java/cx/ath/jbzdak/zarlok/db/SetCollation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="26" selection-start="350" selection-end="350" vertical-scroll-proportion="0.371134">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#SetCollation#0" expanded="true" />
+            <element signature="class#547:781" expanded="true" />
           </folding>
         </state>
       </provider>
