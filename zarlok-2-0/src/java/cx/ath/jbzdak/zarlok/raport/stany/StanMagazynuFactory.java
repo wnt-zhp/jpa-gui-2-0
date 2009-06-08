@@ -16,6 +16,7 @@ import javax.persistence.Query;
 import java.io.File;
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.text.Collator;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -48,7 +49,17 @@ public class StanMagazynuFactory {
                }
             }
             results.removeAll(toRemove);
-            HashMap<StanMagazynuEntryBean, BigDecimal> hashSet = new HashMap<StanMagazynuEntryBean,BigDecimal>();
+            Map<StanMagazynuEntryBean, BigDecimal> hashSet = new TreeMap<StanMagazynuEntryBean, BigDecimal>(new Comparator<StanMagazynuEntryBean>() {
+               final Collator collator;
+               {
+                        collator = Collator.getInstance(new Locale("pl"));
+                        collator.setStrength(Collator.PRIMARY);
+               }
+               @Override
+               public int compare(StanMagazynuEntryBean o1, StanMagazynuEntryBean o2) {
+                  return collator.compare(o1.getProdukt().getNazwa(), o2.getProdukt().getNazwa());
+               }
+            });
             for(StanMagazynuEntryBean bean : results){
                if(hashSet.containsKey(bean)){
                   hashSet.put(bean, hashSet.get(bean).add(bean.getIloscJednostek(), MathContext.DECIMAL32));
@@ -61,14 +72,6 @@ public class StanMagazynuFactory {
                entry.getKey().setIloscJednostek(entry.getValue());
                results.add(entry.getKey());
             }
-            Collections.sort(results, new Comparator<StanMagazynuEntryBean>() {
-               @Override
-               public int compare(StanMagazynuEntryBean o1, StanMagazynuEntryBean o2) {
-                  int result = o1.getProdukt().getNazwa().compareTo(o2.getProdukt().getNazwa());
-                  if(result !=0) return result;
-                  return o1.getSpecyfikator().compareTo(o2.getSpecyfikator());
-               }
-            });
             StanMagazynuRaportBean bean = new StanMagazynuRaportBean(dzien, results);
             StanMagazynuRaport rap = new StanMagazynuRaport();
             rap.setData(bean);
@@ -76,6 +79,17 @@ public class StanMagazynuFactory {
          }
       });
    }
+
+//   private void sort(List<StanMagazynuEntryBean> smeb){
+//      final Collator collator = Collator.getInstance(new Locale("pl"));
+//      collator.setStrength(Collator.PRIMARY);
+//      Collections.sort(smeb, new Comparator<StanMagazynuEntryBean>() {
+//         @Override
+//         public int compare(StanMagazynuEntryBean o1, StanMagazynuEntryBean o2) {
+//            return collator.compare(o1.getProdukt().getNazwa(), o2.getProdukt().getNazwa());
+//         }
+//      });
+//   }
 
    public void printStanMag(Dzien d) throws RaportException {
       Raport rap = createRaport(d);

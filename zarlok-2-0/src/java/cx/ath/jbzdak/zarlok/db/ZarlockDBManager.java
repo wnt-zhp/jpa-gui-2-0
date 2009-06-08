@@ -155,7 +155,7 @@ public class ZarlockDBManager extends AbstractDBManager{
       sendStatement("SHUTDOWN SCRIPT;");
    }
 
-   private void sendStatement(String statementStr) throws SQLException {
+   void sendStatement(String statementStr) throws SQLException {
       Connection connection = DriverManager.getConnection(getJDBCURL());
       LOGGER.info("Sending statement {} to {}", statementStr, getJDBCURL());
       try{
@@ -165,6 +165,7 @@ public class ZarlockDBManager extends AbstractDBManager{
             statement.close();
          } catch (SQLException e) {
            statement.close();
+            LOGGER.error("Error while commiting statement",e);
          }
       }finally {
          connection.close();

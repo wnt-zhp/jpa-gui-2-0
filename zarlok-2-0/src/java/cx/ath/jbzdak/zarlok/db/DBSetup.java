@@ -49,6 +49,7 @@ public class DBSetup {
 		dbSetup.addTask(new UpdateIloscTeraz());
 		dbSetup.addTask(new CleanImportTables());
       dbSetup.addTask(new UpdateKoszty());
+      dbSetup.addTask(new SetCollation());
 	}
 
 	public DBSetup() {

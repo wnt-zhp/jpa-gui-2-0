@@ -28,16 +28,30 @@ import java.util.List;
 	@NamedQuery(
 			name="countProduktNazwa",
 			query = "SELECT COUNT(p) FROM Produkt p WHERE p.nazwa = :nazwa"
-	),
+   )
+//,
+//   @NamedQuery(
+//           name = "getStanMagazynu",
+//           query = "SELECT new cx.ath.jbzdak.zarlok.raport.stany.StanMagazynuEntryBean(\n" +
+//                   " p,\n " +
+//                   " SUM(w.iloscJednostek)" +
+//                   ") FROM Partia p LEFT OUTER JOIN p.wyprowadzenia w\n" +
+//                   "WHERE p.dataKsiegowania <= :data AND (p.dataWaznosci IS NULL OR p.dataWaznosci > :data)\n " +
+//                   "AND (w IS NULL OR (w.dataWyprowadzenia < :data))\n " +
+//                   "GROUP BY p, p.produkt.nazwa \n" +
+//                   "ORDER BY p.produkt.nazwa\n"
+//
+//   )
+        ,
    @NamedQuery(
            name = "getStanMagazynu",
            query = "SELECT new cx.ath.jbzdak.zarlok.raport.stany.StanMagazynuEntryBean(\n" +
                    " p,\n " +
-                   " SUM(w.iloscJednostek)" +
+                   " (SELECT SUM(w.iloscJednostek) FROM Wyprowadzenie w WHERE w.partia = p and (w.dataWyprowadzenia <= :data))" +
                    ") FROM Partia p LEFT OUTER JOIN p.wyprowadzenia w\n" +
                    "WHERE p.dataKsiegowania <= :data AND (p.dataWaznosci IS NULL OR p.dataWaznosci > :data)\n " +
-                   "AND (w IS NULL OR (w.dataWyprowadzenia < :data))\n " +
-                   "GROUP BY p, p.produkt.nazwa \n" + 
+                   //"AND (w IS NULL OR )\n " +
+                   "GROUP BY p, p.produkt.nazwa \n" +
                    "ORDER BY p.produkt.nazwa\n"
 
    )
