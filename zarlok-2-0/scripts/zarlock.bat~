@@ -1,1 +1,0 @@
-java -cp "zarlock.jar;lib\*" -splash:splash.png cx.ath.jbzdak.zarlok.main.AppLauncher
