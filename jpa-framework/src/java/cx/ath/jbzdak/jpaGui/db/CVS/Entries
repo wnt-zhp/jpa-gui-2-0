@@ -1,9 +1,0 @@
-D/dao////
-/AbstractDBManager.java/1.5/Tue Apr 21 18:14:28 2009//
-/DBLifecycleHook.java/1.1/Tue Apr 21 11:32:51 2009/-kkv/
-/DBManager.java/1.6/Tue Apr 21 09:43:46 2009//
-/DBState.java/1.1/Tue Apr 21 11:34:34 2009/-kkv/
-/DBStateChangeReason.java/1.1/Tue Apr 21 09:35:57 2009/-kkv/
-/DefaultEntityLifecycleListener.java/1.2/Thu Apr 16 08:31:22 2009//
-/EntityLifecycleListener.java/1.2/Tue Apr 14 22:15:46 2009//
-/EntityStateListener.java/1.1/Tue Apr 14 21:35:14 2009//
