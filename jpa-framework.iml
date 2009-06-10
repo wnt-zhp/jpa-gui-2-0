@@ -37,6 +37,7 @@
     <orderEntry type="library" exported="" name="Maven: asm:asm-xml:3.1" level="project" />
     <orderEntry type="library" exported="" name="Maven: org.slf4j:slf4j-api:1.5.6" level="project" />
     <orderEntry type="library" exported="" name="Maven: org.swinglabs:swingx:0.9.5-2" level="project" />
+    <orderEntry type="library" exported="" name="Maven: cx.ath.jbzdak.gui:famfam:1.0" level="project" />
   </component>
 </module>
 
