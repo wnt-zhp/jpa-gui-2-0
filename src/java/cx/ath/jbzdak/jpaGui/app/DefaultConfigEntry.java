@@ -2,6 +2,7 @@ package cx.ath.jbzdak.jpaGui.app;
 
 import edu.umd.cs.findbugs.annotations.Nullable;
 import static org.apache.commons.lang.StringUtils.isEmpty;
+import org.apache.commons.lang.builder.ToStringBuilder;
 
 import java.util.*;
 
@@ -26,6 +27,38 @@ public class DefaultConfigEntry<T> implements ConfigEntry<T>{
 
    private final List<T> values = new ArrayList<T>();
 
+   public static <T> ConfigEntry<T> createConfigEntry(String name, T value, Class<T> valueClass,  String shortDescription, String longDescription){
+       DefaultConfigEntry<T> result = new DefaultConfigEntry<T>();
+       if(isEmpty(name)){
+          throw new IllegalArgumentException("Nie można użyuwać pustej nazwy dla ConfigEntryu");
+       }
+       if(valueClass == null){
+          throw new IllegalArgumentException("Can't set null valueClass in Config entry");
+       }
+       result.name = name;
+       result.shortDescription = shortDescription;
+       result.longDescription = longDescription;
+       result.values.add(value);
+       result.single = true;
+       result.validator = null;
+       result.valueClass = valueClass;
+       return result;
+    }
+
+   public static <T> ConfigEntry<T> createConfigEntry(String name, T value, String shortDescription, String longDescription){
+      if(value == null){
+         throw new IllegalAccessError("Value cant be null if valueClass is unspecified");
+      }
+      return createConfigEntry(name, value, (Class<T>) value.getClass(), shortDescription, longDescription);   
+  }
+
+      public static <T> ConfigEntry<T> createConfigEntry(String name, T value){
+      if(value == null){
+         throw new IllegalAccessError("Value cant be null if valueClass is unspecified");
+      }
+      return createConfigEntry(name, value, (Class<T>) value.getClass(), null, null);   
+  }
+
    public static ConfigEntry<String> createStringEntry(String name, String value, String shortDescription, String longDescription){
       DefaultConfigEntry<String> result = new DefaultConfigEntry<String>();
       if(isEmpty(name)){
@@ -41,42 +74,41 @@ public class DefaultConfigEntry<T> implements ConfigEntry<T>{
       return result;
    }
 
+
+
    public static ConfigEntry<String> createStringEntry(String name, String value, ResourceBundle bundle){
-      DefaultConfigEntry<String> result = new DefaultConfigEntry<String>();
-      if(isEmpty(name)){
-         throw new IllegalArgumentException("Nie można użyuwać pustej nazwy dla ConfigEntryu");
-      }
-      result.name = name;
       String shordDescKey = name + ".shortDescription";
-      result.shortDescription = bundle.containsKey(shordDescKey)?bundle.getString(shordDescKey):null;
+      String shortDescription = bundle.containsKey(shordDescKey)?bundle.getString(shordDescKey):null;
       String longDescKey = name + ".longDescription";
-      result.longDescription = bundle.containsKey(longDescKey)?bundle.getString(longDescKey):null;
-      result.values.add(value);
-      result.single = true;
-      result.validator = null;
-      result.valueClass = String.class;
-      return result;
+      String longDescription = bundle.containsKey(longDescKey)?bundle.getString(longDescKey):null;
+      return createConfigEntry(name, value, String.class, shortDescription, longDescription);
    }
+
    public static ConfigEntry<String> createStringEntry(String name, String value){
       return createStringEntry(name, value, null, null);
    }
 
+   @Override
    public boolean isSingle() {
       return single;
    }
 
+   @Override
    public Class<T> getValueClass() {
       return valueClass;
    }
 
+   @Override
    public String getName() {
       return name;
    }
 
+   @Override
    public String getShortDescription() {
       return shortDescription;
    }
 
+   @Override
    public String getLongDescription() {
       return longDescription;
    }
@@ -146,4 +178,18 @@ public class DefaultConfigEntry<T> implements ConfigEntry<T>{
    void setName(String name) {
       this.name = name;
    }
+
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this).
+                append("values", values).
+                append("longDescription", longDescription).
+                append("validator", validator).
+                append("single", single).
+                append("valueClass", valueClass).
+                append("name", name).
+                append("shortDescription", shortDescription).
+                toString();
+    }
 }

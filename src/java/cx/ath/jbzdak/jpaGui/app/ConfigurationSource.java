@@ -13,9 +13,9 @@ public interface ConfigurationSource {
 
    Set<String> getSupportedKeys();
 
-   //void saveConfiguration(ConfigEntry entry) throws ConfigurationException;
+   boolean isKeyWritable(String keyName);
 
-   //void saveConfiguration(List<? extends ConfigEntry> entry) throws ConfigurationException;
+   boolean isReadOnly();
 
-   void saveConfiguration(String key, Object value);
+   void saveConfiguration(String key, Object value) throws UnsupportedOperationException;
 }
