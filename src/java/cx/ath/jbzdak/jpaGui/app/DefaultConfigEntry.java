@@ -76,11 +76,14 @@ public class DefaultConfigEntry<T> implements ConfigEntry<T>{
 
 
 
-   public static ConfigEntry<String> createStringEntry(String name, String value, ResourceBundle bundle){
-      String shordDescKey = name + ".shortDescription";
-      String shortDescription = bundle.containsKey(shordDescKey)?bundle.getString(shordDescKey):null;
-      String longDescKey = name + ".longDescription";
-      String longDescription = bundle.containsKey(longDescKey)?bundle.getString(longDescKey):null;
+   public static ConfigEntry<String> createStringEntry(String name, String value, @Nullable ResourceBundle bundle){
+      String shortDescription = null, longDescription = null;
+      if(bundle != null){
+         String shordDescKey = name + ".shortDescription";
+         shortDescription = bundle.containsKey(shordDescKey)?bundle.getString(shordDescKey):null;
+         String longDescKey = name + ".longDescription";
+         longDescription = bundle.containsKey(longDescKey)?bundle.getString(longDescKey):null;
+      }
       return createConfigEntry(name, value, String.class, shortDescription, longDescription);
    }
 

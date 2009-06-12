@@ -18,4 +18,5 @@ public interface ConfigurationSource {
    boolean isReadOnly();
 
    void saveConfiguration(String key, Object value) throws UnsupportedOperationException;
+
 }
