@@ -1,8 +1,5 @@
 package cx.ath.jbzdak.jpaGui;
 
-import javax.annotation.CheckForNull;
-import javax.persistence.Id;
-import javax.swing.*;
 import org.apache.commons.math.util.MathUtils;
 import org.jdesktop.beansbinding.AutoBinding.UpdateStrategy;
 import org.jdesktop.beansbinding.BeanProperty;
@@ -11,6 +8,9 @@ import org.jdesktop.beansbinding.Bindings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.CheckForNull;
+import javax.persistence.Id;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
@@ -311,6 +311,19 @@ public class Utils {
       return null;
 
    }
+
+   @CheckForNull public static <T extends Throwable> T findCauseOfClass(Throwable t, Class<T> clazz){
+      if(t==null){
+         return null;
+      }
+      if(clazz.isInstance(t)){
+         return  clazz.cast(t);
+      }
+      return findCauseOfClass(t.getCause(), clazz);
+   }
+
+
+
 
 //	public static <T> T cloneObject(T t, String cloningProperties){
 //		try {
