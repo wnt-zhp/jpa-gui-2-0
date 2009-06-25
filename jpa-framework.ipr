@@ -45,7 +45,11 @@
     <option name="MAXIMUM_HEAP_SIZE" value="128" />
   </component>
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false" />
+<<<<<<< HEAD:jpa-framework.ipr
   <component name="IdProvider" IDEtalkID="4684D991ABFEC42BF99A248027816555" />
+=======
+  <component name="IdProvider" IDEtalkID="B28FFEFF234669617EF003B1A6BA8178" />
+>>>>>>> 5fc21af139511974360f0c0706c31a1c0c63b590:jpa-framework.ipr
   <component name="InspectionProjectProfileManager">
     <option name="PROJECT_PROFILE" value="Project Default" />
     <option name="USE_PROJECT_LEVEL_SETTINGS" value="false" />
@@ -223,14 +227,22 @@
   </component>
   <component name="ProjectFileVersion" converted="true" />
   <component name="ProjectKey">
+<<<<<<< HEAD:jpa-framework.ipr
     <option name="state" value="project://P:\git\jpa-framework\jpa-framework.ipr" />
+=======
+    <option name="state" value="project://C:\Documents and Settings\jb\IdeaProjects\jpa-framework\jpa-framework.ipr" />
+>>>>>>> 5fc21af139511974360f0c0706c31a1c0c63b590:jpa-framework.ipr
   </component>
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/jpa-framework.iml" filepath="$PROJECT_DIR$/jpa-framework.iml" />
     </modules>
   </component>
+<<<<<<< HEAD:jpa-framework.ipr
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_5" assert-keyword="true" jdk-15="true" project-jdk-name="1.6" project-jdk-type="JavaSDK">
+=======
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="1.6" project-jdk-type="JavaSDK">
+>>>>>>> 5fc21af139511974360f0c0706c31a1c0c63b590:jpa-framework.ipr
     <output url="file://$PROJECT_DIR$/out" />
   </component>
   <component name="ResourceManagerContainer">

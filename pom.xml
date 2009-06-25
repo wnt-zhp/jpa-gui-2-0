@@ -12,8 +12,7 @@
     <artifactId>jpa-framework</artifactId>
     <version>1.0</version>
     <build>
-
-         
+        <sourceDirectory>src/java</sourceDirectory>
     </build>
     <dependencies>
         <dependency>
