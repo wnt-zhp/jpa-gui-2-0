@@ -5,11 +5,12 @@ import cx.ath.jbzdak.jpaGui.ClassHandler;
 import cx.ath.jbzdak.jpaGui.Utils;
 import cx.ath.jbzdak.jpaGui.ui.error.ErrorHandlers;
 import cx.ath.jbzdak.jpaGui.ui.error.ErrorHandlers.Formatter;
-import javax.swing.*;
 import net.miginfocom.swing.MigLayout;
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
 
-import java.awt.Component;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -24,10 +25,12 @@ import java.util.ResourceBundle;
  */
 public class FormPanelMock<T extends Component,FE extends FormElement<T>> extends JPanel {
 
+   private static final Logger LOGGER = Utils.makeLogger();
+
    //LOWPRIO zmienić na cx.ath.jbzdak.jpaGui.beanFormatter.PatternBeanFormatter
    private static final String LABEL_PATTERN = "<html><strong>LABEL_NAME</strong></html>";
 
-   protected FE formElement;
+   protected final FE formElement;
 
    @SuppressWarnings({"WeakerAccess"})
    protected Map<String, String> constraints;
@@ -45,7 +48,7 @@ public class FormPanelMock<T extends Component,FE extends FormElement<T>> extend
    protected JButton helpButton;
 
    @SuppressWarnings({"WeakerAccess"})
-   protected JLabel errorLabel = new JLabel();
+   protected final JLabel errorLabel = new JLabel();
 
    private Object message;
 
@@ -53,11 +56,11 @@ public class FormPanelMock<T extends Component,FE extends FormElement<T>> extend
 
    private Icon errorIcon;
 
-   private ResourceBundle bundle;
+   private final ResourceBundle bundle;
 
    //TODO uporządkować - tj. dodać statyczną zmienną z domyślnymi i tutaj na początek apodawać nulla
    @SuppressWarnings({"WeakerAccess"})
-   protected ClassHandler<Formatter> errorHandlers = ErrorHandlers.createShortHandlers();
+   protected final ClassHandler<Formatter> errorHandlers = ErrorHandlers.createShortHandlers();
 
 
    public FormPanelMock(FE formElement) {
@@ -168,6 +171,10 @@ public class FormPanelMock<T extends Component,FE extends FormElement<T>> extend
                   errorLabel.setText(erroTxt);
                   errorLabel.setToolTipText(erroTxt);
                   errorLabel.setVisible(true);
+                  if (message instanceof Throwable) {
+                     LOGGER.info("Error message in FormPanel is", (Throwable)message);                     
+
+                  }
                }
             }
          });
