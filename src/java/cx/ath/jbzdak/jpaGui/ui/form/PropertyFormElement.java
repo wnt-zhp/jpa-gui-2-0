@@ -3,7 +3,7 @@ package cx.ath.jbzdak.jpaGui.ui.form;
 import org.jdesktop.beansbinding.BeanProperty;
 import org.jdesktop.beansbinding.Property;
 
-import java.awt.Component;
+import java.awt.*;
 
 public  abstract class PropertyFormElement<T extends Component, E> extends AbstractFormElement<T> implements DAOFormElement<T, E> {
 
@@ -90,18 +90,25 @@ public  abstract class PropertyFormElement<T extends Component, E> extends Abstr
 
 	protected abstract void setRendererEditable(boolean editable);
 
-	public E getEntity() {
+	@Override
+   public E getEntity() {
 		return entity;
 	}
 
-	public void setEntity(E entity) {
+	@Override
+   public void setEntity(E entity) {
 		E oldEntity = this.entity;
 		this.entity = entity;
 		firePropertyChange("entity", oldEntity, entity);
 		entitySet(entity);
 	}
 
-	@SuppressWarnings({"EmptyMethod", "WeakerAccess", "UnusedParameters"})
+   @Override
+   public void refreshEntity(E entity) {
+      this.entity = entity;
+   }
+
+   @SuppressWarnings({"EmptyMethod", "WeakerAccess", "UnusedParameters"})
     protected void entitySet(E entity2) {	}
 
    @SuppressWarnings({"EmptyMethod", "WeakerAccess", "WeakerAccess", "UnusedDeclaration"})
@@ -118,16 +125,19 @@ public  abstract class PropertyFormElement<T extends Component, E> extends Abstr
 	}
 
 
-	public void setEditable(boolean editable) {
+	@Override
+   public void setEditable(boolean editable) {
       super.setEditable(editable);
       setRendererEditable(editable);
 	}
 
-	public boolean isReadNullValues() {
+	@Override
+   public boolean isReadNullValues() {
 		return readNullValues;
 	}
 
-	public void setReadNullValues(boolean readEntityNullValues) {
+	@Override
+   public void setReadNullValues(boolean readEntityNullValues) {
 		this.readNullValues = readEntityNullValues;
 	}
 

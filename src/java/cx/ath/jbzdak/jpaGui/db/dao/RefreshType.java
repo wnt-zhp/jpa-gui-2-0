@@ -5,6 +5,7 @@ import cx.ath.jbzdak.jpaGui.db.DBManager;
 import cx.ath.jbzdak.jpaGui.db.dao.annotations.LifecyclePhase;
 import edu.umd.cs.findbugs.annotations.NonNull;
 import edu.umd.cs.findbugs.annotations.Nullable;
+
 import javax.persistence.EntityManager;
 
 /**
@@ -14,12 +15,12 @@ import javax.persistence.EntityManager;
 public enum RefreshType {
    NONE() {
       @Override
-      <T> T perform(@Nullable EntityManager manager,@Nullable  T entity,@Nullable  DBManager dbManager) {
+      public <T> T perform(@Nullable EntityManager manager,@Nullable  T entity,@Nullable  DBManager dbManager) {
          return entity;
       }},
    MERGE() {
       @Override
-      <T> T perform(@NonNull EntityManager manager,@NonNull  T entity,@NonNull  DBManager dbManager) {
+      public <T> T perform(@NonNull EntityManager manager,@NonNull  T entity,@NonNull  DBManager dbManager) {
          if(!(Utils.isIdNull(entity) || manager.contains(entity))){
             return manager.merge(entity);
          }
@@ -27,11 +28,11 @@ public enum RefreshType {
       }},
    FIND() {
       @Override
-      <T> T perform(EntityManager manager, T entity, DBManager dbManager) {
+      public <T> T perform(EntityManager manager, T entity, DBManager dbManager) {
          entity =  manager.find((Class<? extends T>) entity.getClass(), Utils.getId(entity));
          dbManager.firePersEvent(entity, LifecyclePhase.PostLoad, manager);
          return entity;
       }};
 
-   abstract <T> T perform(@NonNull EntityManager manager, @NonNull T entity, @NonNull DBManager dbManager);
+   public abstract <T> T perform(@NonNull EntityManager manager, @NonNull T entity, @NonNull DBManager dbManager);
 }

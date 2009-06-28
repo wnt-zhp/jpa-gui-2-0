@@ -2,7 +2,7 @@ package cx.ath.jbzdak.jpaGui.genericListeners;
 
 import cx.ath.jbzdak.jpaGui.task.Task;
 
-import java.awt.Window;
+import java.awt.*;
 
 public class HideWindowTask<T> extends Task<T> {
 
@@ -13,7 +13,12 @@ public class HideWindowTask<T> extends Task<T> {
 		this.window = window;
 	}
 
-	@Override
+   public HideWindowTask(int priority, Window window) {
+      super(priority, "HIDE_WINDOW");
+      this.window = window;
+   }
+
+   @Override
 	public void doTask(T t, Object... o) throws Exception {
 		window.setVisible(false);
 
