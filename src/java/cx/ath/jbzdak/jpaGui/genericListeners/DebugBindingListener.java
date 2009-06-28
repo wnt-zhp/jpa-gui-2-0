@@ -6,8 +6,10 @@ import org.jdesktop.beansbinding.Binding.SyncFailure;
 import org.jdesktop.beansbinding.BindingListener;
 import org.jdesktop.beansbinding.PropertyStateEvent;
 
-@SuppressWarnings("unchecked")
 
+//Jeśli chodzi o:CallToPrintStackTrace to nie chce tu używać logowania bo ten kompoennt jest do użycia
+//też w momencie w którym jeszcze logowania NIE MA
+@SuppressWarnings({"unchecked", "ThrowableResultOfMethodCallIgnored", "CallToPrintStackTrace", "UseOfSystemOutOrSystemErr"})
 public class DebugBindingListener implements BindingListener  {
 
 	@Override
@@ -16,7 +18,7 @@ public class DebugBindingListener implements BindingListener  {
 		System.out.println("DebugBindingListener.bindingBecameBound()");
 	}
 
-	@Override
+   @Override
 	public void bindingBecameUnbound(Binding binding) {
 		//log.debug("Binding became unbound {}", binding);
 		System.out.println("DebugBindingListener.bindingBecameUnbound()");
@@ -33,7 +35,8 @@ public class DebugBindingListener implements BindingListener  {
 	public void syncFailed(Binding binding, SyncFailure failure) {
 		//log.debug("SyncFailed {}, event {}", binding, failure);
 		System.out.println("DebugBindingListener.syncFailed()" + ToStringBuilder.reflectionToString(failure));
-		if(failure.getConversionException()!=null){
+
+		if(failure.getType() == Binding.SyncFailureType.CONVERSION_FAILED && failure.getConversionException()!=null){
 			failure.getConversionException().printStackTrace();
 		}
 	}
