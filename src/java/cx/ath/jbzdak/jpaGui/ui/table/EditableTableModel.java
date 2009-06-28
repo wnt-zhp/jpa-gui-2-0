@@ -143,6 +143,12 @@ public abstract class EditableTableModel<T> {
       return compare(entities.get(idx), entitiesCompare.get(idx));
    }
 
+   /**
+    * Sprawdza czy się zawartość beana zmieniła.
+    * @param changed zmieniona encja
+    * @param orig encja oryginalna
+    * @return true jeśli sie zmieniło, false jeśli nie
+    */
    protected abstract boolean compare(T changed, T orig);
 
 

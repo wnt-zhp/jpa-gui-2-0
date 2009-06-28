@@ -1,15 +1,11 @@
 package cx.ath.jbzdak.jpaGui.ui.table;
 
 import cx.ath.jbzdak.common.famfamicons.IconManager;
-import javax.swing.AbstractCellEditor;
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JTable;
+
+import javax.swing.*;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
-
-import java.awt.Component;
-import java.awt.FlowLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -115,7 +111,12 @@ public class AkcjeRendererEditor<T> extends AbstractCellEditor implements TableC
 		return renderer.getTableCellRendererComponent(table, value, isSelected, false, row, column);
 	}
 
-	@Override
+   @Override
+   protected void fireEditingStopped() {
+     fireEditingCanceled();
+   }
+
+   @Override
 	public Object getCellEditorValue() {
 		return value;
 	}
