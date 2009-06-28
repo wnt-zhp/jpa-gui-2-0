@@ -52,7 +52,6 @@ public class MyFormattedTextField extends JTextField{
 	public MyFormattedTextField(MyFormatter formatter) {
 		this();
 		setFormatter(formatter);
-
 	}
 
 	@Override
@@ -118,7 +117,6 @@ public class MyFormattedTextField extends JTextField{
 	void formatValue(){
 		ignoreSetText = true;
 		try{
-         setParseResults(null);
 			setText(formatter.formatValue(getValue()));
 		} catch (FormattingException e) {
          setParseResults(e);

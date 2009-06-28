@@ -5,16 +5,16 @@ import static cx.ath.jbzdak.jpaGui.Utils.getId;
 import static cx.ath.jbzdak.jpaGui.Utils.isIdNull;
 import cx.ath.jbzdak.jpaGui.db.DBManager;
 import cx.ath.jbzdak.jpaGui.db.dao.DAO;
-import javax.persistence.EntityManager;
-import javax.swing.JTable;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
-import javax.swing.table.TableModel;
 import org.apache.commons.collections.functors.CloneTransformer;
 import org.jdesktop.observablecollections.ObservableCollections;
 import org.jdesktop.observablecollections.ObservableList;
 import org.jdesktop.swingbinding.JTableBinding;
 
+import javax.persistence.EntityManager;
+import javax.swing.*;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.TableModel;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -28,7 +28,7 @@ import java.util.List;
  * tabeli. Zawiera {@link EntityManager} na którym po każdej akcji wywołuje się {@link EntityManager#clear()},
  * w ten sposób można jednym {@link EntityManager} zarządzać wieloma encjami na raz i perzystować je od siebie niezależnie.
  * <br/>
- * Zasadniczo idea jest taka że {@link cx.ath.jbzdak.jpaGui.ui.table.EditableTableModel} będzie współpracować z {@link JTableBinding},
+ * Zasadniczo idea jest taka że {@link EditableTableModel} będzie współpracować z {@link JTableBinding},
  * i do synchronizacji {@link #entities} (które zwierają przechowywane encje) starczy sam fakt że {@link #entities}
  * jest instancją {@link ObservableList}.
  * <br/>
@@ -45,6 +45,7 @@ import java.util.List;
  * containing buttons that fire apptopriate actions on this model. (see #createRendererEditor()}).
  *
  * TODO przerobić to kiedyś na 'prawdziwy' table model
+ * TODO metoda dispose
  * @author jb
  *
  * @param <T>
@@ -60,26 +61,26 @@ public abstract class EditableTableModel<T> {
 
    protected final DBManager dbManager;
 
-   private final JTable table;
+   protected final JTable table;
 
-   private final DAO<T> dao;
+   protected final DAO<T> dao;
 
-   private boolean insertNewRow = true;
+   protected boolean insertNewRow = true;
 
-   private ObservableList<T> entities = ObservableCollections.observableList(Collections.<T>emptyList());
+   protected ObservableList<T> entities = ObservableCollections.observableList(Collections.<T>emptyList());
 
    /**
     * Służy do sprawdzania czy jakaś encja zmieniła się.
     */
-   private ArrayList<T> entitiesCompare = new ArrayList<T>();
+   private final ArrayList<T> entitiesCompare = new ArrayList<T>();
 
-   private boolean firingChanges = false;
+   private final boolean firingChanges = false;
 
    /**
     * Listener dodawany do instancji TableModel. Działa tak że jeśli wykrywa updejt jednej kolumny
     * odpala event o zmianie wszystkich
     */
-   protected TableModelListener modelListener = new TableModelListener(){
+   protected final TableModelListener modelListener = new TableModelListener(){
       @Override
       public void tableChanged(TableModelEvent e) {
          if(!firingChanges){
@@ -130,7 +131,6 @@ public abstract class EditableTableModel<T> {
     * @return
     */
    public boolean isHighlighted(int idx){
-      System.out.println(((!isEditingDone(idx)) || maySave(idx)));
       return (!isEditingDone(idx)) || maySave(idx);
    }
 
@@ -426,4 +426,6 @@ public abstract class EditableTableModel<T> {
    protected Class<T> getClazz() {
       return clazz;
    }
+
+
 }
