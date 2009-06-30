@@ -166,15 +166,18 @@ public class FormPanelMock<T extends Component,FE extends FormElement<T>> extend
          errorBtn.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-               if(message!=null){
-                  String erroTxt = errorHandlers.getHandler(message).getMessage(message);
-                  errorLabel.setText(erroTxt);
-                  errorLabel.setToolTipText(erroTxt);
-                  errorLabel.setVisible(true);
-                  if (message instanceof Throwable) {
-                     LOGGER.info("Error message in FormPanel is", (Throwable)message);                     
-
-                  }
+               if(!errorLabel.isVisible()){
+                  if(message!=null){
+                     String erroTxt = errorHandlers.getHandler(message).getMessage(message);
+                     errorLabel.setText(erroTxt);
+                     errorLabel.setToolTipText(erroTxt);
+                     errorLabel.setVisible(true);
+                     if (message instanceof Throwable) {
+                        LOGGER.info("Error message in FormPanel is", (Throwable)message);                     
+                     }
+               }
+               }else{
+                  errorLabel.setVisible(false);
                }
             }
          });
