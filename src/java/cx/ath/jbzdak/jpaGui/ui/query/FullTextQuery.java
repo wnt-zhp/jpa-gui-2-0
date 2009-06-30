@@ -57,7 +57,7 @@ public class FullTextQuery extends AbstractQuery<String, String>{
         if(fuzzy){
             return matchesFuzzy(str);
         }else{
-            return  matchesNotFuzzy(str);
+            return matchesNotFuzzy(str);
         }
     }
 
