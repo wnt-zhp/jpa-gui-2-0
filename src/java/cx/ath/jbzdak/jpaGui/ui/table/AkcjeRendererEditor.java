@@ -78,7 +78,7 @@ public class AkcjeRendererEditor<T> extends AbstractCellEditor implements TableC
 	}
 
 	private JButton prepareButton(String iconName, String tooltipText){
-		JButton result = new JButton(IconManager.getIconSafe(iconName));
+		JButton result = new JButton(IconManager.getScaled(iconName, 1.2f));
 		result.setToolTipText(tooltipText);
 		result.setContentAreaFilled(false);
 		result.setBorderPainted(false);
