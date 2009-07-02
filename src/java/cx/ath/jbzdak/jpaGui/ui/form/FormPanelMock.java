@@ -78,13 +78,7 @@ public class FormPanelMock<T extends Component,FE extends FormElement<T>> extend
       this.formElement.addPropertyChangeListener("error", new PropertyChangeListener() {
          @Override
          public void propertyChange(PropertyChangeEvent evt) {
-            if((Boolean) evt.getNewValue()){
-               errorBtn.setIcon(getErrorIcon());
-               errorBtn.setFocusable(true);
-            }else{
-               errorBtn.setIcon(getNoErrorIcon());
-               errorBtn.setFocusable(false);
-            }
+            setErrorState((Boolean) evt.getNewValue());
          }
       });
       this.formElement.addPropertyChangeListener("shortDescription", new PropertyChangeListener(){
@@ -110,6 +104,17 @@ public class FormPanelMock<T extends Component,FE extends FormElement<T>> extend
       });
       helpButtonVisible = formElement.getLongDescription()!=null;
       initLayout();
+      setErrorState(this.formElement.isError());
+   }
+
+   private void setErrorState(boolean error){
+      if(error){
+         errorBtn.setIcon(getErrorIcon());
+         errorBtn.setFocusable(true);
+      }else{
+         errorBtn.setIcon(getNoErrorIcon());
+         errorBtn.setFocusable(false);
+      }  
    }
 
    void initLayout(){
