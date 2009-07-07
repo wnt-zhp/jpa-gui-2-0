@@ -6,7 +6,7 @@ import org.jdesktop.beansbinding.Property;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class FormattedFieldElement<E> extends PropertyFormElement<MyFormattedTextField, E> {
+public class FormattedFieldElement<E, V> extends PropertyFormElement<MyFormattedTextField, E, V> {
 
    public FormattedFieldElement(MyFormattedTextField renderer, String labelText) {
       super(renderer, labelText);
@@ -36,7 +36,7 @@ public class FormattedFieldElement<E> extends PropertyFormElement<MyFormattedTex
 	}
 
 	@Override
-	protected Object getRendererValue() {
+	public V getValue() {
 		return getRenderer().getValue();
 	}
 
@@ -46,7 +46,7 @@ public class FormattedFieldElement<E> extends PropertyFormElement<MyFormattedTex
 	}
 
 	@Override
-	protected void setRendererValue(Object value) {
+	public void setValue(V value) {
 		getRenderer().setValueFromBean(value);
 	}
 

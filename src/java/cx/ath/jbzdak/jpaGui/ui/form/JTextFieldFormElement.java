@@ -1,9 +1,10 @@
 package cx.ath.jbzdak.jpaGui.ui.form;
 
-import javax.swing.JTextField;
 import org.jdesktop.beansbinding.Property;
 
-public class JTextFieldFormElement<T> extends PropertyFormElement<JTextField, T> {
+import javax.swing.*;
+
+public class JTextFieldFormElement<T> extends PropertyFormElement<JTextField, T, Object> {
 
 	public JTextFieldFormElement(JTextField renderer, String labelText,
 			Property<T, Object> entityValueProperty) {
@@ -18,7 +19,7 @@ public class JTextFieldFormElement<T> extends PropertyFormElement<JTextField, T>
 	}
 
 	@Override
-	protected Object getRendererValue(){
+	public Object getValue(){
 		return null;
 	}
 
@@ -29,7 +30,7 @@ public class JTextFieldFormElement<T> extends PropertyFormElement<JTextField, T>
 	}
 
 	@Override
-	protected void setRendererValue(Object value) {
+	public void setValue(Object value) {
 		getRenderer().setText(value==null?"":value.toString());
 	}
 

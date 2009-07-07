@@ -5,22 +5,22 @@ import cx.ath.jbzdak.jpaGui.autoComplete.ComboBoxElement;
 import cx.ath.jbzdak.jpaGui.ui.formatted.FormattedFieldElement;
 import cx.ath.jbzdak.jpaGui.ui.formatted.MyFormattedTextField;
 import cx.ath.jbzdak.jpaGui.ui.formatted.MyFormatter;
-import javax.swing.JTextField;
 import org.jdesktop.beansbinding.Property;
 
+import javax.swing.*;
 import java.util.Map;
 
 @SuppressWarnings("unchecked")
 public class FormFactory<T>  {
 
 
-	private DAOForm<T, DAOFormElement> createdForm = new DAOForm<T,DAOFormElement>();
+	private DAOForm<T, FormElement<?, T, ?>> createdForm = new DAOForm<T,FormElement<?, T, ?>>();
 
 	private String layout = "default";
 
 	private Map<String,String> constraints;
 
-	public DAOForm<T,DAOFormElement> getCreatedForm() {
+	public DAOForm<T,FormElement<?, T, ?>> getCreatedForm() {
 
 		return createdForm;
 	}
@@ -33,19 +33,19 @@ public class FormFactory<T>  {
 	}
 
 
-	public FormPanel<MyFormattedTextField> decorateFormattedTextField(
+	public FormPanel<MyFormattedTextField, FormattedFieldElement<T, ?>> decorateFormattedTextField(
 			String labelText,
 			String beanProperty,
 			MyFormattedTextField field
 	){
-		FormattedFieldElement<T> elem = new FormattedFieldElement<T>(field, labelText, beanProperty);
-		FormPanel p =  new FormPanel<MyFormattedTextField>(elem, getConstraints(field.getClass()));
+		FormattedFieldElement<T, ?> elem = new FormattedFieldElement<T, Object>(field, labelText, beanProperty);
+		FormPanel p =  new FormPanel<MyFormattedTextField, FormattedFieldElement<T, ?>>(elem, getConstraints(field.getClass()));
 		createdForm.add(elem);
 
 		return p;
 	}
 
-	public FormPanel<MyFormattedTextField> decorateFormattedTextField(
+	public FormPanel<MyFormattedTextField, FormattedFieldElement<T, ?>> decorateFormattedTextField(
 			String labelText,
 			String beanProperty,
 			MyFormatter formatter
@@ -53,35 +53,35 @@ public class FormFactory<T>  {
 		return decorateFormattedTextField(labelText, beanProperty, new MyFormattedTextField(formatter));
 	}
 
-	public FormPanel<AutocompleteComboBox> decotrateComboBox(
+	public FormPanel<AutocompleteComboBox, ComboBoxElement<T, ?> > decotrateComboBox(
 			String labelText,
 			String beanProperty,
 			AutocompleteComboBox field
 	){
-      ComboBoxElement<T> element = new ComboBoxElement<T>(field, labelText, beanProperty);
-      FormPanel p =  new FormPanel<AutocompleteComboBox>(element, getConstraints(field.getClass()));
+      ComboBoxElement<T, ?> element = new ComboBoxElement<T, Object>(field, labelText, beanProperty);
+      FormPanel p =  new FormPanel<AutocompleteComboBox,  ComboBoxElement<T, ?>>(element, getConstraints(field.getClass()));
 		createdForm.add(element);
 		return p;
 	}
 
-	public FormPanel<JTextField> decotrateJTextField(
+	public FormPanel<JTextField, JTextFieldFormElement<T>> decotrateJTextField(
 			String labelText,
 			String beanProperty
 	){
       JTextFieldFormElement<T> jTextFieldFormElement = new JTextFieldFormElement<T>(new JTextField(), labelText,
                                                                                     beanProperty);
-      FormPanel p =  new FormPanel<JTextField>(jTextFieldFormElement,getConstraints(JTextField.class));
+      FormPanel p =  new FormPanel<JTextField, JTextFieldFormElement<T>>(jTextFieldFormElement,getConstraints(JTextField.class));
 		createdForm.add(jTextFieldFormElement);
 		return p;
 	}
 
-	public FormPanel<JTextField> decotrateJTextField(
+	public FormPanel<JTextField, JTextFieldFormElement<T>> decotrateJTextField(
 			String labelText,
 			Property beanProperty
 	){
       JTextFieldFormElement<T> jTextFieldFormElement = new JTextFieldFormElement<T>(new JTextField(), labelText,
                                                                                     beanProperty);
-      FormPanel p =  new FormPanel<JTextField>(jTextFieldFormElement,getConstraints(JTextField.class));
+      FormPanel p =  new FormPanel<JTextField, JTextFieldFormElement<T>>(jTextFieldFormElement,getConstraints(JTextField.class));
 		createdForm.add(jTextFieldFormElement);
 		return p;
 	}

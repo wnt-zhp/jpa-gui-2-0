@@ -1,13 +1,22 @@
 package cx.ath.jbzdak.jpaGui.ui.form;
 
-import java.awt.Component;
+import cx.ath.jbzdak.jpaGui.BeanHolder;
+
+import java.awt.*;
 import java.beans.PropertyChangeListener;
 
 /**
  * @author Jacek Bzdak jbzdak@gmail.com
  *         Date: 2009-04-22
  */
-public interface FormElement<T extends Component> {
+public interface FormElement<T extends Component, B, V> {
+   /**
+	 * Zwraca renderera
+    * @return
+    */
+   T getRenderer();
+
+    //Funkcje pozwalające na pobieranie informacji o błędach.
    /**
 	 * Sprawdza czy wprowadzono błędną wartość.
     *
@@ -28,11 +37,7 @@ public interface FormElement<T extends Component> {
     */
    Object getErrorMessage();
 
-   /**
-	 * Zwraca renderera
-    * @return
-    */
-   T getRenderer();
+   //Opis form elementu
 
    /**
 	 * Zwraca nazwę pola/
@@ -55,6 +60,8 @@ public interface FormElement<T extends Component> {
 
    public void addPropertyChangeListener(String propertyName, PropertyChangeListener listener);
 
+
+   //O
    /**
 	 * Rozpoczyna edycję.
     *
@@ -86,7 +93,28 @@ public interface FormElement<T extends Component> {
     */
    void clear();
 
+   /**
+    * Progammatically sets value to this formElement
+    * @param v
+    */
+   void setValue(V v);
+
+   /**
+    * Gets last value form this element
+    * @return
+    */
+   V getValue();
+
    void setEditable(boolean editable);
 
    boolean isEditable();
+
+   void setBeanHolder(BeanHolder<? extends B> beanHolder);
+
+   /**
+    * Should this formElement override nonnull values from bean, or not.
+    * @param readNullValues
+    */
+	public void setReadNullValues(boolean readNullValues);
+
 }

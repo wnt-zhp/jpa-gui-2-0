@@ -6,7 +6,7 @@ import java.util.Collection;
  * @author Jacek Bzdak jbzdak@gmail.com
  *         Date: 2009-04-24
  */
-public interface Form<FE extends FormElement> {
+public interface Form<FE extends FormElement<?, ? super B, ?>, B> {
    void startEditing();
 
    void startViewing();
@@ -15,11 +15,13 @@ public interface Form<FE extends FormElement> {
 
    void commit();
 
-   void addValidator(Validator v);
+   void addValidator(Validator<? super B> v);
 
    boolean add(FE e);
 
    boolean addAll(Collection<? extends FE> c);
 
    boolean remove(FE o);
+   
+
 }

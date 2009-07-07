@@ -4,7 +4,7 @@ package cx.ath.jbzdak.jpaGui.ui.form;
  * @author Jacek Bzdak jbzdak@gmail.com
  *         Date: 2009-04-24
  */
-public class SimpleForm<FE extends FormElement,T> extends AbstractForm<T,FE>{
+public class SimpleForm<FE extends FormElement<?, T, ?>,T> extends AbstractForm<T,FE>{
    @Override
    public void startEditing() {
       for (FE fe : forms) {

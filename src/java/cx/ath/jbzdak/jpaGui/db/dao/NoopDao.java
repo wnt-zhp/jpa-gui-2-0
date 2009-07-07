@@ -1,7 +1,5 @@
 package cx.ath.jbzdak.jpaGui.db.dao;
 
-import javax.persistence.EntityManager;
-
 public class NoopDao<T> implements DAO<T> {
 
 	private T entity;
@@ -13,7 +11,7 @@ public class NoopDao<T> implements DAO<T> {
 	private boolean transactionManaged;
 
 
-	public T getEntity() {
+	public T getBean() {
 		return entity;
 	}
 
@@ -33,7 +31,7 @@ public class NoopDao<T> implements DAO<T> {
 	}
 
 
-	public void setEntity(T entity) {
+	public void setBean(T entity) {
 		this.entity = entity;
 	}
 
@@ -62,7 +60,7 @@ public class NoopDao<T> implements DAO<T> {
 
 
 	@Override
-	public void closeTransaction() {}
+	public void commitTransaction() {}
 
 
 	@Override
@@ -71,10 +69,6 @@ public class NoopDao<T> implements DAO<T> {
 
 	@Override
 	public void find(Object o) {}
-
-
-	@Override
-	public EntityManager getEntityManager() {return null;}
 
 
 	@Override
@@ -109,10 +103,5 @@ public class NoopDao<T> implements DAO<T> {
 
 	@Override
 	public void update() {}
-
-
-	@Override
-	public void setEntityManager(EntityManager entityManager) {	}
-
 
 }

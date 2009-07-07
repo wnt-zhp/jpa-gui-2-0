@@ -9,15 +9,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.CheckForNull;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import java.lang.reflect.AnnotatedElement;
+import java.lang.reflect.Member;
 import java.math.BigDecimal;
 import java.rmi.server.UID;
 import java.util.Calendar;
@@ -110,6 +110,8 @@ public class Utils {
 				.create(targeTProperty));
 	}
 
+
+
 	/**
 	 * Sprawdza czy pole annotowane annotacją {@link Id} jest nullem czy nie.
 	 * Jeśli klasa nie ma takiego pola leci {@link IllegalArgumentException}.
@@ -124,36 +126,38 @@ public class Utils {
 		if(object==null){
 			throw new IllegalArgumentException();
 		}
-		Field id = null;
-		for (Field f : object.getClass().getDeclaredFields()) {
-			if (f.getAnnotation(Id.class) != null) {
-				id = f;
-			}
-		}
-		if (id == null) {
-			throw new IllegalArgumentException();
-		}
-		String fieldName = id.getName();
-		String getter = "get" + Character.toUpperCase(fieldName.charAt(0))
-				+ fieldName.substring(1);
-		Method m;
-		try {
-			m = object.getClass().getMethod(getter);
-		} catch (SecurityException e) {
-			throw new RuntimeException(e);
-		} catch (NoSuchMethodException e) {
-			throw new IllegalArgumentException(e);
-		}
-		try {
-			return m.invoke(object);
-		} catch (IllegalArgumentException e) {
-			throw e;
-		} catch (IllegalAccessException e) {
-			throw new IllegalArgumentException(e);
-		} catch (InvocationTargetException e) {
-			throw new RuntimeException(e.getCause());
-		}
+      return AnnotationUtils.getProperty(object, getIDMember(object));
 	}
+
+   public static boolean willAutoSetId(Object object){
+      AnnotatedElement id = getIDAnnotatedElement(object);
+      if(!id.isAnnotationPresent(GeneratedValue.class)){
+         return false;
+      }
+      if (id instanceof Member) {
+         Member member = (Member) id;
+         return AnnotationUtils.getProperty(object, member)==null;
+      }
+      throw new IllegalStateException();
+   }
+
+   static AnnotatedElement getIDAnnotatedElement(Object object){
+      AnnotatedElement id = AnnotationUtils.findByAnnotatio(Id.class, object.getClass().getFields());
+      if (id == null) {
+         id = AnnotationUtils.findByAnnotatio(Id.class, object.getClass().getMethods());
+      }
+      return id;
+   }
+
+   static Member getIDMember(Object object){
+      Member id = AnnotationUtils.findByAnnotatio(Id.class, object.getClass().getFields());
+      if (id == null) {
+         id = AnnotationUtils.findByAnnotatio(Id.class, object.getClass().getMethods());
+      }
+      return id;
+   }
+  
+
 
 	public static <T> boolean equals(T o1, T o2 ){
 		return o1==null ? o2==null : o1.equals(o2);
@@ -320,6 +324,16 @@ public class Utils {
          return  clazz.cast(t);
       }
       return findCauseOfClass(t.getCause(), clazz);
+   }
+
+   static void throwRuntime(Throwable t){
+      if (t instanceof Error) {
+         throw (Error) t;
+      }
+      if (t instanceof RuntimeException) {
+         throw (RuntimeException) t;
+      }
+      throw new RuntimeException(t);
    }
 
 

@@ -11,7 +11,7 @@ import java.beans.PropertyChangeListener;
  *
  * @param <E>
  */
-public class ComboBoxElement<E> extends PropertyFormElement<AutocompleteComboBox, E> {
+public class ComboBoxElement<E, V> extends PropertyFormElement<AutocompleteComboBox, E, V> {
 
 	public ComboBoxElement(AutocompleteComboBox renderer, String labelText,
 			Property<E, Object> entityValueProperty) {
@@ -34,7 +34,7 @@ public class ComboBoxElement<E> extends PropertyFormElement<AutocompleteComboBox
 	}
 
 	@Override
-	protected Object getRendererValue() {
+	public V getValue() {
 		return getRenderer().getBeanValue();
 	}
 
@@ -45,13 +45,13 @@ public class ComboBoxElement<E> extends PropertyFormElement<AutocompleteComboBox
 	}
 
 	@Override
-	protected void setRendererValue(Object value) {
+	public void setValue(V value) {
 		getRenderer().setBeanValue(value);
 	}
 
 	@Override
 	public void clear() {
-		setRendererValue(null);
+		setValue(null);
 		getRenderer().setFilter("");
 	}
 }

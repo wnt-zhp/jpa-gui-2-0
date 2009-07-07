@@ -7,5 +7,5 @@ package cx.ath.jbzdak.jpaGui.db.dao.annotations;
  * Time: 00:10:00
  */
 public enum LifecyclePhase {
-    PrePersist, PreUpdate, PreRemove, PostPersist, PostUpdate, PostRemove, PostLoad
+    PrePersist, PreUpdate, PreRemove, PostPersist, PostUpdate, PostRemove, PostLoad, PostMerge
 }

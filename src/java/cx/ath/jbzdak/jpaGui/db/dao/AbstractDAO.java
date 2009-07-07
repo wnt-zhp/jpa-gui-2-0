@@ -1,5 +1,6 @@
 package cx.ath.jbzdak.jpaGui.db.dao;
 
+import cx.ath.jbzdak.jpaGui.Utils;
 import static cx.ath.jbzdak.jpaGui.Utils.isIdNull;
 import cx.ath.jbzdak.jpaGui.db.DBManager;
 import cx.ath.jbzdak.jpaGui.db.dao.annotations.LifecyclePhase;
@@ -16,6 +17,7 @@ import java.util.NoSuchElementException;
  * @author jb
  * @param <T>
  */
+//TODO Wysyłanie eventów po komicte tranzakcji
 public class AbstractDAO<T> implements DAO<T> {
 
    protected final DBManager manager;
@@ -53,7 +55,7 @@ public class AbstractDAO<T> implements DAO<T> {
       beginTransaction();
       try {
          manager.firePersEvent(entity,  phase, entityManager);
-         closeTransaction();
+         commitTransaction();
       } catch (RuntimeException e) {
          rollback();
          throw e;
@@ -63,8 +65,7 @@ public class AbstractDAO<T> implements DAO<T> {
    /* (non-Javadoc)
    * @see cx.ath.jbzdak.zarlok.db.dao.DAO#getEntityManager()
    */
-   @Override
-   public EntityManager getEntityManager() {
+   EntityManager getEntityManager() {
       if (entityManager == null) {
          throw new IllegalStateException();
       }
@@ -86,7 +87,7 @@ public class AbstractDAO<T> implements DAO<T> {
       }
       if (beginCount == 0) {
          entityManager.getTransaction().begin();
-         if (entity != null && !isIdNull(getEntity())) {
+         if (entity != null && !isIdNull(getBean())) {
             entity = refreshType.perform(entityManager, entity, manager);
          }
       }
@@ -94,10 +95,10 @@ public class AbstractDAO<T> implements DAO<T> {
    }
 
    /* (non-Javadoc)
-   * @see cx.ath.jbzdak.zarlok.db.dao.DAO#closeTransaction()
+   * @see cx.ath.jbzdak.zarlok.db.dao.DAO#commitTransaction()
    */
    @Override
-   public void closeTransaction() {
+   public void commitTransaction() {
 
       if (transactionManaged)
          return;
@@ -147,9 +148,12 @@ public class AbstractDAO<T> implements DAO<T> {
    public void persist() {
       beginTransaction();
       try {
+         if(!Utils.isIdNull(getBean())){
+            throw new IllegalStateException("Trying to persist already persisted bean");
+         }
          firePersistenceEVT(LifecyclePhase.PrePersist);
-         entityManager.persist(getEntity());
-         closeTransaction();
+         entityManager.persist(getBean());
+         commitTransaction();
       } catch (RuntimeException e) {
          rollback();
          throw e;
@@ -164,12 +168,9 @@ public class AbstractDAO<T> implements DAO<T> {
    public void update() {
       beginTransaction();
        try {
-         if (!getEntityManager().contains(getEntity())) {
-            throw new IllegalStateException();
-         }
          firePersistenceEVT(LifecyclePhase.PreUpdate);
          getEntityManager().flush();
-         closeTransaction();
+         commitTransaction();
       } catch (RuntimeException e) {
          rollback();
          throw e;
@@ -182,19 +183,15 @@ public class AbstractDAO<T> implements DAO<T> {
    */
    @Override
    public void persistOrUpdate() {
-      beginTransaction();
-      try{
-         if (!isIdNull(getEntity())) {
-            getEntityManager().merge(getEntity());
-            getEntityManager().flush();
-         } else {
-            getEntityManager().persist(getEntity());
-         }
-         closeTransaction();
-      }catch (RuntimeException e){
-         rollback();
-         throw e;
-      }
+        if (Utils.willAutoSetId(getBean())) {
+          persist();
+        } else {
+           if(entityManager.find(clazz, Utils.getId(getBean()))==null){
+              persist();
+           }else{
+              update();
+           }
+        }
    }
 
    /* (non-Javadoc)
@@ -204,12 +201,12 @@ public class AbstractDAO<T> implements DAO<T> {
    public void find(Object o) {
       beginTransaction();
       try {
-         setEntity(getEntityManager().find(clazz, o));
-         if (getEntity() == null) {
+         setBean(getEntityManager().find(clazz, o));
+         if (getBean() == null) {
             throw new NoSuchElementException();
          }
          firePersistenceEVT(LifecyclePhase.PostLoad);
-         closeTransaction();
+         commitTransaction();
       } catch (RuntimeException e) {
          rollback();
          throw e;
@@ -223,7 +220,7 @@ public class AbstractDAO<T> implements DAO<T> {
       try{
          firePersistenceEVT(LifecyclePhase.PreRemove);
          entityManager.remove(entity);
-         closeTransaction();
+         commitTransaction();
       }catch (RuntimeException e){
          rollback();
          throw e;
@@ -236,7 +233,7 @@ public class AbstractDAO<T> implements DAO<T> {
    */
    @Override
    public void clearEntity() {
-      setEntity(null);
+      setBean(null);
    }
 
    /* (non-Javadoc)
@@ -244,11 +241,11 @@ public class AbstractDAO<T> implements DAO<T> {
    */
    @Override
    public void createEntity() {
-      if (getEntity() != null) {
+      if (getBean() != null) {
          throw new IllegalStateException();
       }
       try {
-         setEntity(clazz.newInstance());
+         setBean(clazz.newInstance());
       } catch (InstantiationException e) {
          throw new RuntimeException(e);
       } catch (IllegalAccessException e) {
@@ -257,10 +254,10 @@ public class AbstractDAO<T> implements DAO<T> {
    }
 
    /* (non-Javadoc)
-   * @see cx.ath.jbzdak.zarlok.db.dao.DAO#getEntity()
+   * @see cx.ath.jbzdak.zarlok.db.dao.DAO#getBean()
    */
    @Override
-   public T getEntity() {
+   public T getBean() {
       if (autoCreateEntity && entity == null) {
          createEntity();
       }
@@ -268,10 +265,10 @@ public class AbstractDAO<T> implements DAO<T> {
    }
 
    /* (non-Javadoc)
-   * @see cx.ath.jbzdak.zarlok.db.dao.DAO#setEntity(T)
+   * @see cx.ath.jbzdak.zarlok.db.dao.DAO#setBean(T)
    */
    @Override
-   public void setEntity(T entity) {
+   public void setBean(T entity) {
       this.entity = entity;
       if(beginCount!=0){
          this.entity = refreshType.perform(entityManager, entity, manager);
@@ -292,11 +289,6 @@ public class AbstractDAO<T> implements DAO<T> {
    @Override
    public void setAutoCreateEntity(boolean autoCreateEntity) {
       this.autoCreateEntity = autoCreateEntity;
-   }
-
-   @Override
-   public void setEntityManager(EntityManager entityManager) {
-      this.entityManager = entityManager;
    }
 
    /* (non-Javadoc)

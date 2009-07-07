@@ -188,7 +188,7 @@ public abstract class EditableTableModel<T> {
     * @param t
     */
    public void remove(final T t){
-      dao.setEntity(t);
+      dao.setBean(t);
       removeEntry(t, manager);
       dao.remove();
       removeEntity(entities.indexOf(t));
@@ -271,10 +271,10 @@ public abstract class EditableTableModel<T> {
          }
       });
       int index = entities.indexOf(t);
-      dao.setEntity(t);
+      dao.setBean(t);
       dao.persistOrUpdate();
       if(index!=-1){ //Żeby do entietesCompare trafiła wersja zustawionym id jeśli było odpalone persist
-         setEntity(index, dao.getEntity());
+         setEntity(index, dao.getBean());
       }
       manager.clear();
    }
@@ -316,7 +316,7 @@ public abstract class EditableTableModel<T> {
    public void refresh(final T t){
       manager.clear();
       dao.find(getId(t));
-      setEntity(entities.indexOf(t), dao.getEntity());
+      setEntity(entities.indexOf(t), dao.getBean());
       dao.clearEntity();
       manager.clear();
    }

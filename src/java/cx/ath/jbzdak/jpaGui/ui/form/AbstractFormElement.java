@@ -1,9 +1,10 @@
 package cx.ath.jbzdak.jpaGui.ui.form;
 
+import cx.ath.jbzdak.jpaGui.BeanHolder;
 import cx.ath.jbzdak.jpaGui.Utils;
 import org.slf4j.Logger;
 
-import java.awt.Component;
+import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -12,7 +13,7 @@ import java.beans.PropertyChangeSupport;
  * @author Jacek Bzdak jbzdak@gmail.com
  *         Date: 2009-04-22
  */
-public abstract class AbstractFormElement<T extends Component> implements FormElement<T> {
+public abstract class AbstractFormElement<T extends Component, B, V> implements FormElement<T, B, V> {
 
    private static final Logger LOGGER = Utils.makeLogger();
 
@@ -29,6 +30,8 @@ public abstract class AbstractFormElement<T extends Component> implements FormEl
    private boolean editable = true;
 
    private Object errorMessage;
+
+   private BeanHolder<? extends B> beanHolder;
 
    protected final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
@@ -49,26 +52,32 @@ public abstract class AbstractFormElement<T extends Component> implements FormEl
       return renderer;
    }
 
+   @Override
    public String getName() {
       return name;
    }
 
+   @Override
    public String getShortDescription() {
       return shortDescription;
    }
 
+   @Override
    public String getLongDescription() {
       return longDescription;
    }
 
+   @Override
    public Object getErrorMessage() {
       return errorMessage;
    }
 
+   @Override
    public boolean isError() {
       return error;
    }
 
+   @Override
    public boolean isEditable() {
       return editable;
    }
@@ -100,17 +109,29 @@ public abstract class AbstractFormElement<T extends Component> implements FormEl
 //      }
    }
 
+   @Override
    public void setEditable(boolean editable) {
       boolean oldEditable = this.editable;
       this.editable = editable;
       support.firePropertyChange("editable", oldEditable, this.editable);
    }
 
+   protected BeanHolder<? extends B> getBeanHolder() {
+      return beanHolder;
+   }
+
+   @Override
+   public void setBeanHolder(BeanHolder<? extends B> beanHolder) {
+      BeanHolder<? extends B> oldBeanHolder = this.beanHolder;
+      this.beanHolder = beanHolder;
+      support.firePropertyChange("beanHolder", oldBeanHolder, this.beanHolder);
+   }
 
    public void addPropertyChangeListener(PropertyChangeListener listener) {
       support.addPropertyChangeListener(listener);
    }
 
+   @Override
    public void addPropertyChangeListener(String propertyName,
                                          PropertyChangeListener listener) {
       support.addPropertyChangeListener(propertyName, listener);

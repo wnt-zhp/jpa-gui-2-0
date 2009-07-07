@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 
 
 @SuppressWarnings("unchecked")
-public class DAOForm<T, BFE extends DAOFormElement> extends AbstractForm<T,BFE> {
+public class DAOForm<T, FE extends FormElement<?, T, ?> > extends AbstractForm<T,FE> {
 
    private static final Logger LOGGER = Utils.makeLogger();
 
@@ -14,9 +14,6 @@ public class DAOForm<T, BFE extends DAOFormElement> extends AbstractForm<T,BFE> 
 
 	@Override
    public void startEditing(){
-		if(getEntity()==null){
-			setEntity(dao.getEntity()); //Utworzy dao jeśli trzeba i można
-		}
 		for(FormElement fe : forms){
 			fe.startEditing();
 		}
@@ -24,9 +21,6 @@ public class DAOForm<T, BFE extends DAOFormElement> extends AbstractForm<T,BFE> 
 
 	@Override
    public void startViewing(){
-		if(getEntity()==null){
-			setEntity(dao.getEntity()); //Utworzy dao jeśli trzeba i można
-		}
 		for(FormElement fe : forms){
 			fe.startViewing();
 		}
@@ -46,12 +40,11 @@ public class DAOForm<T, BFE extends DAOFormElement> extends AbstractForm<T,BFE> 
 			if(!checkErrors().isEmpty()){
 				return;
 			}
-			for(BFE fe : forms){
-            fe.refreshEntity(dao.getEntity());
+			for(FE fe : forms){
 				fe.commit();
 			}
 			dao.persistOrUpdate();
-			dao.closeTransaction();
+			dao.commitTransaction();
 		}catch (RuntimeException e) {
 			try {
 				dao.rollback();
@@ -69,16 +62,4 @@ public class DAOForm<T, BFE extends DAOFormElement> extends AbstractForm<T,BFE> 
 	public void setDao(DAO<T> dao) {
 		this.dao = dao;
 	}
-
-	public T getEntity() {
-		return dao.getEntity();
-	}
-
-	public void setEntity(T entity) {
-		dao.setEntity(entity);
-      for(BFE fe : forms){
-         fe.setEntity(dao.getEntity());
-      }
-	}
-
 }

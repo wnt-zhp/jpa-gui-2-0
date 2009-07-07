@@ -5,14 +5,13 @@ import org.jdesktop.beansbinding.Property;
 
 import java.awt.*;
 
-public  abstract class PropertyFormElement<T extends Component, E> extends AbstractFormElement<T> implements DAOFormElement<T, E> {
-
-	private E entity;
+public abstract class PropertyFormElement<T extends Component, E,V> extends AbstractFormElement<T, E, V> {
 
    @SuppressWarnings({"WeakerAccess"})
    protected final Property<E, Object> entityValueProperty;
 
 	private boolean readNullValues = true;
+
 
    protected PropertyFormElement(T renderer, String labelText) {
 		super(renderer, labelText);
@@ -30,14 +29,12 @@ public  abstract class PropertyFormElement<T extends Component, E> extends Abstr
 		this.entityValueProperty = entityValueProperty;
 	}
 
-
-
 	@Override
 	public void commit() {
 		try {
-			entityValueProperty.setValue(entity, getRendererValue());
+			entityValueProperty.setValue(getEntity(), getValue());
 		} catch (RuntimeException e) {
-			throw new RuntimeException("property: " + entityValueProperty.toString() + "entity: " + entity,e);
+			throw new RuntimeException("property: " + entityValueProperty.toString() + "entity: " + getEntity(),e);
 		}
 	}
 
@@ -50,7 +47,7 @@ public  abstract class PropertyFormElement<T extends Component, E> extends Abstr
 			throw new RuntimeException(entityValueProperty.toString() + ", entity=" +getEntity(), e);
 		}
 		if(value != null || readNullValues){
-			setRendererValue(value);
+			setValue((V) value);
 		}
 		setRendererEditable(isEditable());
 		startEditingEntry(value);
@@ -76,37 +73,19 @@ public  abstract class PropertyFormElement<T extends Component, E> extends Abstr
 
 	@Override
 	public void startViewing() {
-		setRendererEditable(false);
-		setRendererValue(entityValueProperty.getValue(entity));
+		setRendererEditable(false); 
+		setValue((V) entityValueProperty.getValue(getEntity()));
 		startViewingEntry();
 	}
 
 	@SuppressWarnings({"EmptyMethod", "WeakerAccess", "WeakerAccess"})
    protected void startViewingEntry() { }
 
-	protected abstract void setRendererValue(Object value);
-
-	protected abstract Object getRendererValue();
-
 	protected abstract void setRendererEditable(boolean editable);
 
-	@Override
-   public E getEntity() {
-		return entity;
+   private E getEntity() {
+		return getBeanHolder().getBean()!=null?getBeanHolder().getBean():null;
 	}
-
-	@Override
-   public void setEntity(E entity) {
-		E oldEntity = this.entity;
-		this.entity = entity;
-		firePropertyChange("entity", oldEntity, entity);
-		entitySet(entity);
-	}
-
-   @Override
-   public void refreshEntity(E entity) {
-      this.entity = entity;
-   }
 
    @SuppressWarnings({"EmptyMethod", "WeakerAccess", "UnusedParameters"})
     protected void entitySet(E entity2) {	}
@@ -114,24 +93,12 @@ public  abstract class PropertyFormElement<T extends Component, E> extends Abstr
    @SuppressWarnings({"EmptyMethod", "WeakerAccess", "WeakerAccess", "UnusedDeclaration"})
     protected void rendererSet(T renderer) { }
 
-   @Override
-	public Object getValue() {
-		return getRendererValue();
-	}
-
-	@Override
-	public void setValue(Object value) {
-		this.setRendererValue(value);
-	}
-
-
 	@Override
    public void setEditable(boolean editable) {
       super.setEditable(editable);
       setRendererEditable(editable);
 	}
 
-	@Override
    public boolean isReadNullValues() {
 		return readNullValues;
 	}

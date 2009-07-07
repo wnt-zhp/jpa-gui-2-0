@@ -5,11 +5,11 @@ import cx.ath.jbzdak.jpaGui.db.dao.AbstractDAO;
 import cx.ath.jbzdak.jpaGui.db.dao.CompositeEntityLifecycleListener;
 import cx.ath.jbzdak.jpaGui.db.dao.DAO;
 import cx.ath.jbzdak.jpaGui.db.dao.annotations.LifecyclePhase;
-import javax.persistence.EntityManager;
 import org.apache.commons.collections.Factory;
 import org.apache.commons.collections.MultiMap;
 import org.apache.commons.collections.map.MultiValueMap;
 
+import javax.persistence.EntityManager;
 import java.util.*;
 
 public abstract class AbstractDBManager implements DBManager{
@@ -53,7 +53,7 @@ public abstract class AbstractDBManager implements DBManager{
 
    public <T> DAO<T> getDao(T entity){
       DAO<T> dao = getDao((Class<T>)entity.getClass());
-      dao.setEntity(entity);
+      dao.setBean(entity);
       return dao;
    }
 

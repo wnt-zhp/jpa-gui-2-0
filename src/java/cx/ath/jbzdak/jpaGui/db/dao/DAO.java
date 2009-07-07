@@ -1,25 +1,45 @@
 package cx.ath.jbzdak.jpaGui.db.dao;
 
-import javax.persistence.EntityManager;
+import cx.ath.jbzdak.jpaGui.BeanHolder;
 
-public interface DAO<T> {
+public interface DAO<T> extends BeanHolder<T> {
 
-	public EntityManager getEntityManager();
-
-	public void setEntityManager(EntityManager entityManager);
-
+   /**
+    * Opens db transaction (if transaction was closed),
+    * and increments transaction counter. </br>
+    * In any way: after call to this method all properties
+    * of bean are readable, and writeable.
+    */
 	public void beginTransaction();
 
-	public void closeTransaction();
+   /**
+    * Decrements transaction counter and if it is zero commits transaction.
+    * Afrer this call entity may or may not be in persistence context, if transaction
+    * was commited - it will not be, if this call terminanted parent transaction it should
+    * also detach entity.
+    */
+	public void commitTransaction();
 
+   /**
+    * Rollbacks transaction (and all parent transactions)
+    */
 	public void rollback();
 
+   /**
+    * Rollbacks transaction if it is active.
+    */
 	public void rollbackIfActive();
 
+   /**
+    * Persists bean to database. 
+    */
 	public void persist();
 
 	public void update();
 
+   /**
+    * 
+    */
 	public void persistOrUpdate();
 
 	public void find(Object o);
@@ -28,9 +48,7 @@ public interface DAO<T> {
 
 	public void createEntity();
 
-	public T getEntity();
-
-	public void setEntity(T entity);
+   void remove();
 
 	public boolean isAutoCreateEntity();
 
@@ -40,10 +58,8 @@ public interface DAO<T> {
 
 	public void setTransactionManaged(boolean transactionManaged);
 
-
    RefreshType getRefreshType();
 
    void setRefreshType(RefreshType refreshType);
 
-   void remove();
 }

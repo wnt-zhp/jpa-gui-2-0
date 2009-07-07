@@ -10,5 +10,7 @@ package cx.ath.jbzdak.jpaGui.db;
 public interface EntityStateListener {
 
     public void propertyChanged(Object entityId, String propertyName,  Object oldValue, Object newValue);
+
+    public void entityChanged(Object entityId, Object oldValue, Object newValue);
     
 }
