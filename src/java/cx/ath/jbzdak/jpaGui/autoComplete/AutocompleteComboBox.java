@@ -178,7 +178,6 @@ public class AutocompleteComboBox<V> extends JComboBox {
 	 */
 	public void setFilter(String filter){
 		//Object oldSelectedItem = null;
-		//Object oldSelectedItem = null;
 		if(!Utils.equals(filter, this.filter)){
 			try{
 				ignoreConfigure = true;
@@ -187,10 +186,6 @@ public class AutocompleteComboBox<V> extends JComboBox {
 				ignoreConfigure = false;
 			}
 		}
-//		if(getSelectedItem()!=null){
-//			oldSelectedItem = getSelectedItem();
-//		}
-		//getAutoCompleteModel().setSelectedItemQuiet(null);
 		ignoreConfigure = true;
 		try{
 			//if(!isBlank(filter)){//TODO co ten warunek tu robi...
@@ -362,7 +357,7 @@ public class AutocompleteComboBox<V> extends JComboBox {
 		super.setSelectedItem(anObject);
 		selectedValueChanged(oldSelectedItem, anObject);
         if(!Utils.equals(oldSelectedItem, anObject)){
-            firePropertyChange("selectedItem", oldSelectedItem, anObject);
+            firePropertyChange("selectedItem", oldSelectedItem, anObject);            
         }
 	}
 

@@ -38,7 +38,7 @@ public class DAOForm<T, FE extends FormElement<?, T, ?> > extends AbstractForm<T
 		dao.beginTransaction();
 		try{
 			if(!checkErrors().isEmpty()){
-				return;
+				throw new IllegalStateException();
 			}
 			for(FE fe : forms){
 				fe.commit();

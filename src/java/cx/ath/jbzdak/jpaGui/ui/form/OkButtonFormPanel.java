@@ -33,18 +33,18 @@ public class OkButtonFormPanel<T> extends JPanel{
 		okButton = new JButton("OK");
 		okButton.addActionListener(new ActionListener(){
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(commitOnOK){
-               List<Object> errors = form.checkErrors();
-               if(!errors.isEmpty()){
-                  ErrorDialog.displayErrorDialog(errors, Utils.getFrameForComponent(OkButtonFormPanel.this));
-                  return;
-               }
-					form.commit();
-				}
-				okTasks.executeSwallow(form);
-			}
-		});
+            public void actionPerformed(ActionEvent e) {
+                if(commitOnOK){
+                    List<Object> errors = form.checkErrors();
+                    if(!errors.isEmpty()){
+                        ErrorDialog.displayErrorDialog(errors, Utils.getFrameForComponent(OkButtonFormPanel.this));
+                        return;
+                    }
+                    form.commit();
+                }
+                okTasks.executeSwallow(form);
+            }
+        });
 		cancelButton = new JButton("Cancel");
 		cancelButton.addActionListener(new ActionListener(){
 			@Override

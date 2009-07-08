@@ -47,13 +47,14 @@ public class FormattedFieldElement<E, V> extends PropertyFormElement<MyFormatted
 
 	@Override
 	public void setValue(V value) {
-		getRenderer().setValueFromBean(value);
+        if(isReadNullValues() || value!=null){
+		    getRenderer().setValueFromBean(value);
+        }
 	}
 
 	@Override
 	public void clear() {
 		getRenderer().setUserEnteredText("");
 		getRenderer().setText("");
-
 	}
 }
