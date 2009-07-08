@@ -1,14 +1,14 @@
 package cx.ath.jbzdak.jpaGui.ui.formatted;
 
 import static cx.ath.jbzdak.jpaGui.Utils.makeLogger;
-import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-
-import javax.swing.*;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.Document;
-import java.awt.*;
+import org.slf4j.Logger;
+
+import java.awt.Color;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.io.Serializable;
@@ -28,6 +28,8 @@ public class MyFormattedTextField extends JTextField{
 	private boolean valueCurrent;
 
 	private boolean ignoreSetText;
+
+   private boolean parsingText;
 
 	private Object value;
 
@@ -91,12 +93,10 @@ public class MyFormattedTextField extends JTextField{
 		this.value = value;
 		firePropertyChange("value", oldValue, this.value);
         setParseResults(null);
-		if(StringUtils.isEmpty(getText())){
+		//if(StringUtils.isEmpty(getText())){
 			formatValue();
-			userEnteredText = getText();
-		}
+		//}
 	}
-
 
 	public void setValueFromBean(Object value) {
 		setValue(value);
@@ -114,10 +114,12 @@ public class MyFormattedTextField extends JTextField{
 		firePropertyChange("valueCurrent", old, this.valueCurrent);
 	}
 
-	void formatValue(){
+	public  void formatValue(){
 		ignoreSetText = true;
 		try{
-			setText(formatter.formatValue(getValue()));
+         if(!parsingText){
+			   setText(formatter.formatValue(getValue()));
+         }
 		} catch (FormattingException e) {
          setParseResults(e);
 		}finally{
@@ -136,6 +138,7 @@ public class MyFormattedTextField extends JTextField{
 	}
 
 	void attemptParseText(){
+      parsingText = true;
 		try {
 			setValue(formatter.parseValue(getText()));
 			setValueCurrent(true);
@@ -147,7 +150,9 @@ public class MyFormattedTextField extends JTextField{
 			if(echoErrorsAtOnce){
 				setBackground(Color.PINK);
 			}
-		}
+		}finally {
+         parsingText = false; 
+      }
 	}
 
 	private void onTextChange(){
