@@ -4,7 +4,6 @@ import cx.ath.jbzdak.jpaGui.Utils;
 import static cx.ath.jbzdak.jpaGui.Utils.createAutoBinding;
 import cx.ath.jbzdak.jpaGui.autoComplete.adapter.NoopAdaptor;
 import org.apache.commons.lang.StringUtils;
-import static org.apache.commons.lang.StringUtils.isBlank;
 import static org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ;
 import org.jdesktop.beansbinding.Binding;
 
@@ -179,6 +178,7 @@ public class AutocompleteComboBox<V> extends JComboBox {
 	 */
 	public void setFilter(String filter){
 		//Object oldSelectedItem = null;
+		//Object oldSelectedItem = null;
 		if(!Utils.equals(filter, this.filter)){
 			try{
 				ignoreConfigure = true;
@@ -193,13 +193,13 @@ public class AutocompleteComboBox<V> extends JComboBox {
 		//getAutoCompleteModel().setSelectedItemQuiet(null);
 		ignoreConfigure = true;
 		try{
-			if(!isBlank(filter)){
+			//if(!isBlank(filter)){//TODO co ten warunek tu robi...
 				if(isStrict()){
 					setSelectedItem(null);
 				}else{
 					setSelectedItem(getAdaptor().getValueHolderFromFilter());
 				}
-			}
+			//}
 		}finally{
 			ignoreConfigure = false;
 		}
@@ -361,6 +361,9 @@ public class AutocompleteComboBox<V> extends JComboBox {
 		}
 		super.setSelectedItem(anObject);
 		selectedValueChanged(oldSelectedItem, anObject);
+        if(!Utils.equals(oldSelectedItem, anObject)){
+            firePropertyChange("selectedItem", oldSelectedItem, anObject);
+        }
 	}
 
 

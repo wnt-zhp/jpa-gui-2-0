@@ -9,6 +9,8 @@ import net.miginfocom.swing.MigLayout;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -63,16 +65,25 @@ public class FormPanel<T extends Component,FE extends FormElement<T, ?, ?>> exte
    protected final ClassHandler<Formatter> errorHandlers = ErrorHandlers.createShortHandlers();
 
 
-   public FormPanel(FE formElement) {
-      this(formElement, FormPanelConstraints.createDefaultConstraints(), null);
+   public FormPanel(@Nonnull FE formElement) {
+      this(formElement, null, null);
    }
 
-    public FormPanel(FE formElement, Map<String, String> constraints){
+    public FormPanel(@Nonnull FE formElement, @Nullable Map<String, String> constraints){
        this(formElement, constraints, null);
     }
+
+    public FormPanel(@Nonnull FE formElement, @Nullable ResourceBundle  resourceBundle){
+         this(formElement, null, resourceBundle);
+      }
+
+
    //TODO Wyseparować kiedyś same
-   public FormPanel(FE formElement, Map<String, String> constraints, ResourceBundle bundle) {
+   public FormPanel(@Nonnull FE formElement, @Nullable Map<String, String> constraints, @Nullable ResourceBundle bundle) {
       this.formElement = formElement;
+      if(constraints == null){
+          constraints =  FormPanelConstraints.createDefaultConstraints();
+      }
       this.constraints = constraints;
       this.bundle = bundle;
       this.formElement.addPropertyChangeListener("error", new PropertyChangeListener() {

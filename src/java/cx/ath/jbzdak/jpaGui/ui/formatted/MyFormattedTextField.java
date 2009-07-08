@@ -91,6 +91,8 @@ public class MyFormattedTextField extends JTextField{
 		this.value = value;
 		firePropertyChange("value", oldValue, this.value);
       setParseResults(null);
+        //TODO Dlaczego tu jest ten if i ten warunek - czy nie aby dalatego że to jest wywoływane z parse().
+        //Jeśli tak to trzeba dodac flagę na której trzeba zrobić ifa. . . . i wywalić setValueFromBEan
 		if(StringUtils.isEmpty(getText())){
 			formatValue();
 			userEnteredText = getText();
