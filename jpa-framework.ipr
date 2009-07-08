@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project relativePaths="true" version="4">
+<project relativePaths="false" version="4">
   <component name="AntConfiguration">
-    <defaultAnt bundledAnt="true" />
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="BuildJarProjectSettings">
     <option name="BUILD_JARS_ON_MAKE" value="false" />
+  </component>
+  <component name="CodeStyleManager">
+    <option name="USE_DEFAULT_CODE_STYLE_SCHEME" value="true" />
+    <option name="CODE_STYLE_SCHEME" value="" />
   </component>
   <component name="CodeStyleSettingsManager">
     <option name="PER_PROJECT_SETTINGS" />
@@ -13,43 +18,32 @@
   <component name="CompilerConfiguration">
     <option name="DEFAULT_COMPILER" value="Javac" />
     <option name="DEPLOY_AFTER_MAKE" value="0" />
-    <resourceExtensions>
-      <entry name=".+\.(properties|xml|html|dtd|tld)" />
-      <entry name=".+\.(gif|png|jpeg|jpg)" />
-    </resourceExtensions>
+    <resourceExtensions />
     <wildcardResourcePatterns>
-      <entry name="?*.properties" />
-      <entry name="?*.xml" />
-      <entry name="?*.gif" />
-      <entry name="?*.png" />
-      <entry name="?*.jpeg" />
-      <entry name="?*.jpg" />
-      <entry name="?*.html" />
-      <entry name="?*.dtd" />
-      <entry name="?*.tld" />
-      <entry name="?*.ftl" />
+      <entry name="!?*.java" />
     </wildcardResourcePatterns>
   </component>
   <component name="CopyrightManager" default="">
     <module2copyright />
   </component>
-  <component name="CppTools.Loader" reportImplicitCastToBool="false" version="2" compilerSelect="AUTO" />
   <component name="DependencyValidationManager">
     <option name="SKIP_IMPORT_STATEMENTS" value="false" />
   </component>
-  <component name="EclipseCompilerSettings">
-    <option name="DEBUGGING_INFO" value="true" />
-    <option name="GENERATE_NO_WARNINGS" value="true" />
-    <option name="DEPRECATION" value="false" />
-    <option name="ADDITIONAL_OPTIONS_STRING" value="" />
-    <option name="MAXIMUM_HEAP_SIZE" value="128" />
-  </component>
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false" />
-<<<<<<< HEAD:jpa-framework.ipr
-  <component name="IdProvider" IDEtalkID="4684D991ABFEC42BF99A248027816555" />
-=======
-  <component name="IdProvider" IDEtalkID="B28FFEFF234669617EF003B1A6BA8178" />
->>>>>>> 5fc21af139511974360f0c0706c31a1c0c63b590:jpa-framework.ipr
+  <component name="EntryPointsManager">
+    <entry_points />
+  </component>
+  <component name="ExportToHTMLSettings">
+    <option name="PRINT_LINE_NUMBERS" value="false" />
+    <option name="OPEN_IN_BROWSER" value="false" />
+    <option name="OUTPUT_DIRECTORY" />
+  </component>
+  <component name="ImportConfiguration">
+    <option name="VENDOR" />
+    <option name="RELEASE_TAG" />
+    <option name="LOG_MESSAGE" />
+    <option name="CHECKOUT_AFTER_IMPORT" value="true" />
+  </component>
   <component name="InspectionProjectProfileManager">
     <option name="PROJECT_PROFILE" value="Project Default" />
     <option name="USE_PROJECT_LEVEL_SETTINGS" value="false" />
@@ -58,9 +52,139 @@
       <profile version="1.0" is_locked="false">
         <option name="myName" value="Project Default" />
         <option name="myLocal" value="false" />
+        <inspection_tool class="InstanceofChain" level="WARNING" enabled="true" />
+        <inspection_tool class="ClassReferencesSubclass" level="WARNING" enabled="true" />
+        <inspection_tool class="DeclareCollectionAsInterface" level="WARNING" enabled="true">
+          <option name="ignoreLocalVariables" value="false" />
+          <option name="ignorePrivateMethodsAndFields" value="false" />
+        </inspection_tool>
+        <inspection_tool class="InstanceofThis" level="WARNING" enabled="true" />
+        <inspection_tool class="MagicNumber" level="WARNING" enabled="true">
+          <option name="m_ignoreInHashCode" value="true" />
+        </inspection_tool>
+        <inspection_tool class="OverlyStrongTypeCast" level="WARNING" enabled="true">
+          <option name="ignoreInMatchingInstanceof" value="false" />
+        </inspection_tool>
+        <inspection_tool class="MethodOnlyUsedFromInnerClass" level="WARNING" enabled="true">
+          <option name="ignoreMethodsAccessedFromAnonymousClass" value="false" />
+        </inspection_tool>
+        <inspection_tool class="StaticMethodOnlyUsedInOneClass" level="WARNING" enabled="true" />
+        <inspection_tool class="AssignmentToForLoopParameter" level="WARNING" enabled="true">
+          <option name="m_checkForeachParameters" value="false" />
+        </inspection_tool>
+        <inspection_tool class="AssignmentToCatchBlockParameter" level="WARNING" enabled="true" />
+        <inspection_tool class="AnonymousClassMethodCount" level="WARNING" enabled="true">
+          <option name="m_limit" value="2" />
+        </inspection_tool>
+        <inspection_tool class="ClassInheritanceDepth" level="WARNING" enabled="true">
+          <option name="m_limit" value="4" />
+        </inspection_tool>
+        <inspection_tool class="ConstructorCount" level="WARNING" enabled="true">
+          <option name="m_limit" value="5" />
+        </inspection_tool>
+        <inspection_tool class="FieldCount" level="WARNING" enabled="true">
+          <option name="m_countConstantFields" value="false" />
+          <option name="m_considerStaticFinalFieldsConstant" value="false" />
+          <option name="m_limit" value="10" />
+        </inspection_tool>
+        <inspection_tool class="MethodReturnAlwaysConstant" level="WARNING" enabled="true" />
+        <inspection_tool class="MissingOverrideAnnotation" level="WARNING" enabled="true" />
+        <inspection_tool class="SystemOutErr" level="WARNING" enabled="true" />
+        <inspection_tool class="EqualsCalledOnEnumConstant" level="WARNING" enabled="true" />
+        <inspection_tool class="LiteralAsArgToStringEquals" level="WARNING" enabled="true" />
+        <inspection_tool class="MissortedModifiers" level="WARNING" enabled="true">
+          <option name="m_requireAnnotationsFirst" value="true" />
+        </inspection_tool>
+        <inspection_tool class="ConditionalExpressionWithIdenticalBranches" level="WARNING" enabled="true" />
+        <inspection_tool class="NegatedConditional" level="WARNING" enabled="true">
+          <option name="m_ignoreNegatedNullComparison" value="true" />
+        </inspection_tool>
+        <inspection_tool class="IfStatementWithTooManyBranches" level="WARNING" enabled="true">
+          <option name="m_limit" value="3" />
+        </inspection_tool>
+        <inspection_tool class="IfStatementWithIdenticalBranches" level="WARNING" enabled="true" />
+        <inspection_tool class="RefusedBequest" level="WARNING" enabled="true">
+          <option name="ignoreEmptySuperMethods" value="true" />
+        </inspection_tool>
+        <inspection_tool class="StaticInheritance" level="WARNING" enabled="true" />
+        <inspection_tool class="ZeroLengthArrayInitialization" level="WARNING" enabled="true" />
+        <inspection_tool class="ParametersPerConstructor" level="WARNING" enabled="true">
+          <option name="m_limit" value="5" />
+        </inspection_tool>
+        <inspection_tool class="ThreeNegationsPerMethod" level="WARNING" enabled="true">
+          <option name="m_ignoreInEquals" value="true" />
+        </inspection_tool>
+        <inspection_tool class="ThrownExceptionsPerMethod" level="WARNING" enabled="true">
+          <option name="m_limit" value="3" />
+        </inspection_tool>
+        <inspection_tool class="ParametersPerMethod" level="WARNING" enabled="true">
+          <option name="m_limit" value="5" />
+        </inspection_tool>
+        <inspection_tool class="CyclomaticComplexity" level="WARNING" enabled="true">
+          <option name="m_limit" value="10" />
+        </inspection_tool>
+        <inspection_tool class="MethodCoupling" level="WARNING" enabled="true">
+          <option name="m_includeJavaClasses" value="false" />
+          <option name="m_includeLibraryClasses" value="false" />
+          <option name="m_limit" value="10" />
+        </inspection_tool>
+        <inspection_tool class="NonCommentSourceStatements" level="WARNING" enabled="true">
+          <option name="m_limit" value="30" />
+        </inspection_tool>
+        <inspection_tool class="NestingDepth" level="WARNING" enabled="true">
+          <option name="m_limit" value="5" />
+        </inspection_tool>
+        <inspection_tool class="HardcodedFileSeparators" level="WARNING" enabled="true">
+          <option name="m_recognizeExampleMediaType" value="false" />
+        </inspection_tool>
+        <inspection_tool class="MisspelledHashcode" level="WARNING" enabled="true" />
+        <inspection_tool class="ReplaceAllDot" level="WARNING" enabled="true" />
+        <inspection_tool class="CastConflictsWithInstanceof" level="WARNING" enabled="true" />
+        <inspection_tool class="CastToIncompatibleInterface" level="WARNING" enabled="true" />
+        <inspection_tool class="ObjectToString" level="WARNING" enabled="true" />
+        <inspection_tool class="CollectionAddedToSelf" level="WARNING" enabled="true" />
+        <inspection_tool class="ComparableImplementedButEqualsNotOverridden" level="WARNING" enabled="true" />
+        <inspection_tool class="MisspelledCompareTo" level="WARNING" enabled="true" />
+        <inspection_tool class="CovariantCompareTo" level="WARNING" enabled="true" />
+        <inspection_tool class="CovariantEquals" level="WARNING" enabled="true" />
+        <inspection_tool class="EmptyInitializer" level="WARNING" enabled="true" />
+        <inspection_tool class="MisspelledEquals" level="WARNING" enabled="true" />
+        <inspection_tool class="ForLoopThatDoesntUseLoopVariable" level="WARNING" enabled="true" />
+        <inspection_tool class="InstanceofIncompatibleInterface" level="WARNING" enabled="true" />
+        <inspection_tool class="InstantiationOfUtilityClass" level="WARNING" enabled="true" />
+        <inspection_tool class="IteratorHasNextCallsIteratorNext" level="WARNING" enabled="true" />
+        <inspection_tool class="IteratorNextDoesNotThrowNoSuchElementException" level="WARNING" enabled="true" />
+        <inspection_tool class="NonShortCircuitBoolean" level="WARNING" enabled="true" />
+        <inspection_tool class="ObjectEquality" level="WARNING" enabled="true">
+          <option name="m_ignoreEnums" value="true" />
+          <option name="m_ignoreClassObjects" value="false" />
+          <option name="m_ignorePrivateConstructors" value="false" />
+        </inspection_tool>
+        <inspection_tool class="VariableNotUsedInsideIf" level="WARNING" enabled="true" />
+        <inspection_tool class="ResultOfObjectAllocationIgnored" level="WARNING" enabled="true" />
+        <inspection_tool class="SubtractionInCompareTo" level="WARNING" enabled="true" />
+        <inspection_tool class="TextLabelInSwitchStatement" level="WARNING" enabled="true" />
+        <inspection_tool class="MisspelledToString" level="WARNING" enabled="true" />
+        <inspection_tool class="ResultSetIndexZero" level="WARNING" enabled="true" />
+        <inspection_tool class="UseOfPropertiesAsHashtable" level="WARNING" enabled="true" />
+        <inspection_tool class="ArchaicSystemPropertyAccess" level="WARNING" enabled="true" />
+        <inspection_tool class="SqlAmbiguousColumnInspection" level="WARNING" enabled="true" />
+        <inspection_tool class="SqlInsertValuesInspection" level="WARNING" enabled="true" />
+        <inspection_tool class="SqlIdentifierInspection" level="WARNING" enabled="true" />
+        <inspection_tool class="SqlResolveInspection" level="WARNING" enabled="true" />
+        <inspection_tool class="SqlTypeInspection" level="WARNING" enabled="true" />
+        <inspection_tool class="TodoComment" level="WARNING" enabled="true" />
+        <inspection_tool class="ObsoleteCollection" level="WARNING" enabled="true">
+          <option name="ignoreLibraryArguments" value="false" />
+        </inspection_tool>
+        <inspection_tool class="ThrowablePrintStackTrace" level="WARNING" enabled="true" />
+        <inspection_tool class="ThrowableResultOfMethodCallIgnored" level="WARNING" enabled="false" />
       </profile>
     </profiles>
     <list size="0" />
+  </component>
+  <component name="JUnitProjectSettings">
+    <option name="TEST_RUNNER" value="UI" />
   </component>
   <component name="JavacSettings">
     <option name="DEBUGGING_INFO" value="true" />
@@ -68,38 +192,35 @@
     <option name="DEPRECATION" value="true" />
     <option name="ADDITIONAL_OPTIONS_STRING" value="" />
     <option name="MAXIMUM_HEAP_SIZE" value="128" />
+    <option name="USE_GENERICS_COMPILER" value="false" />
   </component>
   <component name="JavadocGenerationManager">
     <option name="OUTPUT_DIRECTORY" />
     <option name="OPTION_SCOPE" value="protected" />
-    <option name="OPTION_HIERARCHY" value="true" />
-    <option name="OPTION_NAVIGATOR" value="true" />
-    <option name="OPTION_INDEX" value="true" />
-    <option name="OPTION_SEPARATE_INDEX" value="true" />
+    <option name="OPTION_HIERARCHY" value="false" />
+    <option name="OPTION_NAVIGATOR" value="false" />
+    <option name="OPTION_INDEX" value="false" />
+    <option name="OPTION_SEPARATE_INDEX" value="false" />
     <option name="OPTION_DOCUMENT_TAG_USE" value="false" />
     <option name="OPTION_DOCUMENT_TAG_AUTHOR" value="false" />
     <option name="OPTION_DOCUMENT_TAG_VERSION" value="false" />
-    <option name="OPTION_DOCUMENT_TAG_DEPRECATED" value="true" />
-    <option name="OPTION_DEPRECATED_LIST" value="true" />
-    <option name="OTHER_OPTIONS" value="" />
+    <option name="OPTION_DOCUMENT_TAG_DEPRECATED" value="false" />
+    <option name="OPTION_DEPRECATED_LIST" value="false" />
+    <option name="OTHER_OPTIONS" />
     <option name="HEAP_SIZE" />
     <option name="LOCALE" />
-    <option name="OPEN_IN_BROWSER" value="true" />
+    <option name="OPEN_IN_BROWSER" value="false" />
   </component>
   <component name="JikesSettings">
-    <option name="JIKES_PATH" value="" />
     <option name="DEBUGGING_INFO" value="true" />
     <option name="DEPRECATION" value="true" />
     <option name="GENERATE_NO_WARNINGS" value="false" />
+    <option name="GENERATE_MAKE_FILE_DEPENDENCIES" value="false" />
+    <option name="DO_FULL_DEPENDENCE_CHECK" value="false" />
+    <option name="IS_INCREMENTAL_MODE" value="false" />
     <option name="IS_EMACS_ERRORS_MODE" value="true" />
     <option name="ADDITIONAL_OPTIONS_STRING" value="" />
-  </component>
-  <component name="MavenProjectsManager">
-    <option name="originalFiles">
-      <list>
-        <option value="$PROJECT_DIR$/pom.xml" />
-      </list>
-    </option>
+    <option name="MAXIMUM_HEAP_SIZE" value="128" />
   </component>
   <component name="Palette2">
     <group name="Swing">
@@ -227,373 +348,19 @@
   </component>
   <component name="ProjectFileVersion" converted="true" />
   <component name="ProjectKey">
-<<<<<<< HEAD:jpa-framework.ipr
-    <option name="state" value="project://P:\git\jpa-framework\jpa-framework.ipr" />
-=======
-    <option name="state" value="project://C:\Documents and Settings\jb\IdeaProjects\jpa-framework\jpa-framework.ipr" />
->>>>>>> 5fc21af139511974360f0c0706c31a1c0c63b590:jpa-framework.ipr
+    <option name="state" value="project:///home/repo/git/jpa-framework-2-0/jpa-framework.ipr" />
   </component>
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/jpa-framework.iml" filepath="$PROJECT_DIR$/jpa-framework.iml" />
     </modules>
   </component>
-<<<<<<< HEAD:jpa-framework.ipr
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_5" assert-keyword="true" jdk-15="true" project-jdk-name="1.6" project-jdk-type="JavaSDK">
-=======
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="1.6" project-jdk-type="JavaSDK">
->>>>>>> 5fc21af139511974360f0c0706c31a1c0c63b590:jpa-framework.ipr
-    <output url="file://$PROJECT_DIR$/out" />
-  </component>
-  <component name="ResourceManagerContainer">
-    <option name="myResourceBundles">
-      <value>
-        <list size="0" />
-      </value>
-    </option>
-  </component>
-  <component name="RmicSettings">
-    <option name="IS_EANABLED" value="false" />
-    <option name="DEBUGGING_INFO" value="true" />
-    <option name="GENERATE_NO_WARNINGS" value="false" />
-    <option name="GENERATE_IIOP_STUBS" value="false" />
-    <option name="ADDITIONAL_OPTIONS_STRING" value="" />
-  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_5" assert-keyword="true" jdk-15="true" project-jdk-name="1.6" />
   <component name="SvnBranchConfigurationManager">
-    <option name="myVersion" value="124" />
     <option name="mySupportsUserInfoFilter" value="true" />
   </component>
   <component name="VcsDirectoryMappings">
-    <mapping directory="" vcs="CVS" />
-    <mapping directory="$PROJECT_DIR$" vcs="Git" />
-  </component>
-  <component name="libraryTable">
-    <library name="lib">
-      <CLASSES>
-        <root url="jar://$PROJECT_DIR$/lib/commons-collections-3.2.1.jar!/" />
-        <root url="jar://$PROJECT_DIR$/lib/annotations.jar!/" />
-        <root url="jar://$PROJECT_DIR$/lib/slf4j-api-1.5.6.jar!/" />
-        <root url="jar://$PROJECT_DIR$/lib/swingx-0.9.6.jar!/" />
-        <root url="jar://$PROJECT_DIR$/lib/commons-math-1.2.jar!/" />
-        <root url="jar://$PROJECT_DIR$/lib/jsr305.jar!/" />
-        <root url="jar://$PROJECT_DIR$/lib/commons-lang-2.4.jar!/" />
-        <root url="jar://$PROJECT_DIR$/lib/beansbinding-1.2.1.jar!/" />
-        <root url="jar://$PROJECT_DIR$/lib/ejb3-persistence.jar!/" />
-        <root url="jar://$PROJECT_DIR$/lib/miglayout-3.7-swing.jar!/" />
-        <root url="jar://$PROJECT_DIR$/lib/miglayout-3.7.jar!/" />
-        <root url="jar://$PROJECT_DIR$/lib/famfam.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES />
-    </library>
-    <library name="Maven: com.miglayout:miglayout:3.7">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/miglayout/miglayout/3.7/miglayout-3.7.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/com/miglayout/miglayout/3.7/miglayout-3.7-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/miglayout/miglayout/3.7/miglayout-3.7-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: net.java.dev.beansbinding:beansbinding:1.2.1">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/net/java/dev/beansbinding/beansbinding/1.2.1/beansbinding-1.2.1.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/net/java/dev/beansbinding/beansbinding/1.2.1/beansbinding-1.2.1-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/net/java/dev/beansbinding/beansbinding/1.2.1/beansbinding-1.2.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: commons-collections:commons-collections:3.2.1">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: commons-lang:commons-lang:2.4">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/commons-lang/commons-lang/2.4/commons-lang-2.4.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/commons-lang/commons-lang/2.4/commons-lang-2.4-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/commons-lang/commons-lang/2.4/commons-lang-2.4-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: commons-math:commons-math:1.2">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/commons-math/commons-math/1.2/commons-math-1.2.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/commons-math/commons-math/1.2/commons-math-1.2-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/commons-math/commons-math/1.2/commons-math-1.2-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: hibernate-entitymanager:ejb3-persistence:3.3.2.GA">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/hibernate-entitymanager/ejb3-persistence/3.3.2.GA/ejb3-persistence-3.3.2.GA.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/hibernate-entitymanager/ejb3-persistence/3.3.2.GA/ejb3-persistence-3.3.2.GA-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/hibernate-entitymanager/ejb3-persistence/3.3.2.GA/ejb3-persistence-3.3.2.GA-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: com.google.code.findbugs:jsr305:1.3.8">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/code/findbugs/jsr305/1.3.8/jsr305-1.3.8.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/code/findbugs/jsr305/1.3.8/jsr305-1.3.8-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/code/findbugs/jsr305/1.3.8/jsr305-1.3.8-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: com.google.code.findbugs:bcel:1.3.8">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/code/findbugs/bcel/1.3.8/bcel-1.3.8.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/code/findbugs/bcel/1.3.8/bcel-1.3.8-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/code/findbugs/bcel/1.3.8/bcel-1.3.8-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: com.google.code.findbugs:jFormatString:1.3.8">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/code/findbugs/jFormatString/1.3.8/jFormatString-1.3.8.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/code/findbugs/jFormatString/1.3.8/jFormatString-1.3.8-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/code/findbugs/jFormatString/1.3.8/jFormatString-1.3.8-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: com.google.code.findbugs:annotations:1.3.8">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/code/findbugs/annotations/1.3.8/annotations-1.3.8.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/code/findbugs/annotations/1.3.8/annotations-1.3.8-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/code/findbugs/annotations/1.3.8/annotations-1.3.8-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: dom4j:dom4j:1.6.1">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/dom4j/dom4j/1.6.1/dom4j-1.6.1-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/dom4j/dom4j/1.6.1/dom4j-1.6.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: xml-apis:xml-apis:1.0.b2">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/xml-apis/xml-apis/1.0.b2/xml-apis-1.0.b2.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/xml-apis/xml-apis/1.0.b2/xml-apis-1.0.b2-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/xml-apis/xml-apis/1.0.b2/xml-apis-1.0.b2-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: jaxen:jaxen:1.1.1">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/jaxen/jaxen/1.1.1/jaxen-1.1.1.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/jaxen/jaxen/1.1.1/jaxen-1.1.1-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/jaxen/jaxen/1.1.1/jaxen-1.1.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: jdom:jdom:1.0">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/jdom/jdom/1.0/jdom-1.0.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/jdom/jdom/1.0/jdom-1.0-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/jdom/jdom/1.0/jdom-1.0-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: xerces:xercesImpl:2.6.2">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/xerces/xercesImpl/2.6.2/xercesImpl-2.6.2.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/xerces/xercesImpl/2.6.2/xercesImpl-2.6.2-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/xerces/xercesImpl/2.6.2/xercesImpl-2.6.2-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: xom:xom:1.0">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/xom/xom/1.0/xom-1.0.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/xom/xom/1.0/xom-1.0-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/xom/xom/1.0/xom-1.0-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: xerces:xmlParserAPIs:2.6.2">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/xerces/xmlParserAPIs/2.6.2/xmlParserAPIs-2.6.2.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/xerces/xmlParserAPIs/2.6.2/xmlParserAPIs-2.6.2-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/xerces/xmlParserAPIs/2.6.2/xmlParserAPIs-2.6.2-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: xalan:xalan:2.6.0">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/xalan/xalan/2.6.0/xalan-2.6.0.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/xalan/xalan/2.6.0/xalan-2.6.0-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/xalan/xalan/2.6.0/xalan-2.6.0-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: com.ibm.icu:icu4j:2.6.1">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/ibm/icu/icu4j/2.6.1/icu4j-2.6.1.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/com/ibm/icu/icu4j/2.6.1/icu4j-2.6.1-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/ibm/icu/icu4j/2.6.1/icu4j-2.6.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: asm:asm:3.1">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/asm/asm/3.1/asm-3.1.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/asm/asm/3.1/asm-3.1-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/asm/asm/3.1/asm-3.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: asm:asm-analysis:3.1">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/asm/asm-analysis/3.1/asm-analysis-3.1.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/asm/asm-analysis/3.1/asm-analysis-3.1-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/asm/asm-analysis/3.1/asm-analysis-3.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: asm:asm-tree:3.1">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/asm/asm-tree/3.1/asm-tree-3.1.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/asm/asm-tree/3.1/asm-tree-3.1-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/asm/asm-tree/3.1/asm-tree-3.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: asm:asm-commons:3.1">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/asm/asm-commons/3.1/asm-commons-3.1.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/asm/asm-commons/3.1/asm-commons-3.1-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/asm/asm-commons/3.1/asm-commons-3.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: asm:asm-util:3.1">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/asm/asm-util/3.1/asm-util-3.1.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/asm/asm-util/3.1/asm-util-3.1-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/asm/asm-util/3.1/asm-util-3.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: asm:asm-xml:3.1">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/asm/asm-xml/3.1/asm-xml-3.1.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/asm/asm-xml/3.1/asm-xml-3.1-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/asm/asm-xml/3.1/asm-xml-3.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.slf4j:slf4j-api:1.5.6">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.5.6/slf4j-api-1.5.6.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.5.6/slf4j-api-1.5.6-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.5.6/slf4j-api-1.5.6-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.swinglabs:swingx:0.9.5-2">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/swinglabs/swingx/0.9.5-2/swingx-0.9.5-2.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/swinglabs/swingx/0.9.5-2/swingx-0.9.5-2-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/swinglabs/swingx/0.9.5-2/swingx-0.9.5-2-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: cx.ath.jbzdak.gui:famfam:1.0">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/cx/ath/jbzdak/gui/famfam/1.0/famfam-1.0.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/cx/ath/jbzdak/gui/famfam/1.0/famfam-1.0-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/cx/ath/jbzdak/gui/famfam/1.0/famfam-1.0-sources.jar!/" />
-      </SOURCES>
-    </library>
+    <mapping directory="" vcs="Git" />
   </component>
   <UsedPathMacros>
     <macro name="MAVEN_REPOSITORY" description="Maven Local Repostiry" />
