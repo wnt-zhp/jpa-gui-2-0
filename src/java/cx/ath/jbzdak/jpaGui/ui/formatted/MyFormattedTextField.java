@@ -90,7 +90,7 @@ public class MyFormattedTextField extends JTextField{
 		Object oldValue = this.value;
 		this.value = value;
 		firePropertyChange("value", oldValue, this.value);
-      setParseResults(null);
+        setParseResults(null);
 		if(StringUtils.isEmpty(getText())){
 			formatValue();
 			userEnteredText = getText();

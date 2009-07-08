@@ -44,7 +44,7 @@ public class DAOForm<T, BFE extends DAOFormElement> extends AbstractForm<T,BFE> 
 		dao.beginTransaction();
 		try{
 			if(!checkErrors().isEmpty()){
-				return;
+				throw new IllegalStateException();
 			}
 			for(BFE fe : forms){
             fe.refreshEntity(dao.getEntity());

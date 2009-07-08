@@ -1,8 +1,8 @@
 package cx.ath.jbzdak.jpaGui.ui.form;
 
-import javax.swing.JComponent;
-
+import javax.swing.*;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 /**
  * Zostaje bop nie chce mi się tego zmieniać na FormPanel. Generalnie po skończeniu żarłoka -- wywalić
@@ -20,7 +20,7 @@ public class FormPanel<T extends JComponent> extends FormPanelMock<T, DAOFormEle
 		super(element, constraints, null);
 	}
 
-
-
-
+    public FormPanel(DAOFormElement<T, ?> formElement, Map<String, String> constraints, ResourceBundle bundle) {
+        super(formElement, constraints, bundle);
+    }
 }

@@ -3,15 +3,13 @@ package cx.ath.jbzdak.jpaGui.autoComplete;
 import cx.ath.jbzdak.jpaGui.Utils;
 import static cx.ath.jbzdak.jpaGui.Utils.createAutoBinding;
 import cx.ath.jbzdak.jpaGui.autoComplete.adapter.NoopAdaptor;
-import javax.swing.*;
-import javax.swing.plaf.basic.BasicComboBoxUI;
 import org.apache.commons.lang.StringUtils;
-import static org.apache.commons.lang.StringUtils.isBlank;
 import static org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ;
 import org.jdesktop.beansbinding.Binding;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
+import javax.swing.*;
+import javax.swing.plaf.basic.BasicComboBoxUI;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
@@ -83,8 +81,6 @@ public class AutocompleteComboBox extends JComboBox {
 	 * Patrz
 	 */
 	private MyComboBoxModel autoCompleteModel;
-
-
 
 	private boolean strict = false;
 
@@ -188,19 +184,15 @@ public class AutocompleteComboBox extends JComboBox {
 				ignoreConfigure = false;
 			}
 		}
-//		if(getSelectedItem()!=null){
-//			oldSelectedItem = getSelectedItem();
-//		}
-		//getAutoCompleteModel().setSelectedItemQuiet(null);
 		ignoreConfigure = true;
 		try{
-			if(!isBlank(filter)){
+			//if(!isBlank(filter)){//TODO co ten warunek tu robi...
 				if(isStrict()){
 					setSelectedItem(null);
 				}else{
 					setSelectedItem(getAdaptor().getValueHolderFromFilter());
 				}
-			}
+			//}
 		}finally{
 			ignoreConfigure = false;
 		}
@@ -362,6 +354,9 @@ public class AutocompleteComboBox extends JComboBox {
 		}
 		super.setSelectedItem(anObject);
 		selectedValueChanged(oldSelectedItem, anObject);
+        if(!Utils.equals(oldSelectedItem, anObject)){
+            firePropertyChange("selectedItem", oldSelectedItem, anObject);            
+        }
 	}
 
 

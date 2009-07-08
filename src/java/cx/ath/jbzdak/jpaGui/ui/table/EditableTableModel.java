@@ -192,6 +192,7 @@ public abstract class EditableTableModel<T> {
       removeEntry(t, manager);
       dao.remove();
       removeEntity(entities.indexOf(t));
+      removeEntry2(t, manager);
       manager.clear();
    }
 
@@ -201,6 +202,13 @@ public abstract class EditableTableModel<T> {
     * @param manager
     */
    protected abstract void removeEntry(T t, EntityManager manager);
+
+   /**
+    * Wywołane tuż przed usunięciem <code>t</code>.
+    * @param t encja która jest już zarządzana przez <code>manager</code>.
+    * @param manager
+    */
+   protected void removeEntry2(T t, EntityManager manager) {};
 
 
    /**

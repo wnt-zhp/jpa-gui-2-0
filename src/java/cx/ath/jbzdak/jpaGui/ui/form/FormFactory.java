@@ -5,14 +5,16 @@ import cx.ath.jbzdak.jpaGui.autoComplete.ComboBoxElement;
 import cx.ath.jbzdak.jpaGui.ui.formatted.FormattedFieldElement;
 import cx.ath.jbzdak.jpaGui.ui.formatted.MyFormattedTextField;
 import cx.ath.jbzdak.jpaGui.ui.formatted.MyFormatter;
-import javax.swing.JTextField;
 import org.jdesktop.beansbinding.Property;
 
+import javax.swing.*;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 @SuppressWarnings("unchecked")
 public class FormFactory<T>  {
 
+    private ResourceBundle resourceBundle;
 
 	private DAOForm<T, DAOFormElement> createdForm = new DAOForm<T,DAOFormElement>();
 
@@ -39,7 +41,7 @@ public class FormFactory<T>  {
 			MyFormattedTextField field
 	){
 		FormattedFieldElement<T> elem = new FormattedFieldElement<T>(field, labelText, beanProperty);
-		FormPanel p =  new FormPanel<MyFormattedTextField>(elem, getConstraints(field.getClass()));
+		FormPanel p =  new FormPanel<MyFormattedTextField>(elem, getConstraints(field.getClass()), resourceBundle);
 		createdForm.add(elem);
 
 		return p;
@@ -70,7 +72,7 @@ public class FormFactory<T>  {
 	){
       JTextFieldFormElement<T> jTextFieldFormElement = new JTextFieldFormElement<T>(new JTextField(), labelText,
                                                                                     beanProperty);
-      FormPanel p =  new FormPanel<JTextField>(jTextFieldFormElement,getConstraints(JTextField.class));
+      FormPanel p =  new FormPanel<JTextField>(jTextFieldFormElement,getConstraints(JTextField.class),resourceBundle);
 		createdForm.add(jTextFieldFormElement);
 		return p;
 	}
@@ -81,7 +83,7 @@ public class FormFactory<T>  {
 	){
       JTextFieldFormElement<T> jTextFieldFormElement = new JTextFieldFormElement<T>(new JTextField(), labelText,
                                                                                     beanProperty);
-      FormPanel p =  new FormPanel<JTextField>(jTextFieldFormElement,getConstraints(JTextField.class));
+      FormPanel p =  new FormPanel<JTextField>(jTextFieldFormElement,getConstraints(JTextField.class), resourceBundle);
 		createdForm.add(jTextFieldFormElement);
 		return p;
 	}
@@ -102,8 +104,7 @@ public class FormFactory<T>  {
 		this.constraints = constraints;
 	}
 
-
-
-
-
+    public void setResourceBundle(ResourceBundle resourceBundle) {
+        this.resourceBundle = resourceBundle;
+    }
 }

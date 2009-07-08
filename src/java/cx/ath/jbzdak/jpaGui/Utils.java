@@ -37,27 +37,28 @@ public class Utils {
    private static final File PROGRAM_FOLDER;
 
    static{
-      String classPath = System.getProperty("java.class.path");
-      String[] jars = classPath.split(System.getProperty("path.separator"));
-      System.out.println(classPath);
-      File jar = new File(jars[0]);
-      File parent = jar.getParentFile();
-      File result = null;
-
-      if(parent!=null && parent.isDirectory()){
-         File tmpFile = initTempFile(parent, "txt");
-         try {
-            if(tmpFile.createNewFile()){
-               result = parent;
-            }
-         } catch (IOException e) {
-            LOGGER.debug("", e);
-         }
-      }
-      if(result==null){
-         result = new File(".");
-      }
-      PROGRAM_FOLDER = result;
+//      String classPath = System.getProperty("java.class.path");
+//      String[] jars = classPath.split(System.getProperty("path.separator"));
+//      System.out.println(classPath);
+//      File jar = new File(jars[0]);
+//      File parent = jar.getParentFile();
+//      File result = null;
+//
+//      if(parent!=null && parent.isDirectory()){
+//         File tmpFile = initTempFile(parent, "txt");
+//         try {
+//            if(tmpFile.createNewFile()){
+//               result = parent;
+//            }
+//         } catch (IOException e) {
+//            LOGGER.debug("", e);
+//         }
+//      }
+//      if(result==null){1
+//         result = new File(".");
+//      }
+      PROGRAM_FOLDER = new File(System.getProperty("user.dir"));
+      LOGGER.info("Progam folder is {} ", PROGRAM_FOLDER);
    }
 
    static{
@@ -254,8 +255,9 @@ public class Utils {
     * Sprawdza pierwszy element classpahta i bierze jego parenta
     * @return
     */
+   @Deprecated()
    public static final File guessProgramFolder(){
-      return  PROGRAM_FOLDER;
+      return PROGRAM_FOLDER;
    }
 
      public static final File createTmpFile(File folder, String extension){
