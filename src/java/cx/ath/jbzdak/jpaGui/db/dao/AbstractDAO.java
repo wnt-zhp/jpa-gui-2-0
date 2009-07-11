@@ -3,8 +3,8 @@ package cx.ath.jbzdak.jpaGui.db.dao;
 import static cx.ath.jbzdak.jpaGui.Utils.isIdNull;
 import cx.ath.jbzdak.jpaGui.db.DBManager;
 import cx.ath.jbzdak.jpaGui.db.dao.annotations.LifecyclePhase;
-
 import javax.persistence.EntityManager;
+
 import java.text.Normalizer.Form;
 import java.util.NoSuchElementException;
 
@@ -87,7 +87,12 @@ public class AbstractDAO<T> implements DAO<T> {
       if (beginCount == 0) {
          entityManager.getTransaction().begin();
          if (entity != null && !isIdNull(getEntity())) {
-            entity = refreshType.perform(entityManager, entity, manager);
+            try {
+               entity = refreshType.perform(entityManager, entity, manager);
+            } catch (RuntimeException e) {
+               entityManager.getTransaction().rollback();
+               throw e;
+            }
          }
       }
       beginCount++;
