@@ -1,5 +1,6 @@
 package cx.ath.jbzdak.jpaGui.autoComplete;
 
+import edu.umd.cs.findbugs.annotations.NonNull;
 import edu.umd.cs.findbugs.annotations.Nullable;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.MutableComboBoxModel;
@@ -17,7 +18,7 @@ import java.util.*;
  * @author jb
  *
  */
-public class MyComboBoxModel implements MutableComboBoxModel {
+public class MyComboBoxModel<V> implements MutableComboBoxModel {
 
 	/**
 	 * Zawartość modelu.
@@ -45,6 +46,8 @@ public class MyComboBoxModel implements MutableComboBoxModel {
 	 */
 	protected final boolean detatchedSelectedItem;
 
+   protected Class<? extends V> elementClass;
+
 	public MyComboBoxModel() {
 		super();
 		this.detatchedSelectedItem = false;
@@ -61,13 +64,15 @@ public class MyComboBoxModel implements MutableComboBoxModel {
 		this.items.addAll(items);
 	}
 
-
 	@Override
-	public Object getSelectedItem() {
-		return selectedItem;
+	public V getSelectedItem() {
+		return (V) selectedItem;
 	}
 
-	public void setSelectedItemQuiet(Object anItem){
+	public void setSelectedItemQuiet(@Nullable Object anItem){
+      if(elementClass!= null && !elementClass.isInstance(anItem)){
+         throw new IllegalArgumentException();
+      }
 		selectedItem = anItem;
 	}
 
@@ -77,7 +82,7 @@ public class MyComboBoxModel implements MutableComboBoxModel {
 			(selectedItem != null && !selectedItem.equals(anItem)) ||
 			(selectedItem == null && anItem !=null)
 			){
-				selectedItem = anItem;
+				setSelectedItemQuiet(anItem);
 				fireDataChanged(-1, -1);
 		}
 	}
@@ -115,8 +120,8 @@ public class MyComboBoxModel implements MutableComboBoxModel {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Object getElementAt(int index) {
-		return items.get(index);
+	public V getElementAt(int index) {
+		return (V) items.get(index);
 	}
 
 	/**
@@ -208,4 +213,25 @@ public class MyComboBoxModel implements MutableComboBoxModel {
 			ldl.intervalAdded(dataEvent);
 		}
 	}
+
+   public Class<? extends V> getElementClass() {
+      return elementClass;
+   }
+
+   public void setElementClass(@NonNull Class<? extends V> elementClass) {
+      if(this.elementClass!=null){//Idea jest taka że elementClass ustawiamy raz na zawsze, inaczej się będzie chrzanić checked collection
+         throw new IllegalStateException();
+      }
+      if(this.elementClass != elementClass){
+         for(Object ii : items){
+            if(!elementClass.isInstance(ii)){
+               throw new IllegalStateException();
+            }
+         }
+         items = (List<Object>) Collections.checkedList((List<V>) items, (Class<V>) elementClass);
+         this.elementClass = elementClass;
+      }
+   }
+
+   public boolean contains(Object o) {return items.contains(o);}
 }

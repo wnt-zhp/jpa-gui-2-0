@@ -2,14 +2,17 @@ package cx.ath.jbzdak.jpaGui.autoComplete;
 
 import cx.ath.jbzdak.jpaGui.Utils;
 import static cx.ath.jbzdak.jpaGui.Utils.createAutoBinding;
+import cx.ath.jbzdak.jpaGui.autoComplete.adapter.MockAdaptor;
 import cx.ath.jbzdak.jpaGui.autoComplete.adapter.NoopAdaptor;
+import cx.ath.jbzdak.jpaGui.ui.formatted.MyFormatter;
+import cx.ath.jbzdak.jpaGui.ui.formatted.formatters.ToStringFormatter;
+import javax.swing.*;
+import javax.swing.plaf.basic.BasicComboBoxUI;
 import org.apache.commons.lang.StringUtils;
 import static org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ;
 import org.jdesktop.beansbinding.Binding;
 
-import javax.swing.*;
-import javax.swing.plaf.basic.BasicComboBoxUI;
-import java.awt.*;
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
@@ -23,8 +26,6 @@ matycznego uzupełniania.
  * który enkapsuluje proces wyszukiwania i dawania podpowiedzi.
  * </p>
  * <p>Opakowuje podanego mu edytora w instancję {@link WrappedEditor}. </p>
- * <p> Co więcej wartości przechowywane w modelu muszą być instancjami
- * {@link AutoCompleteValueHolder}.</p>
  * @author jb
  *
  */
@@ -37,7 +38,7 @@ public class AutocompleteComboBox<V> extends JComboBox {
 	/**
 	 * Adapter enkapsuluje proces generowania podpowiedzi.
 	 */
-	private AutoCompleteAdaptor<AutoCompleteValueHolder> adaptor;
+	private AutoCompleteAdaptor<V> adaptor;
 
 	/**
 	 * Ostatnio wklepany przez usera filtr
@@ -80,56 +81,35 @@ public class AutocompleteComboBox<V> extends JComboBox {
 	 * Ogólnie model mysi być tej klasy.
 	 * Patrz
 	 */
-	private MyComboBoxModel autoCompleteModel;
+	private MyComboBoxModel<V> autoCompleteModel;
 
-
+   private MyFormatter<? extends V, ? super V> formatter = new ToStringFormatter<V>();  
 
 	private boolean strict = false;
 
-	private boolean clear;
-
-	private boolean ignoreError;
-
-//	/**
-//	 * Listener dodawany do edytora. Robi prawie dokładnie to co
-//	 * {@link JComboBox#actionPerformed(ActionEvent)}. Normalnie
-//	 * bym overridenął {@link #actionPerformed(ActionEvent)}, ale
-//	 * proszą żeby nie robić tego.
-//	 */
-//	private ActionListener editorListener = new ActionListener(){
-//		  public void actionPerformed(ActionEvent e) {
-//		        Object newItem = getEditor().getItem();
-//		        setPopupVisible(false);
-//		        setSelectedItem(newItem);
-//				String oldCommand = getActionCommand();
-//				setActionCommand("comboBoxEdited");
-//				fireActionEvent();
-//				setActionCommand(oldCommand);
-//		    }
-//	};
-
 	public boolean isError(){
-		return getSelectedValue() == null || ignoreError;
+		return getSelectedValue() == null;
 	}
 
 	public AutocompleteComboBox(){
-		this(new NoopAdaptor<AutoCompleteValueHolder>());
+		this(new NoopAdaptor<V>());
 
 	}
 
 
-	public AutocompleteComboBox(AutoCompleteAdaptor<AutoCompleteValueHolder> adaptor) {
+	public AutocompleteComboBox(AutoCompleteAdaptor<V> adaptor) {
 	    this(adaptor, false);
 	}
 
-	public AutocompleteComboBox(AutoCompleteAdaptor<AutoCompleteValueHolder> adaptor, boolean strict) {
+	public AutocompleteComboBox(AutoCompleteAdaptor<V> adaptor, boolean strict) {
 		super();
 		setAdaptor(adaptor);
 		setFilter("");
 		setEditable(true);
-		getAutoCompleteModel(); //for side-effect
+		getAutoCompleteModel().setElementClass(adaptor.getValueClass());
 		setValues(adaptor.getCurentFilteredResults());
-        setStrict(strict);
+      setStrict(strict);
+
 	}
 
 	/**
@@ -142,25 +122,19 @@ public class AutocompleteComboBox<V> extends JComboBox {
 		if(filterBinding!=null){
 			filterBinding.unbind();
 		}
-//		if(getEditor()!=null){
-//			getEditor().removeActionListener(editorListener);
-//		}
 		if(editor!=null){
-			editor = new WrappedEditor(editor);
+			editor = new WrappedEditor(editor, this);
 			editor.getEditorComponent().addFocusListener(new FocusListener());
 		}
 		super.setEditor(editor);
 		if(editor!=null){
 			bindFilter();
 		}
-//		editor.removeActionListener(this);
-//		editor.addActionListener(editorListener);
 	}
 
 	public WrappedEditor getEditor(){
 		return (WrappedEditor) super.getEditor();
 	}
-
 
 	private void bindAdaptor(){
 		adaptorBinding = createAutoBinding(READ, adaptor, "curentFilteredResults", this, "values");
@@ -172,44 +146,44 @@ public class AutocompleteComboBox<V> extends JComboBox {
 		filterBinding.bind();
 	}
 
+   protected V parseSelectedItem(String s){
+      try{
+         return strict?null:formatter.parseValue(s);
+      }catch (Exception e){
+         return null;
+      }
+   }
+
 	/**
 	 * Ustawia i przesyła do {@link AutoCompleteAdaptor} filtr.
 	 * @param filter fliter do wywołania
 	 */
 	public void setFilter(String filter){
-		//Object oldSelectedItem = null;
-		if(!Utils.equals(filter, this.filter)){
+		if(adaptor == null || !adaptor.ignoreFilter(this.filter, filter)){
 			try{
+            this.filter = filter;
+            if(isStrict()){
+               setSelectedItem(null);
+            }else{
+               setSelectedItem(parseSelectedItem(filter));
+            }
 				ignoreConfigure = true;
 				getAdaptor().setFilter(StringUtils.defaultString(filter));
 			}finally{
 				ignoreConfigure = false;
 			}
 		}
-		ignoreConfigure = true;
-		try{
-			//if(!isBlank(filter)){//TODO co ten warunek tu robi...
-				if(isStrict()){
-					setSelectedItem(null);
-				}else{
-					setSelectedItem(getAdaptor().getValueHolderFromFilter());
-				}
-			//}
-		}finally{
-			ignoreConfigure = false;
-		}
-		this.filter = filter;
 	}
 
-	public AutoCompleteAdaptor<AutoCompleteValueHolder> getAdaptor() {
+	public AutoCompleteAdaptor<V> getAdaptor() {
 		if(adaptor==null){
-			adaptor = new NoopAdaptor<AutoCompleteValueHolder>();
+			adaptor = new NoopAdaptor<V>();
 		}
 		return adaptor;
 	}
 
 
-	public void setAdaptor(AutoCompleteAdaptor<AutoCompleteValueHolder> adaptor) {
+	public void setAdaptor(AutoCompleteAdaptor<V> adaptor) {
 		if(this.adaptorBinding != null){
 			adaptorBinding.unbind();
 		}
@@ -233,11 +207,6 @@ public class AutocompleteComboBox<V> extends JComboBox {
 		}
 		ignoreConfigure = true;
 		try{
-			if(!values.isEmpty() && !(values.get(0)instanceof AutoCompleteValueHolder)){
-				for(int ii=0; ii < values.size();ii++){
-					values.set(ii, new AutoCompleteValueHolder(null, values.get(ii)));
-				}
-			}
 			selectedItemReminder = getModel().getSelectedItem();
 			getAutoCompleteModel().setContents(values);
 			if(getEditor().getEditorComponent().isFocusOwner()){
@@ -260,13 +229,13 @@ public class AutocompleteComboBox<V> extends JComboBox {
 	@Deprecated
 	public static void main(String[] args) {
 		JFrame f = new JFrame();
-		AutocompleteComboBox box = new AutocompleteComboBox();
+		AutocompleteComboBox box = new AutocompleteComboBox(new MockAdaptor());
 		f.add(box, BorderLayout.CENTER);
 		f.pack();
 		f.setVisible(true);
 	}
 
-	public MyComboBoxModel getAutoCompleteModel() {
+	public MyComboBoxModel<V> getAutoCompleteModel() {
 		if(autoCompleteModel==null){
 			setAutoCompleteModel(new MyComboBoxModel(true));
 		}
@@ -304,55 +273,25 @@ public class AutocompleteComboBox<V> extends JComboBox {
 		model.removeListDataListener(this);//Idea jest taka że
 	}
 
-	public AutoCompleteValueHolder getSelectedValue(){
-		if(getSelectedItem()!=null && (getSelectedItem() instanceof AutoCompleteValueHolder)){
-			return (AutoCompleteValueHolder) getSelectedItem();
+	public V getSelectedValue(){
+		if(getSelectedItem()!=null){
+			return getSelectedItem();
 		}
-		if(strict){
-			return null;
-		}else{
-			return getAdaptor().getValueHolderFromFilter();
-		}
+		return  parseSelectedItem(filter);
 	}
 
-	public Object getBeanValue(){
-		AutoCompleteValueHolder r = getSelectedValue();
-		return r==null?null:r.getValue();
-	}
-
-	public void setBeanValue(Object o){
-		setSelectedItem(getAdaptor().getValueHolderProperty(o));
-	}
 
 	private void selectedValueChanged(Object old, Object newValue){
-		if (old instanceof AutoCompleteValueHolder) {
-			AutoCompleteValueHolder tmp = (AutoCompleteValueHolder) old;
-			old = tmp.getValue();
-		}
-		if(newValue instanceof AutoCompleteValueHolder){
-			newValue = ((AutoCompleteValueHolder) newValue).getValue();
-		}
 		firePropertyChange("selectedValue", old, newValue);
-		if(!ignoreError){
-			firePropertyChange("error", old!=null, newValue!=null);
-		}
+		firePropertyChange("error", old!=null, newValue!=null);
 	}
 
 	@Override
 	public void setSelectedItem(Object anObject) {
 		Object oldSelectedItem = getSelectedItem();
-		boolean isFromModel = anObject instanceof AutoCompleteValueHolder;
-		AutoCompleteValueHolder holder = (AutoCompleteValueHolder) (isFromModel?anObject:null);
-		if(strict && anObject==null){
+		boolean isFromModel = getAutoCompleteModel().contains(anObject);
+		if(strict && (anObject==null || !isFromModel)){
 			return;
-		}
-		if(anObject!=null){
-			if(strict && (!isFromModel || holder.isAutoCreated())){
-				return;
-			}
-			if(!isFromModel){
-				anObject = getAdaptor().getValueHolderProperty(anObject);
-			}
 		}
 		super.setSelectedItem(anObject);
 		selectedValueChanged(oldSelectedItem, anObject);
@@ -361,22 +300,16 @@ public class AutocompleteComboBox<V> extends JComboBox {
         }
 	}
 
+   @Override
+   public V getSelectedItem() {
+      return getAutoCompleteModel().getSelectedItem();
+   }
 
-	public void clear(){
-		if(clear){
-			setSelectedItem(null);
-			getEditor().setText("");
-			selectedItemReminder = null;
-		}
-	}
-
-	public boolean isClear() {
-		return clear;
-	}
-
-	public void setClear(boolean clear) {
-		this.clear = clear;
-	}
+   public void clear(){
+      setSelectedItem(null);
+      getEditor().setText("");
+      selectedItemReminder = null;
+   }
 
 	private class FocusListener extends FocusAdapter{
 		@Override
@@ -391,19 +324,6 @@ public class AutocompleteComboBox<V> extends JComboBox {
 			Object selectedItem = getSelectedItem();
 			if(selectedItem!=null){
 				getEditor().setItem(getSelectedItem());
-				return;
-			}
-			if(strict){
-				if(!ignoreError){
-					getEditor().getEditorComponent().setBackground(Color.PINK);
-					getEditor().setText("");
-				}
-				return;
-			}
-			AutoCompleteValueHolder holder = getSelectedValue();
-			if(holder==null){
-				getEditor().getEditorComponent().setBackground(Color.PINK);
-				getEditor().setText("");
 			}
 		}
 	}
@@ -416,15 +336,15 @@ public class AutocompleteComboBox<V> extends JComboBox {
 		this.strict = strict;
 	}
 
-	public boolean isIgnoreError() {
-		return ignoreError;
-	}
+   public MyFormatter<? extends V, ? super V> getFormatter() {
+      return formatter;
+   }
 
-	public void setIgnoreError(boolean ignoreError) {
-		this.ignoreError = ignoreError;
-	}
+   public void setFormatter(MyFormatter<? extends V, ? super V> formatter) {
+      this.formatter = formatter;
+   }
 
-    /**
+   /**
      * Wiem że nie nadpisują tego ale innej opcji nie ma.
      * Bug polega na tym że {@link DefaultCellEditor} woła tą metodę
      * na bezpośrednio.

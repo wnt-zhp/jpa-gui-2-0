@@ -3,7 +3,7 @@ package cx.ath.jbzdak.jpaGui.ui.formatted.formatters;
 import cx.ath.jbzdak.jpaGui.ui.formatted.FormattingException;
 import cx.ath.jbzdak.jpaGui.ui.formatted.MyFormatter;
 
-public class ToStringFormatter implements MyFormatter {
+public class ToStringFormatter<V> implements MyFormatter<V, Object> {
 
 	@Override
 	public String formatValue(Object value) throws FormattingException {
@@ -11,7 +11,7 @@ public class ToStringFormatter implements MyFormatter {
 	}
 
 	@Override
-	public Object parseValue(String text) throws Exception {
+	public V parseValue(String text) throws Exception {
 		throw new UnsupportedOperationException();
 	}
 

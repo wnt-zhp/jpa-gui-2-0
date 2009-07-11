@@ -1,7 +1,6 @@
 package cx.ath.jbzdak.jpaGui.autoComplete;
 
 import cx.ath.jbzdak.jpaGui.Utils;
-import cx.ath.jbzdak.jpaGui.ui.formatted.FormattingException;
 import cx.ath.jbzdak.jpaGui.ui.formatted.MyFormatter;
 import cx.ath.jbzdak.jpaGui.ui.formatted.formatters.ToStringFormatter;
 import cx.ath.jbzdak.jpaGui.ui.query.Query;
@@ -16,14 +15,11 @@ import java.util.Collection;
  * @author Jacek Bzdak jbzdak@gmail.com
  *         Date: 2009-04-20
  */
-public abstract class FilterAdapter<T> extends AutoCompleteAdaptor<AutoCompleteValueHolder>{
+public abstract class FilterAdapter<T> extends AutoCompleteAdaptor<T>{
 
    private static final Logger LOGGER = Utils.makeLogger();
 
    private Collection<T> contents;
-
-   private final ArrayList<AutoCompleteValueHolder> holders =
-           new ArrayList<AutoCompleteValueHolder>();
 
    private final Query<String, T> query;
 
@@ -49,27 +45,17 @@ public abstract class FilterAdapter<T> extends AutoCompleteAdaptor<AutoCompleteV
    public void setContents(Collection<T> contents) {
       Collection<T> oldContents = this.getContents();
       this.contents = contents;
-      holders.clear();
-      holders.ensureCapacity(contents.size());
-      for(T t: contents){
-         try {
-            holders.add(new AutoCompleteValueHolder(formatter.formatValue(t), t));
-         } catch (FormattingException e) {
-            holders.add(new AutoCompleteValueHolder("formatting exception", t));
-            LOGGER.debug("Handled", e);
-         }
-      }
       support.firePropertyChange("contents", oldContents, this.getContents());
       onFilterChange();
    }
 
    @Override
    protected void onFilterChange() {
-      ArrayList<AutoCompleteValueHolder> filtered =
-              new ArrayList<AutoCompleteValueHolder>(holders.size());
-      for (int ii = 0; ii < holders.size(); ii++) {
-         if(query.matches((T) holders.get(ii))){
-            filtered.add(holders.get(ii));
+      ArrayList<T> filtered = new ArrayList<T>
+                      (contents.size());
+      for (T item : contents) {
+         if(query.matches(item)){
+            filtered.add(item);
          }
       }
       setCurentFilteredResults(filtered);

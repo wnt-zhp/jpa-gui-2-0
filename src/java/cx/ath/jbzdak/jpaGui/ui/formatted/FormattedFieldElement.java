@@ -37,7 +37,7 @@ public class FormattedFieldElement<E, V> extends PropertyFormElement<MyFormatted
 
 	@Override
 	public V getValue() {
-		return getRenderer().getValue();
+		return (V) getRenderer().getValue();
 	}
 
 	@Override

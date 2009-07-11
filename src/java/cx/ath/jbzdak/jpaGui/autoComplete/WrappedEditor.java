@@ -1,9 +1,10 @@
 package cx.ath.jbzdak.jpaGui.autoComplete;
 
+import cx.ath.jbzdak.jpaGui.genericListeners.DoStuffDocumentListener;
+import cx.ath.jbzdak.jpaGui.ui.formatted.FormattingException;
 import javax.swing.ComboBoxEditor;
 import javax.swing.JComboBox;
 import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.text.JTextComponent;
 
 import java.awt.event.ActionListener;
@@ -31,6 +32,8 @@ public class WrappedEditor implements ComboBoxEditor{
 
 	private final ComboBoxEditor wrapped;
 
+   private final AutocompleteComboBox autocompleteComboBox;
+
 	private final PropertyChangeSupport support
 		= new PropertyChangeSupport(this);
 
@@ -38,17 +41,19 @@ public class WrappedEditor implements ComboBoxEditor{
 
 	private boolean ignoreSetText = false;
 
-	public WrappedEditor(ComboBoxEditor wrapped) {
+   private boolean formatItems = false;
+
+	public WrappedEditor(ComboBoxEditor wrapped, AutocompleteComboBox autocompleteComboBox) {
 		super();
 		this.wrapped = wrapped;
-		final JTextComponent textComponent = getEditorComponent();
-		textComponent.getDocument().addDocumentListener(new DocumentListener(){
-			@Override public void changedUpdate(DocumentEvent e) { doStuff(e); }
-			@Override public void insertUpdate(DocumentEvent e) { doStuff(e); }
-			@Override public void removeUpdate(DocumentEvent e) { doStuff(e); }
-			private void doStuff(DocumentEvent e){
-			if( !ignoreSetText){ setFilter(textComponent.getText()); }	}
-		});
+      this.autocompleteComboBox = autocompleteComboBox;
+      final JTextComponent textComponent = getEditorComponent();
+      textComponent.getDocument().addDocumentListener(new DoStuffDocumentListener() {
+         @Override
+         protected void doStuff(DocumentEvent e) {
+            if( !ignoreSetText){ setFilter(textComponent.getText()); }
+         }
+      });
 	}
 
 	public void addActionListener(ActionListener l) {
@@ -74,7 +79,15 @@ public class WrappedEditor implements ComboBoxEditor{
 	public void setItem(Object anObject) {
 		try{
 			ignoreSetText = true;
-			wrapped.setItem(anObject);
+         if(formatItems){
+            try {
+               wrapped.setItem(autocompleteComboBox.getFormatter().formatValue(anObject));
+            } catch (FormattingException e) {
+               wrapped.setItem(anObject);
+            }
+         }else{
+            wrapped.setItem(anObject);
+         }
 		}finally{
 			ignoreSetText = false;
 		}
@@ -125,4 +138,13 @@ public class WrappedEditor implements ComboBoxEditor{
 			PropertyChangeListener listener) {
 		support.removePropertyChangeListener(propertyName, listener);
 	}
+
+   public boolean isFormatItems() {
+      return formatItems;
+   }
+
+   public void setFormatItems(boolean formatItems) {
+      this.formatItems = formatItems;
+   }
+
 }

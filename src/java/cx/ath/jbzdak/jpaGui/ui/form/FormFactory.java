@@ -5,9 +5,9 @@ import cx.ath.jbzdak.jpaGui.autoComplete.ComboBoxElement;
 import cx.ath.jbzdak.jpaGui.ui.formatted.FormattedFieldElement;
 import cx.ath.jbzdak.jpaGui.ui.formatted.MyFormattedTextField;
 import cx.ath.jbzdak.jpaGui.ui.formatted.MyFormatter;
+import javax.swing.JTextField;
 import org.jdesktop.beansbinding.Property;
 
-import javax.swing.*;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -56,13 +56,13 @@ public class FormFactory<T>  {
         return decorateFormattedTextField(labelText, beanProperty, new MyFormattedTextField(formatter));
     }
 
-    public FormPanel<AutocompleteComboBox, ComboBoxElement<T, ?> > decotrateComboBox(
+    public FormPanel decotrateComboBox(
             String labelText,
             String beanProperty,
             AutocompleteComboBox field
     ){
         ComboBoxElement<T, ?> element = new ComboBoxElement<T, Object>(field, labelText, beanProperty);
-        FormPanel p =  new FormPanel<AutocompleteComboBox,  ComboBoxElement<T, ?>>(element, getConstraints(field.getClass()),resourceBundle);
+        FormPanel p =  new FormPanel(element, getConstraints(field.getClass()),resourceBundle);
         createdForm.add(element);
         return p;
     }

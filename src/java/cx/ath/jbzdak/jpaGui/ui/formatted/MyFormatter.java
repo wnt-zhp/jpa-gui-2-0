@@ -1,9 +1,15 @@
 package cx.ath.jbzdak.jpaGui.ui.formatted;
 
-public interface MyFormatter {
+/**
+ * @param <V>
+ * @param <V2>
+ */
+public interface MyFormatter<V, V2> {
 
-   public Object parseValue(String text) throws Exception;
+   public V parseValue(String text) throws Exception;
 
-	public String formatValue(Object value) throws FormattingException;
+	public String formatValue(V2 value) throws FormattingException;
+
+   
 
 }

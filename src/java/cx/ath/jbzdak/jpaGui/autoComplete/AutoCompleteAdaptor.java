@@ -30,7 +30,7 @@ public abstract class AutoCompleteAdaptor<T> implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	private final Class<T> clazz;
+	private final Class<T> valueClass;
 
 	/**
 	 * Filtr zamieniany na podpowiedzi
@@ -44,13 +44,13 @@ public abstract class AutoCompleteAdaptor<T> implements Serializable{
 
 	protected PropertyChangeSupport support = new PropertyChangeSupport(this);
 
-	public AutoCompleteAdaptor() {
+   public AutoCompleteAdaptor() {
 		this(null);
 	}
 
-	public AutoCompleteAdaptor(Class<T> clazz) {
+	public AutoCompleteAdaptor(Class<T> valueClass) {
 		super();
-		this.clazz = clazz;
+		this.valueClass = valueClass;
 	}
 
 
@@ -123,28 +123,12 @@ public abstract class AutoCompleteAdaptor<T> implements Serializable{
 				listener);
 	}
 
-	public String getFilter() {
+   public Class<T> getValueClass() {
+      return valueClass;
+   }
+
+   public String getFilter() {
 		return filter;
 	}
-
-	/**
-	 * Zwraca wartość utworzoną z filtra. W niektórych wypadkach można sensownie sparsować
-	 * filtr do wartości. Jeśli nie da się utworzyć nic powinno się zwrócić null
-	 * @return
-	 */
-	public abstract T getValueHolderFromFilter();
-
-
-	public AutoCompleteValueHolder getValueHolderProperty(Object property){
-		if(clazz!=null && clazz.isInstance(property)){
-			throw new IllegalArgumentException();
-		}
-		if(property==null){
-			return new AutoCompleteValueHolder("", null, true);
-		}
-		return new AutoCompleteValueHolder(property.toString(), property, true);
-	}
-
-
 
 }

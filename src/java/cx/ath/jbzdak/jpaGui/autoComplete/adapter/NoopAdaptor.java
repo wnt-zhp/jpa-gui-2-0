@@ -16,10 +16,4 @@ public class NoopAdaptor<T> extends AutoCompleteAdaptor<T>{
 		
 	}
 
-	@Override
-	public T getValueHolderFromFilter() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

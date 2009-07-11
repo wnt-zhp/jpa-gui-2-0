@@ -1,7 +1,6 @@
 package cx.ath.jbzdak.jpaGui.autoComplete.adapter;
 
 import cx.ath.jbzdak.jpaGui.autoComplete.AutoCompleteAdaptor;
-import cx.ath.jbzdak.jpaGui.autoComplete.AutoCompleteValueHolder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,27 +11,27 @@ import java.util.List;
  * @author jb
  *
  */
-public class MockAdaptor extends AutoCompleteAdaptor<AutoCompleteValueHolder> {
+public class MockAdaptor extends AutoCompleteAdaptor<String> {
 
 	private static final long serialVersionUID = 1L;
 
-	public static final List<AutoCompleteValueHolder> unfiltered =
+	public static final List<String> unfiltered =
 		Arrays.asList(
-				new AutoCompleteValueHolder("AAA"),
-				new AutoCompleteValueHolder("AAB"),
-				new AutoCompleteValueHolder("ABA"),
-				new AutoCompleteValueHolder("CBA"),
-				new AutoCompleteValueHolder("CAB")
+				new String("AAA"),
+				new String("AAB"),
+				new String("ABA"),
+				new String("CBA"),
+				new String("CAB")
 			);
 
 	public MockAdaptor(){
 		setCurentFilteredResults(createList(""));
 	}
 
-	private List<AutoCompleteValueHolder> createList(String filter){
-		List<AutoCompleteValueHolder> filtered = new  ArrayList<AutoCompleteValueHolder>();
-		for(AutoCompleteValueHolder s : unfiltered){
-			if(s.getLabel().startsWith(filter)){
+	private List<String> createList(String filter){
+		List<String> filtered = new  ArrayList<String>();
+		for(String s : unfiltered){
+			if(s.startsWith(filter)){
 				filtered.add(s);
 			}
 		}
@@ -44,13 +43,4 @@ public class MockAdaptor extends AutoCompleteAdaptor<AutoCompleteValueHolder> {
 		setCurentFilteredResults(createList(getFilter()));
 
 	}
-
-	@Override
-	public AutoCompleteValueHolder getValueHolderFromFilter() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
 }
