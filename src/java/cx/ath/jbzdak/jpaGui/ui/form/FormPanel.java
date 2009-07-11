@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
  * @author Jacek Bzdak jbzdak@gmail.com
  *         Date: 2009-04-20
  */
-public class FormPanel<T extends Component,FE extends FormElement<T, ?, ?>> extends JPanel {
+public class FormPanel<T extends Component,FE extends DisplayFormElement<T>> extends JPanel {
 
    private static final Logger LOGGER = Utils.makeLogger();
 

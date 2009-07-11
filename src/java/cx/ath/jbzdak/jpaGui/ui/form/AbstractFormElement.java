@@ -12,7 +12,7 @@ import java.beans.PropertyChangeSupport;
  * @author Jacek Bzdak jbzdak@gmail.com
  *         Date: 2009-04-22
  */
-public abstract class AbstractFormElement<T extends Component, B, V> implements FormElement<T, B, V> {
+public class AbstractFormElement<T extends Component> implements DisplayFormElement<T> {
 
    private static final Logger LOGGER = Utils.makeLogger();
 

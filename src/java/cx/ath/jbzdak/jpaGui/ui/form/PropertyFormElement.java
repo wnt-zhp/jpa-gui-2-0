@@ -8,7 +8,7 @@ import org.jdesktop.beansbinding.Property;
 import java.awt.Component;
 
 public abstract class PropertyFormElement<T extends Component, B, V, BH extends BeanHolder<? extends B>>
-        extends AbstractFormElement<T, B, V> implements BeanHolderAware<B, BH>{
+        extends AbstractFormElement<T> implements FormElement<T,B,V>, BeanHolderAware<B, BH>{
 
    @SuppressWarnings({"WeakerAccess"})
    protected final Property<B, Object> beanValueProperty;
