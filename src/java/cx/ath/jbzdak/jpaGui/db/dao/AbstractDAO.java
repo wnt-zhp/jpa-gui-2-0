@@ -88,7 +88,12 @@ public class AbstractDAO<T> implements DAO<T> {
       if (beginCount == 0) {
          entityManager.getTransaction().begin();
          if (entity != null && !isIdNull(getBean())) {
-            entity = refreshType.perform(entityManager, entity, manager);
+            try {
+               entity = refreshType.perform(entityManager, entity, manager);
+            } catch (RuntimeException e) {
+               entityManager.getTransaction().rollback();
+               throw e;
+            }
          }
       }
       beginCount++;
@@ -170,6 +175,9 @@ public class AbstractDAO<T> implements DAO<T> {
    public void update() {
       beginTransaction();
        try {
+         if (!getEntityManager().contains(getBean())) {
+            throw new IllegalStateException();
+         }
          firePersistenceEVT(LifecyclePhase.PreUpdate);
          getEntityManager().flush();
          commitTransaction();
