@@ -1,10 +1,9 @@
 package cx.ath.jbzdak.jpaGui.ui.form;
 
-import cx.ath.jbzdak.jpaGui.BeanHolder;
 import cx.ath.jbzdak.jpaGui.Utils;
 import org.slf4j.Logger;
 
-import java.awt.*;
+import java.awt.Component;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -30,8 +29,6 @@ public abstract class AbstractFormElement<T extends Component, B, V> implements 
    private boolean editable = true;
 
    private Object errorMessage;
-
-   private BeanHolder<? extends B> beanHolder;
 
    protected final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
@@ -116,17 +113,6 @@ public abstract class AbstractFormElement<T extends Component, B, V> implements 
       support.firePropertyChange("editable", oldEditable, this.editable);
    }
 
-   protected BeanHolder<? extends B> getBeanHolder() {
-      return beanHolder;
-   }
-
-   @Override
-   public void setBeanHolder(BeanHolder<? extends B> beanHolder) {
-      BeanHolder<? extends B> oldBeanHolder = this.beanHolder;
-      this.beanHolder = beanHolder;
-      support.firePropertyChange("beanHolder", oldBeanHolder, this.beanHolder);
-   }
-
    public void addPropertyChangeListener(PropertyChangeListener listener) {
       support.addPropertyChangeListener(listener);
    }
@@ -137,11 +123,11 @@ public abstract class AbstractFormElement<T extends Component, B, V> implements 
       support.addPropertyChangeListener(propertyName, listener);
    }
 
-   public void firePropertyChange(PropertyChangeEvent evt) {
+   protected void firePropertyChange(PropertyChangeEvent evt) {
       support.firePropertyChange(evt);
    }
 
-   public void firePropertyChange(String propertyName, Object oldValue,
+   protected void firePropertyChange(String propertyName, Object oldValue,
                                   Object newValue) {
       support.firePropertyChange(propertyName, oldValue, newValue);
    }

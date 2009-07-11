@@ -4,8 +4,8 @@ import cx.ath.jbzdak.jpaGui.Utils;
 import static cx.ath.jbzdak.jpaGui.Utils.isIdNull;
 import cx.ath.jbzdak.jpaGui.db.DBManager;
 import cx.ath.jbzdak.jpaGui.db.dao.annotations.LifecyclePhase;
-
 import javax.persistence.EntityManager;
+
 import java.text.Normalizer.Form;
 import java.util.NoSuchElementException;
 
@@ -99,7 +99,9 @@ public class AbstractDAO<T> implements DAO<T> {
    */
    @Override
    public void commitTransaction() {
-
+      if(beginCount<=0){
+         throw new IllegalStateException("Cant commit unopened transaction");
+      }
       if (transactionManaged)
          return;
       beginCount--;

@@ -6,7 +6,8 @@ import java.util.Collection;
  * @author Jacek Bzdak jbzdak@gmail.com
  *         Date: 2009-04-24
  */
-public interface Form<FE extends FormElement<?, ? super B, ?>, B> {
+public interface Form<B, FE extends FormElement<?, ? super B, ?>>{
+
    void startEditing();
 
    void startViewing();

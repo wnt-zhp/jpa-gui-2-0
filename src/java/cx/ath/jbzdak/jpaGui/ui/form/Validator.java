@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface Validator<B>{
 	@SuppressWarnings("unchecked")
-	Object validate(B entity, List<? extends FormElement<?, ? extends B, ?>>elements);
+	Object validate(List<? extends FormElement<?, ? extends B, ?>>elements);
 }

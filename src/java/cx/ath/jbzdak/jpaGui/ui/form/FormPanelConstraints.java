@@ -18,12 +18,13 @@ public class FormPanelConstraints {
 		 Map<String, Map<String, String>> c = new HashMap<String, Map<String,String>>();
 		 c.put("default", Collections.unmodifiableMap(createDefaultConstraints()));
 		 c.put("compact", Collections.unmodifiableMap(createCompactConstraints()));
+       c.put("large", Collections.unmodifiableMap(createLargeConstraints()));
 		 defaultConstraints = Collections.unmodifiableMap(c);
 		 rendererConstraints = new ClassHandler<Map<String,Map<String,String>>>();
 		 rendererConstraints.put(Object.class, defaultConstraints);
 	}
 
-	public static final Map<String, String> getConstraints(String layout, Class<?> rendererClass){
+	public static Map<String, String> getConstraints(String layout, Class<?> rendererClass){
 		return rendererConstraints.getHandler(rendererClass).get(layout);
 	}
 

@@ -1,6 +1,6 @@
 package cx.ath.jbzdak.jpaGui.ui.form;
 
-import cx.ath.jbzdak.jpaGui.BeanHolder;
+import cx.ath.jbzdak.jpaGui.FormAware;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,20 +11,28 @@ import java.util.List;
  * @author Jacek Bzdak jbzdak@gmail.com
  *         Date: 2009-04-24
  */
-public abstract class AbstractForm<T,FE extends FormElement<?, ? super T, ?>> implements Form<FE, T> {
+public abstract class AbstractForm<B,FE extends FormElement<?, ? super B, ?>> implements Form<B, FE> {
 
    protected final List<FE> forms = new ArrayList<FE>();
+   protected final List<Validator> validators = new ArrayList<Validator>();
 
-   private final List<Validator> validators = new ArrayList<Validator>();
-
-   private BeanHolder<T> beanHolder;
-
-   public void addValidator(Validator v){
+   public void addValidator(Validator<? super B> v){
       validators.add(v);
    }
 
+
+   public List<Validator> getValidators() {
+      return Collections.unmodifiableList(validators);
+   }
+
+   protected void setForm(FE e, Form form){
+      if (e instanceof FormAware) {
+         FormAware formAware = (FormAware) e;
+         formAware.setForm(form);
+      }
+   }
+
    public boolean add(FE e) {
-      e.setBeanHolder(beanHolder);
       return forms.add(e);
    }
 
@@ -35,21 +43,27 @@ public abstract class AbstractForm<T,FE extends FormElement<?, ? super T, ?>> im
       return true;
    }
 
-   public boolean remove(FE o) {
-      if(forms.contains(o)){
-         o.setBeanHolder(null);
+   public boolean remove(FE fe) {
+      if(forms.remove(fe)){
+         setForm(fe, null);
+         return true;
       }
-      return forms.remove(o);
+      return false;
    }
 
-   public List<Object> checkErrors(){
+   protected List<Object> validate(){
       List<Object> errors = new ArrayList<Object>();
-      for(Validator v : validators){
-         Object error = v.validate(beanHolder.getBean(), forms);
+       for(Validator v : validators){
+                Object error = v.validate(forms);
          if(error!=null){
             errors.add(error);
          }
       }
+      return errors;
+   }
+
+   public List<Object> checkErrors(){
+      List<Object> errors = validate();
       for(FE fe : forms){
          if(fe.getErrorMessage()!=null){
             errors.add(fe.getErrorMessage());
@@ -62,14 +76,5 @@ public abstract class AbstractForm<T,FE extends FormElement<?, ? super T, ?>> im
       return Collections.unmodifiableList(forms);
    }
 
-   public List<Validator> getValidators() {
-      return Collections.unmodifiableList(validators);
-   }
 
-   public void setBeanHolder(BeanHolder<T> beanHolder) {
-      this.beanHolder = beanHolder;
-      for(FE fe : forms){
-         fe.setBeanHolder(beanHolder);
-      }
-   }
 }

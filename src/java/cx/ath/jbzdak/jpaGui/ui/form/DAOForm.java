@@ -6,14 +6,13 @@ import org.slf4j.Logger;
 
 
 @SuppressWarnings("unchecked")
-public class DAOForm<T, FE extends FormElement<?, T, ?> > extends AbstractForm<T,FE> {
+public class DAOForm<B, FE extends FormElement<?, B, ?> > extends AbstractBeanAwareForm<B,FE, DAO<? extends B>>{
 
    private static final Logger LOGGER = Utils.makeLogger();
 
-   private DAO<T> dao;
-
 	@Override
    public void startEditing(){
+      beanHolder.beginTransaction();      
 		for(FormElement fe : forms){
 			fe.startEditing();
 		}
@@ -21,6 +20,7 @@ public class DAOForm<T, FE extends FormElement<?, T, ?> > extends AbstractForm<T
 
 	@Override
    public void startViewing(){
+      beanHolder.beginTransaction();
 		for(FormElement fe : forms){
 			fe.startViewing();
 		}
@@ -28,6 +28,7 @@ public class DAOForm<T, FE extends FormElement<?, T, ?> > extends AbstractForm<T
 
 	@Override
    public void rollback(){
+      beanHolder.rollback();
 		for(FormElement fe : forms){
 			fe.rollback();
 		}
@@ -35,7 +36,6 @@ public class DAOForm<T, FE extends FormElement<?, T, ?> > extends AbstractForm<T
 
    @Override
    public void commit(){
-		dao.beginTransaction();
 		try{
 			if(!checkErrors().isEmpty()){
 				throw new IllegalStateException();
@@ -43,11 +43,11 @@ public class DAOForm<T, FE extends FormElement<?, T, ?> > extends AbstractForm<T
 			for(FE fe : forms){
 				fe.commit();
 			}
-			dao.persistOrUpdate();
-			dao.commitTransaction();
+			beanHolder.persistOrUpdate();
+			beanHolder.commitTransaction();
 		}catch (RuntimeException e) {
 			try {
-				dao.rollback();
+				beanHolder.rollback();
 			} catch (Exception e1) {
 				LOGGER.warn("Exception while rolling back",e );
 			}
@@ -55,11 +55,5 @@ public class DAOForm<T, FE extends FormElement<?, T, ?> > extends AbstractForm<T
 		}
 	}
 
-   public DAO<T> getDao() {
-		return dao;
-	}
-
-	public void setDao(DAO<T> dao) {
-		this.dao = dao;
-	}
+   
 }

@@ -19,7 +19,6 @@ public class MyFormattedTextField extends JTextField{
 
 	private static final Logger log  = makeLogger();
 
-
 	private MyFormatter formatter;
 
 	/**

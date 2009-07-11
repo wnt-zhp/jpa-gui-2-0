@@ -1,13 +1,13 @@
 package cx.ath.jbzdak.jpaGui.ui.form;
 
+import cx.ath.jbzdak.jpaGui.BeanHolder;
+import javax.swing.JTextField;
 import org.jdesktop.beansbinding.Property;
 
-import javax.swing.*;
-
-public class JTextFieldFormElement<T> extends PropertyFormElement<JTextField, T, Object> {
+public class JTextFieldFormElement<B> extends PropertyFormElement<JTextField, B, Object, BeanHolder<B>> {
 
 	public JTextFieldFormElement(JTextField renderer, String labelText,
-			Property<T, Object> entityValueProperty) {
+			Property<B, Object> entityValueProperty) {
 		super(renderer, labelText, entityValueProperty);
 	}
 

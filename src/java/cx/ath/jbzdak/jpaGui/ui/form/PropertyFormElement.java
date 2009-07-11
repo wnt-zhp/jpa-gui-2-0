@@ -1,40 +1,44 @@
 package cx.ath.jbzdak.jpaGui.ui.form;
 
+import cx.ath.jbzdak.jpaGui.BeanHolder;
+import cx.ath.jbzdak.jpaGui.BeanHolderAware;
 import org.jdesktop.beansbinding.BeanProperty;
 import org.jdesktop.beansbinding.Property;
 
-import java.awt.*;
+import java.awt.Component;
 
-public abstract class PropertyFormElement<T extends Component, E,V> extends AbstractFormElement<T, E, V> {
+public abstract class PropertyFormElement<T extends Component, B, V, BH extends BeanHolder<? extends B>>
+        extends AbstractFormElement<T, B, V> implements BeanHolderAware<B, BH>{
 
    @SuppressWarnings({"WeakerAccess"})
-   protected final Property<E, Object> entityValueProperty;
+   protected final Property<B, Object> beanValueProperty;
 
 	private boolean readNullValues = true;
 
+   BH beanHolder;
 
    protected PropertyFormElement(T renderer, String labelText) {
 		super(renderer, labelText);
-		this.entityValueProperty = null;
+		this.beanValueProperty = null;
 	}
 
 	protected PropertyFormElement(T renderer, String labelText, String entityPropertyPath) {
 		super(renderer, labelText);
-		this.entityValueProperty =  BeanProperty.create(entityPropertyPath);
+		this.beanValueProperty =  BeanProperty.create(entityPropertyPath);
 	}
 
 	public PropertyFormElement(T renderer, String labelText,
-			Property<E, Object> entityValueProperty) {
+			Property<B, Object> beanValueProperty) {
 		super(renderer, labelText);
-		this.entityValueProperty = entityValueProperty;
+		this.beanValueProperty = beanValueProperty;
 	}
 
 	@Override
 	public void commit() {
 		try {
-			entityValueProperty.setValue(getEntity(), getValue());
+			beanValueProperty.setValue(getBean(), getValue());
 		} catch (RuntimeException e) {
-			throw new RuntimeException("property: " + entityValueProperty.toString() + "entity: " + getEntity(),e);
+			throw new RuntimeException("property: " + beanValueProperty.toString() + "entity: " + getBean(),e);
 		}
 	}
 
@@ -42,9 +46,9 @@ public abstract class PropertyFormElement<T extends Component, E,V> extends Abst
 	public void startEditing() {
 		Object value;
 		try {
-			value = entityValueProperty.getValue(getEntity());
+			value = beanValueProperty.getValue(getBean());
 		}catch (RuntimeException e) {
-			throw new RuntimeException(entityValueProperty.toString() + ", entity=" +getEntity(), e);
+			throw new RuntimeException(beanValueProperty.toString() + ", entity=" + getBean(), e);
 		}
 		if(value != null || readNullValues){
 			setValue((V) value);
@@ -74,7 +78,7 @@ public abstract class PropertyFormElement<T extends Component, E,V> extends Abst
 	@Override
 	public void startViewing() {
 		setRendererEditable(false); 
-		setValue((V) entityValueProperty.getValue(getEntity()));
+		setValue((V) beanValueProperty.getValue(getBean()));
 		startViewingEntry();
 	}
 
@@ -83,12 +87,12 @@ public abstract class PropertyFormElement<T extends Component, E,V> extends Abst
 
 	protected abstract void setRendererEditable(boolean editable);
 
-   private E getEntity() {
+   private B getBean() {
 		return getBeanHolder().getBean()!=null?getBeanHolder().getBean():null;
 	}
 
    @SuppressWarnings({"EmptyMethod", "WeakerAccess", "UnusedParameters"})
-    protected void entitySet(E entity2) {	}
+    protected void entitySet(B entity2) {	}
 
    @SuppressWarnings({"EmptyMethod", "WeakerAccess", "WeakerAccess", "UnusedDeclaration"})
     protected void rendererSet(T renderer) { }
@@ -108,5 +112,12 @@ public abstract class PropertyFormElement<T extends Component, E,V> extends Abst
 		this.readNullValues = readEntityNullValues;
 	}
 
+   protected BH getBeanHolder() {
+      return beanHolder;
+   }
 
+   @Override
+   public void setBeanHolder(BH beanHolder) {
+      this.beanHolder = beanHolder;
+   }
 }

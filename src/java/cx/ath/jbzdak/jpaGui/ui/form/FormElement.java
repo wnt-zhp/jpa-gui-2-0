@@ -1,8 +1,6 @@
 package cx.ath.jbzdak.jpaGui.ui.form;
 
-import cx.ath.jbzdak.jpaGui.BeanHolder;
-
-import java.awt.*;
+import java.awt.Component;
 import java.beans.PropertyChangeListener;
 
 /**
@@ -10,6 +8,7 @@ import java.beans.PropertyChangeListener;
  *         Date: 2009-04-22
  */
 public interface FormElement<T extends Component, B, V> {
+
    /**
 	 * Zwraca renderera
     * @return
@@ -108,8 +107,6 @@ public interface FormElement<T extends Component, B, V> {
    void setEditable(boolean editable);
 
    boolean isEditable();
-
-   void setBeanHolder(BeanHolder<? extends B> beanHolder);
 
    /**
     * Should this formElement override nonnull values from bean, or not.

@@ -3,13 +3,12 @@ package cx.ath.jbzdak.jpaGui.ui.form;
 import cx.ath.jbzdak.jpaGui.Utils;
 import cx.ath.jbzdak.jpaGui.genericListeners.HideWindowTask;
 import cx.ath.jbzdak.jpaGui.task.Task;
+import javax.annotation.Nullable;
+import javax.swing.JComponent;
+import javax.swing.JDialog;
 import net.miginfocom.swing.MigLayout;
 
-import javax.annotation.Nullable;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
+import java.awt.Frame;
 
 /**
  * @author Jacek Bzdak jbzdak@gmail.com
@@ -38,12 +37,7 @@ public class FormDialog extends JDialog{
             form.rollback();
          }
       });
-      addComponentListener(new ComponentAdapter(){
-         @Override
-         public void componentHidden(ComponentEvent e) {
-            form.getDao().rollbackIfActive();
-         }
-      });
+
 
    }
 
@@ -66,7 +60,6 @@ public class FormDialog extends JDialog{
    }
 
    public void showDialog(){
-      form.getDao().beginTransaction();
       form.startEditing();
       pack();
       Utils.initLocation(this);

@@ -1,20 +1,24 @@
 package cx.ath.jbzdak.jpaGui.autoComplete;
 
+import cx.ath.jbzdak.jpaGui.BeanHolder;
+import cx.ath.jbzdak.jpaGui.BeanHolderAware;
+import cx.ath.jbzdak.jpaGui.FormAware;
+import cx.ath.jbzdak.jpaGui.ui.form.Form;
 import cx.ath.jbzdak.jpaGui.ui.form.PropertyFormElement;
 import org.jdesktop.beansbinding.Property;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 /**
- * {@link cx.ath.jbzdak.jpaGui.ui.form.DAOFormElement} obsługujący {@link AutocompleteComboBox}.
+ * {@link cx.ath.jbzdak.jpaGui.ui.form.FormElement} obsługujący {@link AutocompleteComboBox}.
  * @author jb
  *
- * @param <E>
+ * @param <B>
  */
-public class ComboBoxElement<E, V> extends PropertyFormElement<AutocompleteComboBox<V>, E, V> {
+public class ComboBoxElement<B, V> extends PropertyFormElement<AutocompleteComboBox<V>, B, V, BeanHolder<B>> implements FormAware{
 
 	public ComboBoxElement(AutocompleteComboBox renderer, String labelText,
-			Property<E, Object> entityValueProperty) {
+			Property<B, Object> entityValueProperty) {
 		super(renderer, labelText, entityValueProperty);
 	}
 
@@ -56,4 +60,21 @@ public class ComboBoxElement<E, V> extends PropertyFormElement<AutocompleteCombo
 		setValue(null);
 		getRenderer().setFilter("");
 	}
+
+   @Override
+   public void setForm(Form form) {
+      if (getRenderer().getAdaptor() instanceof FormAware) {
+         FormAware formAware = (FormAware) getRenderer().getAdaptor();
+         formAware.setForm(form);
+      }
+   }
+
+   @Override
+   public void setBeanHolder(BeanHolder<B> beanHolder) {
+      super.setBeanHolder(beanHolder);
+      if (getRenderer().getAdaptor() instanceof BeanHolderAware) {
+         BeanHolderAware beanHolderAware = (BeanHolderAware) getRenderer().getAdaptor();
+         beanHolderAware.setBeanHolder(beanHolder);
+      }
+   }
 }
