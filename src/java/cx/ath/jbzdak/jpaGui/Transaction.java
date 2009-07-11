@@ -7,7 +7,7 @@ public abstract class Transaction {
 
 	protected boolean closeEntityManager = false;
 
-   public static final void execute(EntityManager manager, Transaction transaction){
+   public static void execute(EntityManager manager, Transaction transaction){
       final boolean wasActive = manager.getTransaction().isActive();
       if(!wasActive){
          manager.getTransaction().begin();
@@ -25,8 +25,7 @@ public abstract class Transaction {
             Utils.makeLogger(3).warn("", re);
          }
          if (e instanceof RuntimeException) {
-            RuntimeException runtimeException = (RuntimeException) e;
-            throw runtimeException;
+            throw (RuntimeException) e;
          }
          throw new TransactionException(e);
       }finally{
@@ -38,7 +37,7 @@ public abstract class Transaction {
    }
 
    @SuppressWarnings({"WeakerAccess"})
-   public static final <T> T execute(EntityManager manager, ReturnableTransaction<T> transaction){
+   public static <T> T execute(EntityManager manager, ReturnableTransaction<T> transaction){
       final boolean wasActive = manager.getTransaction().isActive();
       if(!wasActive){
          manager.getTransaction().begin();
@@ -69,18 +68,19 @@ public abstract class Transaction {
    }
 
 
-	public static final void execute(DBManager manager, Transaction transaction){
+	public static void execute(DBManager manager, Transaction transaction){
 		transaction.closeEntityManager= true;
 		execute(manager.createEntityManager(), transaction);
 	}
 
-   public static final <T> T execute(DBManager manager, ReturnableTransaction<T> transaction){
+   public static <T> T execute(DBManager manager, ReturnableTransaction<T> transaction){
 		transaction.closeEntityManager= true;
 		return execute(manager.createEntityManager(), transaction);
 	}
 
 
-	public abstract void doTransaction(EntityManager entityManager) throws Exception;
+	@SuppressWarnings({"RedundantThrows"})
+   public abstract void doTransaction(EntityManager entityManager) throws Exception;
 
 
 

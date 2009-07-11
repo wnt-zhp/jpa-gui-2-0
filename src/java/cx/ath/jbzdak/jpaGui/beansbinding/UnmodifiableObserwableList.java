@@ -9,6 +9,7 @@ import java.util.*;
  * @author Jacek Bzdak jbzdak@gmail.com
  *         Date: 2009-06-04
  */
+@SuppressWarnings({"ALL"})
 public class UnmodifiableObserwableList<E>  implements ObservableList<E> {
 
    private final ObservableList<E> internal;
@@ -35,7 +36,7 @@ public class UnmodifiableObserwableList<E>  implements ObservableList<E> {
 
    public Object[] toArray() {return internal.toArray();}
 
-   public <T> T[] toArray(T[] a) {return internal.toArray(a);}
+   public <E> E[] toArray(E[] a) {return internal.toArray(a);}
 
    public boolean containsAll(Collection<?> c) {return internal.containsAll(c);}
 
@@ -64,7 +65,7 @@ public class UnmodifiableObserwableList<E>  implements ObservableList<E> {
    @Override
    public Iterator<E> iterator() {
       return Collections.unmodifiableList(internal).iterator();
-   };
+   }
 
 
    public boolean add(E e) {

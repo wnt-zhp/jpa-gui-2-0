@@ -2,7 +2,7 @@ package cx.ath.jbzdak.jpaGui.genericListeners;
 
 import cx.ath.jbzdak.jpaGui.task.Task;
 
-import java.awt.*;
+import java.awt.Window;
 
 public class HideWindowTask<T> extends Task<T> {
 
@@ -13,6 +13,7 @@ public class HideWindowTask<T> extends Task<T> {
 		this.window = window;
 	}
 
+   @SuppressWarnings({"SameParameterValue"})
    public HideWindowTask(int priority, Window window) {
       super(priority, "HIDE_WINDOW");
       this.window = window;

@@ -5,16 +5,16 @@ import static cx.ath.jbzdak.jpaGui.Utils.getId;
 import static cx.ath.jbzdak.jpaGui.Utils.isIdNull;
 import cx.ath.jbzdak.jpaGui.db.DBManager;
 import cx.ath.jbzdak.jpaGui.db.dao.DAO;
+import javax.persistence.EntityManager;
+import javax.swing.JTable;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.TableModel;
 import org.apache.commons.collections.functors.CloneTransformer;
 import org.jdesktop.observablecollections.ObservableCollections;
 import org.jdesktop.observablecollections.ObservableList;
 import org.jdesktop.swingbinding.JTableBinding;
 
-import javax.persistence.EntityManager;
-import javax.swing.*;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
-import javax.swing.table.TableModel;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -74,8 +74,6 @@ public abstract class EditableTableModel<T> {
     */
    private final ArrayList<T> entitiesCompare = new ArrayList<T>();
 
-   private final boolean firingChanges = false;
-
    /**
     * Listener dodawany do instancji TableModel. Działa tak że jeśli wykrywa updejt jednej kolumny
     * odpala event o zmianie wszystkich
@@ -83,13 +81,11 @@ public abstract class EditableTableModel<T> {
    protected final TableModelListener modelListener = new TableModelListener(){
       @Override
       public void tableChanged(TableModelEvent e) {
-         if(!firingChanges){
-            if(e.getColumn()!=TableModelEvent.ALL_COLUMNS &&
-                    e.getType() == TableModelEvent.UPDATE){
-               table.tableChanged(new TableModelEvent((TableModel) e.getSource(),
-                                                      e.getFirstRow(), e.getLastRow(),
-                                                      TableModelEvent.ALL_COLUMNS, TableModelEvent.UPDATE));
-            }
+         if(e.getColumn()!=TableModelEvent.ALL_COLUMNS &&
+                 e.getType() == TableModelEvent.UPDATE){
+            table.tableChanged(new TableModelEvent((TableModel) e.getSource(),
+                                                   e.getFirstRow(), e.getLastRow(),
+                                                   TableModelEvent.ALL_COLUMNS, TableModelEvent.UPDATE));
          }
       }
    };
@@ -208,7 +204,8 @@ public abstract class EditableTableModel<T> {
     * @param t encja która jest już zarządzana przez <code>manager</code>.
     * @param manager
     */
-   protected void removeEntry2(T t, EntityManager manager) {};
+   @SuppressWarnings({"EmptyMethod"})
+   protected void removeEntry2(T t, EntityManager manager) {}
 
 
    /**

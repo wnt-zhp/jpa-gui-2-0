@@ -11,17 +11,18 @@ import java.util.List;
  * @author jb
  *
  */
+@SuppressWarnings({"ALL"})
 public class MockAdaptor extends AutoCompleteAdaptor<String> {
 
 	private static final long serialVersionUID = 1L;
 
 	public static final List<String> unfiltered =
 		Arrays.asList(
-				new String("AAA"),
-				new String("AAB"),
-				new String("ABA"),
-				new String("CBA"),
-				new String("CAB")
+              "AAA",
+              "AAB",
+              "ABA",
+              "CBA",
+              "CAB"
 			);
 
 	public MockAdaptor(){

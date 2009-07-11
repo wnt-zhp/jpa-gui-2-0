@@ -9,9 +9,9 @@ import java.util.Map;
 
 public class RendererProvider {
 
-	private Map<String, Renderer> renderers = createDefaultRenderers();
+	private final Map<String, Renderer> renderers = createDefaultRenderers();
 
-	private ClassHandler<Renderer> classBoundRenderers = RendererHandler.createDefaultRenderers();
+	private final ClassHandler<Renderer> classBoundRenderers = RendererHandler.createDefaultRenderers();
 
 	@SuppressWarnings("unchecked")
 	private Map<String, Renderer>  createDefaultRenderers(){

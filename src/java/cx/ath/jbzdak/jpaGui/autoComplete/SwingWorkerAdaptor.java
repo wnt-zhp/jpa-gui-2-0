@@ -15,19 +15,19 @@ public abstract class SwingWorkerAdaptor<T, V> extends AutoCompleteAdaptor<V> {
 
 	private static final long serialVersionUID = 1L;
 
-	transient boolean workBegin;
+	private transient boolean workBegin;
 
-	transient boolean newQueryNeeded;
+	private transient boolean newQueryNeeded;
 
 	private  T value;
 
-	ExecutionException ee;
+	private ExecutionException ee;
 
-	InterruptedException ie;
+	private InterruptedException ie;
 
-	transient int workerNum=0;
+	private transient int workerNum=0;
 
-	public T get() throws ExecutionException, InterruptedException{
+	T get() throws ExecutionException, InterruptedException{
 		if(ee !=null){
 			throw ee;
 		}

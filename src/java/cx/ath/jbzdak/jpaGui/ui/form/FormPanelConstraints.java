@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+@SuppressWarnings({"WeakerAccess"})
 public class FormPanelConstraints {
 
 	private static final Map<String, Map<String, String>> defaultConstraints;
@@ -40,12 +41,12 @@ public class FormPanelConstraints {
 	}
 
 	@SuppressWarnings("unchecked")
-	public static final Map<String, String> createEmptyConstraints(){
+	public static Map<String, String> createEmptyConstraints(){
 		return DefaultedMap.decorate(new HashMap(10), "");
 	}
 
 
-	public static final Map<String, String> createDefaultConstraints(){
+	public static Map<String, String> createDefaultConstraints(){
 		Map<String, String> emptyConstraints = createEmptyConstraints();
 		emptyConstraints.put("layout", "fillx, hidemode 2, gap 2 2");
 		emptyConstraints.put("columns", "[min!|fill, grow|min!|min!]");
@@ -57,7 +58,7 @@ public class FormPanelConstraints {
 		return emptyConstraints;
 	}
 
-   public static final Map<String, String> createLargeConstraints(){
+   public static Map<String, String> createLargeConstraints(){
 		Map<String, String> emptyConstraints = createDefaultConstraints();
 		emptyConstraints.put("columns", "[|fill, grow||]");
 		//emptyConstraints.put("rows", "");
@@ -68,7 +69,7 @@ public class FormPanelConstraints {
 		return emptyConstraints;
 	}
 
-	public static final Map<String, String> createCompactConstraints(){
+	public static Map<String, String> createCompactConstraints(){
 		Map<String, String> emptyConstraints =  createDefaultConstraints();
 		emptyConstraints.put("columns", "[fill, grow|min!|min!]");
 		//emptyConstraints.put("rows", "");

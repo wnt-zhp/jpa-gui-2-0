@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.util.*;
 
 
+@SuppressWarnings({"WeakerAccess", "WeakerAccess", "WeakerAccess", "WeakerAccess", "WeakerAccess"})
 public class JBTabbedPane extends JTabbedPane{
 
 	private static final long serialVersionUID = 1L;
@@ -19,25 +20,29 @@ public class JBTabbedPane extends JTabbedPane{
    /**
     * ActionCommand wysyany gdy jakiś tab przestaje być wybrany
     */
+   @SuppressWarnings({"WeakerAccess"})
    public static final String DESELECTED = "DESELECTED";
    /**
     * ActionCommand wysyany gdy jakiś tab jest wybierany
     */
+   @SuppressWarnings({"WeakerAccess"})
    public static final String SELECTED = "SELECTED";
    /**
     * ActionCommand wysyany gdy jakiś tab jest wstawiany do panelu
     */
+   @SuppressWarnings({"WeakerAccess"})
    public static final String INSERTED = "INSERTED";
    /**
 O    */
+   @SuppressWarnings({"WeakerAccess"})
    public static final String REMOVED = "REMOVED";
 
 
 	@SuppressWarnings("unchecked")
-	private Map<Component, ActionListener> listeners = DefaultedMap.decorate(MultiValueMap.decorate(new HashMap(), ArrayList.class),Collections.emptyList());
+	private final Map<Component, ActionListener> listeners = DefaultedMap.decorate(MultiValueMap.decorate(new HashMap(), ArrayList.class),Collections.emptyList());
 
 	@SuppressWarnings("unchecked")
-	private Map<Component, Boolean> cloesable = DefaultedMap.decorate(new HashMap(), Boolean.FALSE);
+	private final Map<Component, Boolean> cloesable = DefaultedMap.decorate(new HashMap(), Boolean.FALSE);
 
    public void addListener(Component listenerOwner, ActionListener actionListener){
 		if(listenerOwner == null){
@@ -61,7 +66,8 @@ O    */
 	}
 
 
-	protected void doAction(Component oldCmp, Component newCmp){
+	@SuppressWarnings({"WeakerAccess"})
+   protected void doAction(Component oldCmp, Component newCmp){
 		if(!Utils.equals(oldCmp, newCmp)){
 			if(oldCmp!=null){
 				fireEvent(new ActionEvent(oldCmp, 0, DESELECTED));

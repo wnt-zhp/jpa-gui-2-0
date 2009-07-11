@@ -68,7 +68,7 @@ public class FulltextJTtextField extends JTextField{
 		fulltextFilter.addActionListener(actionListener);
 	}
 
-	public DocumentListener getDocumentListener() {
+	DocumentListener getDocumentListener() {
 		if(documentListener==null){
 			documentListener = new DocumentListener();
 		}

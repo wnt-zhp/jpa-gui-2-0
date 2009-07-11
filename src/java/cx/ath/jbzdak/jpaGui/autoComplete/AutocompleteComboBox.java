@@ -101,7 +101,8 @@ public class AutocompleteComboBox<V> extends JComboBox {
 	    this(adaptor, false);
 	}
 
-	public AutocompleteComboBox(AutoCompleteAdaptor<V> adaptor, boolean strict) {
+	@SuppressWarnings({"SameParameterValue"})
+   public AutocompleteComboBox(AutoCompleteAdaptor<V> adaptor, boolean strict) {
 		super();
 		setAdaptor(adaptor);
 		setFilter("");

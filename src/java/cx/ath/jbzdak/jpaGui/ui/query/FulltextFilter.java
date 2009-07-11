@@ -58,8 +58,8 @@ public class FulltextFilter<M,I> extends GeneralFilter<M,I> {
         textQuery.setQuery(query);
     }
 
-    public boolean addActionListener(ActionListener actionListener) {
-        return textQuery.addActionListener(actionListener);
+    public void addActionListener(ActionListener actionListener) {
+        textQuery.addActionListener(actionListener);
     }
 
     public List<ActionListener> getActionListeners() {

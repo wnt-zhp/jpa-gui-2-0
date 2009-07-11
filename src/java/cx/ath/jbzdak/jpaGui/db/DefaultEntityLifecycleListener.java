@@ -20,9 +20,7 @@ public class DefaultEntityLifecycleListener implements EntityLifecycleListener{
 
     private static final Logger LOGGER = makeLogger();
 
-	private final Class<?> entityClass;
-
-	private final MultiMap methods = MultiValueMap.decorate(DefaultedMap.decorate(new EnumMap(LifecyclePhase.class), new Factory(){
+   private final MultiMap methods = MultiValueMap.decorate(DefaultedMap.decorate(new EnumMap(LifecyclePhase.class), new Factory(){
         public Object create() {
             return new ArrayList();
         }
@@ -30,21 +28,20 @@ public class DefaultEntityLifecycleListener implements EntityLifecycleListener{
 
     public DefaultEntityLifecycleListener(Class<?> entityClass) {
 		super();
-		this.entityClass = entityClass;
-        for(Method m : entityClass.getMethods()){
-            LifecycleListener listener = m.getAnnotation(LifecycleListener.class);
-            if(listener==null) continue;
-            if(m.getParameterTypes().length!=1 || ! EntityManager.class.isAssignableFrom(m.getParameterTypes()[0])){
-                LOGGER.warn("Method {} is annotated with LifecycleListener, but ist argument is wrong" ,m);
-                continue;
-            }
-            for(LifecyclePhase phase : listener.value()){
-                methods.put(phase, m);
-            }
-        }
-	}
+       for(Method m : entityClass.getMethods()){
+          LifecycleListener listener = m.getAnnotation(LifecycleListener.class);
+          if(listener==null) continue;
+          if(m.getParameterTypes().length!=1 || ! EntityManager.class.isAssignableFrom(m.getParameterTypes()[0])){
+             LOGGER.warn("Method {} is annotated with LifecycleListener, but ist argument is wrong" ,m);
+             continue;
+          }
+          for(LifecyclePhase phase : listener.value()){
+             methods.put(phase, m);
+          }
+       }
+    }
 
-	public static final Method getListenerMethod(Class<? extends Annotation> annotationClass, Class<?> entityClass){
+	public static Method getListenerMethod(Class<? extends Annotation> annotationClass, Class<?> entityClass){
 		for(Method m : entityClass.getMethods()){
 			if(m.getAnnotation(annotationClass)!=null){
 				if(m.getParameterTypes().length==1 &&

@@ -6,13 +6,14 @@ import cx.ath.jbzdak.jpaGui.ExceptionForUser;
  * @author Jacek Bzdak jbzdak@gmail.com
  *         Date: 2009-04-22
  */
+@SuppressWarnings({"WeakerAccess"})
 public class ValidationException extends Exception implements ExceptionForUser{
 
-   ConfigEntry configEntry;
+   private final ConfigEntry configEntry;
 
-   Object value;
+   private final Object value;
 
-   static String formatMessage(String message, ConfigEntry configEntry, Object value){
+   private static String formatMessage(String message, ConfigEntry configEntry, Object value){
       return message + " for key " + configEntry.getName() + " for value"  + value;
    }
 

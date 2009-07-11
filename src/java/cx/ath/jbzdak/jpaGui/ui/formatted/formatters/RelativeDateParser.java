@@ -51,14 +51,12 @@ public class RelativeDateParser {
 		}
 	}
 
-	public int parseDniWord(String word) throws ParsingException{
+	@SuppressWarnings({"WeakerAccess"})
+   public int parseDniWord(String word) throws ParsingException{
 		try{
-			int result =  Integer.parseInt(word);
-//			if(result>6){
-//				throw new ParsingException("Nie można podawać dat względnych do dziś dalszych niż sześć dni.");
-//			}
-			return result;
+			return   Integer.parseInt(word);
 		}catch (NumberFormatException e) {
+         //Jak wyjątek -- idziemy dalej
 		}
 		for(int ii=0; ii < dni.length; ii++){
 			if(dni[ii].equals(word)){

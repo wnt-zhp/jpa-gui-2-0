@@ -18,19 +18,19 @@ public abstract class HighlightCellRenderer extends JXLabel implements TableCell
 
 	private static final long serialVersionUID = 1L;
 
-	protected TableCellRenderer cellRenderer = createCellRender();
+	private final TableCellRenderer cellRenderer = createCellRender();
 
-	protected MattePainter backgroundPainter = new MattePainter();
+	private final MattePainter backgroundPainter = new MattePainter();
 
-	protected MattePainter highlightPainter = new MattePainter(getHightlightColor());
+	private final MattePainter highlightPainter = new MattePainter(getHightlightColor());
 
-	protected AlphaPainter<JXLabel> alphaPainter = new AlphaPainter<JXLabel>();
+	private final AlphaPainter<JXLabel> alphaPainter = new AlphaPainter<JXLabel>();
 	{
 		alphaPainter.setAlpha(0.5f);
 		alphaPainter.setPainters(highlightPainter);
 	}
 
-	protected CompoundPainter<JXLabel> cellPainter = new CompoundPainter<JXLabel>(backgroundPainter,alphaPainter);
+	private final CompoundPainter<JXLabel> cellPainter = new CompoundPainter<JXLabel>(backgroundPainter,alphaPainter);
 
 	private MyFormatter formatter = new ToStringFormatter();
 
@@ -51,7 +51,8 @@ public abstract class HighlightCellRenderer extends JXLabel implements TableCell
 		return this;
 	}
 
-	protected TableCellRenderer createCellRender() {
+	@SuppressWarnings({"WeakerAccess"})
+   protected TableCellRenderer createCellRender() {
 		return new DefaultTableCellRenderer();
 	}
 
@@ -73,7 +74,8 @@ public abstract class HighlightCellRenderer extends JXLabel implements TableCell
 	 * tworzeniu obiektu.
 	 * @return
 	 */
-	protected Color getHightlightColor(){
+	@SuppressWarnings({"SameReturnValue", "WeakerAccess"})
+   protected Color getHightlightColor(){
 		return Color.YELLOW;
 	}
 

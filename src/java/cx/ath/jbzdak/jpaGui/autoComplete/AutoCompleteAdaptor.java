@@ -42,7 +42,7 @@ public abstract class AutoCompleteAdaptor<T> implements Serializable{
 	 */
 	private List<T> curentFilteredResults = Collections.emptyList();
 
-	protected PropertyChangeSupport support = new PropertyChangeSupport(this);
+	protected final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
    public AutoCompleteAdaptor() {
 		this(null);

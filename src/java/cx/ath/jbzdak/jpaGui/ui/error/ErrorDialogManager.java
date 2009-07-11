@@ -37,10 +37,9 @@ public class ErrorDialogManager {
 //      ErrorDialog errorDialog = new
 //   }
 
-   public static final ErrorDialog getDialogInstance(Component owner){
+   public static ErrorDialog getDialogInstance(Component owner){
       Window window = SwingUtilities.windowForComponent(owner);
       Frame f = (window instanceof Frame)?(Frame)window:null;
-      ErrorDialog ed = new ErrorDialog(f, true);
-      return ed;
+      return new ErrorDialog(f, true);
    }
 }

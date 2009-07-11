@@ -1,5 +1,9 @@
 package cx.ath.jbzdak.jpaGui;
 
+import javax.annotation.CheckForNull;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.swing.*;
 import org.apache.commons.math.util.MathUtils;
 import org.jdesktop.beansbinding.AutoBinding.UpdateStrategy;
 import org.jdesktop.beansbinding.BeanProperty;
@@ -8,10 +12,6 @@ import org.jdesktop.beansbinding.Bindings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.CheckForNull;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
@@ -74,13 +74,13 @@ public class Utils {
       }
    }
 
-	private Utils(){};
+	private Utils(){}
 
 
-	/**
+   /**
 	 * Zamienia Object... w Object[] żeby opakowywać argumenty {@link Logger#debug(String, Object[])}
 	 */
-	public static final Object[] wrap(Object... values){
+	public static Object[] wrap(Object... values){
 		return values;
 	}
 
@@ -96,12 +96,13 @@ public class Utils {
 	/**
 	 * Tworzy loggera zainicjalizowanego ntym wywołującym tą metodę
 	 */
-	public static Logger makeLogger(int n){
+	@SuppressWarnings({"SameParameterValue"})
+   public static Logger makeLogger(int n){
 		StackTraceElement directCaller = Thread.currentThread().getStackTrace()[1 + n];
 		return LoggerFactory.getLogger(directCaller.getClassName());
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({"unchecked", "SameParameterValue"})
 	public static Binding createAutoBinding(
 			UpdateStrategy strategy,
 			Object source, String sourceProperty, Object target,
@@ -142,7 +143,7 @@ public class Utils {
       throw new IllegalStateException();
    }
 
-   static AnnotatedElement getIDAnnotatedElement(Object object){
+   private static AnnotatedElement getIDAnnotatedElement(Object object){
       AnnotatedElement id = AnnotationUtils.findByAnnotatio(Id.class, object.getClass().getFields());
       if (id == null) {
          id = AnnotationUtils.findByAnnotatio(Id.class, object.getClass().getMethods());
@@ -150,7 +151,7 @@ public class Utils {
       return id;
    }
 
-   static Member getIDMember(Object object){
+   private static Member getIDMember(Object object){
       Member id = AnnotationUtils.findByAnnotatio(Id.class, object.getClass().getFields());
       if (id == null) {
          id = AnnotationUtils.findByAnnotatio(Id.class, object.getClass().getMethods());
@@ -241,11 +242,11 @@ public class Utils {
 		return BigDecimal.valueOf(MathUtils.round(value.doubleValue(), places));
 	}
 
-	public static final String valueOf(Object obj){
+	public static String valueOf(Object obj){
 		return obj==null?"":obj.toString();
 	}
 
-	public static final JButton createIconButton(Icon icon){
+	public static JButton createIconButton(Icon icon){
 		JButton result = new JButton(icon);
 		result.setBorder(BorderFactory.createEmptyBorder());
 		result.setBorderPainted(false);
@@ -260,11 +261,11 @@ public class Utils {
     * @return
     */
    @Deprecated()
-   public static final File guessProgramFolder(){
+   public static File guessProgramFolder(){
       return PROGRAM_FOLDER;
    }
 
-     public static final File createTmpFile(File folder, String extension){
+     public static File createTmpFile(File folder, String extension){
       File tmpFile;
       int counter = 0;
       do{
@@ -286,7 +287,7 @@ public class Utils {
 
    }
 
-   public static final File createTmpFile(String extension){
+   public static File createTmpFile(String extension){
       return  initTempFile(TMP_FOLDER, extension);
    }
 
@@ -294,7 +295,7 @@ public class Utils {
       return TMP_FOLDER;
    }
 
-   private static final File initTempFile(File folder, String extension){
+   private static  File initTempFile(File folder, String extension){
       UID uuid = new UID();
       String filename = uuid.toString().replaceAll("[;:\\-,\\.]", "") + (extension==null?"":extension);
       return new File(folder, filename);
@@ -309,8 +310,7 @@ public class Utils {
       Window w = SwingUtilities.windowForComponent(component);
       while(w !=null){
          if (w instanceof Frame) {
-            Frame frame = (Frame) w;
-            return frame;
+            return (Frame) w;
          }
          w = SwingUtilities.windowForComponent(w);
       }
@@ -318,6 +318,7 @@ public class Utils {
 
    }
 
+   @SuppressWarnings({"WeakerAccess"})
    @CheckForNull public static <T extends Throwable> T findCauseOfClass(Throwable t, Class<T> clazz){
       if(t==null){
          return null;

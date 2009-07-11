@@ -103,7 +103,8 @@ public class WrappedEditor implements ComboBoxEditor{
 		support.firePropertyChange("filter", oldtext, text);
 	}
 
-	public void setText(String text){
+	@SuppressWarnings({"SameParameterValue"})
+   public void setText(String text){
 		try{
 			ignoreSetText = true;
 			getEditorComponent().setText(text);

@@ -26,6 +26,7 @@ public class DefaultConfigEntry<T> implements ConfigEntry<T>{
 
    private final List<T> values = new ArrayList<T>();
 
+   @SuppressWarnings({"SameParameterValue"})
    public static ConfigEntry<String> createStringEntry(String name, String value, String shortDescription, String longDescription){
       DefaultConfigEntry<String> result = new DefaultConfigEntry<String>();
       if(isEmpty(name)){

@@ -11,12 +11,12 @@ import org.jdesktop.beansbinding.Property;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-@SuppressWarnings("unchecked")
+@SuppressWarnings({"unchecked", "WeakerAccess"})
 public class FormFactory<T>  {
 
     private ResourceBundle resourceBundle;
 
-    private DAOForm<T, FormElement<?, T, ?>> createdForm = new DAOForm<T,FormElement<?, T, ?>>();
+    private final DAOForm<T, FormElement<?, T, ?>> createdForm = new DAOForm<T,FormElement<?, T, ?>>();
 
     private String layout = "default";
 
@@ -35,6 +35,7 @@ public class FormFactory<T>  {
     }
 
 
+    @SuppressWarnings({"WeakerAccess"})
     public FormPanel<MyFormattedTextField, FormattedFieldElement<T, ?>> decorateFormattedTextField(
             String labelText,
             String beanProperty,

@@ -1,11 +1,15 @@
 package cx.ath.jbzdak.jpaGui.ui.table;
 
 import cx.ath.jbzdak.common.famfamicons.IconManager;
-
-import javax.swing.*;
+import javax.swing.AbstractCellEditor;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JTable;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
-import java.awt.*;
+
+import java.awt.Component;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,7 +23,9 @@ public class AkcjeRendererEditor<T> extends AbstractCellEditor implements TableC
 
 	private T value;
 
-	private JButton saveButton, deleteButton, refreshButton;
+	private final JButton saveButton;
+   private final JButton deleteButton;
+   private final JButton refreshButton;
 
 	private final HighlightCellRenderer renderer = new HighlightCellRenderer(){
 

@@ -33,14 +33,14 @@ public abstract class AbstractForm<B,FE extends FormElement<?, ? super B, ?>> im
    }
 
    public boolean add(FE e) {
+      setForm(e, this);
       return forms.add(e);
    }
 
-   public boolean addAll(Collection<? extends FE> c) {
+   public void addAll(Collection<? extends FE> c) {
       for(FE fe : c){
          add(fe);
       }
-      return true;
    }
 
    public boolean remove(FE fe) {

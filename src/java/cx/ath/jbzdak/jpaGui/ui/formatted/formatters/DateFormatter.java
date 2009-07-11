@@ -12,11 +12,11 @@ import java.util.Date;
 
 public class DateFormatter implements MyFormatter {
 
-	protected DateParser parser = new DateParser();
+	protected final DateParser parser = new DateParser();
 
-	protected RelativeDateParser dateParser = new RelativeDateParser();
+	protected final RelativeDateParser dateParser = new RelativeDateParser();
 
-	protected DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.SHORT);
+	protected final DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.SHORT);
 
 	@Override
 	public String formatValue(Object value) throws FormattingException {
@@ -54,11 +54,12 @@ public class DateFormatter implements MyFormatter {
 		}
 		Calendar cal = Calendar.getInstance();
 		cal.setTimeInMillis(System.currentTimeMillis());
-		cal.add(DAY_OF_MONTH, result.intValue());
+		cal.add(DAY_OF_MONTH, result);
 		return cal.getTime();
 	}
 
-	protected Date handleNullDate(){
+	@SuppressWarnings({"SameReturnValue"})
+   protected Date handleNullDate(){
 		return null;
 	}
 

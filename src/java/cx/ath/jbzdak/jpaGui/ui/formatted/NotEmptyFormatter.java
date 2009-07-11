@@ -9,14 +9,16 @@ public class NotEmptyFormatter extends NoopFormatter {
 	private final String errorMessage;
 
 
-	public NotEmptyFormatter(boolean acceptEmpty, String errorMessage) {
+	@SuppressWarnings({"SameParameterValue"})
+   private NotEmptyFormatter(boolean acceptEmpty, String errorMessage) {
 		super();
 		this.acceptEmpty = acceptEmpty;
 		this.errorMessage = errorMessage;
 	}
 
-	
-	public NotEmptyFormatter(String errorMessage) {
+
+	@SuppressWarnings({"WeakerAccess", "SameParameterValue"})
+   public NotEmptyFormatter(String errorMessage) {
 		this(false, errorMessage);
 	}
 

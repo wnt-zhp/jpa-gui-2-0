@@ -14,6 +14,7 @@ import java.awt.Frame;
  * @author Jacek Bzdak jbzdak@gmail.com
  *         Date: 2009-06-27
  */
+@SuppressWarnings({"WeakerAccess"})
 public class FormDialog extends JDialog{
 
    private DAOForm form;

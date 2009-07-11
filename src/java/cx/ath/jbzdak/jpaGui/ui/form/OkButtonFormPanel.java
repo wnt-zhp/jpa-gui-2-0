@@ -4,9 +4,9 @@ import cx.ath.jbzdak.jpaGui.Utils;
 import cx.ath.jbzdak.jpaGui.task.Task;
 import cx.ath.jbzdak.jpaGui.task.TasksExecutor;
 import cx.ath.jbzdak.jpaGui.ui.error.ErrorDialog;
+import javax.swing.*;
 import net.miginfocom.swing.MigLayout;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
@@ -76,7 +76,8 @@ public class OkButtonFormPanel<T> extends JPanel{
 		return commitOnOK;
 	}
 
-	public void setCommitOnOK(boolean commitOnOK) {
+	@SuppressWarnings({"SameParameterValue"})
+   public void setCommitOnOK(boolean commitOnOK) {
 		this.commitOnOK = commitOnOK;
 	}
 

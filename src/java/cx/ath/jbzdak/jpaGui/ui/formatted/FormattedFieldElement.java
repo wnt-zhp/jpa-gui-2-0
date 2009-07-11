@@ -10,6 +10,7 @@ import org.jdesktop.beansbinding.Property;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+
 public class FormattedFieldElement<B, V> extends PropertyFormElement<MyFormattedTextField, B, V, BeanHolder<B>> implements BeanHolderAware<B, BeanHolder<B>>, FormAware{
 
    public FormattedFieldElement(MyFormattedTextField renderer, String labelText) {
@@ -34,7 +35,9 @@ public class FormattedFieldElement<B, V> extends PropertyFormElement<MyFormatted
             setError(evt.getNewValue()!=null);
 			}
 		});
+      //noinspection ThrowableResultOfMethodCallIgnored
       setErrorMessage(getRenderer().getParseResults());
+      //noinspection ThrowableResultOfMethodCallIgnored
       setError(getRenderer().getParseResults()!=null);
 
 	}

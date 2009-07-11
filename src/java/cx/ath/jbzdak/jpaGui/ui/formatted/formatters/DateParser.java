@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 public class DateParser {
 
 
-	Pattern datePattern = Pattern.compile("\\s*(\\d{1,2})\\s*[\\:\\;\\-\\.\\,]\\s*(\\d{1,2})\\s*(?:[\\:\\;\\-\\.\\,]\\s*(\\d{1,4}))?\\s*");
+	final Pattern datePattern = Pattern.compile("\\s*(\\d{1,2})\\s*[\\:\\;\\-\\.\\,]\\s*(\\d{1,2})\\s*(?:[\\:\\;\\-\\.\\,]\\s*(\\d{1,4}))?\\s*");
 
 	public Date parse(String text) throws ParsingException{
 		Matcher m = datePattern.matcher(text);

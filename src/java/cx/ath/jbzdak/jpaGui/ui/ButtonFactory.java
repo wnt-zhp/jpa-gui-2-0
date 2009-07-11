@@ -13,7 +13,7 @@ import java.util.NoSuchElementException;
 public  class ButtonFactory {
 
 	@SuppressWarnings("unchecked")
-	static Map<String, BFactory> buttonFactory = DefaultedMap.decorate(new HashMap() , new DefaultFact());
+	static final Map<String, BFactory> buttonFactory = DefaultedMap.decorate(new HashMap() , new DefaultFact());
 
 	static{
 		buttonFactory.put("dismiss", new IconFactory("cancel","Zamknij"));

@@ -26,26 +26,31 @@ public class MyComboBoxModel<V> implements MutableComboBoxModel {
 	 * Generalnie nie ruszać, z klas pochodnych -- bo zmiany w tej liśnie
 	 * nie powodują wywołania odpowiednich eventów.
 	 */
-	protected List<Object> items = new ArrayList<Object>();
+	@SuppressWarnings({"WeakerAccess"})
+   protected List<Object> items = new ArrayList<Object>();
 
 	/**
 	 * Listenery
 	 */
-	protected Set<ListDataListener> listeners = new HashSet<ListDataListener>();
+	@SuppressWarnings({"WeakerAccess"})
+   protected final Set<ListDataListener> listeners = new HashSet<ListDataListener>();
 
 	/**
 	 * Wybrany element.
 	 *  Generalnie nie ruszać, z klas pochodnych -- bo zmiany
 	 * nie powodują wywołania odpowiednich eventów.
 	 */
-	protected Object selectedItem;
+	@SuppressWarnings({"WeakerAccess"})
+   protected Object selectedItem;
 
 	/**
 	 * Wskazuje czy {@link #selectedItem} jest kompletnie niezależna
 	 * od reszty modelu.
 	 */
-	protected final boolean detatchedSelectedItem;
+	@SuppressWarnings({"WeakerAccess"})
+   protected final boolean detatchedSelectedItem;
 
+   @SuppressWarnings({"WeakerAccess"})
    protected Class<? extends V> elementClass;
 
 	public MyComboBoxModel() {
@@ -53,7 +58,8 @@ public class MyComboBoxModel<V> implements MutableComboBoxModel {
 		this.detatchedSelectedItem = false;
 	}
 
-	public MyComboBoxModel(boolean detatchedSelectedItem) {
+	@SuppressWarnings({"SameParameterValue"})
+   public MyComboBoxModel(boolean detatchedSelectedItem) {
 		super();
 		this.detatchedSelectedItem = detatchedSelectedItem;
 	}
@@ -69,7 +75,8 @@ public class MyComboBoxModel<V> implements MutableComboBoxModel {
 		return (V) selectedItem;
 	}
 
-	public void setSelectedItemQuiet(@Nullable Object anItem){
+	@SuppressWarnings({"WeakerAccess"})
+   public void setSelectedItemQuiet(@Nullable Object anItem){
       if(elementClass!= null && !elementClass.isInstance(anItem)){
          throw new IllegalArgumentException();
       }
@@ -193,21 +200,24 @@ public class MyComboBoxModel<V> implements MutableComboBoxModel {
 		}
 	}
 
-	protected void fireIntervalDeleted(int leftBound, int rightBound){
+	@SuppressWarnings({"WeakerAccess"})
+   protected void fireIntervalDeleted(int leftBound, int rightBound){
 		ListDataEvent dataEvent = new ListDataEvent(this, ListDataEvent.INTERVAL_REMOVED, leftBound, rightBound);
 		for(ListDataListener ldl : listeners){
 			ldl.intervalRemoved(dataEvent);
 		}
 	}
 
-	protected void fireDataChanged(int leftBound, int rightBound){
+	@SuppressWarnings({"WeakerAccess"})
+   protected void fireDataChanged(int leftBound, int rightBound){
 		ListDataEvent dataEvent = new ListDataEvent(this, ListDataEvent.CONTENTS_CHANGED, leftBound, rightBound);
 		for(ListDataListener ldl : listeners){
 			ldl.contentsChanged(dataEvent);
 		}
 	}
 
-	protected void fireIntervalAdded(int leftBound, int rightBound){
+	@SuppressWarnings({"WeakerAccess"})
+   protected void fireIntervalAdded(int leftBound, int rightBound){
 		ListDataEvent dataEvent = new ListDataEvent(this, ListDataEvent.INTERVAL_ADDED, leftBound, rightBound);
 		for(ListDataListener ldl : listeners){
 			ldl.intervalAdded(dataEvent);

@@ -32,7 +32,6 @@ public abstract class NumberFormatter<N extends Number> implements MyFormatter{
 		if(m.group(1)!=null && !".".equals(m.group(1))){
 			text = text.replace(m.group(1), ".");
 		}
-		N result = parseResult(text);
-		return result;
+		return parseResult(text);
 	}
 }

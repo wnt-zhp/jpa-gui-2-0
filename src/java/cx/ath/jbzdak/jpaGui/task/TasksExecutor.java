@@ -11,11 +11,11 @@ import java.util.List;
  * Wykonuje {@link Task}i.
  * @author jb
  *
- * @param <T> Typ pierwszego parametru przekazany do {@link Task#doTask(Object, Object...)}
+ * @param <T> Typ pierwszego parametru przekazany do {@link Task#doTask(Object, Object[])}
  */
 public class TasksExecutor<T> {
 
-	private static Logger logger = makeLogger();
+	private static final Logger logger = makeLogger();
 
 	private List<Task<? super T>> taskList = new ArrayList<Task<? super T>>();
 
@@ -28,21 +28,21 @@ public class TasksExecutor<T> {
 	 * @param obj parametr dla którego zadanie będzie wykonane. Może być przez zdanie modyfikowany.
 	 * @param o
 	 */
-	public void executeSwallow(T obj, Object... o) {
+	@SuppressWarnings({"ConstantConditions"})
+   public void executeSwallow(T obj, Object... o) {
 		logger.debug("Started executing tasks");
-		Collections.sort(taskList, new TaskComparator());
-		for(Task<? super T> t : taskList){
-			logger.debug("Executing task named {}, task has priority {}", t.getName(), t.getPriority());
-			try {
-				t.doTask(obj, o);
-			} catch (Exception e) {
-
-					logger.warn("Encountered exception when executing task named {}, task has priority {}", t.getPriority(), t.getPriority());
-					logger.warn("Error was",e);
-			}
-		}
-		logger.debug("Finished executing tasks");
-	}
+      Collections.sort(taskList, new TaskComparator());
+      for(Task<? super T> t : taskList){
+         logger.debug("Executing task named {}, task has priority {}", t.getName(), t.getPriority());
+         try {
+            t.doTask(obj, o);
+         } catch (Exception e) {
+            logger.warn("Encountered exception when executing task named {}, task has priority {}", t.getPriority(), t.getPriority());
+            logger.warn("Error was",e);
+         }
+      }
+      logger.debug("Finished executing tasks");
+   }
 
    	/**
 	 * Wykonuje zadania i połykając i logując wyjątki.

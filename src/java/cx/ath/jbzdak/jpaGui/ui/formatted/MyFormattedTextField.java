@@ -44,7 +44,8 @@ public class MyFormattedTextField extends JTextField{
 
 	private boolean echoErrorsAtOnce = false;
 
-	public MyFormattedTextField() {
+	@SuppressWarnings({"WeakerAccess"})
+   public MyFormattedTextField() {
 		super();
 		addFocusListener(new FocusListener());
 		setColumns(6);
@@ -87,7 +88,8 @@ public class MyFormattedTextField extends JTextField{
 		return value;
 	}
 
-	public void setValue(Object value) {
+	@SuppressWarnings({"WeakerAccess"})
+   public void setValue(Object value) {
 		Object oldValue = this.value;
 		this.value = value;
 		firePropertyChange("value", oldValue, this.value);
@@ -113,7 +115,8 @@ public class MyFormattedTextField extends JTextField{
 		firePropertyChange("valueCurrent", old, this.valueCurrent);
 	}
 
-	public  void formatValue(){
+	@SuppressWarnings({"WeakerAccess"})
+   public  void formatValue(){
 		ignoreSetText = true;
 		try{
          if(!parsingText){
@@ -215,7 +218,8 @@ public class MyFormattedTextField extends JTextField{
 		return formatter;
 	}
 
-	public void setFormatter(MyFormatter formatter) {
+	@SuppressWarnings({"WeakerAccess"})
+   public void setFormatter(MyFormatter formatter) {
       boolean oldEcho = echoErrorsAtOnce;
 		this.formatter = formatter;
       try{

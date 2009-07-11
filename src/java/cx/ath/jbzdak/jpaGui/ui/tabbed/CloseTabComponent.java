@@ -20,9 +20,9 @@ public class CloseTabComponent extends JPanel{
 
 	private boolean closeable;
 
-	private JLabel title;
+	private final JLabel title;
 
-	private JButton closeButton;
+	private final JButton closeButton;
 
 	public CloseTabComponent(JTabbedPane _tabbedPane, Component _component, boolean closeable) {
 		super(new FlowLayout(FlowLayout.LEFT, 2,0));

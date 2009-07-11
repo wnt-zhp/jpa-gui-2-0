@@ -11,5 +11,6 @@ public abstract class ReturnableTransaction<T> {
    @SuppressWarnings({"WeakerAccess"})
    protected boolean closeEntityManager = false;
 
+   @SuppressWarnings({"RedundantThrows"})
    public abstract T doTransaction(EntityManager entityManager) throws Exception;
 }

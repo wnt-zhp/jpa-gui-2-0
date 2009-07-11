@@ -47,7 +47,7 @@ public class PatternBeanFormatter {
 		return formatMessage(message, null, new RendererProvider(), parameteters);
 	}
 
-	public static String formatMessage(String message, Map<String, Property<Object, Object>> propertyCache, RendererProvider renderers, Object... parameteters){
+	private static String formatMessage(String message, Map<String, Property<Object, Object>> propertyCache, RendererProvider renderers, Object... parameteters){
 	Matcher m = itemPattern.matcher(message);
 		if(propertyCache == null){
 			propertyCache = cretePropertyCache();
@@ -81,8 +81,8 @@ public class PatternBeanFormatter {
 				value = p.getValue(parameteters[index]);
 			} catch (UnsupportedOperationException e) {
 				logger.warn("Error while formatting message. Property is '{}' " +
-						"parameter is '{}', message is '{}", Utils.wrap(p, parameteters[index], e.getMessage()));;
-			}
+						"parameter is '{}', message is '{}", Utils.wrap(p, parameteters[index], e.getMessage()));
+         }
 			value=value==null?"":value;
 			for(String r : rendererNames.split(",")){
 				Renderer rend = renderers.getRenderer(r);

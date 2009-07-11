@@ -1,6 +1,6 @@
 package cx.ath.jbzdak.jpaGui.ui.query;
 
-import javax.swing.*;
+import javax.swing.RowFilter;
 
 public abstract class GeneralFilter<M,I> extends RowFilter<M, I> {
 
@@ -8,6 +8,7 @@ public abstract class GeneralFilter<M,I> extends RowFilter<M, I> {
 
    private boolean enabled = true; 
 
+   @SuppressWarnings({"WeakerAccess"})
    public GeneralFilter(int... columns) {
       this.columns = columns;
    }

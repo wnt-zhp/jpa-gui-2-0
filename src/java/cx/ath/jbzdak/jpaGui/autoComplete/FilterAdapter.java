@@ -61,6 +61,7 @@ public abstract class FilterAdapter<T> extends AutoCompleteAdaptor<T>{
       setCurentFilteredResults(filtered);
    }
 
+   @SuppressWarnings({"WeakerAccess"})
    public Collection<T> getContents() {
       return contents;
    }

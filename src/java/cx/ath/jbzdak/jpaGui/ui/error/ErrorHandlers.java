@@ -2,6 +2,7 @@ package cx.ath.jbzdak.jpaGui.ui.error;
 
 import cx.ath.jbzdak.jpaGui.ClassHandler;
 import cx.ath.jbzdak.jpaGui.ExceptionForUser;
+import cx.ath.jbzdak.jpaGui.beanFormatter.PatternBeanFormatter;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
@@ -56,16 +57,18 @@ public class ErrorHandlers {
 	}
 
 	public static class ExceptionDetailFormatter extends Formatter {
+
+      final PatternBeanFormatter frmtr = new PatternBeanFormatter("Wyjątek! Wiadomość: '{message}'  klasa: '{class.simpleName}\n");
 		public String getMessage(Object error) {
 			Exception e = (Exception) error;
 			StringWriter stringWriter = new StringWriter();
 			PrintWriter printWriter = new PrintWriter(stringWriter);
 			if (!(e instanceof ExceptionForUser)
 					|| StringUtils.isEmpty(e.getMessage())) {
-				printWriter.append("Wyjątek! Wiadomość: '" + e.getMessage()
-						+ " klasa: " + e.getClass().getSimpleName() + "\n");
+				printWriter.append(frmtr.format(e));
 			} else {
-				printWriter.append(e.getMessage() + "\n");
+				printWriter.append(e.getMessage() );
+            printWriter.append("\n");
 			}
 			e.printStackTrace(printWriter);
 			printWriter.flush();

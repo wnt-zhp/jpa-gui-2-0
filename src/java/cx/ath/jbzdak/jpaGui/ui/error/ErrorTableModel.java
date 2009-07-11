@@ -13,7 +13,7 @@ public class ErrorTableModel extends AbstractTableModel {
 	private static final long serialVersionUID = 1L;
 
 
-	private ClassHandler<Formatter> messageHandlers = ErrorHandlers.createShortHandlers();
+	private final ClassHandler<Formatter> messageHandlers = ErrorHandlers.createShortHandlers();
 
 	private List<?> errors;
 

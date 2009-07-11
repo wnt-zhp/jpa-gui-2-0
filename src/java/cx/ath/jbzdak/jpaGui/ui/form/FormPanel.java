@@ -5,14 +5,14 @@ import cx.ath.jbzdak.jpaGui.ClassHandler;
 import cx.ath.jbzdak.jpaGui.Utils;
 import cx.ath.jbzdak.jpaGui.ui.error.ErrorHandlers;
 import cx.ath.jbzdak.jpaGui.ui.error.ErrorHandlers.Formatter;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.swing.*;
 import net.miginfocom.swing.MigLayout;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -32,6 +32,7 @@ public class FormPanel<T extends Component,FE extends FormElement<T, ?, ?>> exte
    //LOWPRIO zmienić na cx.ath.jbzdak.jpaGui.beanFormatter.PatternBeanFormatter
    private static final String LABEL_PATTERN = "<html><strong>LABEL_NAME</strong></html>";
 
+   @SuppressWarnings({"WeakerAccess"})
    protected final FE formElement;
 
    @SuppressWarnings({"WeakerAccess"})
@@ -47,6 +48,7 @@ public class FormPanel<T extends Component,FE extends FormElement<T, ?, ?>> exte
    @SuppressWarnings({"WeakerAccess"})
    protected JButton errorBtn;
 
+   @SuppressWarnings({"WeakerAccess"})
    protected JButton helpButton;
 
    @SuppressWarnings({"WeakerAccess"})
@@ -136,6 +138,7 @@ public class FormPanel<T extends Component,FE extends FormElement<T, ?, ?>> exte
       }
    }
 
+   @SuppressWarnings({"WeakerAccess"})
    protected String getString(String key){
       if(bundle==null || key==null || !bundle.containsKey(key)){
          return key;
@@ -143,6 +146,7 @@ public class FormPanel<T extends Component,FE extends FormElement<T, ?, ?>> exte
       return  bundle.getString(key);
    }
 
+   @SuppressWarnings({"WeakerAccess"})
    public JButton getHelpButton() {
       if (helpButton == null) {
          helpButton = Utils.createIconButton(IconManager.getScaled("help", 1.5));
@@ -196,6 +200,7 @@ public class FormPanel<T extends Component,FE extends FormElement<T, ?, ?>> exte
       return errorBtn;
    }
 
+   @SuppressWarnings({"WeakerAccess"})
    public boolean isHelpButtonVisible() {
       return helpButtonVisible;
    }
@@ -214,6 +219,7 @@ public class FormPanel<T extends Component,FE extends FormElement<T, ?, ?>> exte
       return message;
    }
 
+   @SuppressWarnings({"WeakerAccess"})
    public void setMessage(Object message) {
       this.message = message;
       if(message==null){

@@ -31,8 +31,10 @@ public class ErrorDialog extends JDialog {
    }
 
 	List<?> errors = Collections.emptyList();
-	JTable table;
-	ErrorTableModel model = new ErrorTableModel();
+
+	final JTable table;
+   
+	final ErrorTableModel model = new ErrorTableModel();
 	{
 		table = new JTable();
 		model.setErrors(errors);
@@ -44,14 +46,14 @@ public class ErrorDialog extends JDialog {
 		table.getColumnModel().getColumn(0).setPreferredWidth(300);
 	}
 
-	JButton closeButton;
+	final JButton closeButton;
 	{
 		closeButton = ButtonFactory.makeButton("dismiss");
 		closeButton.addActionListener(new HideWindowActionListener(this));
 	}
 
 
-	private ClassHandler<Formatter> detailsHandlers = ErrorHandlers.createLongHandlers();
+	private final ClassHandler<Formatter> detailsHandlers = ErrorHandlers.createLongHandlers();
 
 	public ErrorDialog() {
 		super();
@@ -83,9 +85,9 @@ public class ErrorDialog extends JDialog {
 
 		Object value;
 
-		JButton rendererEditor;
+		final JButton rendererEditor;
 
-		DisplayErrorDetailsDialog dialog = new DisplayErrorDetailsDialog(
+		final DisplayErrorDetailsDialog dialog = new DisplayErrorDetailsDialog(
 				ErrorDialog.this);
 
 		{

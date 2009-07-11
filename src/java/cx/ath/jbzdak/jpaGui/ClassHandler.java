@@ -4,7 +4,7 @@ import java.util.*;
 
 public class ClassHandler<T> {
 
-	Map<Class<?>, T> contents = new HashMap<Class<?>, T>();
+	final Map<Class<?>, T> contents = new HashMap<Class<?>, T>();
 
 	public T getHandler(Object forObject){
 		return getHandler(forObject.getClass());

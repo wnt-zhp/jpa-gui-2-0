@@ -52,7 +52,8 @@ public interface DAO<T> extends BeanHolder<T> {
 
 	public boolean isAutoCreateEntity();
 
-	public void setAutoCreateEntity(boolean autoCreateEntity);
+	@SuppressWarnings({"SameParameterValue"})
+   public void setAutoCreateEntity(boolean autoCreateEntity);
 
 	public boolean isTransactionManaged();
 

@@ -20,7 +20,7 @@ public interface Form<B, FE extends FormElement<?, ? super B, ?>>{
 
    boolean add(FE e);
 
-   boolean addAll(Collection<? extends FE> c);
+   void addAll(Collection<? extends FE> c);
 
    boolean remove(FE o);
    

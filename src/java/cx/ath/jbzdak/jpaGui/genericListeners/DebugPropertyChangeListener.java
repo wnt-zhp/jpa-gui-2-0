@@ -7,6 +7,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+@SuppressWarnings({"ALL"})
 public class DebugPropertyChangeListener implements PropertyChangeListener {
 
 	private final String propertyName ;

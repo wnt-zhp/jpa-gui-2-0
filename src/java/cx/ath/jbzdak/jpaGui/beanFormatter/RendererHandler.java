@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 
 public class RendererHandler {
 
-	public static final ClassHandler<Renderer> createDefaultRenderers(){
+	public static ClassHandler<Renderer> createDefaultRenderers(){
 		ClassHandler<Renderer> result = new ClassHandler<Renderer>();
 		result.put(Object.class, new ObjectRenderer());
 		result.put(Number.class, new NumberRenderer());
@@ -25,7 +25,7 @@ public class RendererHandler {
 	}
 
 	public static  class DateRenderer implements Renderer{
-		SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+		final SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
 		@Override
 		public String render(Object object) {
 			return object==null?"Nieznana data":format.format(object);

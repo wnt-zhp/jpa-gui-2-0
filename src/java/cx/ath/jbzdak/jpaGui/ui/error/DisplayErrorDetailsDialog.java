@@ -5,10 +5,16 @@ import cx.ath.jbzdak.jpaGui.ClassHandler;
 import cx.ath.jbzdak.jpaGui.Utils;
 import static cx.ath.jbzdak.jpaGui.Utils.initLocation;
 import cx.ath.jbzdak.jpaGui.ui.error.ErrorHandlers.Formatter;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import net.miginfocom.swing.MigLayout;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Dialog;
+import java.awt.DisplayMode;
+import java.awt.Frame;
+import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,7 +24,7 @@ public class DisplayErrorDetailsDialog extends JDialog{
 
    private  static final ClassHandler<Formatter> errorhandlers = ErrorHandlers.createLongHandlers();
 
-   public static final void showErrorDialog(Object message, Frame owner){
+   public static void showErrorDialog(Object message, Frame owner){
       DisplayErrorDetailsDialog dialog = new DisplayErrorDetailsDialog(owner, true);
       dialog.setText(errorhandlers.getHandler(message).getMessage(message));
       Utils.initLocation(dialog);
@@ -51,7 +57,8 @@ public class DisplayErrorDetailsDialog extends JDialog{
 		initialize();
 	}
 
-	public DisplayErrorDetailsDialog(Frame owner, boolean modal) {
+	@SuppressWarnings({"SameParameterValue"})
+   public DisplayErrorDetailsDialog(Frame owner, boolean modal) {
 		super(owner, modal);
 		initialize();
 	}

@@ -15,7 +15,7 @@ public abstract class PropertyFormElement<T extends Component, B, V, BH extends 
 
 	private boolean readNullValues = true;
 
-   BH beanHolder;
+   private BH beanHolder;
 
    protected PropertyFormElement(T renderer, String labelText) {
 		super(renderer, labelText);
@@ -27,7 +27,7 @@ public abstract class PropertyFormElement<T extends Component, B, V, BH extends 
 		this.beanValueProperty =  BeanProperty.create(entityPropertyPath);
 	}
 
-	public PropertyFormElement(T renderer, String labelText,
+	protected PropertyFormElement(T renderer, String labelText,
 			Property<B, Object> beanValueProperty) {
 		super(renderer, labelText);
 		this.beanValueProperty = beanValueProperty;
@@ -63,7 +63,7 @@ public abstract class PropertyFormElement<T extends Component, B, V, BH extends 
 		}
 	}
 
-	@SuppressWarnings({"UnusedParameters", "UnusedParameters"})
+	@SuppressWarnings({"UnusedParameters", "EmptyMethod", "WeakerAccess"})
    protected void startEditingEntry(Object value) { }
 
 	@Override
@@ -103,6 +103,7 @@ public abstract class PropertyFormElement<T extends Component, B, V, BH extends 
       setRendererEditable(editable);
 	}
 
+   @SuppressWarnings({"WeakerAccess"})
    public boolean isReadNullValues() {
 		return readNullValues;
 	}
@@ -112,6 +113,7 @@ public abstract class PropertyFormElement<T extends Component, B, V, BH extends 
 		this.readNullValues = readEntityNullValues;
 	}
 
+   @SuppressWarnings({"WeakerAccess"})
    protected BH getBeanHolder() {
       return beanHolder;
    }

@@ -38,7 +38,8 @@ public abstract class Task<T> {
 	 * @param o parametry 
 	 * @throws Exception W przypadku błedu wykonania trzeba czymś rzucić!
 	 */
-	public abstract void doTask(@Nullable T t , @Nullable Object... o) throws Exception;
+	@SuppressWarnings({"UnusedParameters", "RedundantThrows"})
+   public abstract void doTask(@Nullable T t , @Nullable Object... o) throws Exception;
 
 	/**
 	 * Priorytet zdania - mniejszy wykonane wcześniej
