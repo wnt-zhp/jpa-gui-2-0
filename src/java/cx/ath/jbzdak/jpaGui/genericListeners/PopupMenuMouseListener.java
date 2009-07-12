@@ -1,7 +1,8 @@
 package cx.ath.jbzdak.jpaGui.genericListeners;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JPopupMenu;
+
+import java.awt.Component;
 import java.awt.event.MouseEvent;
 
 /**

@@ -5,7 +5,6 @@ import cx.ath.jbzdak.jpaGui.db.DBManager;
 import cx.ath.jbzdak.jpaGui.db.dao.annotations.LifecyclePhase;
 import edu.umd.cs.findbugs.annotations.NonNull;
 import edu.umd.cs.findbugs.annotations.Nullable;
-
 import javax.persistence.EntityManager;
 
 /**
