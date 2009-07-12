@@ -51,6 +51,7 @@ public class MyFormattedTextField extends JTextField{
    private ActionListener formatterListener = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
+         attemptParseText();
          formatValue();
       }
    };
@@ -228,14 +229,23 @@ public class MyFormattedTextField extends JTextField{
 
 	@SuppressWarnings({"WeakerAccess"})
    public void setFormatter(MyFormatter formatter) {
-      boolean oldEcho = echoErrorsAtOnce;
-		this.formatter = formatter;
-      try{
-         echoErrorsAtOnce = false;
-         attemptParseText();
-      }finally {
-         echoErrorsAtOnce = oldEcho;
+      if(this.formatter != formatter){
+         boolean oldEcho = echoErrorsAtOnce;
+         if(this.formatter!=null){
+            this.formatter.removeFormatterChangedListener(formatterListener);
+         }
+         this.formatter = formatter;
+         if(this.formatter!=null){
+            this.formatter.addFormatterChangedListener(formatterListener);
+         }
+         try{
+            echoErrorsAtOnce = false;
+            attemptParseText();
+         }finally {
+            echoErrorsAtOnce = oldEcho;
+         }
       }
+
 	}
 
 	public boolean isSeparateuserTextAndValue() {
