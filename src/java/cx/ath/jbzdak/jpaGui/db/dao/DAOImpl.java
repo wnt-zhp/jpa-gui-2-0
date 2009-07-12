@@ -18,7 +18,7 @@ import java.util.NoSuchElementException;
  * @param <T>
  */
 //TODO Wysyłanie eventów po komicte tranzakcji
-public class AbstractDAO<T> implements DAO<T> {
+public class DAOImpl<T> implements DAO<T> {
 
    protected final DBManager manager;
 
@@ -38,20 +38,19 @@ public class AbstractDAO<T> implements DAO<T> {
 
    private int beginCount = 0;
 
-
    /**
     * true jeśli tranzakcja zarządza kto inny
     */
    private boolean transactionManaged;
 
-   public AbstractDAO(DBManager manager, Class<? extends T> clazz) {
+   public DAOImpl(DBManager manager, Class<? extends T> clazz) {
       super();
       this.manager = manager;
       this.clazz = clazz;
       listener = new CompositeEntityLifecycleListener(manager, clazz);
    }
 
-   void firePersistenceEVT(LifecyclePhase phase){
+   protected void firePersistenceEVT(LifecyclePhase phase){
       beginTransaction();
       try {
          manager.firePersEvent(entity,  phase, entityManager);
