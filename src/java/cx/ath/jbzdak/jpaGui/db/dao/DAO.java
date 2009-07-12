@@ -10,7 +10,7 @@ public interface DAO<T> extends BeanHolder<T> {
     * In any way: after call to this method all properties
     * of bean are readable, and writeable.
     */
-	public void beginTransaction();
+	public boolean beginTransaction();
 
    /**
     * Decrements transaction counter and if it is zero commits transaction.
@@ -18,7 +18,7 @@ public interface DAO<T> extends BeanHolder<T> {
     * was commited - it will not be, if this call terminanted parent transaction it should
     * also detach entity.
     */
-	public void commitTransaction();
+	public boolean commitTransaction();
 
    /**
     * Rollbacks transaction (and all parent transactions)
@@ -28,7 +28,7 @@ public interface DAO<T> extends BeanHolder<T> {
    /**
     * Rollbacks transaction if it is active.
     */
-	public void rollbackIfActive();
+	public boolean rollbackIfActive();
 
    /**
     * Persists bean to database. 

@@ -75,9 +75,9 @@ public class DAOImpl<T> implements DAO<T> {
    * @see cx.ath.jbzdak.zarlok.db.dao.DAO#beginTransaction()
    */
    @Override
-   public void beginTransaction() {
+   public boolean beginTransaction() {
       if (transactionManaged)
-         return;
+         return false;
       if (entityManager == null || !entityManager.isOpen()) {
          entityManager = manager.createEntityManager();
          transactionWideEntityManager = true;
@@ -95,19 +95,19 @@ public class DAOImpl<T> implements DAO<T> {
             }
          }
       }
-      beginCount++;
+      return beginCount++ == 0;
    }
 
    /* (non-Javadoc)
    * @see cx.ath.jbzdak.zarlok.db.dao.DAO#commitTransaction()
    */
    @Override
-   public void commitTransaction() {
+   public boolean commitTransaction() {
       if(beginCount<=0){
          throw new IllegalStateException("Cant commit unopened transaction");
       }
       if (transactionManaged)
-         return;
+         return false;
       beginCount--;
       if (beginCount == 0) {
          entityManager.getTransaction().commit();
@@ -116,6 +116,7 @@ public class DAOImpl<T> implements DAO<T> {
             entityManager = null;
          }
       }
+      return  beginCount==0;
    }
 
    /* (non-Javadoc)
@@ -137,14 +138,16 @@ public class DAOImpl<T> implements DAO<T> {
    * @see cx.ath.jbzdak.zarlok.db.dao.DAO#rollbackIfActive()
    */
    @Override
-   public void rollbackIfActive() {
+   public boolean rollbackIfActive() {
       if (entityManager != null) {
          if (entityManager.getTransaction().isActive()) {
             rollback();
             entityManager = null;
             beginCount = 0;
+            return true;
          }
       }
+      return false;
    }
 
    /* (non-Javadoc)

@@ -115,10 +115,10 @@ public abstract class AbstractDBManager implements DBManager{
       return Collections.unmodifiableSet(hooks);
    }
 
-   public List<String> fireMayGoToState(DBState state, DBStateChangeReason reason){
-      List<String> results = new ArrayList();
+   public List<Object> fireMayGoToState(DBState state, DBStateChangeReason reason){
+      List<Object> results = new ArrayList();
       for(DBLifecycleHook hook : hooks){
-         String message = hook.mayGoToPhase(this, state, reason);
+         Object message = hook.mayGoToPhase(this, state, reason);
          if(message!=null){
             results.add(message);
          }

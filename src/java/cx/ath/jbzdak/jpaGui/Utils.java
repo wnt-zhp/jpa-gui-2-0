@@ -339,30 +339,4 @@ public class Utils {
       throw new RuntimeException(t);
    }
 
-
-
-
-//	public static <T> T cloneObject(T t, String cloningProperties){
-//		try {
-//			Class clazz = t.getClass();
-//			T result = (T) clazz.newInstance();
-//			for(String property : cloningProperties.split(",")){
-//				String[] p = property.split(" ");
-//				String fieldName = p[0];
-//				String operation = p.length>1?p[1]:null;
-//				Field f = clazz.getField(fieldName);
-//				if(operation.equals("null")){
-//
-//				}
-//			}
-//		} catch (InstantiationException e) {
-//			LOGGER.warn("",e);
-//		} catch (IllegalAccessException e) {
-//			LOGGER.warn("",e);
-//		} catch (SecurityException e) {
-//			LOGGER.warn("",e);
-//		} catch (NoSuchFieldException e) {
-//			LOGGER.warn("",e);
-//		}
-//	}
 }

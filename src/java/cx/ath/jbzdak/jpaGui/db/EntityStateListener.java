@@ -7,7 +7,7 @@ package cx.ath.jbzdak.jpaGui.db;
  * Time: 23:11:20
  * To change this template use File | Settings | File Templates.
  */
-public interface EntityStateListener {
+public interface EntityStateListener{
 
     public void propertyChanged(Object entityId, String propertyName,  Object oldValue, Object newValue);
 

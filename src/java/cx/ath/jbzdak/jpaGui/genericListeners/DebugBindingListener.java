@@ -9,7 +9,7 @@ import org.jdesktop.beansbinding.PropertyStateEvent;
 
 //Jeśli chodzi o:CallToPrintStackTrace to nie chce tu używać logowania bo ten kompoennt jest do użycia
 //też w momencie w którym jeszcze logowania NIE MA
-@SuppressWarnings({"unchecked", "ThrowableResultOfMethodCallIgnored", "CallToPrintStackTrace", "UseOfSystemOutOrSystemErr"})
+@SuppressWarnings({"ALL"})
 public class DebugBindingListener implements BindingListener  {
 
 	@Override

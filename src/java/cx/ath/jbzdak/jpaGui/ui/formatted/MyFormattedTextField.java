@@ -1,12 +1,10 @@
 package cx.ath.jbzdak.jpaGui.ui.formatted;
 
-import static cx.ath.jbzdak.jpaGui.Utils.makeLogger;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.Document;
-import org.slf4j.Logger;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -15,13 +13,11 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.io.Serializable;
 
-public class MyFormattedTextField extends JTextField{
+public class MyFormattedTextField<V> extends JTextField{
 
 	private static final long serialVersionUID = 1L;
 
-	private static final Logger log  = makeLogger();
-
-	private MyFormatter formatter;
+	private MyFormatter<?extends V, ? super V> formatter;
 
 	/**
 	 * Prawdziwe jeśli tekst odpowiada wartości w polu.
@@ -32,8 +28,7 @@ public class MyFormattedTextField extends JTextField{
 
    private boolean parsingText;
 
-	private Object value;
-
+	private V value;
 
 	private Exception parseResults;
 
@@ -55,14 +50,15 @@ public class MyFormattedTextField extends JTextField{
          formatValue();
       }
    };
-	@SuppressWarnings({"WeakerAccess"})
+
+   @SuppressWarnings({"WeakerAccess"})
    public MyFormattedTextField() {
 		super();
 		addFocusListener(new FocusListener());
 		setColumns(6);
 	}
 
-	public MyFormattedTextField(MyFormatter formatter) {
+	public MyFormattedTextField(MyFormatter<?extends V, ? super V> formatter) {
 		this();
 		setFormatter(formatter);
 	}
@@ -95,12 +91,12 @@ public class MyFormattedTextField extends JTextField{
 
 	}
 
-	public Object getValue() {
+	public V getValue() {
 		return value;
 	}
 
 	@SuppressWarnings({"WeakerAccess"})
-   public void setValue(Object value) {
+   public void setValue(V value) {
 		Object oldValue = this.value;
 		this.value = value;
 		firePropertyChange("value", oldValue, this.value);
@@ -108,7 +104,7 @@ public class MyFormattedTextField extends JTextField{
 	   formatValue();
 	}
 
-	public void setValueFromBean(Object value) {
+	public void setValueFromBean(V value) {
 		setValue(value);
 		formatValue();
 		userEnteredText = getText();
@@ -183,7 +179,7 @@ public class MyFormattedTextField extends JTextField{
 		public void removeUpdate(DocumentEvent e) {	onTextChange();	}
 	}
 
-	private class FocusListener extends FocusAdapter{
+	private class FocusListener extends FocusAdapter implements Serializable{
 		private static final long serialVersionUID = 1L;
 		@Override
 		public void focusGained(FocusEvent e) {
@@ -228,7 +224,7 @@ public class MyFormattedTextField extends JTextField{
 	}
 
 	@SuppressWarnings({"WeakerAccess"})
-   public void setFormatter(MyFormatter formatter) {
+   public void setFormatter(MyFormatter<? extends V, ? super V> formatter) {
       if(this.formatter != formatter){
          boolean oldEcho = echoErrorsAtOnce;
          if(this.formatter!=null){

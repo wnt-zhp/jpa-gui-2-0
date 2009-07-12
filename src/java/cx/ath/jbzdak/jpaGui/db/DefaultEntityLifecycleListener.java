@@ -18,7 +18,7 @@ import java.util.List;
 
 public class DefaultEntityLifecycleListener implements EntityLifecycleListener{
 
-    private static final Logger LOGGER = makeLogger();
+   private static final Logger LOGGER = makeLogger();
 
    private final MultiMap methods = MultiValueMap.decorate(DefaultedMap.decorate(new EnumMap(LifecyclePhase.class), new Factory(){
         public Object create() {
@@ -32,7 +32,7 @@ public class DefaultEntityLifecycleListener implements EntityLifecycleListener{
           LifecycleListener listener = m.getAnnotation(LifecycleListener.class);
           if(listener==null) continue;
           if(m.getParameterTypes().length!=1 || ! EntityManager.class.isAssignableFrom(m.getParameterTypes()[0])){
-             LOGGER.warn("Method {} is annotated with LifecycleListener, but ist argument is wrong" ,m);
+             LOGGER.warn("Method {} is annotated with LifecycleListener, but its parameters are wrong" ,m);
              continue;
           }
           for(LifecyclePhase phase : listener.value()){
@@ -45,7 +45,6 @@ public class DefaultEntityLifecycleListener implements EntityLifecycleListener{
 		for(Method m : entityClass.getMethods()){
 			if(m.getAnnotation(annotationClass)!=null){
 				if(m.getParameterTypes().length==1 &&
-						//m.getParameterTypes()[0].isAssignableFrom(entityClass) &&
 						m.getParameterTypes()[0].isAssignableFrom(EntityManager.class)){
 					return m;
 				}

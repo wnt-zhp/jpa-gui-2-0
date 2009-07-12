@@ -52,7 +52,7 @@ public class NoopDao<T> implements DAO<T> {
 
 
 	@Override
-	public void beginTransaction() {}
+	public boolean beginTransaction() {return false;}
 
 
 	@Override
@@ -60,7 +60,7 @@ public class NoopDao<T> implements DAO<T> {
 
 
 	@Override
-	public void commitTransaction() {}
+	public boolean commitTransaction() {return true;}
 
 
 	@Override
@@ -98,7 +98,7 @@ public class NoopDao<T> implements DAO<T> {
 
 
 	@Override
-	public void rollbackIfActive() {}
+	public boolean rollbackIfActive() {return  true;}
 
 
 	@Override
