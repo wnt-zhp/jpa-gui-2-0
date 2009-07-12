@@ -5,7 +5,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.List;
 
-public class FulltextFilter extends GeneralFilter {
+public class FulltextFilter<M,I> extends GeneralFilter<M,I> {
 
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
@@ -25,7 +25,7 @@ public class FulltextFilter extends GeneralFilter {
 
     @Override
 	protected boolean include(
-			javax.swing.RowFilter.Entry<? extends Object, ? extends Object> value,
+			javax.swing.RowFilter.Entry<? extends M, ? extends I> value,
 			int index) {
 	    return  textQuery.matches(value.getStringValue(index));
     }

@@ -82,7 +82,7 @@ public class AkcjeRendererEditor<T> extends AbstractCellEditor implements TableC
 	}
 
 	private JButton prepareButton(String iconName, String tooltipText){
-		JButton result = new JButton(IconManager.getIconSafe(iconName));
+		JButton result = new JButton(IconManager.getScaled(iconName, 1.2f));
 		result.setToolTipText(tooltipText);
 		result.setContentAreaFilled(false);
 		result.setBorderPainted(false);
@@ -115,7 +115,12 @@ public class AkcjeRendererEditor<T> extends AbstractCellEditor implements TableC
 		return renderer.getTableCellRendererComponent(table, value, isSelected, false, row, column);
 	}
 
-	@Override
+   @Override
+   protected void fireEditingStopped() {
+     fireEditingCanceled();
+   }
+
+   @Override
 	public Object getCellEditorValue() {
 		return value;
 	}

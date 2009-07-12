@@ -24,11 +24,11 @@ public class ComboBoxElement<E> extends PropertyFormElement<AutocompleteComboBox
 	}
 
 	{
-		getRenderer().addPropertyChangeListener("selectedValue", new PropertyChangeListener(){
+		getRenderer().addPropertyChangeListener("selectedItem", new PropertyChangeListener(){
 			@Override
 			public void propertyChange(PropertyChangeEvent evt) {
-            setErrorMessage(evt.getNewValue()==null?"Nie wybrano wartości":null);
-            setError(evt.getNewValue()==null);
+                setErrorMessage(evt.getNewValue()==null?"Nie wybrano wartości":null);
+                setError(evt.getNewValue()==null);
 			}
 		});
 	}
@@ -45,9 +45,11 @@ public class ComboBoxElement<E> extends PropertyFormElement<AutocompleteComboBox
 	}
 
 	@Override
-	protected void setRendererValue(Object value) {
-		getRenderer().setBeanValue(value);
-	}
+    protected void setRendererValue(Object value) {
+        if(isReadNullValues() || value!=null){
+            getRenderer().setBeanValue(value);
+        }
+    }
 
 	@Override
 	public void clear() {

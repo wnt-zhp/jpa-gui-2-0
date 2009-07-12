@@ -6,7 +6,6 @@ import javax.swing.UIManager;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.Document;
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 
 import java.awt.Color;
@@ -30,6 +29,8 @@ public class MyFormattedTextField extends JTextField{
 
 	private boolean ignoreSetText;
 
+   private boolean parsingText;
+
 	private Object value;
 
 	private TextListener listener;
@@ -38,11 +39,11 @@ public class MyFormattedTextField extends JTextField{
 
 	private String userEnteredText;
 
-	boolean clearTextField;
+	private boolean clearTextField;
 
-	boolean separateuserTextAndValue= true;
+	private boolean separateuserTextAndValue= true;
 
-	boolean echoErrorsAtOnce = false;
+	private boolean echoErrorsAtOnce = false;
 
 	public MyFormattedTextField() {
 		super();
@@ -53,7 +54,6 @@ public class MyFormattedTextField extends JTextField{
 	public MyFormattedTextField(MyFormatter formatter) {
 		this();
 		setFormatter(formatter);
-
 	}
 
 	@Override
@@ -65,14 +65,14 @@ public class MyFormattedTextField extends JTextField{
 		doc.addDocumentListener(getListener());
 	}
 
-	public TextListener getListener() {
+	TextListener getListener() {
 		if(listener == null){
 			listener = new TextListener();
 		}
 		return listener;
-	};
+	}
 
-	public Exception getParseResults() {
+   public Exception getParseResults() {
 		return parseResults;
 	}
 
@@ -92,17 +92,14 @@ public class MyFormattedTextField extends JTextField{
 		Object oldValue = this.value;
 		this.value = value;
 		firePropertyChange("value", oldValue, this.value);
-		if(StringUtils.isEmpty(getText())){
+        setParseResults(null);
+		//if(StringUtils.isEmpty(getText())){
 			formatValue();
-			userEnteredText = getText();
-		}
+		//}
 	}
 
-
 	public void setValueFromBean(Object value) {
-		Object oldValue = this.value;
-		this.value = value;
-		firePropertyChange("value", oldValue, this.value);
+		setValue(value);
 		formatValue();
 		userEnteredText = getText();
 	}
@@ -117,12 +114,14 @@ public class MyFormattedTextField extends JTextField{
 		firePropertyChange("valueCurrent", old, this.valueCurrent);
 	}
 
-	public void formatValue(){
+	public  void formatValue(){
 		ignoreSetText = true;
 		try{
-			setText(formatter.formatValue(getValue()));
+         if(!parsingText){
+			   setText(formatter.formatValue(getValue()));
+         }
 		} catch (FormattingException e) {
-			log.info("", e);
+         setParseResults(e);
 		}finally{
 			ignoreSetText = false;
 		}
@@ -133,12 +132,13 @@ public class MyFormattedTextField extends JTextField{
 	}
 
 	public void setUserEnteredText(String userEnteredText) {
-		String oldText = userEnteredText;
+		String oldText = this.userEnteredText;
 		this.userEnteredText = userEnteredText;
 		firePropertyChange("userEnteredText", oldText, this.userEnteredText);
 	}
 
 	void attemptParseText(){
+      parsingText = true;
 		try {
 			setValue(formatter.parseValue(getText()));
 			setValueCurrent(true);
@@ -150,7 +150,9 @@ public class MyFormattedTextField extends JTextField{
 			if(echoErrorsAtOnce){
 				setBackground(Color.PINK);
 			}
-		}
+		}finally {
+         parsingText = false; 
+      }
 	}
 
 	private void onTextChange(){

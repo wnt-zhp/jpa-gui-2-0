@@ -36,12 +36,36 @@ public class TasksExecutor<T> {
 			try {
 				t.doTask(obj, o);
 			} catch (Exception e) {
+
 					logger.warn("Encountered exception when executing task named {}, task has priority {}", t.getPriority(), t.getPriority());
 					logger.warn("Error was",e);
 			}
 		}
 		logger.debug("Finished executing tasks");
 	}
+
+   	/**
+	 * Wykonuje zadania i połykając i logując wyjątki.
+	 * @param obj parametr dla którego zadanie będzie wykonane. Może być przez zdanie modyfikowany.
+	 * @param o
+	 */
+	public void executeStop(T obj, Object... o) {
+		logger.debug("Started executing tasks");
+		Collections.sort(taskList, new TaskComparator());
+		for(Task<? super T> t : taskList){
+			logger.debug("Executing task named {}, task has priority {}", t.getName(), t.getPriority());
+			try {
+				t.doTask(obj, o);
+			} catch (Exception e) {
+            logger.warn("Encountered exception when executing task named {}, task has priority {}\n STOPPING EXECUTION", t.getPriority(), t.getPriority());
+            logger.warn("Error was",e);
+            return;
+			}
+		}
+		logger.debug("Finished executing tasks");
+	}
+
+
 
 	public void executeThrow(T obj, Object... o) throws Exception {
 		logger.debug("Started executing tasks");

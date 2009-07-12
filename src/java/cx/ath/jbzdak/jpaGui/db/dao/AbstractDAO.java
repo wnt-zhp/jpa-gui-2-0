@@ -63,6 +63,7 @@ public class AbstractDAO<T> implements DAO<T> {
    /* (non-Javadoc)
    * @see cx.ath.jbzdak.zarlok.db.dao.DAO#getEntityManager()
    */
+   @Override
    public EntityManager getEntityManager() {
       if (entityManager == null) {
          throw new IllegalStateException();
@@ -73,6 +74,7 @@ public class AbstractDAO<T> implements DAO<T> {
    /* (non-Javadoc)
    * @see cx.ath.jbzdak.zarlok.db.dao.DAO#beginTransaction()
    */
+   @Override
    public void beginTransaction() {
       if (transactionManaged)
          return;
@@ -85,7 +87,12 @@ public class AbstractDAO<T> implements DAO<T> {
       if (beginCount == 0) {
          entityManager.getTransaction().begin();
          if (entity != null && !isIdNull(getEntity())) {
-            entity = refreshType.perform(entityManager, entity, manager);
+            try {
+               entity = refreshType.perform(entityManager, entity, manager);
+            } catch (RuntimeException e) {
+               entityManager.getTransaction().rollback();
+               throw e;
+            }
          }
       }
       beginCount++;
@@ -94,7 +101,9 @@ public class AbstractDAO<T> implements DAO<T> {
    /* (non-Javadoc)
    * @see cx.ath.jbzdak.zarlok.db.dao.DAO#closeTransaction()
    */
+   @Override
    public void closeTransaction() {
+
       if (transactionManaged)
          return;
       beginCount--;
@@ -110,6 +119,7 @@ public class AbstractDAO<T> implements DAO<T> {
    /* (non-Javadoc)
    * @see cx.ath.jbzdak.zarlok.db.dao.DAO#rollback()
    */
+   @Override
    public void rollback() {
       if(entityManager.getTransaction().isActive()){
          entityManager.getTransaction().rollback();
@@ -124,11 +134,13 @@ public class AbstractDAO<T> implements DAO<T> {
    /* (non-Javadoc)
    * @see cx.ath.jbzdak.zarlok.db.dao.DAO#rollbackIfActive()
    */
+   @Override
    public void rollbackIfActive() {
       if (entityManager != null) {
          if (entityManager.getTransaction().isActive()) {
             rollback();
             entityManager = null;
+            beginCount = 0;
          }
       }
    }
@@ -136,6 +148,7 @@ public class AbstractDAO<T> implements DAO<T> {
    /* (non-Javadoc)
    * @see cx.ath.jbzdak.zarlok.db.dao.DAO#persist()
    */
+   @Override
    public void persist() {
       beginTransaction();
       try {
@@ -152,6 +165,7 @@ public class AbstractDAO<T> implements DAO<T> {
    /* (non-Javadoc)
    * @see cx.ath.jbzdak.zarlok.db.dao.DAO#update()
    */
+   @Override
    public void update() {
       beginTransaction();
        try {
@@ -171,6 +185,7 @@ public class AbstractDAO<T> implements DAO<T> {
    /* (non-Javadoc)
    * @see cx.ath.jbzdak.zarlok.db.dao.DAO#persistOrUpdate()
    */
+   @Override
    public void persistOrUpdate() {
       beginTransaction();
       try{
@@ -190,6 +205,7 @@ public class AbstractDAO<T> implements DAO<T> {
    /* (non-Javadoc)
    * @see cx.ath.jbzdak.zarlok.db.dao.DAO#find(java.lang.Object)
    */
+   @Override
    public void find(Object o) {
       beginTransaction();
       try {
@@ -206,6 +222,7 @@ public class AbstractDAO<T> implements DAO<T> {
 
    }
 
+   @Override
    public void remove(){
       beginTransaction();
       try{
@@ -222,6 +239,7 @@ public class AbstractDAO<T> implements DAO<T> {
    /* (non-Javadoc)
    * @see cx.ath.jbzdak.zarlok.db.dao.DAO#clearEntity()
    */
+   @Override
    public void clearEntity() {
       setEntity(null);
    }
@@ -229,6 +247,7 @@ public class AbstractDAO<T> implements DAO<T> {
    /* (non-Javadoc)
    * @see cx.ath.jbzdak.zarlok.db.dao.DAO#createEntity()
    */
+   @Override
    public void createEntity() {
       if (getEntity() != null) {
          throw new IllegalStateException();
@@ -245,6 +264,7 @@ public class AbstractDAO<T> implements DAO<T> {
    /* (non-Javadoc)
    * @see cx.ath.jbzdak.zarlok.db.dao.DAO#getEntity()
    */
+   @Override
    public T getEntity() {
       if (autoCreateEntity && entity == null) {
          createEntity();
@@ -255,6 +275,7 @@ public class AbstractDAO<T> implements DAO<T> {
    /* (non-Javadoc)
    * @see cx.ath.jbzdak.zarlok.db.dao.DAO#setEntity(T)
    */
+   @Override
    public void setEntity(T entity) {
       this.entity = entity;
       if(beginCount!=0){
@@ -265,6 +286,7 @@ public class AbstractDAO<T> implements DAO<T> {
    /* (non-Javadoc)
    * @see cx.ath.jbzdak.zarlok.db.dao.DAO#isAutoCreateEntity()
    */
+   @Override
    public boolean isAutoCreateEntity() {
       return autoCreateEntity;
    }
@@ -272,10 +294,12 @@ public class AbstractDAO<T> implements DAO<T> {
    /* (non-Javadoc)
    * @see cx.ath.jbzdak.zarlok.db.dao.DAO#setAutoCreateEntity(boolean)
    */
+   @Override
    public void setAutoCreateEntity(boolean autoCreateEntity) {
       this.autoCreateEntity = autoCreateEntity;
    }
 
+   @Override
    public void setEntityManager(EntityManager entityManager) {
       this.entityManager = entityManager;
    }
@@ -283,6 +307,7 @@ public class AbstractDAO<T> implements DAO<T> {
    /* (non-Javadoc)
    * @see cx.ath.jbzdak.zarlok.db.dao.DAO#isTransactionManaged()
    */
+   @Override
    public boolean isTransactionManaged() {
       return transactionManaged;
    }
@@ -290,14 +315,17 @@ public class AbstractDAO<T> implements DAO<T> {
    /* (non-Javadoc)
    * @see cx.ath.jbzdak.zarlok.db.dao.DAO#setTransactionManaged(boolean)
    */
+   @Override
    public void setTransactionManaged(boolean transactionManaged) {
       this.transactionManaged = transactionManaged;
    }
 
+   @Override
    public RefreshType getRefreshType() {
       return refreshType;
    }
 
+   @Override
    public void setRefreshType(RefreshType refreshType) {
       this.refreshType = refreshType;
    }

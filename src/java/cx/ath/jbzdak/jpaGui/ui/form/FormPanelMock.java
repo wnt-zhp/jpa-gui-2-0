@@ -8,6 +8,7 @@ import cx.ath.jbzdak.jpaGui.ui.error.ErrorHandlers.Formatter;
 import javax.swing.*;
 import net.miginfocom.swing.MigLayout;
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -24,10 +25,12 @@ import java.util.ResourceBundle;
  */
 public class FormPanelMock<T extends Component,FE extends FormElement<T>> extends JPanel {
 
+   private static final Logger LOGGER = Utils.makeLogger();
+
    //LOWPRIO zmienić na cx.ath.jbzdak.jpaGui.beanFormatter.PatternBeanFormatter
    private static final String LABEL_PATTERN = "<html><strong>LABEL_NAME</strong></html>";
 
-   protected FE formElement;
+   protected final FE formElement;
 
    @SuppressWarnings({"WeakerAccess"})
    protected Map<String, String> constraints;
@@ -45,7 +48,7 @@ public class FormPanelMock<T extends Component,FE extends FormElement<T>> extend
    protected JButton helpButton;
 
    @SuppressWarnings({"WeakerAccess"})
-   protected JLabel errorLabel = new JLabel();
+   protected final JLabel errorLabel = new JLabel();
 
    private Object message;
 
@@ -53,11 +56,11 @@ public class FormPanelMock<T extends Component,FE extends FormElement<T>> extend
 
    private Icon errorIcon;
 
-   private ResourceBundle bundle;
+   private final ResourceBundle bundle;
 
    //TODO uporządkować - tj. dodać statyczną zmienną z domyślnymi i tutaj na początek apodawać nulla
    @SuppressWarnings({"WeakerAccess"})
-   protected ClassHandler<Formatter> errorHandlers = ErrorHandlers.createShortHandlers();
+   protected final ClassHandler<Formatter> errorHandlers = ErrorHandlers.createShortHandlers();
 
 
    public FormPanelMock(FE formElement) {
@@ -75,13 +78,7 @@ public class FormPanelMock<T extends Component,FE extends FormElement<T>> extend
       this.formElement.addPropertyChangeListener("error", new PropertyChangeListener() {
          @Override
          public void propertyChange(PropertyChangeEvent evt) {
-            if((Boolean) evt.getNewValue()){
-               errorBtn.setIcon(getErrorIcon());
-               errorBtn.setFocusable(true);
-            }else{
-               errorBtn.setIcon(getNoErrorIcon());
-               errorBtn.setFocusable(false);
-            }
+            setErrorState((Boolean) evt.getNewValue());
          }
       });
       this.formElement.addPropertyChangeListener("shortDescription", new PropertyChangeListener(){
@@ -107,6 +104,17 @@ public class FormPanelMock<T extends Component,FE extends FormElement<T>> extend
       });
       helpButtonVisible = formElement.getLongDescription()!=null;
       initLayout();
+      setErrorState(this.formElement.isError());
+   }
+
+   private void setErrorState(boolean error){
+      if(error){
+         errorBtn.setIcon(getErrorIcon());
+         errorBtn.setFocusable(true);
+      }else{
+         errorBtn.setIcon(getNoErrorIcon());
+         errorBtn.setFocusable(false);
+      }  
    }
 
    void initLayout(){
@@ -163,11 +171,18 @@ public class FormPanelMock<T extends Component,FE extends FormElement<T>> extend
          errorBtn.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-               if(message!=null){
-                  String erroTxt = errorHandlers.getHandler(message).getMessage(message);
-                  errorLabel.setText(erroTxt);
-                  errorLabel.setToolTipText(erroTxt);
-                  errorLabel.setVisible(true);
+               if(!errorLabel.isVisible()){
+                  if(message!=null){
+                     String erroTxt = errorHandlers.getHandler(message).getMessage(message);
+                     errorLabel.setText(erroTxt);
+                     errorLabel.setToolTipText(erroTxt);
+                     errorLabel.setVisible(true);
+                     if (message instanceof Throwable) {
+                        LOGGER.info("Error message in FormPanel is", (Throwable)message);                     
+                     }
+               }
+               }else{
+                  errorLabel.setVisible(false);
                }
             }
          });

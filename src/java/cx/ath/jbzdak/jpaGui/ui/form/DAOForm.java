@@ -1,17 +1,20 @@
 package cx.ath.jbzdak.jpaGui.ui.form;
 
+import cx.ath.jbzdak.jpaGui.Utils;
 import cx.ath.jbzdak.jpaGui.db.dao.DAO;
+import org.slf4j.Logger;
 
 
 @SuppressWarnings("unchecked")
 public class DAOForm<T, BFE extends DAOFormElement> extends AbstractForm<T,BFE> {
 
-   DAO<T> dao;
+   private static final Logger LOGGER = Utils.makeLogger();
 
-	T entity;
+   private DAO<T> dao;
 
-	public void startEditing(){
-		if(entity==null){
+	@Override
+   public void startEditing(){
+		if(getEntity()==null){
 			setEntity(dao.getEntity()); //Utworzy dao jeśli trzeba i można
 		}
 		for(FormElement fe : forms){
@@ -19,8 +22,9 @@ public class DAOForm<T, BFE extends DAOFormElement> extends AbstractForm<T,BFE> 
 		}
 	}
 
-	public void startViewing(){
-		if(entity==null){
+	@Override
+   public void startViewing(){
+		if(getEntity()==null){
 			setEntity(dao.getEntity()); //Utworzy dao jeśli trzeba i można
 		}
 		for(FormElement fe : forms){
@@ -28,31 +32,31 @@ public class DAOForm<T, BFE extends DAOFormElement> extends AbstractForm<T,BFE> 
 		}
 	}
 
-	public void rollback(){
+	@Override
+   public void rollback(){
 		for(FormElement fe : forms){
 			fe.rollback();
 		}
 	}
 
+   @Override
    public void commit(){
 		dao.beginTransaction();
 		try{
 			if(!checkErrors().isEmpty()){
-				return;
+				throw new IllegalStateException();
 			}
-			//System.out.println(entity);
 			for(BFE fe : forms){
+            fe.refreshEntity(dao.getEntity());
 				fe.commit();
 			}
-			//System.out.println(entity);
-
 			dao.persistOrUpdate();
 			dao.closeTransaction();
 		}catch (RuntimeException e) {
 			try {
 				dao.rollback();
 			} catch (Exception e1) {
-				e1.printStackTrace();
+				LOGGER.warn("Exception while rolling back",e );
 			}
 			throw e;
 		}
@@ -71,13 +75,10 @@ public class DAOForm<T, BFE extends DAOFormElement> extends AbstractForm<T,BFE> 
 	}
 
 	public void setEntity(T entity) {
-		if(this.entity != entity){
-			this.entity = entity;
-			dao.setEntity(entity);
-			for(BFE fe : forms){
-				fe.setEntity(dao.getEntity());
-			}
-		}
+		dao.setEntity(entity);
+      for(BFE fe : forms){
+         fe.setEntity(dao.getEntity());
+      }
 	}
 
 }

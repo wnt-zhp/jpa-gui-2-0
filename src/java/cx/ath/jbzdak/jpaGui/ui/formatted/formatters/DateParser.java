@@ -25,11 +25,10 @@ public class DateParser {
 		if(!isEmpty(rok)){
 			Calendar tmp = Calendar.getInstance();
 			tmp.setTime(new Date());
-			int currentRok = tmp.get(Calendar.YEAR);
 			int parsedRok = Integer.parseInt(rok);
-			if((currentRok + 30) < parsedRok){
+			if(parsedRok < 30){
 				parsedRok+=2000;
-			}
+			   }
 			c.set(Calendar.YEAR, parsedRok);
 		}else{
 			Calendar tmp = Calendar.getInstance();

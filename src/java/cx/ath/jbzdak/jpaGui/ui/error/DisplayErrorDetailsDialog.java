@@ -25,7 +25,7 @@ public class DisplayErrorDetailsDialog extends JDialog{
    private  static final ClassHandler<Formatter> errorhandlers = ErrorHandlers.createLongHandlers();
 
    public static final void showErrorDialog(Object message, Frame owner){
-      DisplayErrorDetailsDialog dialog = new DisplayErrorDetailsDialog(owner);
+      DisplayErrorDetailsDialog dialog = new DisplayErrorDetailsDialog(owner, true);
       dialog.setText(errorhandlers.getHandler(message).getMessage(message));
       Utils.initLocation(dialog);
       dialog.setVisible(true);

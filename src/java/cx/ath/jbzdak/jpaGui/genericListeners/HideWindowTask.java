@@ -13,7 +13,12 @@ public class HideWindowTask<T> extends Task<T> {
 		this.window = window;
 	}
 
-	@Override
+   public HideWindowTask(int priority, Window window) {
+      super(priority, "HIDE_WINDOW");
+      this.window = window;
+   }
+
+   @Override
 	public void doTask(T t, Object... o) throws Exception {
 		window.setVisible(false);
 

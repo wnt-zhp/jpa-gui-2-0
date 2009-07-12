@@ -2,6 +2,7 @@ package cx.ath.jbzdak.jpaGui.ui.form;
 
 import java.awt.Component;
 
+
 public interface DAOFormElement<T extends Component, E> extends FormElement<T> {
 
    /**
@@ -15,6 +16,14 @@ public interface DAOFormElement<T extends Component, E> extends FormElement<T> {
 	 * @param entity
 	 */
 	public void setEntity(E entity);
+
+
+   /**
+    * Szyybki hack. Podmienia encję z dao jeśli się rozsynchronizowały!
+    * @param entity
+    */
+   public void refreshEntity(E entity);
+
 
 	/**
 	 * Ustawia wartość

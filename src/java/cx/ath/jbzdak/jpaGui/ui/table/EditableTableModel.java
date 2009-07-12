@@ -28,7 +28,7 @@ import java.util.List;
  * tabeli. Zawiera {@link EntityManager} na którym po każdej akcji wywołuje się {@link EntityManager#clear()},
  * w ten sposób można jednym {@link EntityManager} zarządzać wieloma encjami na raz i perzystować je od siebie niezależnie.
  * <br/>
- * Zasadniczo idea jest taka że {@link cx.ath.jbzdak.jpaGui.ui.table.EditableTableModel} będzie współpracować z {@link JTableBinding},
+ * Zasadniczo idea jest taka że {@link EditableTableModel} będzie współpracować z {@link JTableBinding},
  * i do synchronizacji {@link #entities} (które zwierają przechowywane encje) starczy sam fakt że {@link #entities}
  * jest instancją {@link ObservableList}.
  * <br/>
@@ -45,6 +45,7 @@ import java.util.List;
  * containing buttons that fire apptopriate actions on this model. (see #createRendererEditor()}).
  *
  * TODO przerobić to kiedyś na 'prawdziwy' table model
+ * TODO metoda dispose
  * @author jb
  *
  * @param <T>
@@ -60,26 +61,26 @@ public abstract class EditableTableModel<T> {
 
    protected final DBManager dbManager;
 
-   private final JTable table;
+   protected final JTable table;
 
-   private final DAO<T> dao;
+   protected final DAO<T> dao;
 
-   private boolean insertNewRow = true;
+   protected boolean insertNewRow = true;
 
-   private ObservableList<T> entities = ObservableCollections.observableList(Collections.<T>emptyList());
+   protected ObservableList<T> entities = ObservableCollections.observableList(Collections.<T>emptyList());
 
    /**
     * Służy do sprawdzania czy jakaś encja zmieniła się.
     */
-   private ArrayList<T> entitiesCompare = new ArrayList<T>();
+   private final ArrayList<T> entitiesCompare = new ArrayList<T>();
 
-   private boolean firingChanges = false;
+   private final boolean firingChanges = false;
 
    /**
     * Listener dodawany do instancji TableModel. Działa tak że jeśli wykrywa updejt jednej kolumny
     * odpala event o zmianie wszystkich
     */
-   protected TableModelListener modelListener = new TableModelListener(){
+   protected final TableModelListener modelListener = new TableModelListener(){
       @Override
       public void tableChanged(TableModelEvent e) {
          if(!firingChanges){
@@ -130,7 +131,6 @@ public abstract class EditableTableModel<T> {
     * @return
     */
    public boolean isHighlighted(int idx){
-      System.out.println(((!isEditingDone(idx)) || maySave(idx)));
       return (!isEditingDone(idx)) || maySave(idx);
    }
 
@@ -143,6 +143,12 @@ public abstract class EditableTableModel<T> {
       return compare(entities.get(idx), entitiesCompare.get(idx));
    }
 
+   /**
+    * Sprawdza czy się zawartość beana zmieniła.
+    * @param changed zmieniona encja
+    * @param orig encja oryginalna
+    * @return true jeśli sie zmieniło, false jeśli nie
+    */
    protected abstract boolean compare(T changed, T orig);
 
 
@@ -186,6 +192,7 @@ public abstract class EditableTableModel<T> {
       removeEntry(t, manager);
       dao.remove();
       removeEntity(entities.indexOf(t));
+      removeEntry2(t, manager);
       manager.clear();
    }
 
@@ -195,6 +202,13 @@ public abstract class EditableTableModel<T> {
     * @param manager
     */
    protected abstract void removeEntry(T t, EntityManager manager);
+
+   /**
+    * Wywołane tuż przed usunięciem <code>t</code>.
+    * @param t encja która jest już zarządzana przez <code>manager</code>.
+    * @param manager
+    */
+   protected void removeEntry2(T t, EntityManager manager) {};
 
 
    /**
@@ -426,4 +440,6 @@ public abstract class EditableTableModel<T> {
    protected Class<T> getClazz() {
       return clazz;
    }
+
+
 }

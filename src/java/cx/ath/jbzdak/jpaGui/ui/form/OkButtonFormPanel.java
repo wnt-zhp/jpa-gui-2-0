@@ -1,13 +1,16 @@
 package cx.ath.jbzdak.jpaGui.ui.form;
 
+import cx.ath.jbzdak.jpaGui.Utils;
 import cx.ath.jbzdak.jpaGui.task.Task;
 import cx.ath.jbzdak.jpaGui.task.TasksExecutor;
+import cx.ath.jbzdak.jpaGui.ui.error.ErrorDialog;
 import javax.swing.*;
 import net.miginfocom.swing.MigLayout;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
+import java.util.List;
 
 public class OkButtonFormPanel<T> extends JPanel{
 
@@ -30,13 +33,18 @@ public class OkButtonFormPanel<T> extends JPanel{
 		okButton = new JButton("OK");
 		okButton.addActionListener(new ActionListener(){
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(commitOnOK){
-					form.commit();
-				}
-				okTasks.executeSwallow(form);
-			}
-		});
+            public void actionPerformed(ActionEvent e) {
+                if(commitOnOK){
+                    List<Object> errors = form.checkErrors();
+                    if(!errors.isEmpty()){
+                        ErrorDialog.displayErrorDialog(errors, Utils.getFrameForComponent(OkButtonFormPanel.this));
+                        return;
+                    }
+                    form.commit();
+                }
+                okTasks.executeSwallow(form);
+            }
+        });
 		cancelButton = new JButton("Cancel");
 		cancelButton.addActionListener(new ActionListener(){
 			@Override
