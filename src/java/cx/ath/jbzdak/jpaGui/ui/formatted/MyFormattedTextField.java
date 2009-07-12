@@ -103,10 +103,8 @@ public class MyFormattedTextField extends JTextField{
 		Object oldValue = this.value;
 		this.value = value;
 		firePropertyChange("value", oldValue, this.value);
-        setParseResults(null);
-		//if(StringUtils.isEmpty(getText())){
-			formatValue();
-		//}
+      setParseResults(null);
+	   formatValue();
 	}
 
 	public void setValueFromBean(Object value) {
@@ -149,10 +147,10 @@ public class MyFormattedTextField extends JTextField{
 		firePropertyChange("userEnteredText", oldText, this.userEnteredText);
 	}
 
-	void attemptParseText(){
+	public void attemptParseText(){
       parsingText = true;
 		try {
-			setValue(formatter.parseValue(getText()));
+			setValue(formatter.parseValue(getUserEnteredText()));
 			setValueCurrent(true);
 			setParseResults(null);
 			setBackground(UIManager.getColor("TextField.background"));
