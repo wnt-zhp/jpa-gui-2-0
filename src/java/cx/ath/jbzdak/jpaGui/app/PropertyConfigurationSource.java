@@ -7,10 +7,8 @@ import org.apache.commons.collections.iterators.EnumerationIterator;
 import org.apache.commons.collections.iterators.TransformIterator;
 import org.slf4j.Logger;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.Charset;
 import java.util.*;
 
 /**
@@ -25,9 +23,15 @@ public class PropertyConfigurationSource implements ConfigurationSource{
 
    private final File propertiesFile;
 
+   private boolean readOnly;
+
    public PropertyConfigurationSource(Properties properties) {
       this.properties = properties;
       this.propertiesFile = null;
+   }
+
+   private boolean isXML(){
+      return propertiesFile.getName().endsWith(".xml");
    }
 
    public PropertyConfigurationSource(File propertiesFile) {
@@ -38,7 +42,11 @@ public class PropertyConfigurationSource implements ConfigurationSource{
             FileCall.read(propertiesFile, new FileCall.FileRead() {
                @Override
                public void read(FileInputStream fileInputStream) throws IOException {
-                  properties.loadFromXML(fileInputStream);
+                  if(isXML()){
+                     properties.loadFromXML(fileInputStream);
+                  }else{
+                     properties.load(new InputStreamReader(fileInputStream, Charset.forName("UTF-8")));
+                  }
                }
             });
          } catch (InvalidPropertiesFormatException e){
@@ -48,6 +56,11 @@ public class PropertyConfigurationSource implements ConfigurationSource{
          }
 
       }
+   }
+
+   public PropertyConfigurationSource(Properties properties, File propertiesFile) {
+      this.properties = properties;
+      this.propertiesFile = propertiesFile;
    }
 
    private ResourceBundle resourceBundle;
@@ -110,7 +123,11 @@ public class PropertyConfigurationSource implements ConfigurationSource{
 
    @Override
    public boolean isReadOnly() {
-      return propertiesFile != null && propertiesFile.canWrite();
+      return propertiesFile == null || (!propertiesFile.canWrite()) || readOnly;
+   }
+
+   public void setReadOnly(boolean readOnly) {
+      this.readOnly = readOnly;
    }
 
    @Override
@@ -123,7 +140,11 @@ public class PropertyConfigurationSource implements ConfigurationSource{
          FileCall.write(propertiesFile, new FileCall.FileWrite() {
             @Override
             public void write(FileOutputStream fileOutputStream) throws IOException {
-               properties.storeToXML(fileOutputStream, "");
+               if(isXML()){
+                  properties.storeToXML(fileOutputStream, "");
+               }else{
+                  properties.store(new OutputStreamWriter(fileOutputStream, Charset.forName("UTF-8")), "");
+               }
             }
          });
       }catch (IOException e){

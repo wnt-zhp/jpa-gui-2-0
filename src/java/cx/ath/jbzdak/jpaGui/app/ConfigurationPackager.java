@@ -55,7 +55,7 @@ public class ConfigurationPackager<T> {
       pack.writeConfiguration(bean);
    }
 
-   private ConfigurationPackager(ConfigurationSource source, Class<T> configurationBeanClass) {
+   public ConfigurationPackager(ConfigurationSource source, Class<T> configurationBeanClass) {
       this.source = source;
       this.configurationBeanClass = configurationBeanClass;
    }

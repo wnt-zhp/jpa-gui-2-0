@@ -309,7 +309,13 @@ public class Utils {
          w = SwingUtilities.windowForComponent(w);
       }
       return null;
+   }
 
+      public static JPanel wrapInTiteledPanel(JComponent jComponent, String title){
+      JPanel panel = new JPanel(new BorderLayout());
+      panel.setBorder(BorderFactory.createTitledBorder(title));
+      panel.add(jComponent, BorderLayout.CENTER);
+      return panel;
    }
 
 //	public static <T> T cloneObject(T t, String cloningProperties){
