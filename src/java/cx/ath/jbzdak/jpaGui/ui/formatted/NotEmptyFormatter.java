@@ -2,7 +2,7 @@ package cx.ath.jbzdak.jpaGui.ui.formatted;
 
 import static org.apache.commons.lang.StringUtils.isBlank;
 
-public class NotEmptyFormatter extends NoopFormatter {
+public class NotEmptyFormatter<T> extends AbstractFormatter<String, T> {
 
 	private boolean acceptEmpty; 
 	
@@ -11,11 +11,11 @@ public class NotEmptyFormatter extends NoopFormatter {
 
 	@SuppressWarnings({"SameParameterValue"})
    private NotEmptyFormatter(boolean acceptEmpty, String errorMessage) {
-		super();
+		super(new FormatterEventHandlerImpl());
 		this.acceptEmpty = acceptEmpty;
 		this.errorMessage = errorMessage;
+      this.eventHandler.setFormatter(this);
 	}
-
 
 	@SuppressWarnings({"WeakerAccess", "SameParameterValue"})
    public NotEmptyFormatter(String errorMessage) {
@@ -25,22 +25,35 @@ public class NotEmptyFormatter extends NoopFormatter {
 	public NotEmptyFormatter() {
 		this("Nie wprowadzono wartości");
 	}
+
 	@Override
-	public Object parseValue(String text) throws Exception {
+	public String parseValue(String text) throws Exception {
 		if( !acceptEmpty && isBlank(text)){
 			throw new ParsingException(errorMessage);
 		}
-		return super.parseValue(text);
+		return text!=null?text:"";
 	}
 
+   @Override
+   public String formatValue(T value) throws FormattingException {
+      if(value==null){
+         throw new FormattingException(errorMessage, "");
+      }
+      return value.toString();
+   }
 
-	boolean isAcceptEmpty() {
+   boolean isAcceptEmpty() {
 		return acceptEmpty;
 	}
 
 
 	void setAcceptEmpty(boolean acceptEmpty) {
-		this.acceptEmpty = acceptEmpty;
+      if(this.acceptEmpty != acceptEmpty){
+         this.acceptEmpty = acceptEmpty;
+         fireFormatterChanged();
+      }
+
+
 	}
 
 

@@ -9,6 +9,8 @@ import javax.swing.text.Document;
 import org.slf4j.Logger;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.io.Serializable;
@@ -32,7 +34,6 @@ public class MyFormattedTextField extends JTextField{
 
 	private Object value;
 
-	private TextListener listener;
 
 	private Exception parseResults;
 
@@ -44,6 +45,15 @@ public class MyFormattedTextField extends JTextField{
 
 	private boolean echoErrorsAtOnce = false;
 
+   //Listeners
+	private TextListener listener;
+
+   private ActionListener formatterListener = new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+         formatValue();
+      }
+   };
 	@SuppressWarnings({"WeakerAccess"})
    public MyFormattedTextField() {
 		super();

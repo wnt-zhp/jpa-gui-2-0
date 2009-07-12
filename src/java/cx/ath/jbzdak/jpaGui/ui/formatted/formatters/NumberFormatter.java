@@ -1,14 +1,14 @@
 package cx.ath.jbzdak.jpaGui.ui.formatted.formatters;
 
+import cx.ath.jbzdak.jpaGui.ui.formatted.AbstractFormatter;
 import cx.ath.jbzdak.jpaGui.ui.formatted.FormattingException;
-import cx.ath.jbzdak.jpaGui.ui.formatted.MyFormatter;
 import cx.ath.jbzdak.jpaGui.ui.formatted.ParsingException;
 
 import java.text.NumberFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public abstract class NumberFormatter<N extends Number> implements MyFormatter{
+public abstract class NumberFormatter<N extends Number> extends AbstractFormatter<N, Object>{
 	private static final Pattern numberPattern = Pattern.compile("(?:\\d*([.,]))?\\d+");
 
 	private final NumberFormat format = NumberFormat.getNumberInstance();

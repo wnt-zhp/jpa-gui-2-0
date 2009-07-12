@@ -1,16 +1,17 @@
 package cx.ath.jbzdak.jpaGui.ui.formatted;
 
 
-public class NoopFormatter implements MyFormatter {
+public class NoopFormatter<T> extends AbstractFormatter<String, T>{
 
 	@Override
-	public String formatValue(Object value) throws FormattingException {
+	public String formatValue(T value) throws FormattingException {
 		return value==null?"": value.toString();
 	}
 
 	@Override
-	public Object parseValue(String text) throws Exception {
+	public String parseValue(String text) throws Exception {
 		return text;
 	}
 
+  
 }

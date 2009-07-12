@@ -1,7 +1,7 @@
 package cx.ath.jbzdak.jpaGui.ui.formatted.formatters;
 
+import cx.ath.jbzdak.jpaGui.ui.formatted.AbstractFormatter;
 import cx.ath.jbzdak.jpaGui.ui.formatted.FormattingException;
-import cx.ath.jbzdak.jpaGui.ui.formatted.MyFormatter;
 import cx.ath.jbzdak.jpaGui.ui.formatted.ParsingException;
 import org.apache.commons.lang.StringUtils;
 
@@ -9,7 +9,7 @@ import org.apache.commons.lang.StringUtils;
  * @author Jacek Bzdak jbzdak@gmail.com
  *         Date: 2009-06-02
  */
-public class NonNullFormatter implements MyFormatter{
+public class NonNullFormatter extends AbstractFormatter<Object, Object> {
 
    private String errorMessage = "Pole nie może być puste";
 

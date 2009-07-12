@@ -1,9 +1,9 @@
 package cx.ath.jbzdak.jpaGui.ui.formatted.formatters;
 
+import cx.ath.jbzdak.jpaGui.ui.formatted.AbstractFormatter;
 import cx.ath.jbzdak.jpaGui.ui.formatted.FormattingException;
-import cx.ath.jbzdak.jpaGui.ui.formatted.MyFormatter;
 
-public class ToStringFormatter<V> implements MyFormatter<V, Object> {
+public class ToStringFormatter<V> extends AbstractFormatter<V, Object> {
 
 	@Override
 	public String formatValue(Object value) throws FormattingException {
