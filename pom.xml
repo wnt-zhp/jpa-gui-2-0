@@ -10,7 +10,7 @@
     </parent>
     <groupId>cx.ath.jbzdak.gui</groupId>
     <artifactId>jpa-framework</artifactId>
-    <version>1.0</version>
+    <version>2.0</version>
     <build>
         <sourceDirectory>src/java</sourceDirectory>
         <testSourceDirectory>src/test</testSourceDirectory>
