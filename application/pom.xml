@@ -14,5 +14,18 @@
             <groupId>cx.ath.jbzdak.gui</groupId>
             <version>2.0</version>
         </dependency>
-    </dependencies>
+         <dependency>
+             <groupId>commons-collections</groupId>
+             <artifactId>commons-collections</artifactId>
+         </dependency>
+         <dependency>
+             <groupId>net.java.dev.beansbinding</groupId>
+             <artifactId>beansbinding</artifactId>
+             <version>1.2.1</version>
+         </dependency>
+         <dependency>
+             <groupId>commons-lang</groupId>
+             <artifactId>commons-lang</artifactId>
+         </dependency>
+     </dependencies>
 </project>

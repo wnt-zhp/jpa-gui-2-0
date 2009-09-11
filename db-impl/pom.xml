@@ -14,5 +14,9 @@
             <groupId>cx.ath.jbzdak.gui</groupId>
             <version>2.0</version>
         </dependency>
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+        </dependency>
     </dependencies>
 </project>

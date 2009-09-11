@@ -1,10 +1,11 @@
 package cx.ath.jbzdak.jpaGui.ui.table;
 
-import static cx.ath.jbzdak.jpaGui.Utils.getId;
-import static cx.ath.jbzdak.jpaGui.Utils.isIdNull;
+
 import cx.ath.jbzdak.jpaGui.db.AdministrativeDBManager;
 import cx.ath.jbzdak.jpaGui.db.Transaction;
 import cx.ath.jbzdak.jpaGui.db.dao.DAO;
+import static cx.ath.jbzdak.jpaGui.utils.DBUtils.getId;
+import static cx.ath.jbzdak.jpaGui.utils.DBUtils.isIdNull;
 import org.apache.commons.collections.functors.CloneTransformer;
 import org.jdesktop.observablecollections.ObservableCollections;
 import org.jdesktop.observablecollections.ObservableList;

@@ -5,12 +5,12 @@ import cx.ath.jbzdak.jpaGui.ClassHandler;
 import cx.ath.jbzdak.jpaGui.Utils;
 import cx.ath.jbzdak.jpaGui.ui.error.ErrorHandlers;
 import cx.ath.jbzdak.jpaGui.ui.error.ErrorHandlers.Formatter;
+import edu.umd.cs.findbugs.annotations.NonNull;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import net.miginfocom.swing.MigLayout;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -67,21 +67,21 @@ public class FormPanel<T extends Component,FE extends DisplayFormElement<T>> ext
    protected final ClassHandler<Formatter> errorHandlers = ErrorHandlers.createShortHandlers();
 
 
-   public FormPanel(@Nonnull FE formElement) {
+   public FormPanel(@NonNull FE formElement) {
       this(formElement, null, null);
    }
 
-    public FormPanel(@Nonnull FE formElement, @Nullable Map<String, String> constraints){
+    public FormPanel(@NonNull FE formElement, @Nullable Map<String, String> constraints){
        this(formElement, constraints, null);
     }
 
-    public FormPanel(@Nonnull FE formElement, @Nullable ResourceBundle  resourceBundle){
+    public FormPanel(@NonNull FE formElement, @Nullable ResourceBundle  resourceBundle){
          this(formElement, null, resourceBundle);
       }
 
 
    //TODO Wyseparować kiedyś same
-   public FormPanel(@Nonnull FE formElement, @Nullable Map<String, String> constraints, @Nullable ResourceBundle bundle) {
+   public FormPanel(@NonNull FE formElement, @Nullable Map<String, String> constraints, @Nullable ResourceBundle bundle) {
       this.formElement = formElement;
       if(constraints == null){
           constraints =  FormPanelConstraints.createDefaultConstraints();

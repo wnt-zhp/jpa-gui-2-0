@@ -428,6 +428,17 @@
         <root url="jar://$MAVEN_REPOSITORY$/junit/junit/4.5/junit-4.5-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="Maven: commons-math:commons-math:1.2">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/commons-math/commons-math/1.2/commons-math-1.2.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/commons-math/commons-math/1.2/commons-math-1.2-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/commons-math/commons-math/1.2/commons-math-1.2-sources.jar!/" />
+      </SOURCES>
+    </library>
     <library name="Maven: findbugs:annotations:1.0.0">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/findbugs/annotations/1.0.0/annotations-1.0.0.jar!/" />
@@ -448,6 +459,39 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/ejb3-persistence/1.0.2.GA/ejb3-persistence-1.0.2.GA-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: commons-collections:commons-collections:3.2.1">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: net.java.dev.beansbinding:beansbinding:1.2.1">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/net/java/dev/beansbinding/beansbinding/1.2.1/beansbinding-1.2.1.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/net/java/dev/beansbinding/beansbinding/1.2.1/beansbinding-1.2.1-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/net/java/dev/beansbinding/beansbinding/1.2.1/beansbinding-1.2.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: commons-lang:commons-lang:2.4">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/commons-lang/commons-lang/2.4/commons-lang-2.4.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/commons-lang/commons-lang/2.4/commons-lang-2.4-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/commons-lang/commons-lang/2.4/commons-lang-2.4-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: cx.ath.jbzdak.gui:iconManager:2.0">
@@ -472,15 +516,26 @@
         <root url="jar://$MAVEN_REPOSITORY$/com/miglayout/miglayout/3.7/miglayout-3.7-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: net.java.dev.beansbinding:beansbinding:1.2.1">
+    <library name="Maven: cx.ath.jbzdak.gui:famfam:1.0">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/net/java/dev/beansbinding/beansbinding/1.2.1/beansbinding-1.2.1.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/cx/ath/jbzdak/gui/famfam/1.0/famfam-1.0.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/net/java/dev/beansbinding/beansbinding/1.2.1/beansbinding-1.2.1-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/cx/ath/jbzdak/gui/famfam/1.0/famfam-1.0-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/net/java/dev/beansbinding/beansbinding/1.2.1/beansbinding-1.2.1-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/cx/ath/jbzdak/gui/famfam/1.0/famfam-1.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.swinglabs:swingx:0.9.5-2">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/swinglabs/swingx/0.9.5-2/swingx-0.9.5-2.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/swinglabs/swingx/0.9.5-2/swingx-0.9.5-2-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/swinglabs/swingx/0.9.5-2/swingx-0.9.5-2-sources.jar!/" />
       </SOURCES>
     </library>
   </component>

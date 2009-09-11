@@ -3,9 +3,9 @@ package cx.ath.jbzdak.jpaGui.ui.form;
 import cx.ath.jbzdak.jpaGui.Utils;
 import cx.ath.jbzdak.jpaGui.genericListeners.HideWindowTask;
 import cx.ath.jbzdak.jpaGui.task.Task;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import net.miginfocom.swing.MigLayout;
 
-import javax.annotation.Nullable;
 import javax.swing.*;
 import java.awt.*;
 

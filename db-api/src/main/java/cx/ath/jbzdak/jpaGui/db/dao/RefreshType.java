@@ -1,8 +1,8 @@
 package cx.ath.jbzdak.jpaGui.db.dao;
 
-import cx.ath.jbzdak.jpaGui.Utils;
 import cx.ath.jbzdak.jpaGui.db.AdministrativeDBManager;
 import cx.ath.jbzdak.jpaGui.db.dao.annotations.LifecyclePhase;
+import cx.ath.jbzdak.jpaGui.utils.DBUtils;
 import edu.umd.cs.findbugs.annotations.NonNull;
 import edu.umd.cs.findbugs.annotations.Nullable;
 
@@ -21,7 +21,7 @@ public enum RefreshType {
    MERGE() {
       @Override
       public <T> T perform(@NonNull EntityManager manager,@NonNull  T entity,@NonNull AdministrativeDBManager dbManager) {
-         if(!(Utils.isIdNull(entity) || manager.contains(entity))){
+         if(!(DBUtils.isIdNull(entity) || manager.contains(entity))){
             return manager.merge(entity);
          }
          return entity;
@@ -29,7 +29,7 @@ public enum RefreshType {
    FIND() {
       @Override
       public <T> T perform(EntityManager manager, T entity, AdministrativeDBManager dbManager) {
-         entity =  manager.find((Class<? extends T>) entity.getClass(), Utils.getId(entity));
+         entity =  manager.find((Class<? extends T>) entity.getClass(), DBUtils.getId(entity));
          dbManager.firePersEvent(entity, LifecyclePhase.PostLoad, manager);
          return entity;
       }};

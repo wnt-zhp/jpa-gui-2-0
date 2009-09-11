@@ -2,10 +2,10 @@ package cx.ath.jbzdak.jpaGui.ui.autoComplete;
 
 import cx.ath.jbzdak.jpaGui.MyFormatter;
 import cx.ath.jbzdak.jpaGui.Utils;
-import static cx.ath.jbzdak.jpaGui.Utils.createAutoBinding;
 import cx.ath.jbzdak.jpaGui.ui.autoComplete.adapter.MockAdaptor;
 import cx.ath.jbzdak.jpaGui.ui.autoComplete.adapter.NoopAdaptor;
 import cx.ath.jbzdak.jpaGui.ui.formatted.formatters.ToStringFormatter;
+import static cx.ath.jbzdak.jpaGui.utils.BeansBindingUtils.createAutoBinding;
 import org.apache.commons.lang.StringUtils;
 import static org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ;
 import org.jdesktop.beansbinding.Binding;

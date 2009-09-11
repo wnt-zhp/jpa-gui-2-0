@@ -1,9 +1,8 @@
 package cx.ath.jbzdak.jpaGui.db.dao;
 
-import cx.ath.jbzdak.jpaGui.Utils;
-import static cx.ath.jbzdak.jpaGui.Utils.isIdNull;
 import cx.ath.jbzdak.jpaGui.db.AdministrativeDBManager;
 import cx.ath.jbzdak.jpaGui.db.dao.annotations.LifecyclePhase;
+import static cx.ath.jbzdak.jpaGui.utils.DBUtils.*;
 
 import javax.persistence.EntityManager;
 import java.text.Normalizer.Form;
@@ -157,7 +156,7 @@ public class DAOImpl<T> implements DAO<T> {
    public void persist() {
       beginTransaction();
       try {
-         if(!Utils.isIdNull(getBean())){
+         if(!isIdNull(getBean())){
             throw new IllegalStateException("Trying to persist already persisted bean");
          }
          firePersistenceEVT(LifecyclePhase.PrePersist);
@@ -195,10 +194,10 @@ public class DAOImpl<T> implements DAO<T> {
    */
    @Override
    public void persistOrUpdate() {
-        if (Utils.willAutoSetId(getBean())) {
+        if (willAutoSetId(getBean())) {
           persist();
         } else {
-           if(entityManager.find(clazz, Utils.getId(getBean()))==null){
+           if(entityManager.find(clazz, getId(getBean()))==null){
               persist();
            }else{
               update();
