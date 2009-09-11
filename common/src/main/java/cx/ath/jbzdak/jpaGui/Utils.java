@@ -1,24 +1,16 @@
 package cx.ath.jbzdak.jpaGui;
 
-import org.apache.commons.math.util.MathUtils;
-import org.jdesktop.beansbinding.AutoBinding.UpdateStrategy;
-import org.jdesktop.beansbinding.BeanProperty;
-import org.jdesktop.beansbinding.Binding;
-import org.jdesktop.beansbinding.Bindings;
+import edu.umd.cs.findbugs.annotations.CheckForNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.CheckForNull;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.AnnotatedElement;
-import java.lang.reflect.Member;
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.rmi.server.UID;
 import java.util.Calendar;
 import java.util.Date;
@@ -102,62 +94,6 @@ public class Utils {
 		return LoggerFactory.getLogger(directCaller.getClassName());
 	}
 
-	@SuppressWarnings({"unchecked", "SameParameterValue"})
-	public static Binding createAutoBinding(
-			UpdateStrategy strategy,
-			Object source, String sourceProperty, Object target,
-			String targeTProperty) {
-		return Bindings.createAutoBinding(strategy, source, BeanProperty
-				.create(sourceProperty), target, BeanProperty
-				.create(targeTProperty));
-	}
-
-	/**
-	 * Sprawdza czy pole annotowane annotacją {@link Id} jest nullem czy nie.
-	 * Jeśli klasa nie ma takiego pola leci {@link IllegalArgumentException}.
-	 * @param object obiekt którego id jest sprawdzane
-	 * @return true jesli id obiektu nie jest nullem.
-	 */
-	public static boolean isIdNull(Object object) {
-		return getId(object)==null;
-	}
-
-	public static Object getId(Object object) {
-		if(object==null){
-			throw new IllegalArgumentException();
-		}
-      return AnnotationUtils.getProperty(object, getIDMember(object));
-	}
-
-   public static boolean willAutoSetId(Object object){
-      AnnotatedElement id = getIDAnnotatedElement(object);
-      if(!id.isAnnotationPresent(GeneratedValue.class)){
-         return false;
-      }
-      if (id instanceof Member) {
-         Member member = (Member) id;
-         return AnnotationUtils.getProperty(object, member)==null;
-      }
-      throw new IllegalStateException();
-   }
-
-   private static AnnotatedElement getIDAnnotatedElement(Object object){
-      AnnotatedElement id = AnnotationUtils.findByAnnotatio(Id.class, object.getClass().getFields());
-      if (id == null) {
-         id = AnnotationUtils.findByAnnotatio(Id.class, object.getClass().getMethods());
-      }
-      return id;
-   }
-
-   private static Member getIDMember(Object object){
-      Member id = AnnotationUtils.findByAnnotatio(Id.class, object.getClass().getFields());
-      if (id == null) {
-         id = AnnotationUtils.findByAnnotatio(Id.class, object.getClass().getMethods());
-      }
-      return id;
-   }
-  
-
 
 	public static <T> boolean equals(T o1, T o2 ){
 		return o1==null ? o2==null : o1.equals(o2);
@@ -237,7 +173,9 @@ public class Utils {
 		if(places < 0){
 			throw new IllegalArgumentException();
 		}
-		return BigDecimal.valueOf(MathUtils.round(value.doubleValue(), places));
+      value = value.multiply(BigDecimal.TEN.pow(places));
+      value.round(new MathContext(0));
+		return value.divide(BigDecimal.TEN.pow(places));
 	}
 
 	public static String valueOf(Object obj){

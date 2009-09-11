@@ -17,6 +17,11 @@
             <groupId>cx.ath.jbzdak.gui</groupId>
             <version>2.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>ejb3-persistence</artifactId>
+            <version>1.0.2.GA</version>
+        </dependency>
 
     </dependencies>
 </project>

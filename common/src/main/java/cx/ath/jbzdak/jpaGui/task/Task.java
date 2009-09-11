@@ -1,7 +1,6 @@
 package cx.ath.jbzdak.jpaGui.task;
 
-import javax.annotation.Nullable;
-
+import edu.umd.cs.findbugs.annotations.Nullable;
 
 /**
  * Task dla {@link TasksExecutor}. 
