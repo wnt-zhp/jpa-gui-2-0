@@ -7,16 +7,5 @@
         <version>2.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>cx.ath.jbzdak.gui</groupId>
-    <artifactId>db-api</artifactId>
-    <version>2.0</version>
-    <packaging>jar</packaging>
-    <dependencies>
-        <dependency>
-            <artifactId>common</artifactId>
-            <groupId>cx.ath.jbzdak.gui</groupId>
-            <version>2.0</version>
-        </dependency>
-
-    </dependencies>
+    <artifactId>common</artifactId>
 </project>

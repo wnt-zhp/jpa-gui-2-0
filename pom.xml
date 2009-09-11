@@ -5,6 +5,10 @@
     <packaging>pom</packaging>
     <modules>
         <module>db-api</module>
+        <module>common</module>
+        <module>db-impl</module>
+        <module>ui-components</module>
+        <module>application</module>
     </modules>
     <parent>
         <groupId>cx.ath.jbzdak.gui</groupId>
