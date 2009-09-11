@@ -1,6 +1,8 @@
-package cx.ath.jbzdak.jpaGui;
+package cx.ath.jbzdak.jpaGui.db;
 
-import cx.ath.jbzdak.jpaGui.db.DBManager;
+import cx.ath.jbzdak.jpaGui.TransactionException;
+import cx.ath.jbzdak.jpaGui.Utils;
+
 import javax.persistence.EntityManager;
 
 public abstract class Transaction {
@@ -68,12 +70,12 @@ public abstract class Transaction {
    }
 
 
-	public static void execute(DBManager manager, Transaction transaction){
+	public static void execute(AdministrativeDBManager manager, Transaction transaction){
 		transaction.closeEntityManager= true;
 		execute(manager.createEntityManager(), transaction);
 	}
 
-   public static <T> T execute(DBManager manager, ReturnableTransaction<T> transaction){
+   public static <T> T execute(AdministrativeDBManager manager, ReturnableTransaction<T> transaction){
 		transaction.closeEntityManager= true;
 		return execute(manager.createEntityManager(), transaction);
 	}

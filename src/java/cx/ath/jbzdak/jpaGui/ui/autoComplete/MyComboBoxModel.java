@@ -1,12 +1,11 @@
-package cx.ath.jbzdak.jpaGui.autoComplete;
+package cx.ath.jbzdak.jpaGui.ui.autoComplete;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
 import edu.umd.cs.findbugs.annotations.Nullable;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.MutableComboBoxModel;
+
+import javax.swing.*;
 import javax.swing.event.ListDataEvent;
 import javax.swing.event.ListDataListener;
-
 import java.util.*;
 
 /**

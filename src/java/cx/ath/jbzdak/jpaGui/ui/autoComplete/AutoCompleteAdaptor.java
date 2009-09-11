@@ -1,4 +1,4 @@
-package cx.ath.jbzdak.jpaGui.autoComplete;
+package cx.ath.jbzdak.jpaGui.ui.autoComplete;
 
 import edu.umd.cs.findbugs.annotations.OverrideMustInvoke;
 import org.apache.commons.lang.StringUtils;

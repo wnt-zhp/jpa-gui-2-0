@@ -1,4 +1,4 @@
-package cx.ath.jbzdak.jpaGui.autoComplete;
+package cx.ath.jbzdak.jpaGui.ui.autoComplete;
 
 import org.jdesktop.beansbinding.Converter;
 

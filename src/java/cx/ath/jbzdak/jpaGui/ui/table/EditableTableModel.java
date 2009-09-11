@@ -1,20 +1,20 @@
 package cx.ath.jbzdak.jpaGui.ui.table;
 
-import cx.ath.jbzdak.jpaGui.Transaction;
 import static cx.ath.jbzdak.jpaGui.Utils.getId;
 import static cx.ath.jbzdak.jpaGui.Utils.isIdNull;
-import cx.ath.jbzdak.jpaGui.db.DBManager;
+import cx.ath.jbzdak.jpaGui.db.AdministrativeDBManager;
+import cx.ath.jbzdak.jpaGui.db.Transaction;
 import cx.ath.jbzdak.jpaGui.db.dao.DAO;
-import javax.persistence.EntityManager;
-import javax.swing.JTable;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
-import javax.swing.table.TableModel;
 import org.apache.commons.collections.functors.CloneTransformer;
 import org.jdesktop.observablecollections.ObservableCollections;
 import org.jdesktop.observablecollections.ObservableList;
 import org.jdesktop.swingbinding.JTableBinding;
 
+import javax.persistence.EntityManager;
+import javax.swing.*;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.TableModel;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -59,7 +59,7 @@ public abstract class EditableTableModel<T> {
 
    private final Class<T> clazz;
 
-   protected final DBManager dbManager;
+   protected final AdministrativeDBManager dbManager;
 
    protected final JTable table;
 
@@ -90,7 +90,7 @@ public abstract class EditableTableModel<T> {
       }
    };
 
-   public EditableTableModel(DBManager dbManager, Class<T> clazz, JTable table) {
+   public EditableTableModel(AdministrativeDBManager dbManager, Class<T> clazz, JTable table) {
       super();
       this.dbManager = dbManager;
       this.clazz = clazz;
@@ -421,7 +421,7 @@ public abstract class EditableTableModel<T> {
       return support;
    }
 
-   protected DBManager getDbManager() {
+   protected AdministrativeDBManager getDbManager() {
       return dbManager;
    }
 

@@ -1,10 +1,10 @@
 package cx.ath.jbzdak.jpaGui.db.dao;
 
-import cx.ath.jbzdak.jpaGui.db.DBManager;
+import cx.ath.jbzdak.jpaGui.db.AdministrativeDBManager;
 import cx.ath.jbzdak.jpaGui.db.EntityLifecycleListener;
 import cx.ath.jbzdak.jpaGui.db.dao.annotations.LifecyclePhase;
-import javax.persistence.EntityManager;
 
+import javax.persistence.EntityManager;
 import java.util.List;
 
 /**
@@ -16,11 +16,11 @@ import java.util.List;
  */
 public class CompositeEntityLifecycleListener implements EntityLifecycleListener{
 
-    private final DBManager dbManager;
+    private final AdministrativeDBManager dbManager;
 
     private final Class entityClazz;
 
-    public CompositeEntityLifecycleListener(DBManager dbManager, Class entityClazz) {
+    public CompositeEntityLifecycleListener(AdministrativeDBManager dbManager, Class entityClazz) {
         this.dbManager = dbManager;
         this.entityClazz = entityClazz;
     }

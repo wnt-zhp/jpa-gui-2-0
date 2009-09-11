@@ -2,10 +2,10 @@ package cx.ath.jbzdak.jpaGui.db.dao;
 
 import cx.ath.jbzdak.jpaGui.Utils;
 import static cx.ath.jbzdak.jpaGui.Utils.isIdNull;
-import cx.ath.jbzdak.jpaGui.db.DBManager;
+import cx.ath.jbzdak.jpaGui.db.AdministrativeDBManager;
 import cx.ath.jbzdak.jpaGui.db.dao.annotations.LifecyclePhase;
-import javax.persistence.EntityManager;
 
+import javax.persistence.EntityManager;
 import java.text.Normalizer.Form;
 import java.util.NoSuchElementException;
 
@@ -20,7 +20,7 @@ import java.util.NoSuchElementException;
 //TODO Wysyłanie eventów po komicte tranzakcji
 public class DAOImpl<T> implements DAO<T> {
 
-   protected final DBManager manager;
+   protected final AdministrativeDBManager manager;
 
    protected final Class<? extends T> clazz;
 
@@ -43,7 +43,7 @@ public class DAOImpl<T> implements DAO<T> {
     */
    private boolean transactionManaged;
 
-   public DAOImpl(DBManager manager, Class<? extends T> clazz) {
+   public DAOImpl(AdministrativeDBManager manager, Class<? extends T> clazz) {
       super();
       this.manager = manager;
       this.clazz = clazz;

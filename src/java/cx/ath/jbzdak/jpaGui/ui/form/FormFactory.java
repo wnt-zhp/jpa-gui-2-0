@@ -1,13 +1,13 @@
 package cx.ath.jbzdak.jpaGui.ui.form;
 
-import cx.ath.jbzdak.jpaGui.autoComplete.AutocompleteComboBox;
-import cx.ath.jbzdak.jpaGui.autoComplete.ComboBoxElement;
+import cx.ath.jbzdak.jpaGui.ui.autoComplete.AutocompleteComboBox;
+import cx.ath.jbzdak.jpaGui.ui.autoComplete.ComboBoxElement;
 import cx.ath.jbzdak.jpaGui.ui.formatted.FormattedFieldElement;
 import cx.ath.jbzdak.jpaGui.ui.formatted.MyFormattedTextField;
 import cx.ath.jbzdak.jpaGui.ui.formatted.MyFormatter;
-import javax.swing.JTextField;
 import org.jdesktop.beansbinding.Property;
 
+import javax.swing.*;
 import java.util.Map;
 import java.util.ResourceBundle;
 

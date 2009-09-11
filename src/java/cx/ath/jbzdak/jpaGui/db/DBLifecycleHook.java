@@ -14,7 +14,7 @@ public interface DBLifecycleHook {
     * @param reason powód zmiany
     * @return <code>null</code> jeśli nie ma nic przeciwko, wiadomość w przeciwnym wypadku
     */
-   public Object mayGoToPhase(DBManager manager, DBState targetState, DBStateChangeReason reason);
+   public Object mayGoToPhase(AdministrativeDBManager manager, DBState targetState, DBStateChangeReason reason);
 
    /**
     * Notyfikuje listenera o zmianie stanu.
@@ -22,6 +22,6 @@ public interface DBLifecycleHook {
     * @param manager manager krótego stan się zmieni
     * @param targetState stan docelow
     */
-   public void goToPhase(DBManager manager, DBState targetState);
+   public void goToPhase(AdministrativeDBManager manager, DBState targetState);
 
 }

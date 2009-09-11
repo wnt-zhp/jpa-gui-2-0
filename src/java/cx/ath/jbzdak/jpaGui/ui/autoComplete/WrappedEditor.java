@@ -1,12 +1,11 @@
-package cx.ath.jbzdak.jpaGui.autoComplete;
+package cx.ath.jbzdak.jpaGui.ui.autoComplete;
 
 import cx.ath.jbzdak.jpaGui.genericListeners.DoStuffDocumentListener;
 import cx.ath.jbzdak.jpaGui.ui.formatted.FormattingException;
-import javax.swing.ComboBoxEditor;
-import javax.swing.JComboBox;
+
+import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.text.JTextComponent;
-
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.beans.PropertyChangeListener;

@@ -1,6 +1,6 @@
-package cx.ath.jbzdak.jpaGui.autoComplete.adapter;
+package cx.ath.jbzdak.jpaGui.ui.autoComplete.adapter;
 
-import cx.ath.jbzdak.jpaGui.autoComplete.AutoCompleteAdaptor;
+import cx.ath.jbzdak.jpaGui.ui.autoComplete.AutoCompleteAdaptor;
 
 import java.util.ArrayList;
 import java.util.Arrays;

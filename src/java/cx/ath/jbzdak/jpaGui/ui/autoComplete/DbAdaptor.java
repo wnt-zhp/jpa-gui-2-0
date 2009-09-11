@@ -1,6 +1,7 @@
-package cx.ath.jbzdak.jpaGui.autoComplete;
+package cx.ath.jbzdak.jpaGui.ui.autoComplete;
 
-import cx.ath.jbzdak.jpaGui.db.DBManager;
+import cx.ath.jbzdak.jpaGui.db.AdministrativeDBManager;
+
 import javax.persistence.EntityManager;
 
 /**
@@ -15,10 +16,10 @@ public abstract class DbAdaptor<T, V> extends SwingWorkerAdaptor<T, V> {
 
 	private static final long serialVersionUID = 1L;
 
-	protected final DBManager manager;
+	protected final AdministrativeDBManager manager;
 
 
-	public DbAdaptor(DBManager manager) {
+	public DbAdaptor(AdministrativeDBManager manager) {
 		super();
 		this.manager = manager;
 		if(manager==null) throw new IllegalArgumentException();

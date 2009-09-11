@@ -1,7 +1,6 @@
-package cx.ath.jbzdak.jpaGui.autoComplete;
+package cx.ath.jbzdak.jpaGui.ui.autoComplete;
 
-import javax.swing.SwingWorker;
-
+import javax.swing.*;
 import java.util.concurrent.ExecutionException;
 
 /**

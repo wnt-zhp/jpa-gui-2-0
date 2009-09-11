@@ -1,18 +1,18 @@
-package cx.ath.jbzdak.jpaGui.autoComplete;
+package cx.ath.jbzdak.jpaGui.ui.autoComplete;
 
 import cx.ath.jbzdak.jpaGui.Utils;
 import static cx.ath.jbzdak.jpaGui.Utils.createAutoBinding;
-import cx.ath.jbzdak.jpaGui.autoComplete.adapter.MockAdaptor;
-import cx.ath.jbzdak.jpaGui.autoComplete.adapter.NoopAdaptor;
+import cx.ath.jbzdak.jpaGui.ui.autoComplete.adapter.MockAdaptor;
+import cx.ath.jbzdak.jpaGui.ui.autoComplete.adapter.NoopAdaptor;
 import cx.ath.jbzdak.jpaGui.ui.formatted.MyFormatter;
 import cx.ath.jbzdak.jpaGui.ui.formatted.formatters.ToStringFormatter;
-import javax.swing.*;
-import javax.swing.plaf.basic.BasicComboBoxUI;
 import org.apache.commons.lang.StringUtils;
 import static org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ;
 import org.jdesktop.beansbinding.Binding;
 
-import java.awt.BorderLayout;
+import javax.swing.*;
+import javax.swing.plaf.basic.BasicComboBoxUI;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;

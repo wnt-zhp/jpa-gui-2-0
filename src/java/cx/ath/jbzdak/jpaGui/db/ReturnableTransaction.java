@@ -1,4 +1,4 @@
-package cx.ath.jbzdak.jpaGui;
+package cx.ath.jbzdak.jpaGui.db;
 
 import javax.persistence.EntityManager;
 

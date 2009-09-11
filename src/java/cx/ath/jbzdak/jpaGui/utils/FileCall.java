@@ -10,6 +10,9 @@ import java.io.IOException;
 
 
 /**
+ * Nie robi nic ciekawego poza tym że enkapsuluje zapis/odczyt do i z pliku.
+ * Łatwiej tak nie przegapić zamknięcia czegokolwiek. 
+ *
  * Created by IntelliJ IDEA.
  * User: Jacek Bzdak jbzdak@gmail.com
  */
