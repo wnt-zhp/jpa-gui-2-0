@@ -99,7 +99,7 @@ public abstract class EditableTableModel<T> {
       this.dao = dbManager.getDao(clazz);
       //dao.setRefreshType(RefreshType.FIND);
       dao.setAutoCreateEntity(false);
-      manager = this.dbManager.createEntityManager();
+      manager = this.dbManager.createProvider();
       table.addPropertyChangeListener("model", new PropertyChangeListener(){
          @Override
          public void propertyChange(PropertyChangeEvent evt) {

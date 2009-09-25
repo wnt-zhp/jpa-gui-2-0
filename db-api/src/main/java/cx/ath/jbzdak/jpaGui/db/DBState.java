@@ -5,5 +5,5 @@ package cx.ath.jbzdak.jpaGui.db;
  *         Date: 2009-04-21
  */
 public enum DBState {
-   OPEN, CLOSED
+   OPEN, CLOSED, HALT
 }

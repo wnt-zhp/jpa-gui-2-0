@@ -1,4 +1,4 @@
-package cx.ath.jbzdak.jpaGui;
+package cx.ath.jbzdak.jpaGui.db;
 
 /**
  * @author Jacek Bzdak jbzdak@gmail.com

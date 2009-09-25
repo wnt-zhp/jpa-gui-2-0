@@ -1,8 +1,8 @@
 package cx.ath.jbzdak.jpaGui.ui.autoComplete;
 
 import cx.ath.jbzdak.jpaGui.db.AdministrativeDBManager;
-
-import javax.persistence.EntityManager;
+import cx.ath.jbzdak.jpaGui.db.DBManager;
+import cx.ath.jbzdak.jpaGui.db.Query;
 
 /**
  * Adater enkapsulujący jakąś interakcję z bazą danych.
@@ -16,7 +16,7 @@ public abstract class DbAdaptor<T, V> extends SwingWorkerAdaptor<T, V> {
 
 	private static final long serialVersionUID = 1L;
 
-	protected final AdministrativeDBManager manager;
+	protected final DBManager manager;
 
 
 	public DbAdaptor(AdministrativeDBManager manager) {
@@ -28,23 +28,20 @@ public abstract class DbAdaptor<T, V> extends SwingWorkerAdaptor<T, V> {
 	/**
 	 * Tutaj wykonujemy odpowiedż na ustawienie filtra. Filt jest dostępny
 	 * poprzez {@link #getFilter()}
-	 * @param entityManager manager, tworzony na potrzeby wywołania tej metody
-	 * Potem zamykany (i ew. rollbackowany jeśli tranakcja była aktywna).
 	 * @return Wyniki przeszukiwania.
 	 */
-	protected abstract T doInBackground(EntityManager entityManager);
+	protected abstract T doInBackground(Query query);
 
+
+   protected abstract Query openQuery(DBManager manager);
 
 	@Override
 	protected T doInBackground() {
-		EntityManager entityManager = manager.createEntityManager();
+		Query q = openQuery(manager);
 		try{
-			return doInBackground(entityManager);
+			return doInBackground(q);
 		}finally{
-			if(entityManager.getTransaction().isActive()){
-				entityManager.getTransaction().rollback();
-			}
-			entityManager.close();
+		   q.close();
 		}
 	}
 }

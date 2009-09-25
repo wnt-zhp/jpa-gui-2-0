@@ -1,16 +1,14 @@
 package cx.ath.jbzdak.jpaGui.db;
 
-import javax.persistence.EntityManager;
-
 /**
  * @author Jacek Bzdak jbzdak@gmail.com
  *         Date: 2009-04-20
  */
-public abstract class ReturnableTransaction<T> {
+public abstract class ReturnableTransaction<PROVIDER, T> {
 
    @SuppressWarnings({"WeakerAccess"})
    protected boolean closeEntityManager = false;
 
    @SuppressWarnings({"RedundantThrows"})
-   public abstract T doTransaction(EntityManager entityManager) throws Exception;
+   public abstract T doTransaction(PROVIDER entityManager) throws Exception;
 }

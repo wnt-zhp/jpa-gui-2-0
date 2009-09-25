@@ -10,6 +10,8 @@
         <module>ui-components</module>
         <module>application</module>
         <module>beanFormatter</module>
+        <module>configuration</module>
+        <module>db-h2</module>
     </modules>
     <parent>
         <groupId>cx.ath.jbzdak.gui</groupId>

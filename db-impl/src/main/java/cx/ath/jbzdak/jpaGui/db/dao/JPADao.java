@@ -1,6 +1,6 @@
 package cx.ath.jbzdak.jpaGui.db.dao;
 
-import cx.ath.jbzdak.jpaGui.db.AdministrativeDBManager;
+import cx.ath.jbzdak.jpaGui.db.DBManager;
 import cx.ath.jbzdak.jpaGui.db.dao.annotations.LifecyclePhase;
 import static cx.ath.jbzdak.jpaGui.utils.DBUtils.*;
 
@@ -17,13 +17,11 @@ import java.util.NoSuchElementException;
  * @param <T>
  */
 //TODO Wysyłanie eventów po komicte tranzakcji
-public class DAOImpl<T> implements DAO<T> {
+public class JPADao<T> implements DAO<T> {
 
-   protected final AdministrativeDBManager manager;
+   protected final DBManager<EntityManager> manager;
 
    protected final Class<? extends T> clazz;
-
-   private final CompositeEntityLifecycleListener listener;
 
    protected EntityManager entityManager;
 
@@ -31,7 +29,7 @@ public class DAOImpl<T> implements DAO<T> {
 
    private boolean autoCreateEntity = false;
 
-   private RefreshType refreshType = RefreshType.MERGE;
+   private JPARefreshType refreshType = JPARefreshType.MERGE;
 
    private T entity;
 
@@ -42,22 +40,18 @@ public class DAOImpl<T> implements DAO<T> {
     */
    private boolean transactionManaged;
 
-   public DAOImpl(AdministrativeDBManager manager, Class<? extends T> clazz) {
+   public JPADao(DBManager<EntityManager> manager, Class<? extends T> clazz) {
       super();
       this.manager = manager;
       this.clazz = clazz;
-      listener = new CompositeEntityLifecycleListener(manager, clazz);
    }
 
+   /**
+    * Does nothing. . . May be overriden.
+    * @param phase
+    */
    protected void firePersistenceEVT(LifecyclePhase phase){
-      beginTransaction();
-      try {
-         manager.firePersEvent(entity,  phase, entityManager);
-         commitTransaction();
-      } catch (RuntimeException e) {
-         rollback();
-         throw e;
-      }
+
    }
 
    /* (non-Javadoc)
@@ -78,7 +72,7 @@ public class DAOImpl<T> implements DAO<T> {
       if (transactionManaged)
          return false;
       if (entityManager == null || !entityManager.isOpen()) {
-         entityManager = manager.createEntityManager();
+         entityManager = manager.createProvider();
          transactionWideEntityManager = true;
       } else {
          transactionWideEntityManager = false;
@@ -320,15 +314,12 @@ public class DAOImpl<T> implements DAO<T> {
 
    @Override
    public RefreshType getRefreshType() {
-      return refreshType;
+      return refreshType.getRefreshType();
    }
 
    @Override
    public void setRefreshType(RefreshType refreshType) {
-      this.refreshType = refreshType;
+      this.refreshType = JPARefreshType.map(refreshType);
    }
 
-   protected CompositeEntityLifecycleListener getListener() {
-      return listener;
-   }
 }

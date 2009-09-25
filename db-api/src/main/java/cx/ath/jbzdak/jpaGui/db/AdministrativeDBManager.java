@@ -26,9 +26,9 @@ public interface AdministrativeDBManager extends DBManager{
 
    <T> List<T> fireEventOnQueryResult(List<T> list, EntityManager manager);
 
-   void addLifecycleHook(DBLifecycleHook hook);
+   void addLifecycleHook(LifecycleHook hook);
 
-   boolean removeLifecycleHook(DBLifecycleHook hook);
+   boolean removeLifecycleHook(LifecycleHook hook);
 
-   Set<DBLifecycleHook> getHooks();
+   Set<LifecycleHook> getHooks();
 }

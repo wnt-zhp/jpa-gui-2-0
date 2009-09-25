@@ -4,7 +4,7 @@ package cx.ath.jbzdak.jpaGui.db;
  * @author Jacek Bzdak jbzdak@gmail.com
  *         Date: 2009-04-21
  */
-public interface DBLifecycleHook {
+public interface LifecycleHook {
 
    /**
     * Sprawdza czy dany listener ma coś przeciw zmianie stanu.
