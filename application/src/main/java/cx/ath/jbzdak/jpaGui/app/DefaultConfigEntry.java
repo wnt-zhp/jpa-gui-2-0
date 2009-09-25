@@ -12,9 +12,6 @@ import java.util.*;
  */
 public class DefaultConfigEntry<T> implements ConfigEntry<T>{
 
-   @Nullable
-   private Validator validator;
-
    private boolean single;
 
    private Class<T> valueClass;
@@ -40,7 +37,6 @@ public class DefaultConfigEntry<T> implements ConfigEntry<T>{
        result.longDescription = longDescription;
        result.values.add(value);
        result.single = true;
-       result.validator = null;
        result.valueClass = valueClass;
        return result;
     }
@@ -69,7 +65,6 @@ public class DefaultConfigEntry<T> implements ConfigEntry<T>{
       result.longDescription = longDescription;
       result.values.add(value);
       result.single = true;
-      result.validator = null;
       result.valueClass = String.class;
       return result;
    }
@@ -133,11 +128,7 @@ public class DefaultConfigEntry<T> implements ConfigEntry<T>{
 
    @Override
    public void setValues(List<T> values) throws ValidationException {
-      if (validator!=null) {
-         for (T value : values) {
-            validator.validate(value);
-         }
-      }
+
       this.values.clear();
       this.values.addAll(values);
    }
@@ -146,9 +137,6 @@ public class DefaultConfigEntry<T> implements ConfigEntry<T>{
    public void setSingleValue(T t) throws ValidationException {
       if (!single) {
          throw new IllegalStateException("Can't add single value to not single entry");
-      }
-      if (validator!=null) {
-         validator.validate(t);
       }
       if(values.size()==0){
          values.add(t);
@@ -163,10 +151,6 @@ public class DefaultConfigEntry<T> implements ConfigEntry<T>{
 
    void setLongDescription(String longDescription) {
       this.longDescription = longDescription;
-   }
-
-   void setValidator(Validator validator) {
-      this.validator = validator;
    }
 
    void setSingle(boolean single) {
@@ -187,7 +171,6 @@ public class DefaultConfigEntry<T> implements ConfigEntry<T>{
         return new ToStringBuilder(this).
                 append("values", values).
                 append("longDescription", longDescription).
-                append("validator", validator).
                 append("single", single).
                 append("valueClass", valueClass).
                 append("name", name).
