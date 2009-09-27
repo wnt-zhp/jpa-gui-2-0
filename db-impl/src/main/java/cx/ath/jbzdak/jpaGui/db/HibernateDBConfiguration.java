@@ -1,7 +1,5 @@
 package cx.ath.jbzdak.jpaGui.db;
 
-import edu.umd.cs.findbugs.annotations.Nullable;
-
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,17 +8,17 @@ import java.util.Map;
  * @author Jacek Bzdak jbzdak@gmail.com
  *         Date: 2009-09-12
  */
-public class HibernateDBConfiguration<DBM extends JpaDbManager, LM extends DefaultLifecycleAdministrator<DBM, ? extends USER_OBJECT>, USER_OBJECT>
+public class HibernateDBConfiguration<DBM extends JpaDbManager, LM extends DefaultLifecycleAdministrator<DBM, ? extends USER_OBJECT, LM>, USER_OBJECT>
         extends DefaultDbConfiguration<DBM, LM>{
 
    protected Map<String, String> hibernateProperties = new HashMap<String, String>();
 
    public HibernateDBConfiguration() {
-      lifecycleManager.addListener(EnumSet.of(DBLifecyclePhase.PRE_START), new DefaultLifecycleListener<DBM>(0, "FEED_PROPERTIES"){
+      lifecycleManager.addListener(EnumSet.of(DBLifecyclePhase.PRE_START), new DefaultLifecycleListener<DBM, LifecycleAdministrator>(0, "FEED_PROPERTIES"){
+
          @Override
-         public void doTask(@Nullable DBM dbm, @Nullable Object... o) throws Exception {
-            LM lm = (LM) o[1];
-            lm.getUserConfiguration().put("hibernateProperties", hibernateProperties);
+         public void executePhase(DBM manager, LifecycleAdministrator administrator, Object[] params) {
+            administrator.getUserConfiguration().put("hibernateProperties", hibernateProperties);
          }
       });
    }

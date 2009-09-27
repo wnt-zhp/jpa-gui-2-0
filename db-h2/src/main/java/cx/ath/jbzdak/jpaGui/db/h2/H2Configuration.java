@@ -4,6 +4,7 @@ import cx.ath.jbzdak.jpaGui.db.DefaultLifecycleAdministrator;
 import cx.ath.jbzdak.jpaGui.db.HibernateDBConfiguration;
 import cx.ath.jbzdak.jpaGui.db.JpaDbManager;
 import cx.ath.jbzdak.jpaGui.db.lifecycleListenerPack.HibernateStartDbPack;
+import cx.ath.jbzdak.jpaGui.db.lifecycleListenerPack.ReadBackupFile;
 import org.h2.Driver;
 import org.h2.api.DatabaseEventListener;
 import org.hibernate.dialect.H2Dialect;
@@ -17,7 +18,7 @@ import java.util.Map;
  * @author Jacek Bzdak jbzdak@gmail.com
  *         Date: 2009-09-12
  */
-public class H2Configuration<DBM extends JpaDbManager, HLM extends DefaultLifecycleAdministrator<DBM, ? extends H2Configuration>>
+public class H2Configuration<DBM extends JpaDbManager, HLM extends DefaultLifecycleAdministrator<DBM, ? extends H2Configuration, HLM>>
         extends HibernateDBConfiguration<DBM, HLM, H2Configuration>{
 
    public static final String jdbcUrlPrefix = "jdbc:h2:";
@@ -29,9 +30,10 @@ public class H2Configuration<DBM extends JpaDbManager, HLM extends DefaultLifecy
    public H2Configuration(boolean suppresDefaults) {
       if(!suppresDefaults){
          setDefaults();
-         lifecycleManager.addListenerPack(new HibernateStartDbPack<DBM>());
-         lifecycleManager.addListenerPack(new H2CleanDbPack<DBM>());
-         lifecycleManager.addListenerPack(new H2BackupPack<DBM>());
+         lifecycleManager.addListenerPack(new HibernateStartDbPack<DBM, HLM>());
+         lifecycleManager.addListenerPack(new H2CleanDbPack<DBM, HLM>());
+         lifecycleManager.addListenerPack(new ReadBackupFile<DBM,HLM>());
+         lifecycleManager.addListenerPack(new H2BackupPack<DBM, HLM>());
       }
    }
 

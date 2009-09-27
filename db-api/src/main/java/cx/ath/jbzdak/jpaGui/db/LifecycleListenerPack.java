@@ -10,12 +10,12 @@ import java.util.Set;
  * @author Jacek Bzdak jbzdak@gmail.com
  *         Date: 2009-09-12
  */
-public interface LifecycleListenerPack<T extends DBManager> {
+public interface LifecycleListenerPack<T extends DBManager, L extends LifecycleAdministrator> {
 
    Set<String> getName();
 
    Set<String> getNeededPacks();
 
-   List<Map.Entry<EnumSet<DBLifecyclePhase>, LifecycleAdministrator.LifecycleListener<? super T>>> getListeners();
+   List<Map.Entry<EnumSet<DBLifecyclePhase>, LifecycleListener<? super T, ? super L>>> getListeners();
 
 }

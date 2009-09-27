@@ -4,7 +4,6 @@ import cx.ath.jbzdak.jpaGui.db.DBLifecyclePhase;
 import cx.ath.jbzdak.jpaGui.db.DBManager;
 import cx.ath.jbzdak.jpaGui.db.DefaultLifecycleListener;
 import cx.ath.jbzdak.jpaGui.db.LifecycleAdministrator;
-import edu.umd.cs.findbugs.annotations.Nullable;
 
 import java.io.File;
 
@@ -12,20 +11,22 @@ import java.io.File;
  * @author Jacek Bzdak jbzdak@gmail.com
  *         Date: 2009-09-13
  */
-public class H2BackupRead<T extends DBManager> extends DefaultLifecycleListener<T>{
-   public H2BackupRead(int priority, String name) {
-      super(priority, name);
+public class H2BackupRead<T extends DBManager> extends DefaultLifecycleListener<T, LifecycleAdministrator>{
+   public H2BackupRead() {
+      super(0, "Read backup");
    }
 
    @Override
-   public void doTask(@Nullable T t, @Nullable Object... o) throws Exception {
-      LifecycleAdministrator administrator = (LifecycleAdministrator) o[1];
-      Object[] backupParams = (Object[]) o[2];
-      File target = (File) backupParams[0];
-      if(!target.exists()){
-         throw new RuntimeException("Backup file doesn;t exists, can't read from it");
+   public void executePhase(T manager, LifecycleAdministrator administrator, Object... params) throws Exception{
+      File target = (File) administrator.getUserConfiguration().get("read-backup-file");
+      if(target == null){
+         throw new IllegalStateException("Cant resolve file frow which we need to read backup.");
+      }
+      if(!target.isFile()){
+         throw new IllegalStateException("Backup file from wchich we need to read is not a file or does nor exist");
       }
       administrator.goToPhase(DBLifecyclePhase.CLEAR_DB_CONTENTS);
-      t.executeNativeStatement("RUNSCRIPT FROM " + target.getAbsolutePath() + " COMPRESSION ZIP;");
+      manager.executeNativeStatement("RUNSCRIPT FROM " + target.getAbsolutePath() + " COMPRESSION ZIP;");
    }
+
 }

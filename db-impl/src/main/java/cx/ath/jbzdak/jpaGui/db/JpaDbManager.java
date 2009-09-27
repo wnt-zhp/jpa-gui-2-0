@@ -60,4 +60,13 @@ public class JpaDbManager implements DBManager<EntityManager>{
       EntityManager entityManager = createProvider();
       return new SimpleQuery(entityManager, entityManager.createNamedQuery(queryName));
    }
+   @Override
+    public void executeNativeStatement(final String statement) {
+      JPATransaction.execute(this, new JPATransaction(){
+         @Override
+         public void doTransaction(EntityManager entityManager) throws Exception {
+            entityManager.createNativeQuery(statement);
+         }
+      });
+   }
 }

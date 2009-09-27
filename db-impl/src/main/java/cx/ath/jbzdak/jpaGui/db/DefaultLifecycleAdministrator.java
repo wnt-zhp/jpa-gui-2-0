@@ -1,7 +1,6 @@
 package cx.ath.jbzdak.jpaGui.db;
 
 import cx.ath.jbzdak.jpaGui.ConfigurationException;
-import cx.ath.jbzdak.jpaGui.task.TaskComparator;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -13,11 +12,11 @@ import java.util.concurrent.locks.ReentrantLock;
  * @author Jacek Bzdak jbzdak@gmail.com
  *         Date: 2009-09-11
  */
-public  class DefaultLifecycleAdministrator<T extends JpaDbManager, USER_OBJECT>
-        implements LifecycleAdministrator<T, USER_OBJECT> {
+public  class DefaultLifecycleAdministrator<T extends JpaDbManager, USER_OBJECT, L extends DefaultLifecycleAdministrator<T, USER_OBJECT, L>>
+        implements LifecycleAdministrator<T, USER_OBJECT, L> {
 
-   private final Map<DBLifecyclePhase, List<LifecycleListener<? super T>>> lifecycleListenerMap
-           = new ConcurrentHashMap<DBLifecyclePhase, List<LifecycleListener<? super T>>>();
+   private final Map<DBLifecyclePhase, List<LifecycleListener<? super T, ? super L>>> lifecycleListenerMap
+           = new ConcurrentHashMap<DBLifecyclePhase, List<LifecycleListener<? super T, ? super L>>>();
 
    private volatile T dbManager;
 
@@ -34,8 +33,8 @@ public  class DefaultLifecycleAdministrator<T extends JpaDbManager, USER_OBJECT>
    public void goToPhase(DBLifecyclePhase phase, Object... parameters) throws Exception{
       lock.lock();
       try{
-         for(LifecycleListener<? super T> ll :lifecycleListenerMap.get(phase)){
-            ll.doTask(dbManager, this, parameters);
+         for(LifecycleListener<? super T, ? super L> ll :lifecycleListenerMap.get(phase)){
+            ll.executePhase(dbManager, (L) this, parameters);
          }
       }finally {
          lock.unlock();
@@ -46,7 +45,7 @@ public  class DefaultLifecycleAdministrator<T extends JpaDbManager, USER_OBJECT>
       lock.lock();
       List<Object> results = new ArrayList<Object>();
       try{
-         for(LifecycleListener<? super  T> ll :lifecycleListenerMap.get(phase)){
+         for(LifecycleListener<? super  T, ? super L> ll :lifecycleListenerMap.get(phase)){
             Object result = ll.mayGoToPhase(dbManager, phase);
             if(result!=null){
                results.add(result);
@@ -59,18 +58,18 @@ public  class DefaultLifecycleAdministrator<T extends JpaDbManager, USER_OBJECT>
    }
 
    @Override
-   public void addListener(EnumSet<DBLifecyclePhase> phases, LifecycleListener<? super T> listener) {
+   public void addListener(EnumSet<DBLifecyclePhase> phases, LifecycleListener<? super T, ? super L> listener) {
       lock.lock();
       try{
          for(DBLifecyclePhase phase : phases){
-            List<LifecycleListener<? super T>> listeners = lifecycleListenerMap.get(phase);
+            List<LifecycleListener<? super T, ? super L>> listeners = lifecycleListenerMap.get(phase);
             if(listeners == null){
-               listeners = new CopyOnWriteArrayList<LifecycleListener<? super T>>();
+               listeners = new CopyOnWriteArrayList<LifecycleListener<? super T, ? super L>>();
                lifecycleListenerMap.put(phase, listeners);
             }
             if(!listeners.contains(listener)){
                listeners.add(listener);
-               Collections.sort(listeners, new TaskComparator());
+               Collections.sort(listeners, new ListenerComparator());
             }
          }
       }finally {
@@ -79,7 +78,7 @@ public  class DefaultLifecycleAdministrator<T extends JpaDbManager, USER_OBJECT>
    }
 
    @Override
-   public void addListenerPack(LifecycleListenerPack<T> listenerPack) {
+   public void addListenerPack(LifecycleListenerPack<T, L> listenerPack) {
       lock.lock();
       try{
          if(insertedPacks.contains(listenerPack.getName())){
@@ -91,7 +90,7 @@ public  class DefaultLifecycleAdministrator<T extends JpaDbManager, USER_OBJECT>
                        + " '" + neededPack + "' which is unaviable");
             }
          }
-         for(Map.Entry<EnumSet<DBLifecyclePhase>, LifecycleAdministrator.LifecycleListener<? super T>> entry : listenerPack.getListeners()){
+         for(Map.Entry<EnumSet<DBLifecyclePhase>, LifecycleListener<? super T, ? super L>> entry : listenerPack.getListeners()){
             addListener(entry.getKey(), entry.getValue());
          }
          insertedPacks.addAll(listenerPack.getName());
@@ -193,6 +192,11 @@ public  class DefaultLifecycleAdministrator<T extends JpaDbManager, USER_OBJECT>
 
    @Override
    public void setDBManager(T dbManager) {
+      this.dbManager = dbManager;
+   }
+
+
+   public void setDbManager(T dbManager) {
       this.dbManager = dbManager;
    }
 

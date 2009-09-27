@@ -1,15 +1,12 @@
 package cx.ath.jbzdak.jpaGui.db;
 
-import edu.umd.cs.findbugs.annotations.Nullable;
-
 /**
  * @author Jacek Bzdak jbzdak@gmail.com
  *         Date: 2009-09-11
  */
-public class DefaultLifecycleListener<T extends DBManager> extends LifecycleAdministrator.LifecycleListener<T> {
-   public DefaultLifecycleListener() {
-   }
-
+public class DefaultLifecycleListener<T extends DBManager, L extends LifecycleAdministrator>
+        extends LifecycleListener<T, L> {
+  
    public DefaultLifecycleListener(int priority, String name) {
       super(priority, name);
    }
@@ -20,6 +17,7 @@ public class DefaultLifecycleListener<T extends DBManager> extends LifecycleAdmi
    }
 
    @Override
-   public void doTask(@Nullable T t, @Nullable Object... o) throws Exception {
+   public void executePhase(T manager, L administrator, Object... params) throws Exception{
+     
    }
 }

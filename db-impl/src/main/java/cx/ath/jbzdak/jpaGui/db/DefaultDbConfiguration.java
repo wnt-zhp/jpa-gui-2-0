@@ -6,7 +6,7 @@ import java.util.List;
  * @author Jacek Bzdak jbzdak@gmail.com
  *         Date: 2009-09-12
  */
-public abstract class DefaultDbConfiguration<DBM extends DBManager, LM extends LifecycleAdministrator<DBM, ?>>
+public abstract class DefaultDbConfiguration<DBM extends DBManager, LM extends LifecycleAdministrator<DBM, ?, ?>>
         implements DBConfiguration<DBM>{
 
    protected LM lifecycleManager;

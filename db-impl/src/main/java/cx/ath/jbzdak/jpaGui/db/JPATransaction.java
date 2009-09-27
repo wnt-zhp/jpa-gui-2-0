@@ -11,7 +11,7 @@ import javax.persistence.EntityManager;
 public abstract class JPATransaction extends Transaction<EntityManager>{
 
 
-   public static void execute(EntityManager manager, Transaction transaction){
+   public static void execute(EntityManager manager, Transaction<EntityManager> transaction){
       final boolean wasActive = manager.getTransaction().isActive();
       if(!wasActive){
          manager.getTransaction().begin();

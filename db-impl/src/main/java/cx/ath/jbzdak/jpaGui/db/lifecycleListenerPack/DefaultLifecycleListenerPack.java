@@ -1,9 +1,6 @@
 package cx.ath.jbzdak.jpaGui.db.lifecycleListenerPack;
 
-import cx.ath.jbzdak.jpaGui.db.DBLifecyclePhase;
-import cx.ath.jbzdak.jpaGui.db.DBManager;
-import cx.ath.jbzdak.jpaGui.db.LifecycleAdministrator;
-import cx.ath.jbzdak.jpaGui.db.LifecycleListenerPack;
+import cx.ath.jbzdak.jpaGui.db.*;
 
 import java.util.*;
 
@@ -11,17 +8,17 @@ import java.util.*;
  * @author Jacek Bzdak jbzdak@gmail.com
  *         Date: 2009-09-12
  */
-public class DefaultLifecycleListenerPack<T extends DBManager> implements LifecycleListenerPack<T>{
+public class DefaultLifecycleListenerPack<T extends DBManager, L extends LifecycleAdministrator> implements LifecycleListenerPack<T, L>{
 
    private final Set<String> name;
 
    private final Set<String> neededPacks;
 
-   private final List<Map.Entry<EnumSet<DBLifecyclePhase>, LifecycleAdministrator.LifecycleListener<? super T>>> listeners
-           = new ArrayList<Map.Entry<EnumSet<DBLifecyclePhase>, LifecycleAdministrator.LifecycleListener<? super T>>>();
+   private final List<Map.Entry<EnumSet<DBLifecyclePhase>, LifecycleListener<? super T, ? super L>>> listeners
+           = new ArrayList<Map.Entry<EnumSet<DBLifecyclePhase>, LifecycleListener<? super T, ? super L>>>();
 
-   protected void addListener(EnumSet<DBLifecyclePhase> phases, LifecycleAdministrator.LifecycleListener<? super T> list){
-      listeners.add(new AbstractMap.SimpleImmutableEntry<EnumSet<DBLifecyclePhase>, LifecycleAdministrator.LifecycleListener<? super T>>(phases, list));
+   protected void addListener(EnumSet<DBLifecyclePhase> phases, LifecycleListener<? super T, ? super L> list){
+      listeners.add(new AbstractMap.SimpleImmutableEntry<EnumSet<DBLifecyclePhase>, LifecycleListener<? super T, ? super L>>(phases, list));
    }
 
    public DefaultLifecycleListenerPack(Set<String> neededPacks, String...  names) {
@@ -37,7 +34,7 @@ public class DefaultLifecycleListenerPack<T extends DBManager> implements Lifecy
       return neededPacks;
    }
 
-   public List<Map.Entry<EnumSet<DBLifecyclePhase>, LifecycleAdministrator.LifecycleListener<? super T>>> getListeners() {
+   public List<Map.Entry<EnumSet<DBLifecyclePhase>, LifecycleListener<? super T, ? super L>>> getListeners() {
       return listeners;
    }
 }
