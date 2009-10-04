@@ -14,8 +14,9 @@ public class CreateEntityManagerFactoryEvent extends DefaultLifecycleListener<Jp
 
    @Override
    public void executePhase(JpaDbManager manager, DefaultLifecycleAdministrator administrator, Object... params) {
-      Ejb3Configuration ejb3Configuration = (Ejb3Configuration) administrator.getUserConfiguration().get("ejbConfiguration");
+      Ejb3Configuration ejb3Configuration = (Ejb3Configuration) administrator.getUserConfiguration().get("ejb3-configuration");
       manager.entityManagerFactory = ejb3Configuration.buildEntityManagerFactory();
+      administrator.getUserConfiguration().remove("ejb3-configuration");
    }
 
 }

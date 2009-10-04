@@ -11,8 +11,9 @@ public class CreateEJB3Confihuration<T extends JpaDbManager> extends DefaultLife
 
    @Override
    public void executePhase(T manager, LifecycleAdministrator administrator, Object... params) {
+      HibernateDBConfiguration
       Ejb3Configuration ejb3Configuration = new Ejb3Configuration();
-      ejb3Configuration.configure((String) administrator.getUserConfiguration().get("persistenceUnit"), (Map) administrator.getUserConfiguration().get("hibernateProperties"));
-      administrator.getUserConfiguration().put("ejb3Configuration", ejb3Configuration);
+      ejb3Configuration.configure((String) administrator.getUserConfiguration().get("persistence-unit"), (Map) administrator.getUserConfiguration().get("hibernate-properties"));
+      administrator.getUserConfiguration().put("ejb3-configuration", ejb3Configuration);
    }
 }

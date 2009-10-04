@@ -15,6 +15,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * By default installs following listener packs:
+ *
+ * <ul>
+ *    <li>{@link cx.ath.jbzdak.jpaGui.db.lifecycleListenerPack.HibernateStartDbPack}</li>
+ *    <li>{@link cx.ath.jbzdak.jpaGui.db.h2.H2CleanDbPack}</li>
+ *    <li>{@link cx.ath.jbzdak.jpaGui.db.lifecycleListenerPack.ReadBackupFile}/li>
+ *    <li>{@link cx.ath.jbzdak.jpaGui.db.h2.H2BackupPack}</li>
+ * </ul>
+ *
  * @author Jacek Bzdak jbzdak@gmail.com
  *         Date: 2009-09-12
  */

@@ -6,6 +6,17 @@ import java.util.Collections;
 import java.util.EnumSet;
 
 /**
+ * Does not depend on any backup packs.
+ *
+ * Provides following backup packs: start-db, stop-db.
+ *
+ * Uses following configuration keys:
+ * <ul>
+ * <li>"ejb3-configuration" -- key is valid from 0 in PRE_START phase to 0 in START phase.</li>
+ * <li> "persistence-unit" -- key that is read on 0 in PRE_START and
+ *
+ * Workflow: on 0 in PRE_START set ejb3-configuration (that is
+ *
  * @author Jacek Bzdak jbzdak@gmail.com
  *         Date: 2009-09-12
  */

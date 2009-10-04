@@ -13,12 +13,13 @@ public class HibernateDBConfiguration<DBM extends JpaDbManager, LM extends Defau
 
    protected Map<String, String> hibernateProperties = new HashMap<String, String>();
 
+   protected String persistrenceUnit;
+
    public HibernateDBConfiguration() {
       lifecycleManager.addListener(EnumSet.of(DBLifecyclePhase.PRE_START), new DefaultLifecycleListener<DBM, LifecycleAdministrator>(0, "FEED_PROPERTIES"){
-
          @Override
          public void executePhase(DBM manager, LifecycleAdministrator administrator, Object[] params) {
-            administrator.getUserConfiguration().put("hibernateProperties", hibernateProperties);
+            administrator.getUserConfiguration().put("hibernate-properties", hibernateProperties);
          }
       });
    }
@@ -49,10 +50,6 @@ public class HibernateDBConfiguration<DBM extends JpaDbManager, LM extends Defau
 
    public void setFormatSql(Boolean format){
        hibernateProperties.put("hibernate.format_sql", format.toString());
-   }
-
-   public void setPersistenceUnit(){
-
    }
 
 }
