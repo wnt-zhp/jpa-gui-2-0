@@ -17,15 +17,15 @@ public class H2BackupListener<T extends DBManager, L extends LifecycleAdministra
    }
 
    @Override
-   public void executePhase(T manager, L administrator, Object... params) {
-      File f = (File) administrator.getUserConfiguration().get("backup-file");
+   public void executePhase() {
+      File f = (File) lifecycleAdministartor.getUserConfiguration().get("backup-file");
       if(f==null){
          throw new IllegalArgumentException("Cant backup, beacause the backup file is unset");
       }
       if(f.exists()){
          throw new IllegalArgumentException("Cant backup, backup file already exists");
       }
-      manager.executeNativeStatement("BACKUP TO " + f.getAbsolutePath() + " COMPRESSION ZIP;");
+      dbManager.executeNativeStatement("BACKUP TO " + f.getAbsolutePath() + " COMPRESSION ZIP;");
    }
 
 }

@@ -39,10 +39,10 @@ public class AutoBackupPack<T extends DBManager, L extends LifecycleAdministrato
       if(!bakcupFolder.isDirectory()){
          throw new IllegalArgumentException("Backup folder passed is not a directory");
       }
-      addListener(EnumSet.of(DBLifecyclePhase.PRE_BACKUP), new DefaultLifecycleListener<T,L>(100, "Set backup file name"){
+      addListener(EnumSet.of(DBLifecyclePhase.PRE_BACKUP), new DefaultLifecycleListener(100, "Set backup file name"){
          @Override
-         public void executePhase(T manager, L administrator, Object... params) {
-            if(administrator.getUserConfiguration().containsKey("backup-file")){
+         public void executePhase() {
+            if(lifecycleAdministartor.getUserConfiguration().containsKey("backup-file")){
                return; //Means that file was set in step 0 from params
             }
             String backupType = null;
@@ -64,17 +64,17 @@ public class AutoBackupPack<T extends DBManager, L extends LifecycleAdministrato
             }
             File backFile = new File(AutoBackupPack.this.bakcupFolder, backupDateFormat.format(new Date()) + "_" + ++maxId + (backupType==null?"":("_"+backupType)));
             LOGGER.debug("File that next backup will be written to is {}", backFile);
-            administrator.getUserConfiguration().put("backup-file", backFile);
+            lifecycleAdministartor.getUserConfiguration().put("backup-file", backFile);
          }
       });
-      addListener(EnumSet.of(DBLifecyclePhase.POST_READ_BACKUP), new DefaultLifecycleListener<T,L>(100, "Set backup file name"){
+      addListener(EnumSet.of(DBLifecyclePhase.POST_READ_BACKUP), new DefaultLifecycleListener(100, "Set backup file name"){
          @Override
-         public void executePhase(T manager, L administrator, Object... params) throws Exception {
+         public void executePhase() throws Exception {
             String[] fileNames = AutoBackupPack.this.bakcupFolder.list();
             Arrays.sort(fileNames);
             File file = new File(fileNames[fileNames.length -1]);
             LOGGER.debug("File from wchich backup will be read is {}", file);
-            administrator.getUserConfiguration().put("read-backup-file", file);
+            lifecycleAdministartor.getUserConfiguration().put("read-backup-file", file);
          }
       });
     

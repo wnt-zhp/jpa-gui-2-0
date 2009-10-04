@@ -18,30 +18,30 @@ public class ReadBackupFile <T extends DBManager, L extends LifecycleAdministrat
       super(Collections.<String>emptySet(), "backup-read-filename");
       addListener(EnumSet.of(DBLifecyclePhase.PRE_BACKUP), new DefaultLifecycleListener<T,L>(0, "Read backup file name"){
          @Override
-         public void executePhase(T manager, L administrator, Object... params) {
+         public void executePhase() {
             if(params[0] != null && params[0] instanceof File){
-               administrator.getUserConfiguration().put("backup-file", params[0]);
+               lifecycleAdministartor.getUserConfiguration().put("backup-file", params[0]);
             }
          }
       });
       addListener(EnumSet.of(DBLifecyclePhase.POST_BACKUP), new DefaultLifecycleListener<T,L>(0, "Clear backup file"){
          @Override
-         public void executePhase(T manager, L administrator, Object... params) {
-            administrator.getUserConfiguration().remove("backup-file");
+         public void executePhase() {
+            lifecycleAdministartor.getUserConfiguration().remove("backup-file");
          }
       });
       addListener(EnumSet.of(DBLifecyclePhase.PRE_READ_BACKUP), new DefaultLifecycleListener<T,L>(0, "Read bakcup file name"){
          @Override
-         public void executePhase(T manager, L administrator, Object... params) throws Exception {
+         public void executePhase() throws Exception {
             if(params[0] != null && params[0] instanceof File){
-               administrator.getUserConfiguration().put("read-backup-file", params[0]);
+               lifecycleAdministartor.getUserConfiguration().put("read-backup-file", params[0]);
             }
          }
       });
        addListener(EnumSet.of(DBLifecyclePhase.POST_READ_BACKUP), new DefaultLifecycleListener<T,L>(0, "Clear backup file"){
          @Override
-         public void executePhase(T manager, L administrator, Object... params) {
-            administrator.getUserConfiguration().remove("read-backup-file");
+         public void executePhase() {
+            lifecycleAdministartor.getUserConfiguration().remove("read-backup-file");
          }
       });
    }

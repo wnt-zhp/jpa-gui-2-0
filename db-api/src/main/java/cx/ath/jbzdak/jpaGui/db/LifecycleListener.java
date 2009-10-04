@@ -1,11 +1,13 @@
 package cx.ath.jbzdak.jpaGui.db;
 
+import net.jcip.annotations.NotThreadSafe;
+
 /**
  * @author Jacek Bzdak jbzdak@gmail.com
 *         Date: 2009-09-26
 */
-public abstract class LifecycleListener<T extends DBManager, L extends LifecycleAdministrator>{
-
+@NotThreadSafe
+public abstract class LifecycleListener{
 
 	private final int priority;
 
@@ -24,8 +26,12 @@ public abstract class LifecycleListener<T extends DBManager, L extends Lifecycle
       return name;
    }
 
-   public abstract Object mayGoToPhase(T dbManager, DBLifecyclePhase phase);
+   public abstract Object mayGoToPhase();
 
-   public abstract void executePhase(T manager, L administrator, Object... params) throws Exception;
+   public abstract void executePhase() throws Exception;
 
+   /**
+    * Should clear all class state. 
+    */
+   public abstract void clear();
 }

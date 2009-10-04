@@ -9,13 +9,14 @@ import cx.ath.jbzdak.jpaGui.db.LifecycleAdministrator;
  *         Date: 2009-09-13
  */
 public class H2CleanDb<T extends DBManager> extends DefaultLifecycleListener<T, LifecycleAdministrator>{
+
    public H2CleanDb() {
       super(0, "CLEAN_DB");
    }
 
    @Override
-   public void executePhase(T manager, LifecycleAdministrator administrator, Object... params) {
-      manager.executeNativeStatement("DROP ALL OBJECTS;");
+   public void executePhase() {
+      dbManager.executeNativeStatement("DROP ALL OBJECTS;");
    }
    
 }
