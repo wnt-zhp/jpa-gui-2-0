@@ -10,12 +10,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * @author Jacek Bzdak jbzdak@gmail.com
  *         Date: 2009-04-20
  */
-public abstract class FilterAdapter<T> extends AutoCompleteAdaptor<T>{
+public class FilterAdapter<T> extends AutoCompleteAdaptor<T>{
 
    private static final Logger LOGGER = Utils.makeLogger();
 
@@ -51,8 +52,7 @@ public abstract class FilterAdapter<T> extends AutoCompleteAdaptor<T>{
 
    @Override
    protected void onFilterChange() {
-      ArrayList<T> filtered = new ArrayList<T>
-                      (contents.size());
+      List<T> filtered = new ArrayList<T> (contents.size());
       for (T item : contents) {
          if(query.matches(item)){
             filtered.add(item);

@@ -24,7 +24,8 @@ public  class ButtonFactory {
 	}
 
 	public static interface BFactory extends Factory{
-		JButton create();
+		@Override
+      JButton create();
 	}
 
 

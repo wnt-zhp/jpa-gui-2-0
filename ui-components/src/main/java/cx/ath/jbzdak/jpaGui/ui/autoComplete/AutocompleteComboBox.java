@@ -133,7 +133,8 @@ public class AutocompleteComboBox<V> extends JComboBox {
 		}
 	}
 
-	public WrappedEditor getEditor(){
+	@Override
+   public WrappedEditor getEditor(){
 		return (WrappedEditor) super.getEditor();
 	}
 
@@ -252,8 +253,9 @@ public class AutocompleteComboBox<V> extends JComboBox {
 
 	@Override
 	public void configureEditor(ComboBoxEditor anEditor, Object anItem) {
-		if(!ignoreConfigure)
-			super.configureEditor(anEditor, anItem);
+		if(!ignoreConfigure) {
+         super.configureEditor(anEditor, anItem);
+      }
 	}
 
 	/**
@@ -322,8 +324,7 @@ public class AutocompleteComboBox<V> extends JComboBox {
 
 		@Override
 		public void focusLost(FocusEvent e) {
-			Object selectedItem = getSelectedItem();
-			if(selectedItem!=null){
+			if(getSelectedItem()!=null){
 				getEditor().setItem(getSelectedItem());
 			}
 		}
@@ -350,6 +351,7 @@ public class AutocompleteComboBox<V> extends JComboBox {
      * Bug polega na tym że {@link DefaultCellEditor} woła tą metodę
      * na bezpośrednio.
      */
+    @Override
     public void actionPerformed(ActionEvent e) {
         Object newItem = getEditor().getItem();
         setPopupVisible(false);

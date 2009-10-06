@@ -13,6 +13,7 @@ public abstract class GeneralFilter<M,I> extends RowFilter<M, I> {
       this.columns = columns;
    }
 
+   @Override
    public boolean include(Entry<? extends M,? extends I> value){
       if(!enabled){
          return true;
@@ -27,10 +28,11 @@ public abstract class GeneralFilter<M,I> extends RowFilter<M, I> {
             }
          }
       } else {
-         for(int ii = 0; ii < count; ii++)
+         for(int ii = 0; ii < count; ii++) {
             if (include(value, count)) {
                return true;
             }
+         }
       }
       return false;
    }

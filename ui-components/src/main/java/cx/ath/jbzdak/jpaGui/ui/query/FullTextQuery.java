@@ -50,6 +50,7 @@ public class FullTextQuery extends AbstractQuery<String, String>{
       }
    }
 
+    @Override
     public boolean matches(String str){
         if(words!=null && words.length==0){
 			return true;
@@ -63,10 +64,9 @@ public class FullTextQuery extends AbstractQuery<String, String>{
 
     boolean matchesFuzzy(String str){
     	String[] targetWords = str.split("\\s+");
-		boolean found;
-		for(String word : words){
-			found = false;
-			for(String target : targetWords){
+       for(String word : words){
+          boolean found = false;
+          for(String target : targetWords){
 				if(!isBlank(target) && StringUtils.getLevenshteinDistance(word, target) <= levensteinDST){
 					found = true;
 					break;

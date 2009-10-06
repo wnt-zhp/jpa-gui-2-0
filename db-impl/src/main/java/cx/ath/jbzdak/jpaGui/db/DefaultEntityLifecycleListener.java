@@ -13,6 +13,7 @@ import javax.persistence.EntityManager;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.EnumMap;
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class DefaultEntityLifecycleListener implements EntityLifecycleListener{
    private static final Logger LOGGER = makeLogger();
 
    private final MultiMap methods = MultiValueMap.decorate(DefaultedMap.decorate(new EnumMap(LifecyclePhase.class), new Factory(){
+        @Override
         public Object create() {
             return new ArrayList();
         }
@@ -30,7 +32,9 @@ public class DefaultEntityLifecycleListener implements EntityLifecycleListener{
 		super();
        for(Method m : entityClass.getMethods()){
           LifecycleListener listener = m.getAnnotation(LifecycleListener.class);
-          if(listener==null) continue;
+          if(listener==null) {
+             continue;
+          }
           if(m.getParameterTypes().length!=1 || ! EntityManager.class.isAssignableFrom(m.getParameterTypes()[0])){
              LOGGER.warn("Method {} is annotated with LifecycleListener, but its parameters are wrong" ,m);
              continue;
@@ -63,13 +67,15 @@ public class DefaultEntityLifecycleListener implements EntityLifecycleListener{
 		}
 	}
 
+    @Override
     public void lifecycleEvent(LifecyclePhase phase, Object entity, EntityManager manager) {
        for(Method m : (List<Method>)methods.get(phase)){
             invokeWrap(m, entity, manager);
         }
     }
 
+    @Override
     public boolean listensToPhase(LifecyclePhase phase) {
-        return ((List)methods.get(phase)).size()!=0;
+        return !((Collection) methods.get(phase)).isEmpty();
     }
 }

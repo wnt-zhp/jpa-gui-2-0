@@ -2,6 +2,7 @@ package cx.ath.jbzdak.jpaGui.ui.autoComplete;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
 import edu.umd.cs.findbugs.annotations.Nullable;
+import org.apache.commons.lang.ObjectUtils;
 
 import javax.swing.*;
 import javax.swing.event.ListDataEvent;
@@ -84,10 +85,7 @@ public class MyComboBoxModel<V> implements MutableComboBoxModel {
 
 	@Override
 	public void setSelectedItem(@Nullable Object anItem){
-		if(
-			(selectedItem != null && !selectedItem.equals(anItem)) ||
-			(selectedItem == null && anItem !=null)
-			){
+		if(ObjectUtils.equals(selectedItem, anItem)){
 				setSelectedItemQuiet(anItem);
 				fireDataChanged(-1, -1);
 		}

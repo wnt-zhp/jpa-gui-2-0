@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@SuppressWarnings({"ALL"})
 public class PatternBeanFormatter {
 
 	private static final Pattern itemPattern = Pattern.compile("(?:\\{(\\#)(\\d+)?,?([\\w,]+)?\\})?\\{((\\d+)?\\.?([^{}\\#]*))\\}");
@@ -47,7 +48,8 @@ public class PatternBeanFormatter {
 		return formatMessage(message, null, new RendererProvider(), parameteters);
 	}
 
-	private static String formatMessage(String message, Map<String, Property<Object, Object>> propertyCache, RendererProvider renderers, Object... parameteters){
+	@SuppressWarnings({"TooBroadScope"})
+   private static String formatMessage(String message, Map<String, Property<Object, Object>> propertyCache, RendererProvider renderers, Object... parameteters){
 	Matcher m = itemPattern.matcher(message);
 		if(propertyCache == null){
 			propertyCache = cretePropertyCache();

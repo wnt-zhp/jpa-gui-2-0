@@ -31,7 +31,8 @@ public class TableObjectProperty<S> extends Property<S, S> {
 		 *             always; {@code ObjectProperty} is never writeable
 		 * @see #isWriteable
 		 */
-		@SuppressWarnings("unchecked")
+		@Override
+      @SuppressWarnings("unchecked")
 		public Class<? extends S> getWriteType(S source) {
 			return (Class<? extends S>) source.getClass();
 		}
@@ -42,11 +43,13 @@ public class TableObjectProperty<S> extends Property<S, S> {
 		 * @return the value of the {@code source} argument
 		 * @see #isReadable
 		 */
-		public S getValue(S source) {
+		@Override
+      public S getValue(S source) {
 			return source;
 		}
 
-		public void setValue(S source, S value) {
+		@Override
+      public void setValue(S source, S value) {
 		}
 
 		/**
@@ -55,7 +58,8 @@ public class TableObjectProperty<S> extends Property<S, S> {
 		 * @return {@code true}; {@code ObjectPropert} is always readable
 		 * @see #isWriteable
 		 */
-		public boolean isReadable(Object source) {
+		@Override
+      public boolean isReadable(Object source) {
 			return true;
 		}
 
@@ -65,7 +69,8 @@ public class TableObjectProperty<S> extends Property<S, S> {
 		 * @return {@code false}; {@code ObjectPropert} is never writeable
 		 * @see #isReadable
 		 */
-		public boolean isWriteable(Object source) {
+		@Override
+      public boolean isWriteable(Object source) {
 			return true;
 		}
 
@@ -78,7 +83,8 @@ public class TableObjectProperty<S> extends Property<S, S> {
 		 * 
 		 * @return a string representation of this {@code ObjectProperty}
 		 */
-		public String toString() {
+		@Override
+      public String toString() {
 			return getClass().getName();
 		}
 
@@ -86,7 +92,8 @@ public class TableObjectProperty<S> extends Property<S, S> {
 		 * Does nothing; the state of an {@code ObjectProperty} never changes so
 		 * listeners aren't useful.
 		 */
-		public void addPropertyStateListener(S source,
+		@Override
+      public void addPropertyStateListener(S source,
 				PropertyStateListener listener) {
 		}
 
@@ -96,7 +103,8 @@ public class TableObjectProperty<S> extends Property<S, S> {
 		 * 
 		 * @see #addPropertyStateListener
 		 */
-		public void removePropertyStateListener(S source,
+		@Override
+      public void removePropertyStateListener(S source,
 				PropertyStateListener listener) {
 		}
 
@@ -107,7 +115,8 @@ public class TableObjectProperty<S> extends Property<S, S> {
 		 * @return an empty array
 		 * @see #addPropertyStateListener
 		 */
-		public PropertyStateListener[] getPropertyStateListeners(S source) {
+		@Override
+      public PropertyStateListener[] getPropertyStateListeners(S source) {
 			return new PropertyStateListener[0];
 		}
 

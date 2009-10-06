@@ -21,15 +21,22 @@ public abstract class JPATransaction extends Transaction<EntityManager>{
          if(!wasActive){
             manager.getTransaction().commit();
          }
-      }catch (Exception e) {
+      }catch (RuntimeException e){
          try{
-            if(manager.getTransaction().isActive())
+            if(manager.getTransaction().isActive()) {
                manager.getTransaction().rollback();
+            }
          }catch (Exception re) {
             Utils.makeLogger(3).warn("", re);
          }
-         if (e instanceof RuntimeException) {
-            throw (RuntimeException) e;
+         throw  e;
+      }catch (Exception e) {
+         try{
+            if(manager.getTransaction().isActive()) {
+               manager.getTransaction().rollback();
+            }
+         }catch (Exception re) {
+            Utils.makeLogger(3).warn("", re);
          }
          throw new TransactionException(e);
       }finally{
@@ -52,15 +59,22 @@ public abstract class JPATransaction extends Transaction<EntityManager>{
             manager.getTransaction().commit();
          }
          return result;
-      }catch (Exception e) {
+      }catch (RuntimeException e){
          try{
-            if(manager.getTransaction().isActive())
+            if(manager.getTransaction().isActive()) {
                manager.getTransaction().rollback();
+            }
          }catch (Exception re) {
             Utils.makeLogger(3).warn("", re);
          }
-         if(e instanceof RuntimeException){
-            throw (RuntimeException) e;
+         throw e;
+      }catch (Exception e) {
+         try{
+            if(manager.getTransaction().isActive()) {
+               manager.getTransaction().rollback();
+            }
+         }catch (Exception re) {
+            Utils.makeLogger(3).warn("", re);
          }
          throw new TransactionException(e);
       }finally{
@@ -72,14 +86,16 @@ public abstract class JPATransaction extends Transaction<EntityManager>{
    }
 
 
-	public static void execute(DBManager<EntityManager> manager, Transaction transaction){
-		transaction.closeEntityManager= true;
-		execute(manager.createProvider(), transaction);
-	}
+   public static void execute(DBManager<EntityManager> manager, Transaction transaction){
+      transaction.closeEntityManager= true;
+      //noinspection deprecation
+      execute(manager.createProvider(), transaction);
+   }
 
    public static <T> T execute(DBManager<EntityManager> manager, ReturnableTransaction<EntityManager, T> transaction){
-		transaction.closeEntityManager= true;
-		return execute(manager.createProvider(), transaction);
-	}
+      transaction.closeEntityManager= true;
+      //noinspection deprecation
+      return execute(manager.createProvider(), transaction);
+   }
 
 }

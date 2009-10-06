@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
  */
 public class AutoBackupPack<T extends DBManager, L extends LifecycleAdministrator> extends  DefaultLifecycleListenerPack<T, L> {
 
-   private final static Logger LOGGER = LoggerFactory.getLogger(AutoBackupPack.class);
+   private static final Logger LOGGER = LoggerFactory.getLogger(AutoBackupPack.class);
 
    private final DateFormat backupDateFormat
              = new SimpleDateFormat("yyyy-MM-dd");

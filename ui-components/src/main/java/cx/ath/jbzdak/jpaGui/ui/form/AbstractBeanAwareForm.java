@@ -15,11 +15,13 @@ public abstract class AbstractBeanAwareForm<B,FE extends FormElement<?, ? super 
    
    protected BH beanHolder;
 
+   @Override
    public boolean add(FE e) {
       setBeanHolder(e, beanHolder);
       return super.add(e);
    }
 
+    @Override
     public boolean remove(FE fe) {
        if(super.remove(fe)){
          setBeanHolder(fe, null);
@@ -37,6 +39,7 @@ public abstract class AbstractBeanAwareForm<B,FE extends FormElement<?, ? super 
       }
    }
 
+   @Override
    public void setBeanHolder(BH beanHolder) {
       this.beanHolder = beanHolder;
       for(FE fe : forms){

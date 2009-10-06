@@ -22,7 +22,9 @@ public abstract class DbAdaptor<T, V> extends SwingWorkerAdaptor<T, V> {
 	public DbAdaptor(AdministrativeDBManager manager) {
 		super();
 		this.manager = manager;
-		if(manager==null) throw new IllegalArgumentException();
+		if(manager==null) {
+         throw new IllegalArgumentException();
+      }
 	}
 
 	/**

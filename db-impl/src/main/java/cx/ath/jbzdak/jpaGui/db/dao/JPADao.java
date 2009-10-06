@@ -69,9 +69,11 @@ public class JPADao<T> implements DAO<T> {
    */
    @Override
    public boolean beginTransaction() {
-      if (transactionManaged)
+      if (transactionManaged) {
          return false;
+      }
       if (entityManager == null || !entityManager.isOpen()) {
+         //noinspection deprecation,deprecation
          entityManager = manager.createProvider();
          transactionWideEntityManager = true;
       } else {
@@ -99,8 +101,9 @@ public class JPADao<T> implements DAO<T> {
       if(beginCount<=0){
          throw new IllegalStateException("Cant commit unopened transaction");
       }
-      if (transactionManaged)
+      if (transactionManaged) {
          return false;
+      }
       beginCount--;
       if (beginCount == 0) {
          entityManager.getTransaction().commit();

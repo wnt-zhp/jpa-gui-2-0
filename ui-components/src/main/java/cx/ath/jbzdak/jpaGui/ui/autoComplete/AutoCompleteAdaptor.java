@@ -87,7 +87,8 @@ public abstract class AutoCompleteAdaptor<T> implements Serializable{
 	 */
 	protected void setCurentFilteredResults(List<T> curentFilteredResults) {
 		List<T> lastResults = this.curentFilteredResults;
-		this.curentFilteredResults = curentFilteredResults;
+      //noinspection AssignmentToCollectionOrArrayFieldFromParameter
+      this.curentFilteredResults = curentFilteredResults;
 		support.firePropertyChange("curentFilteredResults", lastResults, this.curentFilteredResults);
 	}
 

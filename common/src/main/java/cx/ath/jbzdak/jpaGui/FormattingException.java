@@ -4,7 +4,7 @@ public class FormattingException extends Exception implements ExceptionForUser {
 
 	private static final long serialVersionUID = 1L;
 
-   private String rendererText;
+   private final String rendererText;
 
    public FormattingException(String message, String rendererText) {
       super(message);
@@ -20,22 +20,6 @@ public class FormattingException extends Exception implements ExceptionForUser {
       super(cause);
       this.rendererText = rendererText;
    }
-
-   public FormattingException() {
-		super();
-	}
-
-	public FormattingException(String message, Throwable cause) {
-		super(message, cause);
-	}
-
-	public FormattingException(String message) {
-		super(message);
-	}
-
-	public FormattingException(Throwable cause) {
-		super(cause);
-	}
 
    public String getRendererText() {
       return rendererText;

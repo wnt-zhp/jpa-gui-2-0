@@ -16,6 +16,11 @@ public class DisplayErrorDetailsDialog extends JDialog{
 
 	private static final long serialVersionUID = 1L;
 
+   /**
+    * Default size of error dialog in units of screen width.
+    */
+   public static final double DEFAULT_SIZE_WIDTH = 0.6, DEFAULT_SIZE_HEIGHT = 0.6;
+
    private  static final ClassHandler<Formatter> errorhandlers = ErrorHandlers.createLongHandlers();
 
    public static void showErrorDialog(Object message, Frame owner){
@@ -67,7 +72,7 @@ public class DisplayErrorDetailsDialog extends JDialog{
 		add(new JScrollPane(textArea));
 		add(closeButton, "tag finished, dock south");
 		setTitle("Sczegóły błędu");
-		setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
+		setDefaultCloseOperation(HIDE_ON_CLOSE);
 		//DisplayMode  displayMode = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode();
 		//setSize(max(displayMode.getWidth()/4, 640), max(displayMode.getHeight()/4, 480));
 		initLocation(this);
@@ -79,7 +84,7 @@ public class DisplayErrorDetailsDialog extends JDialog{
 			closeButton.requestFocus();
 			GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
          DisplayMode displayMode = graphicsEnvironment.getDefaultScreenDevice().getDisplayMode();
-         setSize((int)(displayMode.getWidth()* 0.6), (int)(displayMode.getHeight()* 0.6));
+         setSize((int)(displayMode.getWidth()* DEFAULT_SIZE_WIDTH), (int)(displayMode.getHeight()* DEFAULT_SIZE_HEIGHT));
 		}
 		super.setVisible(b);
 	}

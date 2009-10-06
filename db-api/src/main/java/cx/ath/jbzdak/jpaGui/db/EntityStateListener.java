@@ -1,11 +1,8 @@
 package cx.ath.jbzdak.jpaGui.db;
 
 /**
- * Created by IntelliJ IDEA.
- * User: jb
+ * @author Jacek Bzdak jbzdak@gmail.com
  * Date: 2009-04-14
- * Time: 23:11:20
- * To change this template use File | Settings | File Templates.
  */
 public interface EntityStateListener{
 

@@ -43,7 +43,7 @@ public enum JPARefreshType {
          default:
             throw new IllegalStateException();
       }
-   };
+   }
 
    JPARefreshType(RefreshType refreshType) {
       this.refreshType = refreshType;

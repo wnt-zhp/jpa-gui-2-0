@@ -26,18 +26,20 @@ public class ErrorHandlers {
 	}
 
 
-	public static abstract class Formatter {
+	public abstract static class Formatter {
 		public abstract String getMessage(Object error);
 	}
 
 	public static class ToStringFormatter extends Formatter {
-		public String getMessage(Object error) {
+		@Override
+      public String getMessage(Object error) {
 			return error.toString();
 		}
 	}
 
 	public static class ExceptionFormatter extends Formatter {
-		public String getMessage(Object error) {
+		@Override
+      public String getMessage(Object error) {
 			Exception e = (Exception) error;
 			if (!(e instanceof ExceptionForUser)
 					|| StringUtils.isEmpty(e.getMessage())) {
@@ -49,7 +51,8 @@ public class ErrorHandlers {
 	}
 
 	public static class ToDetailStringFormatter extends Formatter {
-		public String getMessage(Object error) {
+		@Override
+      public String getMessage(Object error) {
 
 			return error.toString() + "\n"
 					+ ToStringBuilder.reflectionToString(error);
@@ -59,7 +62,8 @@ public class ErrorHandlers {
 	public static class ExceptionDetailFormatter extends Formatter {
 
       final PatternBeanFormatter frmtr = new PatternBeanFormatter("Wyjątek! Wiadomość: '{message}'  klasa: '{class.simpleName}\n");
-		public String getMessage(Object error) {
+		@Override
+      public String getMessage(Object error) {
 			Exception e = (Exception) error;
 			StringWriter stringWriter = new StringWriter();
 			PrintWriter printWriter = new PrintWriter(stringWriter);

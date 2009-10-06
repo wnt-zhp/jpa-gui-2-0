@@ -35,6 +35,7 @@ public class H2Configuration<DBM extends JpaDbManager, USER_OBJECT>
 
    public URI datbaseUri;
 
+   @SuppressWarnings({"OverriddenMethodCallDuringObjectConstruction"})
    public H2Configuration(boolean suppresDefaults) {
       if(!suppresDefaults){
          setDefaults();
@@ -86,7 +87,7 @@ public class H2Configuration<DBM extends JpaDbManager, USER_OBJECT>
 
    public void setSysoutLevel(H2LogLevel logLevel){
       if(logLevel== H2LogLevel.SLF4J){
-         throw new IllegalArgumentException("Cant set level" + logLevel + " for system out. Use for normal logging (setLogLevel)");
+         throw new IllegalArgumentException("Cant set level" + H2LogLevel.SLF4J + " for system out. Use for normal logging (setLogLevel)");
       }
       connectionProperties.put("TRACE_LEVEL_SYSTEM_OUT", String.valueOf(logLevel.getLevel()));
       updateJDBCURL();

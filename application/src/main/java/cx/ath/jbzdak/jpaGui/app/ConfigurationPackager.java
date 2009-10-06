@@ -266,7 +266,7 @@ abstract class Converter<S, T> {
         }
 
         public Object convertReverse(Object value) {
-            return new Boolean((String)value);
+            return Boolean.valueOf((String)value);
         }
     };
 

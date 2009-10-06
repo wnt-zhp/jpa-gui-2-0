@@ -11,7 +11,8 @@ public class NoopDao<T> implements DAO<T> {
 	private boolean transactionManaged;
 
 
-	public T getBean() {
+	@Override
+   public T getBean() {
 		return entity;
 	}
 
@@ -21,17 +22,20 @@ public class NoopDao<T> implements DAO<T> {
 	}
 
 
-	public boolean isAutoCreateEntity() {
+	@Override
+   public boolean isAutoCreateEntity() {
 		return autoCreateEntity;
 	}
 
 
-	public boolean isTransactionManaged() {
+	@Override
+   public boolean isTransactionManaged() {
 		return transactionManaged;
 	}
 
 
-	public void setBean(T entity) {
+	@Override
+   public void setBean(T entity) {
 		this.entity = entity;
 	}
 
@@ -41,12 +45,14 @@ public class NoopDao<T> implements DAO<T> {
 	}
 
 
-	public void setAutoCreateEntity(boolean autoCreateEntity) {
+	@Override
+   public void setAutoCreateEntity(boolean autoCreateEntity) {
 		this.autoCreateEntity = autoCreateEntity;
 	}
 
 
-	public void setTransactionManaged(boolean transactionManaged) {
+	@Override
+   public void setTransactionManaged(boolean transactionManaged) {
 		this.transactionManaged = transactionManaged;
 	}
 

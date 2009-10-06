@@ -20,15 +20,15 @@ public class AbstractFormElement<T extends Component> implements DisplayFormElem
 
    private final String name;
 
-   private String shortDescription;
+   private String shortDescription = null;
 
-   private String longDescription;
+   private String longDescription = null;
 
-   private boolean error;
+   private boolean error = false;
 
    private boolean editable = true;
 
-   private Object errorMessage;
+   private Object errorMessage = null;
 
    protected final PropertyChangeSupport support = new PropertyChangeSupport(this);
 

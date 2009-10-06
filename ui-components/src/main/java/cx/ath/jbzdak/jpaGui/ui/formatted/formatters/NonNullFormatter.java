@@ -20,6 +20,7 @@ public class NonNullFormatter extends AbstractFormatter<Object, Object> {
       this.errorMessage = errorMessage;
    }
 
+   @Override
    public Object parseValue(String text) throws Exception {
       if(StringUtils.isBlank(text)){
          throw new ParsingException(errorMessage);
@@ -27,6 +28,7 @@ public class NonNullFormatter extends AbstractFormatter<Object, Object> {
       return text;
    }
 
+   @Override
    public String formatValue(Object value) throws FormattingException {
       return value==null?"":value.toString();
    }

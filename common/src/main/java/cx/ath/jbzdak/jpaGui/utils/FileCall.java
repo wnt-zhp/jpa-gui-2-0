@@ -16,9 +16,11 @@ import java.io.IOException;
  * Created by IntelliJ IDEA.
  * User: Jacek Bzdak jbzdak@gmail.com
  */
-public abstract class  FileCall {
+public final class  FileCall {
 
    private static final Logger LOGGER = Utils.makeLogger();
+
+   private FileCall() { }
 
    public interface FileRead{
       void read(FileInputStream fileInputStream) throws IOException;

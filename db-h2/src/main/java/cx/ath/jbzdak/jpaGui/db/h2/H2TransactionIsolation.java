@@ -7,7 +7,7 @@ package cx.ath.jbzdak.jpaGui.db.h2;
 public enum H2TransactionIsolation {
    READ_UNCOMMITED(0), READ_COMMITED(3), SERIALIZABLE(1);
 
-   private int number;
+   private final int number;
 
    H2TransactionIsolation(int number) {
       this.number = number;

@@ -26,6 +26,7 @@ public class FormatterEventHandlerImpl implements FormatterEventHandler{
       this.formatter = formatter;
    }
 
+   @Override
    public void setFormatter(MyFormatter formatter) {
       if(this.formatter!=formatter){
          this.formatter = formatter;

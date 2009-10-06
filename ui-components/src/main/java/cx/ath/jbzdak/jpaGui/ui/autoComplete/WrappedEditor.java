@@ -55,27 +55,33 @@ public class WrappedEditor implements ComboBoxEditor{
       });
 	}
 
-	public void addActionListener(ActionListener l) {
+	@Override
+   public void addActionListener(ActionListener l) {
 		wrapped.addActionListener(l);
 	}
 
-	public JTextComponent getEditorComponent() {
+	@Override
+   public JTextComponent getEditorComponent() {
 		return (JTextComponent) wrapped.getEditorComponent();
 	}
 
-	public Object getItem() {
+	@Override
+   public Object getItem() {
 		return wrapped.getItem();
 	}
 
-	public void removeActionListener(ActionListener l) {
+	@Override
+   public void removeActionListener(ActionListener l) {
 		wrapped.removeActionListener(l);
 	}
 
-	public void selectAll() {
+	@Override
+   public void selectAll() {
 		wrapped.selectAll();
 	}
 
-	public void setItem(Object anObject) {
+	@Override
+   public void setItem(Object anObject) {
 		try{
 			ignoreSetText = true;
          if(formatItems){

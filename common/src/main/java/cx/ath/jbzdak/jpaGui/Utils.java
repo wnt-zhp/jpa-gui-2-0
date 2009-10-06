@@ -174,7 +174,7 @@ public class Utils {
 			throw new IllegalArgumentException();
 		}
       value = value.multiply(BigDecimal.TEN.pow(places));
-      value.round(new MathContext(0));
+      value = value.round(new MathContext(0));
 		return value.divide(BigDecimal.TEN.pow(places));
 	}
 

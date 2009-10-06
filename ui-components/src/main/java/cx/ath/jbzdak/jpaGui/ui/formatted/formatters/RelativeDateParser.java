@@ -19,7 +19,8 @@ public class RelativeDateParser {
 		return parseDate(representation, true);
 	}
 
-	public Integer parseDate(String representation, boolean throwOnNoMatch) throws ParsingException {
+	@SuppressWarnings({"ReuseOfLocalVariable", "ReuseOfLocalVariable"})
+   public Integer parseDate(String representation, boolean throwOnNoMatch) throws ParsingException {
 		representation = representation.trim();
 		Matcher match =zaNDni.matcher(representation);
 		if(match.matches()){
@@ -33,11 +34,12 @@ public class RelativeDateParser {
 		if(match.matches()){
 			boolean minus = false;
 			if(!StringUtils.isEmpty(match.group(1))){
-				minus = match.group(1).equals("-");
+				minus = "-".equals(match.group(1));
 			}
 			int result = parseDniWord(match.group(2));
-			if(minus)
-				return -result;
+			if(minus) {
+            return -result;
+         }
 			return result;
 		}
 		Integer result = parseOneWordRepresenattion(representation);

@@ -23,6 +23,8 @@ public class ErrorDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 
+   public static final int DEFAULT_FIRST_COMUMN_WIDTH = 300;
+
    public static void displayErrorDialog(List<Object> errors, @CheckForNull Frame frame){
       ErrorDialog errorDialog = new ErrorDialog(frame);
       errorDialog.setErrors(errors);
@@ -42,7 +44,7 @@ public class ErrorDialog extends JDialog {
 		detailsColumn.setCellEditor(new DetailRenderer());
 		detailsColumn.setCellRenderer(new DetailRenderer());
 		detailsColumn.setPreferredWidth(IconManager.getIconSafe("error_go").getIconWidth()+ 5);
-		table.getColumnModel().getColumn(0).setPreferredWidth(300);
+		table.getColumnModel().getColumn(0).setPreferredWidth(DEFAULT_FIRST_COMUMN_WIDTH);
 	}
 
 	final JButton closeButton;

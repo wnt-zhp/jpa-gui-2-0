@@ -16,6 +16,7 @@ public abstract class AbstractForm<B,FE extends FormElement<?, ? super B, ?>> im
    protected final List<FE> forms = new ArrayList<FE>();
    protected final List<Validator> validators = new ArrayList<Validator>();
 
+   @Override
    public void addValidator(Validator<? super B> v){
       validators.add(v);
    }
@@ -32,17 +33,20 @@ public abstract class AbstractForm<B,FE extends FormElement<?, ? super B, ?>> im
       }
    }
 
+   @Override
    public boolean add(FE e) {
       setForm(e, this);
       return forms.add(e);
    }
 
+   @Override
    public void addAll(Collection<? extends FE> c) {
       for(FE fe : c){
          add(fe);
       }
    }
 
+   @Override
    public boolean remove(FE fe) {
       if(forms.remove(fe)){
          setForm(fe, null);

@@ -14,7 +14,7 @@ public class HibernateDBConfiguration<DBM extends JpaDbManager,  USER_OBJECT>
    extends DefaultLifecycleAdministrator<DBM, USER_OBJECT>
 {
 
-   private Map<String, String> hibernateProperties = new HashMap<String, String>();
+   private final Map<String, String> hibernateProperties = new HashMap<String, String>();
 
    private String persistrenceUnit;
 

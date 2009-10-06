@@ -115,7 +115,7 @@ public class DefaultConfigEntry<T> implements ConfigEntry<T>{
       if(!single){
          throw new NonUniqueException();
       }
-      if(values.size()==0){
+      if(values.isEmpty()){
          throw new NoSuchElementException();
       }
       return values.get(0);
@@ -138,7 +138,7 @@ public class DefaultConfigEntry<T> implements ConfigEntry<T>{
       if (!single) {
          throw new IllegalStateException("Can't add single value to not single entry");
       }
-      if(values.size()==0){
+      if(values.isEmpty()){
          values.add(t);
          return;
       }

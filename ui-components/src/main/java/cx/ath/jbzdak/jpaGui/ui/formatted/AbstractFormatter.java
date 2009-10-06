@@ -20,10 +20,12 @@ public abstract class AbstractFormatter<V, V2> implements MyFormatter<V,V2> {
       this.eventHandler = eventHandler;
    }
 
+   @Override
    public void addFormatterChangedListener(ActionListener actionListener) {
       eventHandler.addFormatterChangedListener(actionListener);
    }
 
+   @Override
    public void removeFormatterChangedListener(ActionListener actionListener) {
       eventHandler.removeFormatterChangedListener(actionListener);
    }

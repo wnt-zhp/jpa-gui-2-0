@@ -1,6 +1,7 @@
 package cx.ath.jbzdak.jpaGui.db;
 
 import cx.ath.jbzdak.jpaGui.ConfigurationException;
+import edu.umd.cs.findbugs.annotations.CheckForNull;
 import net.jcip.annotations.NotThreadSafe;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +23,9 @@ public  class DefaultLifecycleAdministrator<T extends JpaDbManager, USER_OBJECT>
 
    protected final Lock lock = new ReentrantLock();
 
+   private static final Logger log = LoggerFactory.getLogger(DefaultLifecycleAdministrator.class);
+
+   @SuppressWarnings({"MapReplaceableByEnumMap"})
    private final Map<DBLifecyclePhase, List<LifecycleListener>> lifecycleListenerMap
            = new ConcurrentHashMap<DBLifecyclePhase, List<LifecycleListener>>();
    {
@@ -31,8 +35,6 @@ public  class DefaultLifecycleAdministrator<T extends JpaDbManager, USER_OBJECT>
       }
       lock.unlock();
    }
-
-   private Logger logger = LoggerFactory.getLogger(DefaultLifecycleAdministrator.class);
 
    private volatile T dbManager;
 
@@ -49,6 +51,7 @@ public  class DefaultLifecycleAdministrator<T extends JpaDbManager, USER_OBJECT>
    private boolean schemaNeedsUpdate;
 
    private final Set<PropertySetter> setters;
+
    {
       setters = new HashSet<PropertySetter>();
       setters.add(new PropertySetter("lifecycleAdministrator", LifecycleAdministrator.class){
@@ -78,14 +81,13 @@ public  class DefaultLifecycleAdministrator<T extends JpaDbManager, USER_OBJECT>
    }
 
 
-
    private void setLLProps(LifecycleListener lifecycleListener){
       for(PropertySetter setter : setters){
          setter.setOnObject(lifecycleListener);
       }
    }
 
-    private void setLLProps(LifecycleListener lifecycleListener, DBLifecyclePhase phase, Object[] params){
+    private void setLLProps(LifecycleListener lifecycleListener, DBLifecyclePhase phase, @CheckForNull Object[] params){
       setLLProps(lifecycleListener);
       new DefaultSetter("phase", phase).setOnObject(lifecycleListener);
       new DefaultSetter("params", params).setOnObject(lifecycleListener);
@@ -98,7 +100,7 @@ public  class DefaultLifecycleAdministrator<T extends JpaDbManager, USER_OBJECT>
       try{
          for(LifecycleListener ll :lifecycleListenerMap.get(phase)){
             setLLProps(ll, phase, parameters);
-            logger.debug("Executing lifecycle listener {}", ll);
+            log.debug("Executing lifecycle listener {}", ll);
             ll.executePhase();
             ll.clear();
          }
@@ -109,8 +111,8 @@ public  class DefaultLifecycleAdministrator<T extends JpaDbManager, USER_OBJECT>
 
     @Override
    public List<?> mayGoToPhase(DBLifecyclePhase phase){
-      lock.lock();
       List<Object> results = new ArrayList<Object>();
+      lock.lock();
       try{
          for(LifecycleListener ll :lifecycleListenerMap.get(phase)){
             setLLProps(ll, phase, null);
@@ -126,6 +128,7 @@ public  class DefaultLifecycleAdministrator<T extends JpaDbManager, USER_OBJECT>
       return results;
    }
 
+   @SuppressWarnings({"CollectionDeclaredAsConcreteClass"})
    @Override
    public void addListener(EnumSet<DBLifecyclePhase> phases, LifecycleListener listener) {
       lock.lock();
@@ -150,8 +153,10 @@ public  class DefaultLifecycleAdministrator<T extends JpaDbManager, USER_OBJECT>
    public void addListenerPack(LifecycleListenerPack listenerPack) {
       lock.lock();
       try{
-         if(insertedPacks.contains(listenerPack.getName())){
-            throw new ConfigurationException("Already inserted pack '" + listenerPack.getName() + "'");
+         for(String name : listenerPack.getName()){
+            if(insertedPacks.contains(name)){
+               throw new ConfigurationException("Already inserted pack '" + name + "'");
+            }
          }
          for(String neededPack : listenerPack.getNeededPacks()){
             if(!insertedPacks.contains(neededPack)){
@@ -276,7 +281,7 @@ public  class DefaultLifecycleAdministrator<T extends JpaDbManager, USER_OBJECT>
    }
 
    @NotThreadSafe
-   private static abstract class PropertySetter{
+   private abstract static class PropertySetter{
       private final String propertyName;
 
       private final String setterName;

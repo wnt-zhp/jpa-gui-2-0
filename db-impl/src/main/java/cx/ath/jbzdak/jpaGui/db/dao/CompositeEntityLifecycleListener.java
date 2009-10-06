@@ -12,7 +12,6 @@ import java.util.List;
  * User: Jacek Bzdak jbzdak@gmail.com
  * Date: 2009-04-14
  * Time: 23:51:00
- * To change this template use File | Settings | File Templates.
  */
 public class CompositeEntityLifecycleListener implements EntityLifecycleListener{
 
@@ -29,6 +28,7 @@ public class CompositeEntityLifecycleListener implements EntityLifecycleListener
         return dbManager.getListener(entityClazz);
     }
 
+    @Override
     public boolean listensToPhase(LifecyclePhase phase) {
         for(EntityLifecycleListener listener : getListeners()){
             if(listener.listensToPhase(phase)){
@@ -38,6 +38,7 @@ public class CompositeEntityLifecycleListener implements EntityLifecycleListener
         return false;
     }
 
+    @Override
     public void lifecycleEvent(LifecyclePhase phase, Object entity, EntityManager manager) {
         for(EntityLifecycleListener listener : getListeners()){
             listener.lifecycleEvent(phase, entity, manager);

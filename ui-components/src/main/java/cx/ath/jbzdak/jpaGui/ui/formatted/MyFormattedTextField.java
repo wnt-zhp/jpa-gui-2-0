@@ -44,7 +44,7 @@ public class MyFormattedTextField<V> extends JTextField{
    //Listeners
 	private TextListener listener;
 
-   private ActionListener formatterListener = new ActionListener() {
+   private final ActionListener formatterListener = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
          attemptParseText();
@@ -163,7 +163,8 @@ public class MyFormattedTextField<V> extends JTextField{
       }
 	}
 
-	private void onTextChange(){
+	@SuppressWarnings({"MethodOnlyUsedFromInnerClass"})
+   private void onTextChange(){
 		if(!ignoreSetText){
 			setUserEnteredText(getText());
 			attemptParseText();

@@ -1,6 +1,7 @@
 package cx.ath.jbzdak.jpaGui.ui.query;
 
 import edu.umd.cs.findbugs.annotations.OverrideMustInvoke;
+import org.apache.commons.lang.ObjectUtils;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,9 +37,10 @@ public abstract class AbstractQuery<P, O> implements Query<P, O> {
       this.support = support;
    }
 
+   @Override
    @OverrideMustInvoke
    public void setQuery(P query) {
-      if((this.query == null &&  query != null ) || (this.query!=null && !this.query.equals(query))){
+      if(ObjectUtils.equals(this.query,  query)){
          P oldQuery = this.query;
          this.query = query;
          queryChangedEntry();
@@ -64,37 +66,47 @@ public abstract class AbstractQuery<P, O> implements Query<P, O> {
     }
 
 
+   @Override
    public boolean addActionListener(ActionListener actionListener) {
         return actionListeners.add(actionListener);
     }
 
+    @Override
     public List<ActionListener> getActionListeners() {
         return Collections.unmodifiableList(actionListeners);
     }
 
+    @Override
     public ActionListener removeActionListener(int index) {
         return actionListeners.remove(index);
     }
 
+   @Override
    public void addPropertyChangeListener(PropertyChangeListener listener) {support.addPropertyChangeListener(listener);}
 
+   @Override
    public void removePropertyChangeListener(PropertyChangeListener listener) {
       support.removePropertyChangeListener(listener);
    }
 
+   @Override
    public PropertyChangeListener[] getPropertyChangeListeners() {return support.getPropertyChangeListeners();}
 
+   @Override
    public void addPropertyChangeListener(String propertyName, PropertyChangeListener listener) {
       support.addPropertyChangeListener(propertyName, listener);
    }
 
+   @Override
    public void removePropertyChangeListener(String propertyName, PropertyChangeListener listener) {
       support.removePropertyChangeListener(propertyName, listener);
    }
 
+   @Override
    public PropertyChangeListener[] getPropertyChangeListeners(String propertyName) {
       return support.getPropertyChangeListeners(propertyName);
    }
 
+   @Override
    public boolean hasListeners(String propertyName) {return support.hasListeners(propertyName);}
 }
