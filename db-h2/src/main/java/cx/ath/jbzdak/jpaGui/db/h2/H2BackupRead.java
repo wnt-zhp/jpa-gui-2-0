@@ -22,11 +22,11 @@ public class H2BackupRead<T extends DBManager> extends DefaultLifecycleListener<
       if(target == null){
          throw new IllegalStateException("Cant resolve file frow which we need to read backup.");
       }
-      if(!target.isFile()){
-         throw new IllegalStateException("Backup file from wchich we need to read is not a file or does nor exist");
-      }
+//      if(!target.isFile()){
+//         throw new IllegalStateException("Backup file from wchich we need to read is not a file or does nor exist, filename is " + target.getAbsolutePath());
+//      }
       lifecycleAdministartor.goToPhase(DBLifecyclePhase.CLEAR_DB_CONTENTS);
-      dbManager.executeNativeStatement("RUNSCRIPT FROM " + target.getAbsolutePath() + " COMPRESSION ZIP;");
+      dbManager.executeNativeStatement("RUNSCRIPT FROM '"+ target.getAbsolutePath() +"';");
    }
 
 }

@@ -7,8 +7,13 @@
     <layout class="org.apache.log4j.SimpleLayout"/>
   </appender>
 
+
+  <logger name="cx">
+      <level value="ALL"/>
+  </logger>
+
   <root>
-    <priority value ="debug" />
+    <priority value ="WARN" />
     <appender-ref ref="ConsoleAppender"/>
   </root>
 

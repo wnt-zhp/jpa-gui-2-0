@@ -223,9 +223,11 @@ public  class DefaultLifecycleAdministrator<T extends JpaDbManager, USER_OBJECT>
          if(wasStarted){
             closeDB();
          }
-         goToPhase(DBLifecyclePhase.PRE_BACKUP, parameters);
-         goToPhase(DBLifecyclePhase.BACKUP, parameters);
-         goToPhase(DBLifecyclePhase.POST_BACKUP, parameters);
+         startDB();
+         goToPhase(DBLifecyclePhase.PRE_READ_BACKUP, parameters);
+         goToPhase(DBLifecyclePhase.READ_BACKUP, parameters);
+         goToPhase(DBLifecyclePhase.POST_READ_BACKUP, parameters);
+         closeDB();
          if(wasStarted){
             startDB();
          }
@@ -317,7 +319,8 @@ public  class DefaultLifecycleAdministrator<T extends JpaDbManager, USER_OBJECT>
          //We're searching for perfect math for method
          Class clazz = this.clazz!=null?this.clazz:getValue().getClass();
          try {
-            invokeMethod(o.getClass().getMethod(setterName), clazz);
+            invokeMethod(o.getClass().getMethod(setterName, clazz), o);
+            return;
          } catch (NoSuchMethodException e) {
             //OK nie znaleźliśmy metody z poprawną nazwą.
          }

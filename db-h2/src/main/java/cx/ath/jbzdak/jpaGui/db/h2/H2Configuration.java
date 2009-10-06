@@ -50,6 +50,7 @@ public class H2Configuration<DBM extends JpaDbManager, USER_OBJECT>
       setDialect(H2Dialect.class.getCanonicalName());
       setDriverClassName(Driver.class.getCanonicalName());
       setAutoMixedMode(true);
+      setLogLevel(H2LogLevel.SLF4J);
    }
 
    protected void updateJDBCURL(){

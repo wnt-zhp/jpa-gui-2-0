@@ -25,7 +25,7 @@ public class H2BackupListener<T extends DBManager, L extends LifecycleAdministra
       if(f.exists()){
          throw new IllegalArgumentException("Cant backup, backup file already exists");
       }
-      dbManager.executeNativeStatement("BACKUP TO " + f.getAbsolutePath() + " COMPRESSION ZIP;");
+      dbManager.executeNativeStatement("SCRIPT TO '" + f.getAbsolutePath() + "';");
    }
 
 }

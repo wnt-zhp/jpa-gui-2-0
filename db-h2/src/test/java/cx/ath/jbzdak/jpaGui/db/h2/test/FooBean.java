@@ -9,7 +9,7 @@ import javax.persistence.Id;
  *         Date: 2009-10-04
  */
 @Entity
-public class TestBean {
+public class FooBean {
 
    @Id
    @GeneratedValue

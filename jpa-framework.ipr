@@ -87,7 +87,7 @@
     <entry_points version="2.0" />
   </component>
   <component name="InspectionProjectProfileManager">
-    <option name="PROJECT_PROFILE" value="jpa-framework" />
+    <option name="PROJECT_PROFILE" value="Project Default" />
     <option name="USE_PROJECT_LEVEL_SETTINGS" value="true" />
     <scopes />
     <profiles>
@@ -96,7 +96,7 @@
         <option name="myLocal" value="false" />
       </profile>
       <profile version="1.0" is_locked="true">
-        <option name="myName" value="jpa-framework" />
+        <option name="myName" value="den" />
         <option name="myLocal" value="false" />
         <inspection_tool class="DisjointPackage" level="WARNING" enabled="false" />
         <inspection_tool class="FieldCanBeLocal" level="WARNING" enabled="true" />
@@ -495,7 +495,7 @@
         </inspection_tool>
         <inspection_tool class="NativeMethods" level="WARNING" enabled="false" />
         <inspection_tool class="KeySetIterationMayUseEntrySet" level="WARNING" enabled="true" />
-        <inspection_tool class="LawOfDemeter" level="WARNING" enabled="true">
+        <inspection_tool class="LawOfDemeter" level="WARNING" enabled="false">
           <option name="ignoreLibraryCalls" value="true" />
         </inspection_tool>
         <inspection_tool class="HtmlUnknownTag" level="WARNING" enabled="true">
@@ -1946,17 +1946,6 @@
         <root url="jar://$MAVEN_REPOSITORY$/junit/junit/4.5/junit-4.5-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: com.h2database:h2:1.1.111">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/h2database/h2/1.1.111/h2-1.1.111.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/com/h2database/h2/1.1.111/h2-1.1.111-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/h2database/h2/1.1.111/h2-1.1.111-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Maven: findbugs:annotations:1.0.0">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/findbugs/annotations/1.0.0/annotations-1.0.0.jar!/" />
@@ -2155,15 +2144,15 @@
         <root url="jar://$MAVEN_REPOSITORY$/cx/ath/jbzdak/gui/famfam/1.0/famfam-1.0-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.swinglabs:swingx:0.9.5-2">
+    <library name="Maven: com.h2database:h2:1.1.119">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/swinglabs/swingx/0.9.5-2/swingx-0.9.5-2.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/com/h2database/h2/1.1.119/h2-1.1.119.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/swinglabs/swingx/0.9.5-2/swingx-0.9.5-2-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/com/h2database/h2/1.1.119/h2-1.1.119-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/swinglabs/swingx/0.9.5-2/swingx-0.9.5-2-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/../../../jb/h2database-read-only/h2/src/main/main.jar!/" />
       </SOURCES>
     </library>
   </component>

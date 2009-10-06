@@ -13,20 +13,20 @@ import java.rmi.server.UID;
  * @author Jacek Bzdak jbzdak@gmail.com
  *         Date: 2009-10-04
  */
-public class TestDatabase {
+public class Database {
 
    private Logger log = LoggerFactory.getLogger("Test");
 
    DefaultH2Configuration h2Configuration = new DefaultH2Configuration(false);
 
    private void prepareConfig(){
-      File file = new File(TestProperties.properties.getProperty("db.dir"), new UID().toString().replaceAll("\\:", ""));
+      File file = new File(Properties.properties.getProperty("db.dir"), new UID().toString().replaceAll("\\:", ""));
       log.debug("database file is " + file.getAbsolutePath());
       h2Configuration.setDatbaseUri(file.toURI());
       h2Configuration.setSchemaAutoCreate(Hbm2ddl.UPDATE);
    }
 
-   public TestDatabase() {
+   public Database() {
       prepareConfig();
    }
 
