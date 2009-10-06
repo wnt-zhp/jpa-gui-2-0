@@ -2,6 +2,8 @@ package cx.ath.jbzdak.jpaGui.db;
 
 import org.hibernate.ejb.Ejb3Configuration;
 
+import java.util.Map;
+
 public class CreateEJB3Confihuration<T extends JpaDbManager> extends DefaultLifecycleListener<T, HibernateDBConfiguration> {
       public CreateEJB3Confihuration() {
          super(1000, "CREATE_EJB3_CONFIGURATION");
@@ -11,5 +13,9 @@ public class CreateEJB3Confihuration<T extends JpaDbManager> extends DefaultLife
    public void executePhase() {
       Ejb3Configuration ejb3Configuration = new Ejb3Configuration();
       ejb3Configuration.configure(lifecycleAdministartor.getPersistrenceUnit(), lifecycleAdministartor.getHibernateProperties());
-      lifecycleAdministartor.setEjb3Configuration(new Ejb3Configuration());}
+      for(Map.Entry<String, String> entry : (Iterable<? extends Map.Entry<String, String>>) lifecycleAdministartor.getHibernateProperties().entrySet()){
+         ejb3Configuration.setProperty(entry.getKey(), entry.getValue());
+      }
+      lifecycleAdministartor.setEjb3Configuration(ejb3Configuration);
+   }
 }

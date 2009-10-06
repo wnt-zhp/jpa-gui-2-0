@@ -9,6 +9,7 @@ public class CloseEntityManagerFactory<T extends JpaDbManager, L extends Lifecyc
    @Override
    public void executePhase() throws Exception {
       dbManager.entityManagerFactory.close();
+      lifecycleAdministartor.setDBManager(null);
    }
 
 }

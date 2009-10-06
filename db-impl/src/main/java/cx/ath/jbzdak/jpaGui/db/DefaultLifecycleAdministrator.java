@@ -2,12 +2,13 @@ package cx.ath.jbzdak.jpaGui.db;
 
 import cx.ath.jbzdak.jpaGui.ConfigurationException;
 import net.jcip.annotations.NotThreadSafe;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -18,12 +19,22 @@ import java.util.concurrent.locks.ReentrantLock;
 public  class DefaultLifecycleAdministrator<T extends JpaDbManager, USER_OBJECT>
         implements LifecycleAdministrator<T, USER_OBJECT> {
 
-   private final Map<DBLifecyclePhase, List<LifecycleListener>> lifecycleListenerMap
-           = new ConcurrentHashMap<DBLifecyclePhase, List<LifecycleListener>>();
-
-   private volatile T dbManager;
 
    protected final Lock lock = new ReentrantLock();
+
+   private final Map<DBLifecyclePhase, List<LifecycleListener>> lifecycleListenerMap
+           = new ConcurrentHashMap<DBLifecyclePhase, List<LifecycleListener>>();
+   {
+      lock.lock();
+      for(DBLifecyclePhase phase : DBLifecyclePhase.values()){
+         lifecycleListenerMap.put(phase, new ArrayList<LifecycleListener>());
+      }
+      lock.unlock();
+   }
+
+   private Logger logger = LoggerFactory.getLogger(DefaultLifecycleAdministrator.class);
+
+   private volatile T dbManager;
 
    protected final Set<String> insertedPacks = new HashSet<String>();
 
@@ -32,6 +43,10 @@ public  class DefaultLifecycleAdministrator<T extends JpaDbManager, USER_OBJECT>
    private Map<String, Object> userConfiguration = new ConcurrentHashMap<String, Object>();
 
    private boolean databaseStarted;
+
+   private boolean databaseInitialized;
+
+   private boolean schemaNeedsUpdate;
 
    private final Set<PropertySetter> setters;
    {
@@ -48,7 +63,7 @@ public  class DefaultLifecycleAdministrator<T extends JpaDbManager, USER_OBJECT>
             return dbManager;
          }
       });
-      setters.add(new PropertySetter("userObject"){
+      setters.add(new PropertySetter("userObject", Object.class){
          @Override
          Object getValue() {
             return userObject;
@@ -61,6 +76,7 @@ public  class DefaultLifecycleAdministrator<T extends JpaDbManager, USER_OBJECT>
          }
       });
    }
+
 
 
    private void setLLProps(LifecycleListener lifecycleListener){
@@ -82,6 +98,7 @@ public  class DefaultLifecycleAdministrator<T extends JpaDbManager, USER_OBJECT>
       try{
          for(LifecycleListener ll :lifecycleListenerMap.get(phase)){
             setLLProps(ll, phase, parameters);
+            logger.debug("Executing lifecycle listener {}", ll);
             ll.executePhase();
             ll.clear();
          }
@@ -116,7 +133,7 @@ public  class DefaultLifecycleAdministrator<T extends JpaDbManager, USER_OBJECT>
          for(DBLifecyclePhase phase : phases){
             List<LifecycleListener> listeners = lifecycleListenerMap.get(phase);
             if(listeners == null){
-               listeners = new CopyOnWriteArrayList<LifecycleListener>();
+               listeners = new ArrayList<LifecycleListener>();
                lifecycleListenerMap.put(phase, listeners);
             }
             if(!listeners.contains(listener)){
@@ -161,10 +178,10 @@ public  class DefaultLifecycleAdministrator<T extends JpaDbManager, USER_OBJECT>
       try{
          goToPhase(DBLifecyclePhase.PRE_START);
          goToPhase(DBLifecyclePhase.START);
-         if(!(Boolean) userConfiguration.get("isDBInitialized")){
+         if(!databaseInitialized){
             goToPhase(DBLifecyclePhase.SHEMA_CREATE);
          }
-         if((Boolean) userConfiguration.get("schemaNeedsUpdate")){
+         if(schemaNeedsUpdate){
             goToPhase(DBLifecyclePhase.SHEMA_UPDATE);
          }
          goToPhase(DBLifecyclePhase.DB_SETUP);
@@ -250,13 +267,12 @@ public  class DefaultLifecycleAdministrator<T extends JpaDbManager, USER_OBJECT>
       this.dbManager = dbManager;
    }
 
-
-   public void setDbManager(T dbManager) {
-      this.dbManager = dbManager;
-   }
-
    public boolean isDatabaseStarted() {
       return databaseStarted;
+   }
+
+   public T getDbManager() {
+      return dbManager;
    }
 
    @NotThreadSafe
@@ -301,13 +317,14 @@ public  class DefaultLifecycleAdministrator<T extends JpaDbManager, USER_OBJECT>
             //OK nie znaleźliśmy metody z poprawną nazwą.
          }
          //Now were searching for imperfect match.
+         List<Method> objectMethods = Arrays.asList(Object.class.getMethods());
          Method result = null;
          for(Method m : o.getClass().getMethods()){
-            if(m.getParameterTypes().length==1 && m.getParameterTypes()[0].isAssignableFrom(clazz)){
+            if(m.getParameterTypes().length==1 && m.getParameterTypes()[0].isAssignableFrom(clazz) && !objectMethods.contains(m)){
                if(result==null){
                   result = m;
                }else{
-                  throw new IllegalStateException("Cant set property '"  + propertyName + "' on Object cant find unique setter method");
+                  throw new IllegalStateException("Cant set property '"  + propertyName + "' on Object cant find unique setter method on " + o);
                }
             }
          }

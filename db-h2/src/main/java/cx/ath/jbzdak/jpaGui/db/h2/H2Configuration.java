@@ -45,13 +45,16 @@ public class H2Configuration<DBM extends JpaDbManager, USER_OBJECT>
       }
    }
 
-   private void setDefaults(){
+   protected void setDefaults(){
       setDialect(H2Dialect.class.getCanonicalName());
       setDriverClassName(Driver.class.getCanonicalName());
       setAutoMixedMode(true);
    }
 
-   private void updateJDBCURL(){
+   protected void updateJDBCURL(){
+      if(datbaseUri == null){
+         return;
+      }
       StringBuilder url = new StringBuilder(jdbcUrlPrefix);
       if("file".equals(datbaseUri.getScheme())){
          url.append(new File(datbaseUri).getAbsolutePath());
@@ -59,10 +62,10 @@ public class H2Configuration<DBM extends JpaDbManager, USER_OBJECT>
          url.append(datbaseUri.toASCIIString());
       }
       for(Map.Entry<String, String> property : connectionProperties.entrySet()){
+         url.append(";");
          url.append(property.getKey());
          url.append("=");
-         url.append(property.getValue());
-         url.append(";");
+         url.append(property.getValue());         
       }
       setJDBCUrl(url.toString());
    }

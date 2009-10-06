@@ -204,9 +204,16 @@ public class JPADao<T> implements DAO<T> {
    */
    @Override
    public void find(Object o) {
+      if(o==null){
+         throw new IllegalArgumentException("Id cant be null");
+      }
       beginTransaction();
       try {
-         setBean(getEntityManager().find(clazz, o));
+         T bean =getEntityManager().find(clazz, o);
+         if(bean==null){
+            throw new IllegalArgumentException("Can't find bean");
+         }
+         setBean(bean);
          if (getBean() == null) {
             throw new NoSuchElementException();
          }

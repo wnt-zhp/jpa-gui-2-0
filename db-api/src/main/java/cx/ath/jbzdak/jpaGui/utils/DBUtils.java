@@ -26,17 +26,17 @@ public class DBUtils {
    }
 
    private static AnnotatedElement getIDAnnotatedElement(Object object){
-      AnnotatedElement id = AnnotationUtils.findByAnnotatio(Id.class, object.getClass().getFields());
+      AnnotatedElement id = AnnotationUtils.findByAnnotatio(Id.class, object.getClass().getDeclaredFields());
       if (id == null) {
-         id = AnnotationUtils.findByAnnotatio(Id.class, object.getClass().getMethods());
+         id = AnnotationUtils.findByAnnotatio(Id.class, object.getClass().getDeclaredMethods());
       }
       return id;
    }
 
    private static Member getIDMember(Object object){
-      Member id = AnnotationUtils.findByAnnotatio(Id.class, object.getClass().getFields());
+      Member id = AnnotationUtils.findByAnnotatio(Id.class, object.getClass().getDeclaredFields());
       if (id == null) {
-         id = AnnotationUtils.findByAnnotatio(Id.class, object.getClass().getMethods());
+         id = AnnotationUtils.findByAnnotatio(Id.class, object.getClass().getDeclaredMethods());
       }
       return id;
    }

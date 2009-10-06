@@ -2,14 +2,14 @@ package cx.ath.jbzdak.jpaGui.db;
 
 /**
  * @author Jacek Bzdak jbzdak@gmail.com
- *         Date: 2009-09-11
+ *         Date: 2009-10-04
  */
-public enum Hbm2ddlAuto {
-   VALIDATE("value"), UPDATE("update"), CREATE("create"), CREATE_DROP("create-drop");
+public enum Hbm2ddl {
+   CREATE("create"), VALIDATE("validate"), CREATE_DROP("create-drop"), UPDATE("update"); 
 
    private final String value;
 
-   Hbm2ddlAuto(String value) {
+   Hbm2ddl(String value) {
       this.value = value;
    }
 

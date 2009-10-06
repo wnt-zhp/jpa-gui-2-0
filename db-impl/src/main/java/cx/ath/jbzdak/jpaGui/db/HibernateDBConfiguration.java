@@ -1,5 +1,6 @@
 package cx.ath.jbzdak.jpaGui.db;
 
+import org.hibernate.cfg.Environment;
 import org.hibernate.ejb.Ejb3Configuration;
 
 import java.util.HashMap;
@@ -20,7 +21,7 @@ public class HibernateDBConfiguration<DBM extends JpaDbManager,  USER_OBJECT>
    private Ejb3Configuration ejb3Configuration;
 
    public HibernateDBConfiguration() {
-    
+      
    }
 
    public void setPersistrenceUnit(String persistrenceUnit) {
@@ -60,7 +61,7 @@ public class HibernateDBConfiguration<DBM extends JpaDbManager,  USER_OBJECT>
    }
 
    public void setDialect(String dialect){
-      hibernateProperties.put("hibernate.dialect", dialect);
+      hibernateProperties.put(Environment.DIALECT, dialect);
    }
 
    public void setShowSql(Boolean show){
@@ -69,6 +70,10 @@ public class HibernateDBConfiguration<DBM extends JpaDbManager,  USER_OBJECT>
 
    public void setFormatSql(Boolean format){
        hibernateProperties.put("hibernate.format_sql", format.toString());
+   }
+
+     public void setSchemaAutoCreate(Hbm2ddl hbm2ddl){
+       hibernateProperties.put(Environment.HBM2DDL_AUTO, hbm2ddl.getValue());
    }
 
 }
