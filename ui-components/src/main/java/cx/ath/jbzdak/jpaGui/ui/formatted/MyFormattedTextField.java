@@ -43,7 +43,7 @@ public class MyFormattedTextField<V> extends JTextField{
 
    //Listeners
 	private TextListener listener;
-
+   
    private final ActionListener formatterListener = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
