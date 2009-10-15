@@ -51,7 +51,7 @@ public class WrappedEditor implements ComboBoxEditor{
          @Override
          protected void doStuff(DocumentEvent e) {
             if( !ignoreSetText){ setFilter(textComponent.getText()); }
-         }
+            }
       });
 	}
 
@@ -144,6 +144,10 @@ public class WrappedEditor implements ComboBoxEditor{
 			PropertyChangeListener listener) {
 		support.removePropertyChangeListener(propertyName, listener);
 	}
+
+   ComboBoxEditor getWrapped() {
+      return wrapped;
+   }
 
    public boolean isFormatItems() {
       return formatItems;

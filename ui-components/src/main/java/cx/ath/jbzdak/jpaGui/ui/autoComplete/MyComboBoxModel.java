@@ -85,7 +85,7 @@ public class MyComboBoxModel<V> implements MutableComboBoxModel {
 
 	@Override
 	public void setSelectedItem(@Nullable Object anItem){
-		if(ObjectUtils.equals(selectedItem, anItem)){
+		if(!ObjectUtils.equals(selectedItem, anItem)){
 				setSelectedItemQuiet(anItem);
 				fireDataChanged(-1, -1);
 		}
@@ -195,9 +195,13 @@ public class MyComboBoxModel<V> implements MutableComboBoxModel {
 		if(index > -1 && index < items.size()){
 			removeAndCheck(index, items.get(index));
 		}
-	}
+   }
 
-	@SuppressWarnings({"WeakerAccess"})
+   public List<Object> getItems() {
+      return Collections.unmodifiableList(items);
+   }
+
+   @SuppressWarnings({"WeakerAccess"})
    protected void fireIntervalDeleted(int leftBound, int rightBound){
 		ListDataEvent dataEvent = new ListDataEvent(this, ListDataEvent.INTERVAL_REMOVED, leftBound, rightBound);
 		for(ListDataListener ldl : listeners){

@@ -1,16 +1,15 @@
 package cx.ath.jbzdak.jpaGui.ui.autoComplete;
 
 import javax.swing.*;
+import java.util.Collection;
 import java.util.concurrent.ExecutionException;
 
 /**
  * Używa {@link SwingWorker} do wykonywania prac w tle.
  *
  * @author jb
- *
- * @param <T>
  */
-public abstract class SwingWorkerAdaptor<T, V> extends AutoCompleteAdaptor<V> {
+public abstract class SwingWorkerAdaptor<V> extends AutoCompleteAdaptor<V> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -18,7 +17,7 @@ public abstract class SwingWorkerAdaptor<T, V> extends AutoCompleteAdaptor<V> {
 
 	private transient boolean newQueryNeeded;
 
-	private  T value;
+	private Collection<V> value;
 
 	private ExecutionException ee;
 
@@ -26,7 +25,7 @@ public abstract class SwingWorkerAdaptor<T, V> extends AutoCompleteAdaptor<V> {
 
 	private transient int workerNum=0;
 
-	T get() throws ExecutionException, InterruptedException{
+	Collection<V>  get() throws ExecutionException, InterruptedException{
 		if(ee !=null){
 			throw ee;
 		}
@@ -37,7 +36,7 @@ public abstract class SwingWorkerAdaptor<T, V> extends AutoCompleteAdaptor<V> {
 	}
 
 
-	public T getUnsafe(){
+	public Collection<V>  getUnsafe(){
 		try{
 			return get();
 		}catch (Exception e) {
@@ -64,7 +63,7 @@ public abstract class SwingWorkerAdaptor<T, V> extends AutoCompleteAdaptor<V> {
 	 * Metoda wywoływana w tle.
 	 * @return wyniki przeszukiwania
 	 */
-	protected abstract T doInBackground();
+	protected abstract Collection<V>  doInBackground();
 
 	/**
 	 * Metoda wywoływana w EDT - ma dostępne wyniki wywołania
@@ -77,10 +76,10 @@ public abstract class SwingWorkerAdaptor<T, V> extends AutoCompleteAdaptor<V> {
 	 */
 	protected abstract void done();
 
-	private class worker extends SwingWorker<T, Void>{
+	private class worker extends SwingWorker<Collection<V> , Void>{
 
 		@Override
-		protected T doInBackground() throws Exception {
+		protected Collection<V>  doInBackground() throws Exception {
 			return SwingWorkerAdaptor.this.doInBackground();
 		}
 

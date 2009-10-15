@@ -2,7 +2,6 @@ package cx.ath.jbzdak.jpaGui.ui.autoComplete;
 
 import cx.ath.jbzdak.jpaGui.MyFormatter;
 import cx.ath.jbzdak.jpaGui.Utils;
-import cx.ath.jbzdak.jpaGui.ui.autoComplete.adapter.MockAdaptor;
 import cx.ath.jbzdak.jpaGui.ui.autoComplete.adapter.NoopAdaptor;
 import cx.ath.jbzdak.jpaGui.ui.formatted.formatters.ToStringFormatter;
 import static cx.ath.jbzdak.jpaGui.utils.BeansBindingUtils.createAutoBinding;
@@ -12,11 +11,10 @@ import org.jdesktop.beansbinding.Binding;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicComboBoxUI;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
-import java.util.List;
+import java.util.Collection;
 
 /**
  * Kombo box z wsparciem autoimport cx.ath.jbzdak.zarlok.ui.autocolmpete.adaptor.PartiaAdaptor;
@@ -76,12 +74,6 @@ public class AutocompleteComboBox<V> extends JComboBox {
 	 */
 	protected boolean ignoreConfigure = false;
 
-	/**
-	 * Lekko zmodyfikowany model.
-	 * Ogólnie model mysi być tej klasy.
-	 * Patrz
-	 */
-	private MyComboBoxModel<V> autoCompleteModel;
 
    private MyFormatter<? extends V, ? super V> formatter = new ToStringFormatter<V>();  
 
@@ -107,7 +99,7 @@ public class AutocompleteComboBox<V> extends JComboBox {
 		setAdaptor(adaptor);
 		setFilter("");
 		setEditable(true);
-		getAutoCompleteModel().setElementClass(adaptor.getValueClass());
+		getModel().setElementClass(adaptor.getValueClass());
 		setValues(adaptor.getCurentFilteredResults());
       setStrict(strict);
 
@@ -163,13 +155,13 @@ public class AutocompleteComboBox<V> extends JComboBox {
 	public void setFilter(String filter){
 		if(adaptor == null || !adaptor.ignoreFilter(this.filter, filter)){
 			try{
+            ignoreConfigure = true;
             this.filter = filter;
             if(isStrict()){
                setSelectedItem(null);
             }else{
                setSelectedItem(parseSelectedItem(filter));
             }
-				ignoreConfigure = true;
 				getAdaptor().setFilter(StringUtils.defaultString(filter));
 			}finally{
 				ignoreConfigure = false;
@@ -203,14 +195,14 @@ public class AutocompleteComboBox<V> extends JComboBox {
 	 * @param values
 	 */
 	@SuppressWarnings("unchecked")
-	public void setValues(List values){
+	public void setValues(Collection values){
 		if(values == null){
 			throw new NullPointerException();
 		}
 		ignoreConfigure = true;
 		try{
 			selectedItemReminder = getModel().getSelectedItem();
-			getAutoCompleteModel().setContents(values);
+			getModel().setContents(values);
 			if(getEditor().getEditorComponent().isFocusOwner()){
 				if(isPopupVisible()){
 					hidePopup();
@@ -224,34 +216,25 @@ public class AutocompleteComboBox<V> extends JComboBox {
 		}
 	}
 
-	/**
-	 * Do testów.
-	 * @param args
-	 */
-	@Deprecated
-	public static void main(String[] args) {
-		JFrame f = new JFrame();
-		AutocompleteComboBox box = new AutocompleteComboBox(new MockAdaptor());
-		f.add(box, BorderLayout.CENTER);
-		f.pack();
-		f.setVisible(true);
-	}
-
-	public MyComboBoxModel<V> getAutoCompleteModel() {
-		if(autoCompleteModel==null){
-			setAutoCompleteModel(new MyComboBoxModel(true));
-		}
-		return autoCompleteModel;
-	}
-
-	protected void setAutoCompleteModel(MyComboBoxModel autoCompleteModel) {
-		if(this.autoCompleteModel != autoCompleteModel){
+	protected void setAutoCompleteModel(MyComboBoxModel<V> autoCompleteModel) {
+		if(super.getModel() != autoCompleteModel){
 			setModel(autoCompleteModel);
-		}
-		this.autoCompleteModel = autoCompleteModel;
+      }
 	}
 
-	@Override
+   @Override
+   public  MyComboBoxModel<V> getModel() {
+      if(super.getModel()==null){
+			setAutoCompleteModel(new MyComboBoxModel<V>(true));
+		}
+      return (MyComboBoxModel<V>) super.getModel();
+   }
+
+
+
+   
+
+   @Override
 	public void configureEditor(ComboBoxEditor anEditor, Object anItem) {
 		if(!ignoreConfigure) {
          super.configureEditor(anEditor, anItem);
@@ -272,8 +255,10 @@ public class AutocompleteComboBox<V> extends JComboBox {
 	 */
 	@Override
 	public void setModel(ComboBoxModel model) {
-		super.setModel(model);
-		model.removeListDataListener(this);//Idea jest taka że
+      if(model instanceof MyComboBoxModel){
+         super.setModel(model);
+		   model.removeListDataListener(this);//Idea jest taka że
+      }
 	}
 
 	public V getSelectedValue(){
@@ -292,7 +277,7 @@ public class AutocompleteComboBox<V> extends JComboBox {
 	@Override
 	public void setSelectedItem(Object anObject) {
 		Object oldSelectedItem = getSelectedItem();
-		boolean isFromModel = getAutoCompleteModel().contains(anObject);
+		boolean isFromModel = getModel().contains(anObject);
 		if(strict && (anObject==null || !isFromModel)){
 			return;
 		}
@@ -305,7 +290,7 @@ public class AutocompleteComboBox<V> extends JComboBox {
 
    @Override
    public V getSelectedItem() {
-      return getAutoCompleteModel().getSelectedItem();
+      return getModel().getSelectedItem();
    }
 
    public void clear(){

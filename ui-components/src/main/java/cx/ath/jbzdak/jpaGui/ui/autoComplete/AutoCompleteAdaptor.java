@@ -6,8 +6,8 @@ import org.apache.commons.lang.StringUtils;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 /**
  * Enkapsuluje zamianę tego co wpisuje user na zbiór podpowiedzi.
@@ -17,7 +17,7 @@ import java.util.List;
  *
  * Przy zmianie filtra wywolywana jest metoda {@link #onFilterChange()}, która powinna zainicjalizować
  * przeszukiwanie (i się skoczyć). Po zakończeniu prac w tle
- * następnie powinno się wywołać {@link #setCurentFilteredResults(List)} z wynikami.
+ * następnie powinno się wywołać {@link #setCurentFilteredResults(Collection)} z wynikami.
  *
  * @see SwingWorkerAdaptor
  * @see DbAdaptor
@@ -40,7 +40,7 @@ public abstract class AutoCompleteAdaptor<T> implements Serializable{
 	/**
 	 * Podpowiedzi
 	 */
-	private List<T> curentFilteredResults = Collections.emptyList();
+	private Collection<T> curentFilteredResults = Collections.emptyList();
 
 	protected final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
@@ -77,7 +77,7 @@ public abstract class AutoCompleteAdaptor<T> implements Serializable{
 	 */
 	protected abstract void onFilterChange();
 
-	public List<T> getCurentFilteredResults() {
+	public Collection<T> getCurentFilteredResults() {
 		return curentFilteredResults;
 	}
 
@@ -85,8 +85,8 @@ public abstract class AutoCompleteAdaptor<T> implements Serializable{
 	 * Wywołanie tej metody powoduje odświerzenie zawartości modelu {@link AutocompleteComboBox}.
 	 * @param curentFilteredResults
 	 */
-	protected void setCurentFilteredResults(List<T> curentFilteredResults) {
-		List<T> lastResults = this.curentFilteredResults;
+	protected void setCurentFilteredResults(Collection<T> curentFilteredResults) {
+		Collection<T> lastResults = this.curentFilteredResults;
       //noinspection AssignmentToCollectionOrArrayFieldFromParameter
       this.curentFilteredResults = curentFilteredResults;
 		support.firePropertyChange("curentFilteredResults", lastResults, this.curentFilteredResults);
