@@ -32,4 +32,6 @@ public interface LifecycleAdministrator<T extends DBManager, USER_OBJECT> extend
     * @return configuration
     */
    public Map<String, Object> getUserConfiguration();
+
+   public void setDBManager(T dbManager);
 }

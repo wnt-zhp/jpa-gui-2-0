@@ -34,7 +34,6 @@ public class FormFactory<T>  {
         return FormPanelConstraints.getConstraints(layout, clazz);
     }
 
-
     @SuppressWarnings({"WeakerAccess"})
     public FormPanel<MyFormattedTextField, FormattedFieldElement<T, ?>> decorateFormattedTextField(
             String labelText,

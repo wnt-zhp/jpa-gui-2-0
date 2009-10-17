@@ -97,10 +97,11 @@ public  class DefaultLifecycleAdministrator<T extends JpaDbManager, USER_OBJECT>
     @Override
    public void goToPhase(DBLifecyclePhase phase, Object... parameters) throws Exception{
       lock.lock();
+      log.info("Executing DBPhase {}", phase.name());
       try{
          for(LifecycleListener ll :lifecycleListenerMap.get(phase)){
             setLLProps(ll, phase, parameters);
-            log.debug("Executing lifecycle listener {}", ll);
+            log.debug("Executing lifecycle listener {}", ll.getName());
             ll.executePhase();
             ll.clear();
          }
@@ -177,7 +178,7 @@ public  class DefaultLifecycleAdministrator<T extends JpaDbManager, USER_OBJECT>
    @Override
    public void startDB() throws Exception {
       if(databaseStarted){
-         return;
+         throw new IllegalStateException();
       }
       lock.lock();
       try{

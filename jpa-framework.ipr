@@ -2157,28 +2157,6 @@
         <root url="jar://$MAVEN_REPOSITORY$/commons-math/commons-math/1.2/commons-math-1.2-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: cx.ath.jbzdak.gui:db-impl:2.0">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/cx/ath/jbzdak/gui/db-impl/2.0/db-impl-2.0.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/cx/ath/jbzdak/gui/db-impl/2.0/db-impl-2.0-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/cx/ath/jbzdak/gui/db-impl/2.0/db-impl-2.0-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: cx.ath.jbzdak.gui:configuration:2.0">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/cx/ath/jbzdak/gui/configuration/2.0/configuration-2.0.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/cx/ath/jbzdak/gui/configuration/2.0/configuration-2.0-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/cx/ath/jbzdak/gui/configuration/2.0/configuration-2.0-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Maven: com.miglayout:miglayout:3.7">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/com/miglayout/miglayout/3.7/miglayout-3.7.jar!/" />
