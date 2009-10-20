@@ -86,11 +86,11 @@ public class H2Test {
          config.getH2Configuration().startDB();
          DBManager manager = config.getH2Configuration().getDbManager();
          DAO<FooBean> dao = manager.getDao(FooBean.class);
-         dao.beginTransaction();
+ //ł        dao.beginTransaction();
          dao.createEntity();
          dao.getBean().setName("foo");
          dao.persist();
-         dao.commitTransaction();
+//         dao.commitTransaction();
          id = dao.getBean().getId();
          config.getH2Configuration().closeDB();
       }

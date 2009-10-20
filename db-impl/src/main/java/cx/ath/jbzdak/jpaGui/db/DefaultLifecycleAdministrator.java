@@ -44,11 +44,13 @@ public  class DefaultLifecycleAdministrator<T extends JpaDbManager, USER_OBJECT>
 
    private Map<String, Object> userConfiguration = new ConcurrentHashMap<String, Object>();
 
-   private boolean databaseStarted;
+   private volatile boolean databaseStarted;
 
-   private boolean databaseInitialized;
+   private volatile boolean databaseInitialized;
 
-   private boolean schemaNeedsUpdate;
+   private volatile boolean schemaNeedsUpdate;
+
+   private volatile  Integer dbVersion;
 
    private final Set<PropertySetter> setters;
 
@@ -281,6 +283,30 @@ public  class DefaultLifecycleAdministrator<T extends JpaDbManager, USER_OBJECT>
 
    public T getDbManager() {
       return dbManager;
+   }
+
+   public boolean isDatabaseInitialized() {
+      return databaseInitialized;
+   }
+
+   public void setDatabaseInitialized(boolean databaseInitialized) {
+      this.databaseInitialized = databaseInitialized;
+   }
+
+   public boolean isSchemaNeedsUpdate() {
+      return schemaNeedsUpdate;
+   }
+
+   public void setSchemaNeedsUpdate(boolean schemaNeedsUpdate) {
+      this.schemaNeedsUpdate = schemaNeedsUpdate;
+   }
+
+   public Integer getDbVersion() {
+      return dbVersion;
+   }
+
+   public void setDbVersion(Integer dbVersion) {
+      this.dbVersion = dbVersion;
    }
 
    @NotThreadSafe

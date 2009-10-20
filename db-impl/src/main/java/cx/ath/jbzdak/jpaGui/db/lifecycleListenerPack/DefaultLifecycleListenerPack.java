@@ -23,8 +23,14 @@ public class DefaultLifecycleListenerPack<T extends DBManager, L extends Lifecyc
 
    public DefaultLifecycleListenerPack(Set<String> neededPacks, String...  names) {
       this.name = new HashSet<String>(Arrays.asList(names));
-      this.neededPacks = neededPacks;
+      this.neededPacks = new HashSet<String>(neededPacks);
    }
+
+   public DefaultLifecycleListenerPack(Collection<String> neededPacks, String... names) {
+      this.name = new HashSet<String>(Arrays.asList(names));
+      this.neededPacks = new HashSet<String>(neededPacks);
+   }
+   
 
    @Override
    public Set<String> getName() {

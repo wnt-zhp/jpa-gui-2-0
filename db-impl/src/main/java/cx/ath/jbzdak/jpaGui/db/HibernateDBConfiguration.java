@@ -11,7 +11,7 @@ import java.util.Map;
  *         Date: 2009-09-12
  */
 public class HibernateDBConfiguration<DBM extends JpaDbManager,  USER_OBJECT>
-   extends DefaultLifecycleAdministrator<DBM, USER_OBJECT>
+        extends DefaultLifecycleAdministrator<DBM, USER_OBJECT>
 {
 
    private final Map<String, String> hibernateProperties = new HashMap<String, String>();
@@ -21,7 +21,7 @@ public class HibernateDBConfiguration<DBM extends JpaDbManager,  USER_OBJECT>
    private Ejb3Configuration ejb3Configuration;
 
    public HibernateDBConfiguration() {
-      
+
    }
 
    public void setPersistrenceUnit(String persistrenceUnit) {
@@ -69,11 +69,15 @@ public class HibernateDBConfiguration<DBM extends JpaDbManager,  USER_OBJECT>
    }
 
    public void setFormatSql(Boolean format){
-       hibernateProperties.put("hibernate.format_sql", format.toString());
+      hibernateProperties.put("hibernate.format_sql", format.toString());
    }
 
-     public void setSchemaAutoCreate(Hbm2ddl hbm2ddl){
-       hibernateProperties.put(Environment.HBM2DDL_AUTO, hbm2ddl.getValue());
+   public void setSchemaAutoCreate(Hbm2ddl hbm2ddl){
+      if(hbm2ddl==null){
+         hibernateProperties.remove(Environment.HBM2DDL_AUTO);
+      }else{
+         hibernateProperties.put(Environment.HBM2DDL_AUTO, hbm2ddl.getValue());
+      }
    }
 
 }

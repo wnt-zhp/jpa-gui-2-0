@@ -16,5 +16,7 @@ public interface LifecycleManager<T extends DBManager> {
 
    public void backupDB(Object... parameters) throws Exception;
 
-   public void readBackup(Object... parameters) throws Exception;   
+   public void readBackup(Object... parameters) throws Exception;
+
+   T getDbManager();
 }

@@ -256,7 +256,7 @@ public class JPADao<T> implements DAO<T> {
    */
    @Override
    public void createEntity() {
-      if (getBean() != null) {
+      if (entity != null) {
          throw new IllegalStateException();
       }
       try {
