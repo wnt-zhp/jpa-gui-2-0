@@ -23,9 +23,9 @@ import java.util.EnumSet;
 public class HibernateStartDbPack<T extends JpaDbManager, L extends DefaultLifecycleAdministrator> extends DefaultLifecycleListenerPack<T, L> {
 
    public HibernateStartDbPack() {
-      super(Collections.<String>emptySet(), "start-db", "stop-db");
+      super(Collections.<String>emptySet(), "start-db", "stop-db", "get-jdbc-url", "init-jdbc-url");
       addListener(EnumSet.of(DBLifecyclePhase.PRE_START), new CreateEJB3Confihuration());
-      addListener(EnumSet.of(DBLifecyclePhase.START), new CreateEntityManagerFactoryEvent());
+      addListener(EnumSet.of(DBLifecyclePhase.DB_SETUP), new CreateEntityManagerFactoryEvent());
       addListener(EnumSet.of(DBLifecyclePhase.CLOSE), new CloseEntityManagerFactory<T, L>());
    }
 

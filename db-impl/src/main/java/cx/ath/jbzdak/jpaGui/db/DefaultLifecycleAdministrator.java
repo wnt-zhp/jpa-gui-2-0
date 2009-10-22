@@ -46,11 +46,9 @@ public  class DefaultLifecycleAdministrator<T extends JpaDbManager, USER_OBJECT>
 
    private volatile boolean databaseStarted;
 
-   private volatile boolean databaseInitialized;
+   private volatile boolean databaseInitialized = true;
 
-   private volatile boolean schemaNeedsUpdate;
-
-   private volatile  Integer dbVersion;
+   private volatile Integer dbVersion;
 
    private final Set<PropertySetter> setters;
 
@@ -189,9 +187,7 @@ public  class DefaultLifecycleAdministrator<T extends JpaDbManager, USER_OBJECT>
          if(!databaseInitialized){
             goToPhase(DBLifecyclePhase.SHEMA_CREATE);
          }
-         if(schemaNeedsUpdate){
-            goToPhase(DBLifecyclePhase.SHEMA_UPDATE);
-         }
+         goToPhase(DBLifecyclePhase.SHEMA_UPDATE);
          goToPhase(DBLifecyclePhase.DB_SETUP);
          databaseStarted = true;
       }finally {
@@ -291,14 +287,6 @@ public  class DefaultLifecycleAdministrator<T extends JpaDbManager, USER_OBJECT>
 
    public void setDatabaseInitialized(boolean databaseInitialized) {
       this.databaseInitialized = databaseInitialized;
-   }
-
-   public boolean isSchemaNeedsUpdate() {
-      return schemaNeedsUpdate;
-   }
-
-   public void setSchemaNeedsUpdate(boolean schemaNeedsUpdate) {
-      this.schemaNeedsUpdate = schemaNeedsUpdate;
    }
 
    public Integer getDbVersion() {

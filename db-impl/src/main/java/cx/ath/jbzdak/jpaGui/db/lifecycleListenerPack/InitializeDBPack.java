@@ -22,12 +22,12 @@ import java.util.Properties;
 public class InitializeDBPack extends  DefaultLifecycleListenerPack<DBManager, LifecycleAdministrator>  {
 
    public InitializeDBPack(final Factory<Reader> initializeScript) {
-      super(new HashSet<String>(Arrays.asList("get-jdbc-url", "init-jdbc")), "init-db-schema");
-      addListener(EnumSet.of(DBLifecyclePhase.PRE_START), new DefaultLifecycleListener<DBManager, LifecycleAdministrator>(2000, "INITIALIZE_DB") {
+      super(new HashSet<String>(Arrays.asList("get-jdbc-url")), "init-db-schema");
+      addListener(EnumSet.of(DBLifecyclePhase.SHEMA_CREATE), new DefaultLifecycleListener<DBManager, LifecycleAdministrator>(2000, "INITIALIZE_DB") {
          @Override
          public void executePhase() throws Exception {
             String url = (String) lifecycleAdministartor.getUserConfiguration().get("jdbc-url");
-            Properties connectionProperties = (Properties) lifecycleAdministartor.getUserConfiguration().get("jdbc-url");
+            Properties connectionProperties = (Properties) lifecycleAdministartor.getUserConfiguration().get("jdbc-properties");
             Connection conn= null;
             Statement s = null;
             try{
@@ -36,7 +36,7 @@ public class InitializeDBPack extends  DefaultLifecycleListenerPack<DBManager, L
                }else{
                   conn = DriverManager.getConnection(url, connectionProperties);
                }
-               SQLUtils.executeStatement(conn, initializeScript.make());
+               JDBCUtils.executeScript(conn, initializeScript.make());
             }finally {
                if(conn!=null){
                   conn.close();
