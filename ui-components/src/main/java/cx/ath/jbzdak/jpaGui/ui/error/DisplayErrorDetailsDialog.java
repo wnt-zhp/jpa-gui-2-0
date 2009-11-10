@@ -1,10 +1,10 @@
 package cx.ath.jbzdak.jpaGui.ui.error;
 
-import cx.ath.jbzdak.common.famfamicons.IconManager;
 import cx.ath.jbzdak.jpaGui.ClassHandler;
 import cx.ath.jbzdak.jpaGui.Utils;
 import static cx.ath.jbzdak.jpaGui.Utils.initLocation;
 import cx.ath.jbzdak.jpaGui.ui.error.ErrorHandlers.Formatter;
+import cx.ath.jbzdak.jpaGui.ui.MainIconManager;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
@@ -30,7 +30,7 @@ public class DisplayErrorDetailsDialog extends JDialog{
       dialog.setVisible(true);
    }
 
-	private final JButton closeButton = new JButton("Zamknij", IconManager.getIconSafe("cancel"));
+	private final JButton closeButton = new JButton("Zamknij", MainIconManager.getIcon("cancel", MainIconManager.MEDIUM));
 	{
 		closeButton.addActionListener(new ActionListener(){
 			@Override

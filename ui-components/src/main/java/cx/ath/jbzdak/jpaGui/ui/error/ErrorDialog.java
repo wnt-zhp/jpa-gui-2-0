@@ -1,10 +1,10 @@
 package cx.ath.jbzdak.jpaGui.ui.error;
 
-import cx.ath.jbzdak.common.famfamicons.IconManager;
 import cx.ath.jbzdak.jpaGui.ClassHandler;
 import static cx.ath.jbzdak.jpaGui.Utils.initLocation;
 import cx.ath.jbzdak.jpaGui.genericListeners.HideWindowActionListener;
 import cx.ath.jbzdak.jpaGui.ui.ButtonFactory;
+import cx.ath.jbzdak.jpaGui.ui.MainIconManager;
 import cx.ath.jbzdak.jpaGui.ui.error.ErrorHandlers.Formatter;
 import edu.umd.cs.findbugs.annotations.CheckForNull;
 import net.miginfocom.swing.MigLayout;
@@ -43,7 +43,7 @@ public class ErrorDialog extends JDialog {
 		TableColumn detailsColumn = table.getColumnModel().getColumn(1);
 		detailsColumn.setCellEditor(new DetailRenderer());
 		detailsColumn.setCellRenderer(new DetailRenderer());
-		detailsColumn.setPreferredWidth(IconManager.getIconSafe("error_go").getIconWidth()+ 5);
+		detailsColumn.setPreferredWidth(15);
 		table.getColumnModel().getColumn(0).setPreferredWidth(DEFAULT_FIRST_COMUMN_WIDTH);
 	}
 
@@ -92,7 +92,7 @@ public class ErrorDialog extends JDialog {
 				ErrorDialog.this);
 
 		{
-			rendererEditor = new JButton(IconManager.getIconSafe("error_go"));
+			rendererEditor = new JButton(MainIconManager.getIcon("error_go"));
 			rendererEditor.setBorderPainted(false);
 			rendererEditor.setContentAreaFilled(false);
 			rendererEditor.addActionListener(new ActionListener() {

@@ -1,6 +1,5 @@
 package cx.ath.jbzdak.jpaGui.ui;
 
-import cx.ath.jbzdak.common.famfamicons.IconManager;
 import org.apache.commons.collections.Factory;
 import org.apache.commons.collections.map.DefaultedMap;
 
@@ -47,17 +46,15 @@ public  class ButtonFactory {
 			this.iconName = iconName;
 			this.label = label;
 			try {
-				IconManager.getIcon(iconName);
+            MainIconManager.getIcon(iconName);
 			} catch (NoSuchElementException e) {
 				throw new RuntimeException(e);
-			} catch (IOException e) {
-				throw new RuntimeException(e);
-			}
+			} 
 		}
 
 		@Override
 		public JButton create() {
-			return new JButton(label, IconManager.getIconSafe(iconName));
+			return new JButton(label, MainIconManager.getIcon(iconName));
 		}
 
 

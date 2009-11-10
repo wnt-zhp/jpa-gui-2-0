@@ -1,7 +1,7 @@
 package cx.ath.jbzdak.jpaGui.ui.tabbed;
 
-import cx.ath.jbzdak.common.famfamicons.IconManager;
 import cx.ath.jbzdak.jpaGui.Utils;
+import cx.ath.jbzdak.jpaGui.ui.MainIconManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,7 +32,7 @@ public class CloseTabComponent extends JPanel{
 		this.title.setOpaque(false);
 		this.title.setBorder(BorderFactory.createEmptyBorder(2,0,0,0));
 		add(this.title);
-		closeButton = Utils.createIconButton(IconManager.getIconSafe("cross"));
+		closeButton = Utils.createIconButton(MainIconManager.getIcon("cross"));
 		closeButton.setOpaque(false);
 		closeButton.setBorder(BorderFactory.createEmptyBorder(2,0,0,0));
 		closeButton.addActionListener(new CloseTabActionListener());

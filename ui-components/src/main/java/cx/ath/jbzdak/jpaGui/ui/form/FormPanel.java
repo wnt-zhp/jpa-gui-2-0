@@ -1,10 +1,10 @@
 package cx.ath.jbzdak.jpaGui.ui.form;
 
-import cx.ath.jbzdak.common.famfamicons.IconManager;
 import cx.ath.jbzdak.jpaGui.ClassHandler;
 import cx.ath.jbzdak.jpaGui.Utils;
 import cx.ath.jbzdak.jpaGui.ui.error.ErrorHandlers;
 import cx.ath.jbzdak.jpaGui.ui.error.ErrorHandlers.Formatter;
+import cx.ath.jbzdak.jpaGui.ui.MainIconManager;
 import edu.umd.cs.findbugs.annotations.NonNull;
 import edu.umd.cs.findbugs.annotations.Nullable;
 import net.miginfocom.swing.MigLayout;
@@ -149,7 +149,7 @@ public class FormPanel<T extends Component,FE extends DisplayFormElement<T>> ext
    @SuppressWarnings({"WeakerAccess"})
    public JButton getHelpButton() {
       if (helpButton == null) {
-         helpButton = Utils.createIconButton(IconManager.getScaled("help", 1.5));
+         helpButton = Utils.createIconButton(MainIconManager.getIcon("help"));
          helpButton.setFocusable(false);
          helpButton.addActionListener(new ActionListener(){
             @Override
@@ -246,7 +246,7 @@ public class FormPanel<T extends Component,FE extends DisplayFormElement<T>> ext
 
    Icon getNoErrorIcon() {
       if (noErrorIcon == null) {
-         return IconManager.getScaled("no_error_icon", 1.5);
+         return MainIconManager.getIcon("no_error_icon");
       }
       return noErrorIcon;
    }
@@ -257,7 +257,7 @@ public class FormPanel<T extends Component,FE extends DisplayFormElement<T>> ext
 
    Icon getErrorIcon() {
       if (errorIcon == null) {
-         return IconManager.getScaled("error_icon", 1.5);
+         return MainIconManager.getIcon("error_icon");
       }
       return errorIcon;
    }
