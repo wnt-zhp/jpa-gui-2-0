@@ -9,57 +9,58 @@ import org.jdesktop.beansbinding.Property;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+
 /**
  * {@link cx.ath.jbzdak.jpaGui.ui.form.FormElement} obsługujący {@link AutocompleteComboBox}.
- * @author jb
  *
+ * @author jb
  * @param <B>
  */
-public class ComboBoxElement<B, V> extends PropertyFormElement<AutocompleteComboBox<V>, B, V, BeanHolder<B>> implements FormAware{
+public class ComboBoxElement<B, V> extends PropertyFormElement<AutocompleteComboBox<V>, B, V, BeanHolder<B>> implements FormAware {
 
-	public ComboBoxElement(AutocompleteComboBox renderer, String labelText,
-			Property<B, Object> entityValueProperty) {
-		super(renderer, labelText, entityValueProperty);
-	}
+   public ComboBoxElement(AutocompleteComboBox renderer, String labelText,
+                          Property<B, Object> entityValueProperty) {
+      super(renderer, labelText, entityValueProperty);
+   }
 
-	public ComboBoxElement(AutocompleteComboBox renderer, String labelText,
-			String entityPropertyPath) {
-		super(renderer, labelText, entityPropertyPath);
-	}
+   public ComboBoxElement(AutocompleteComboBox renderer, String labelText,
+                          String entityPropertyPath) {
+      super(renderer, labelText, entityPropertyPath);
+   }
 
-	{
-		getRenderer().addPropertyChangeListener("selectedItem", new PropertyChangeListener(){
-			@Override
-			public void propertyChange(PropertyChangeEvent evt) {
-                setErrorMessage(evt.getNewValue()==null?"Nie wybrano wartości":null);
-                setError(evt.getNewValue()==null);
-			}
-		});
-	}
+   {
+      getRenderer().addPropertyChangeListener("selectedItem", new PropertyChangeListener() {
+         @Override
+         public void propertyChange(PropertyChangeEvent evt) {
+            setErrorMessage(evt.getNewValue() == null ? "Nie wybrano wartości" : null);
+            setError(evt.getNewValue() == null);
+         }
+      });
+   }
 
-	@Override
-	public V getValue() {
-		return getRenderer().getSelectedItem();
-	}
+   @Override
+   public V getValue() {
+      return getRenderer().getSelectedItem();
+   }
 
-	@Override
-	protected void setRendererEditable(boolean editable) {
-		getRenderer().setEnabled(editable);
+   @Override
+   protected void setRendererEditable(boolean editable) {
+      getRenderer().setEnabled(editable);
 
-	}
+   }
 
-	@Override
-	public void setValue(V value) {
-        if(isReadNullValues() || value!=null){
-            getRenderer().setSelectedItem(value);
-        }
-    }
+   @Override
+   public void setValue(V value) {
+      if (isReadNullValues() || value != null) {
+         getRenderer().setSelectedItem(value);
+      }
+   }
 
-	@Override
-	public void clear() {
-		setValue(null);
-		getRenderer().setFilter("");
-	}
+   @Override
+   public void clear() {
+      setValue(null);
+      getRenderer().setFilter("");
+   }
 
    @Override
    public void setForm(Form form) {
