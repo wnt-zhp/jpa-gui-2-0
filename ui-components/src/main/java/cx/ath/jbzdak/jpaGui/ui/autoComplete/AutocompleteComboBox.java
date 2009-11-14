@@ -1,6 +1,6 @@
 package cx.ath.jbzdak.jpaGui.ui.autoComplete;
 
-import cx.ath.jbzdak.jpaGui.MyFormatter;
+import cx.ath.jbzdak.jpaGui.Formatter;
 import cx.ath.jbzdak.jpaGui.Utils;
 import cx.ath.jbzdak.jpaGui.ui.autoComplete.adapter.NoopAdaptor;
 import cx.ath.jbzdak.jpaGui.ui.formatted.formatters.ToStringFormatter;
@@ -75,7 +75,7 @@ public class AutocompleteComboBox<V> extends JComboBox {
 	protected boolean ignoreConfigure = false;
 
 
-   private MyFormatter<? extends V, ? super V> formatter = new ToStringFormatter<V>();  
+   private Formatter<? extends V, ? super V> formatter = new ToStringFormatter<V>();
 
 	private boolean strict = false;
 
@@ -323,11 +323,11 @@ public class AutocompleteComboBox<V> extends JComboBox {
 		this.strict = strict;
 	}
 
-   public MyFormatter<? extends V, ? super V> getFormatter() {
+   public Formatter<? extends V, ? super V> getFormatter() {
       return formatter;
    }
 
-   public void setFormatter(MyFormatter<? extends V, ? super V> formatter) {
+   public void setFormatter(Formatter<? extends V, ? super V> formatter) {
       this.formatter = formatter;
    }
 

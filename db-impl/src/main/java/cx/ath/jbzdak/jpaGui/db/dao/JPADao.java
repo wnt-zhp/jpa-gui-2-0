@@ -7,6 +7,8 @@ import static cx.ath.jbzdak.jpaGui.utils.DBUtils.*;
 import javax.persistence.EntityManager;
 import java.text.Normalizer.Form;
 import java.util.NoSuchElementException;
+import java.beans.PropertyChangeSupport;
+import java.beans.PropertyChangeListener;
 
 /**
  * Domyślne dao. Zarządza pojedyńczą encją i ma przypisanego
@@ -23,6 +25,8 @@ public class JPADao<T> implements DAO<T> {
 
    protected final Class<? extends T> clazz;
 
+   protected final PropertyChangeSupport support = new PropertyChangeSupport(this);
+
    protected EntityManager entityManager;
 
    protected boolean transactionWideEntityManager;
@@ -31,7 +35,7 @@ public class JPADao<T> implements DAO<T> {
 
    private JPARefreshType refreshType = JPARefreshType.MERGE;
 
-   private T entity;
+   private T bean;
 
    private int beginCount = 0;
 
@@ -81,9 +85,9 @@ public class JPADao<T> implements DAO<T> {
       }
       if (beginCount == 0) {
          entityManager.getTransaction().begin();
-         if (entity != null && !isIdNull(getBean())) {
+         if (getBean() != null && !isIdNull(getBean())) {
             try {
-               entity = refreshType.perform(entityManager, entity, manager);
+               bean = refreshType.perform(entityManager, getBean(), manager);
             } catch (RuntimeException e) {
                entityManager.getTransaction().rollback();
                throw e;
@@ -234,7 +238,7 @@ public class JPADao<T> implements DAO<T> {
       beginTransaction();
       try{
          firePersistenceEVT(LifecyclePhase.PreRemove);
-         entityManager.remove(entity);
+         entityManager.remove(getBean());
          commitTransaction();
       }catch (RuntimeException e){
          rollback();
@@ -256,7 +260,7 @@ public class JPADao<T> implements DAO<T> {
    */
    @Override
    public void createEntity() {
-      if (entity != null) {
+      if (bean != null) {
          throw new IllegalStateException();
       }
       try {
@@ -273,10 +277,10 @@ public class JPADao<T> implements DAO<T> {
    */
    @Override
    public T getBean() {
-      if (autoCreateEntity && entity == null) {
+      if (autoCreateEntity && bean == null) {
          createEntity();
       }
-      return entity;
+      return bean;
    }
 
    /* (non-Javadoc)
@@ -284,10 +288,12 @@ public class JPADao<T> implements DAO<T> {
    */
    @Override
    public void setBean(T entity) {
-      this.entity = entity;
+      T oldEntity = entity;
+      this.bean = entity;
       if(beginCount!=0){
-         this.entity = refreshType.perform(entityManager, entity, manager);
+         this.bean = refreshType.perform(entityManager, entity, manager);
       }
+      support.firePropertyChange("bean", oldEntity, entity);
    }
 
    /* (non-Javadoc)
@@ -332,4 +338,31 @@ public class JPADao<T> implements DAO<T> {
       this.refreshType = JPARefreshType.map(refreshType);
    }
 
+   public void addPropertyChangeListener(PropertyChangeListener listener) {
+      support.addPropertyChangeListener(listener);
+   }
+
+   public void removePropertyChangeListener(PropertyChangeListener listener) {
+      support.removePropertyChangeListener(listener);
+   }
+
+   public PropertyChangeListener[] getPropertyChangeListeners() {
+      return support.getPropertyChangeListeners();
+   }
+
+   public void addPropertyChangeListener(String propertyName, PropertyChangeListener listener) {
+      support.addPropertyChangeListener(propertyName, listener);
+   }
+
+   public void removePropertyChangeListener(String propertyName, PropertyChangeListener listener) {
+      support.removePropertyChangeListener(propertyName, listener);
+   }
+
+   public PropertyChangeListener[] getPropertyChangeListeners(String propertyName) {
+      return support.getPropertyChangeListeners(propertyName);
+   }
+
+   public boolean hasListeners(String propertyName) {
+      return support.hasListeners(propertyName);
+   }
 }

@@ -15,6 +15,11 @@
             <groupId>cx.ath.jbzdak.gui</groupId>
         </dependency>
         <dependency>
+            <groupId>org.jetbrains.idea</groupId>
+            <artifactId>annotations</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>ejb3-persistence</artifactId>
             <version>1.0.2.GA</version>

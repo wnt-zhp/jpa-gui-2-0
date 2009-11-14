@@ -10,6 +10,7 @@ import org.jdesktop.beansbinding.Property;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ResourceBundle;
 
 
 public class FormattedFieldElement<B, V> extends PropertyFormElement<FormattedTextField, B, V, BeanHolder<B>> implements BeanHolderAware<B, BeanHolder<B>>, FormAware {
@@ -26,6 +27,10 @@ public class FormattedFieldElement<B, V> extends PropertyFormElement<FormattedTe
    public FormattedFieldElement(FormattedTextField renderer,
                                 String labelText, String entityPropertyPath) {
       super(renderer, labelText, entityPropertyPath);
+   }
+
+   public FormattedFieldElement(FormattedTextField renderer, String labelText, ResourceBundle bundle, String entityPropertyPath) {
+      super(renderer, labelText, bundle, entityPropertyPath);
    }
 
    {

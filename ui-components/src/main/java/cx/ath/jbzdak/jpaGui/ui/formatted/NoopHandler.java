@@ -1,6 +1,6 @@
 package cx.ath.jbzdak.jpaGui.ui.formatted;
 
-import cx.ath.jbzdak.jpaGui.MyFormatter;
+import cx.ath.jbzdak.jpaGui.Formatter;
 
 import java.awt.event.ActionListener;
 
@@ -19,5 +19,5 @@ public class NoopHandler implements FormatterEventHandler{
    public void fireFormatterChanged() {  }
 
    @Override
-   public void setFormatter(MyFormatter formatter) {  }
+   public void setFormatter(Formatter formatter) {  }
 }

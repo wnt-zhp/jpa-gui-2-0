@@ -1,7 +1,7 @@
 package cx.ath.jbzdak.jpaGui.ui.formatted;
 
 import cx.ath.jbzdak.jpaGui.FormattingException;
-import cx.ath.jbzdak.jpaGui.MyFormatter;
+import cx.ath.jbzdak.jpaGui.Formatter;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -14,11 +14,15 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.io.Serializable;
 
-public class MyFormattedTextField<V> extends JTextField{
+/**
+ *
+ * @param <V> type of value that is held by this instance
+ */
+public class FormattedTextField<V> extends JTextField{
 
 	private static final long serialVersionUID = 1L;
 
-	private MyFormatter<?extends V, ? super V> formatter;
+	private Formatter<? extends V, ? super V> formatter;
 
 	/**
 	 * Prawdziwe jeśli tekst odpowiada wartości w polu.
@@ -37,7 +41,7 @@ public class MyFormattedTextField<V> extends JTextField{
 
 	private boolean clearTextField;
 
-	private boolean separateuserTextAndValue= true;
+	private boolean separateuserTextAndValue = true;
 
 	private boolean echoErrorsAtOnce = false;
 
@@ -53,18 +57,18 @@ public class MyFormattedTextField<V> extends JTextField{
    };
 
    @SuppressWarnings({"WeakerAccess"})
-   public MyFormattedTextField() {
+   public FormattedTextField() {
 		super();
 		addFocusListener(new FocusListener());
 		setColumns(6);
 	}
 
-	public MyFormattedTextField(MyFormatter<?extends V, ? super V> formatter) {
+	public FormattedTextField(Formatter<?extends V, ? super V> formatter) {
 		this();
 		setFormatter(formatter);
 	}
 
-	@Override
+   @Override
 	public void setDocument(Document doc) {
 		if(getDocument()!=null){
 			getDocument().removeDocumentListener(getListener());
@@ -171,37 +175,6 @@ public class MyFormattedTextField<V> extends JTextField{
 		}
 	}
 
-	private class TextListener implements DocumentListener, Serializable{
-		private static final long serialVersionUID = 1L;
-		@Override
-		public void changedUpdate(DocumentEvent e) { onTextChange(); }
-		@Override
-		public void insertUpdate(DocumentEvent e) { onTextChange();	}
-		@Override
-		public void removeUpdate(DocumentEvent e) {	onTextChange();	}
-	}
-
-	private class FocusListener extends FocusAdapter implements Serializable{
-		private static final long serialVersionUID = 1L;
-		@Override
-		public void focusGained(FocusEvent e) {
-			if(separateuserTextAndValue){
-				setText(userEnteredText);
-			}
-			setBackground(UIManager.getColor("TextField.background"));
-		}
-
-		@Override
-		public void focusLost(FocusEvent e) {
-			if(separateuserTextAndValue){
-				formatValue();
-			}
-			if(parseResults!=null){
-				setBackground(Color.PINK);
-			}
-		}
-	}
-
 	public void clear(){
 		if(clearTextField){
 			setUserEnteredText("");
@@ -221,12 +194,12 @@ public class MyFormattedTextField<V> extends JTextField{
 		this.clearTextField = clearTextField;
 	}
 
-	public MyFormatter getFormatter() {
+	public Formatter getFormatter() {
 		return formatter;
 	}
 
 	@SuppressWarnings({"WeakerAccess"})
-   public void setFormatter(MyFormatter<? extends V, ? super V> formatter) {
+   public void setFormatter(Formatter<? extends V, ? super V> formatter) {
       if(this.formatter != formatter){
          boolean oldEcho = echoErrorsAtOnce;
          if(this.formatter!=null){
@@ -262,5 +235,36 @@ public class MyFormattedTextField<V> extends JTextField{
 		this.echoErrorsAtOnce = echoErrorsAtOnce;
 	}
 
+   private class TextListener implements DocumentListener, Serializable{
+      private static final long serialVersionUID = 1L;
+      @Override
+      public void changedUpdate(DocumentEvent e) { onTextChange(); }
+      @Override
+      public void insertUpdate(DocumentEvent e) { onTextChange();	}
+      @Override
+      public void removeUpdate(DocumentEvent e) {	onTextChange();	}
+   }
+
+   private class FocusListener extends FocusAdapter implements Serializable{
+      private static final long serialVersionUID = 1L;
+      @Override
+      public void focusGained(FocusEvent e) {
+         if(separateuserTextAndValue){
+            setText(userEnteredText);
+         }
+         setBackground(UIManager.getColor("TextField.background"));
+      }
+
+      @Override
+      public void focusLost(FocusEvent e) {
+         if(separateuserTextAndValue){
+            formatValue();
+         }
+         if(parseResults!=null){
+            setBackground(Color.PINK);
+         }
+      }
+   }
+   
 
 }

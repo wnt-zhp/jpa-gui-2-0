@@ -1,7 +1,7 @@
 package cx.ath.jbzdak.jpaGui.ui;
 
 import static cx.ath.jbzdak.jpaGui.Utils.makeLogger;
-import cx.ath.jbzdak.jpaGui.MyFormatter;
+import cx.ath.jbzdak.jpaGui.Formatter;
 import cx.ath.jbzdak.jpaGui.FormattingException;
 import org.slf4j.Logger;
 
@@ -11,25 +11,25 @@ import java.awt.*;
 
 public class FormatterRenderer extends DefaultTableCellRenderer{
 
-	public FormatterRenderer(MyFormatter myFormatter) {
+   public FormatterRenderer(Formatter formatter) {
 		super();
-		this.myFormatter = myFormatter;
+		this.formatter = formatter;
 	}
 
 	private static final long serialVersionUID = 1L;
 
 	private static final Logger logger = makeLogger();
 
-	private final MyFormatter myFormatter;
+	private final Formatter formatter;
 
 	@Override
 	public Component getTableCellRendererComponent(JTable table, Object value,
 			boolean isSelected, boolean hasFocus, int row, int column) {
 		if(value==null){
-			logger.debug("value is null "  + myFormatter.getClass());
+			logger.debug("value is null "  + formatter.getClass());
 		}
 		try {
-			return super.getTableCellRendererComponent(table, myFormatter.formatValue(value), isSelected, hasFocus,
+			return super.getTableCellRendererComponent(table, formatter.formatValue(value), isSelected, hasFocus,
 					row, column);
 		} catch (FormattingException e) {
 			logger.warn("",e);

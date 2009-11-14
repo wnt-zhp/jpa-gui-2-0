@@ -1,7 +1,7 @@
 package cx.ath.jbzdak.jpaGui.ui;
 
 import cx.ath.jbzdak.jpaGui.FormattingException;
-import cx.ath.jbzdak.jpaGui.MyFormatter;
+import cx.ath.jbzdak.jpaGui.Formatter;
 import org.jdesktop.beansbinding.Converter;
 
 /**
@@ -10,9 +10,9 @@ import org.jdesktop.beansbinding.Converter;
  */
 public class FormatterConverter extends Converter{
 
-    private final MyFormatter formatter;
+    private final Formatter formatter;
 
-    public FormatterConverter(MyFormatter formatter) {
+    public FormatterConverter(Formatter formatter) {
         this.formatter = formatter;
     }
 

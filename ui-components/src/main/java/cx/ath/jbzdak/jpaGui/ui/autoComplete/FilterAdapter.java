@@ -1,6 +1,6 @@
 package cx.ath.jbzdak.jpaGui.ui.autoComplete;
 
-import cx.ath.jbzdak.jpaGui.MyFormatter;
+import cx.ath.jbzdak.jpaGui.Formatter;
 import cx.ath.jbzdak.jpaGui.Utils;
 import cx.ath.jbzdak.jpaGui.ui.formatted.formatters.ToStringFormatter;
 import cx.ath.jbzdak.jpaGui.ui.query.Query;
@@ -24,7 +24,7 @@ public class FilterAdapter<T> extends AutoCompleteAdaptor<T>{
 
    private final Query<String, T> query;
 
-   protected final MyFormatter formatter = new ToStringFormatter();
+   protected final Formatter formatter = new ToStringFormatter();
 
    protected FilterAdapter(Query<String, T> query) {
       this.query = query;

@@ -9,6 +9,7 @@ import org.jdesktop.beansbinding.Property;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ResourceBundle;
 
 /**
  * {@link cx.ath.jbzdak.jpaGui.ui.form.FormElement} obsługujący {@link AutocompleteComboBox}.
@@ -26,6 +27,10 @@ public class ComboBoxElement<B, V> extends PropertyFormElement<AutocompleteCombo
    public ComboBoxElement(AutocompleteComboBox renderer, String labelText,
                           String entityPropertyPath) {
       super(renderer, labelText, entityPropertyPath);
+   }
+
+   public ComboBoxElement(AutocompleteComboBox<V> renderer, String labelText, ResourceBundle bundle, String entityPropertyPath) {
+      super(renderer, labelText, bundle, entityPropertyPath);
    }
 
    {

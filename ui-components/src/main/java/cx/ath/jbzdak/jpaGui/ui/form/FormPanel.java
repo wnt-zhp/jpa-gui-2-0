@@ -60,34 +60,21 @@ public class FormPanel<T extends Component,FE extends DisplayFormElement<T>> ext
 
    private Icon errorIcon;
 
-   private final ResourceBundle bundle;
-
    //TODO uporządkować - tj. dodać statyczną zmienną z domyślnymi i tutaj na początek apodawać nulla
    @SuppressWarnings({"WeakerAccess"})
    protected final ClassHandler<Formatter> errorHandlers = ErrorHandlers.createShortHandlers();
 
 
    public FormPanel(@NonNull FE formElement) {
-      this(formElement, null, null);
+      this(formElement, null);
    }
 
-    public FormPanel(@NonNull FE formElement, @Nullable Map<String, String> constraints){
-       this(formElement, constraints, null);
-    }
-
-    public FormPanel(@NonNull FE formElement, @Nullable ResourceBundle  resourceBundle){
-         this(formElement, null, resourceBundle);
-      }
-
-
-   //TODO Wyseparować kiedyś same
-   public FormPanel(@NonNull FE formElement, @Nullable Map<String, String> constraints, @Nullable ResourceBundle bundle) {
+   public FormPanel(@NonNull FE formElement, @Nullable Map<String, String> constraints) {
       this.formElement = formElement;
       if(constraints == null){
-          constraints =  FormPanelConstraints.createDefaultConstraints();
+         constraints =  FormPanelConstraints.createDefaultConstraints();
       }
       this.constraints = constraints;
-      this.bundle = bundle;
       this.formElement.addPropertyChangeListener("error", new PropertyChangeListener() {
          @Override
          public void propertyChange(PropertyChangeEvent evt) {
@@ -104,14 +91,14 @@ public class FormPanel<T extends Component,FE extends DisplayFormElement<T>> ext
          @Override
          public void propertyChange(PropertyChangeEvent evt) {
             setToolTipText((String) evt.getNewValue());
-            helpButton.setToolTipText(getString((String) evt.getNewValue()));
+            helpButton.setToolTipText((String) evt.getNewValue());
          }
       });
       this.formElement.addPropertyChangeListener("longDescription", new PropertyChangeListener(){
          @Override
          public void propertyChange(PropertyChangeEvent evt) {
             if(isHelpButtonVisible()){
-               getHelpButton().setEnabled(!StringUtils.isEmpty(getString((String) evt.getNewValue())));
+               getHelpButton().setEnabled(!StringUtils.isEmpty((String) evt.getNewValue()));
             }
          }
       });
@@ -125,7 +112,7 @@ public class FormPanel<T extends Component,FE extends DisplayFormElement<T>> ext
       initLayout();
    }
 
-    void initLayout(){
+   void initLayout(){
       removeAll();
       setLayout(new MigLayout(constraints.get("layout"), constraints.get("columns"), constraints.get("rows")));
       add(getNameLabel(), constraints.get("nameLabel"));
@@ -138,13 +125,6 @@ public class FormPanel<T extends Component,FE extends DisplayFormElement<T>> ext
       }
    }
 
-   @SuppressWarnings({"WeakerAccess"})
-   protected String getString(String key){
-      if(bundle==null || key==null || !bundle.containsKey(key)){
-         return key;
-      }
-      return  bundle.getString(key);
-   }
 
    @SuppressWarnings({"WeakerAccess"})
    public JButton getHelpButton() {
@@ -158,15 +138,15 @@ public class FormPanel<T extends Component,FE extends DisplayFormElement<T>> ext
                   if(!StringUtils.isEmpty(formElement.getShortDescription())){
                      ToolTipManager.sharedInstance().mouseMoved(
                              new MouseEvent(helpButton, 0, 0, 0,
-                                            helpButton.getWidth()/2,
-                                            helpButton.getHeight()/2,
-                                            0, true));
+                                     helpButton.getWidth()/2,
+                                     helpButton.getHeight()/2,
+                                     0, true));
                   }
                }else{
                   JOptionPane.showMessageDialog(helpButton,
-                                                getString(formElement.getLongDescription()),
-                                                "Pomoc",
-                                                JOptionPane.INFORMATION_MESSAGE);
+                          formElement.getLongDescription(),
+                          "Pomoc",
+                          JOptionPane.INFORMATION_MESSAGE);
                }
             }
          });
@@ -188,9 +168,9 @@ public class FormPanel<T extends Component,FE extends DisplayFormElement<T>> ext
                      errorLabel.setToolTipText(erroTxt);
                      errorLabel.setVisible(true);
                      if (message instanceof Throwable) {
-                        LOGGER.info("Error message in FormPanel is", (Throwable)message);                     
+                        LOGGER.info("Error message in FormPanel is", (Throwable)message);
                      }
-               }
+                  }
                }else{
                   errorLabel.setVisible(false);
                }
@@ -230,7 +210,7 @@ public class FormPanel<T extends Component,FE extends DisplayFormElement<T>> ext
    JLabel getNameLabel() {
       if(nameLabel==null){
          nameLabel = new JLabel();
-         nameLabel.setText(LABEL_PATTERN.replaceAll("LABEL_NAME", getString(formElement.getName())));
+         nameLabel.setText(LABEL_PATTERN.replaceAll("LABEL_NAME", formElement.getName()));
       }
       return nameLabel;
    }
@@ -263,8 +243,8 @@ public class FormPanel<T extends Component,FE extends DisplayFormElement<T>> ext
    }
 
    public FE getFormElement() {
-		return formElement;
-	}
+      return formElement;
+   }
 
    public void setErrorIcon(Icon errorIcon) {
       this.errorIcon = errorIcon;

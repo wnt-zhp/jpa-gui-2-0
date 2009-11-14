@@ -7,6 +7,7 @@ import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.ResourceBundle;
 
 /**
  * @author Jacek Bzdak jbzdak@gmail.com
@@ -29,12 +30,32 @@ public class AbstractFormElement<T extends Component> implements DisplayFormElem
    private boolean editable = true;
 
    private Object errorMessage = null;
+   
+   private final ResourceBundle resourceBundle;
 
    protected final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
+   private static String loadDescription(String name, ResourceBundle bundle){
+      if(bundle != null && name != null && bundle.containsKey(name)){
+         return bundle.getString(name);
+      }
+      return name;
+   }
+
+   private static String loadName(String name, ResourceBundle bundle){
+      String elementName = loadDescription(name, bundle);
+      if(elementName!=null){
+         return elementName;
+      }
+      return name;
+   }
+
    public AbstractFormElement(T renderer, String name) {
-      this.renderer = renderer;
-      this.name = name;
+      this(renderer, name, null, null);
+   }
+
+   public AbstractFormElement(T renderer, String name, ResourceBundle bundle) {
+      this(renderer, loadName(name, bundle), loadDescription(name + ".shortDescription", bundle), loadDescription(name + ".longDescription", bundle));
    }
 
    public AbstractFormElement(T renderer, String name, String shortDescription, String longDescription) {
@@ -42,6 +63,7 @@ public class AbstractFormElement<T extends Component> implements DisplayFormElem
       this.name = name;
       this.shortDescription = shortDescription;
       this.longDescription = longDescription;
+      this.resourceBundle = null;
    }
 
    @Override

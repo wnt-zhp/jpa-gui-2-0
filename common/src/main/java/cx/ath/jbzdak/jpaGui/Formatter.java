@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
  * @param <PARSE_RESULT>
  * @param <FORMAT_ARG>
  */
-public interface MyFormatter<PARSE_RESULT, FORMAT_ARG> {
+public interface Formatter<PARSE_RESULT, FORMAT_ARG> {
 
    public PARSE_RESULT parseValue(String text) throws Exception;
 

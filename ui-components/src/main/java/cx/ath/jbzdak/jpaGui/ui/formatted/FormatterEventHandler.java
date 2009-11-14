@@ -1,6 +1,6 @@
 package cx.ath.jbzdak.jpaGui.ui.formatted;
 
-import cx.ath.jbzdak.jpaGui.MyFormatter;
+import cx.ath.jbzdak.jpaGui.Formatter;
 
 import java.awt.event.ActionListener;
 
@@ -17,5 +17,5 @@ public interface FormatterEventHandler {
 
    public void fireFormatterChanged();
 
-   public void setFormatter(MyFormatter formatter);
+   public void setFormatter(Formatter formatter);
 }

@@ -4,6 +4,7 @@ import cx.ath.jbzdak.jpaGui.BeanHolder;
 import org.jdesktop.beansbinding.Property;
 
 import javax.swing.*;
+import java.util.ResourceBundle;
 
 public class JTextFieldFormElement<B> extends PropertyFormElement<JTextField, B, Object, BeanHolder<B>> {
 
@@ -19,7 +20,11 @@ public class JTextFieldFormElement<B> extends PropertyFormElement<JTextField, B,
 
 	}
 
-	@Override
+   public JTextFieldFormElement(JTextField renderer, String labelText, ResourceBundle bundle, String entityPropertyPath) {
+      super(renderer, labelText, bundle, entityPropertyPath);
+   }
+
+   @Override
 	public Object getValue(){
 		return null;
 	}

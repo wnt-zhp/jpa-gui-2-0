@@ -1,6 +1,6 @@
 package cx.ath.jbzdak.jpaGui.ui.formatted;
 
-import cx.ath.jbzdak.jpaGui.MyFormatter;
+import cx.ath.jbzdak.jpaGui.Formatter;
 
 import java.awt.event.ActionListener;
 
@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
  * @author Jacek Bzdak jbzdak@gmail.com
  *         Date: 2009-07-12
  */
-public abstract class AbstractFormatter<V, V2> implements MyFormatter<V,V2> {
+public abstract class AbstractFormatter<V, V2> implements Formatter<V,V2> {
 
    protected final FormatterEventHandler eventHandler;
 
