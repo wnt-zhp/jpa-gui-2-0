@@ -21,9 +21,14 @@ public class DAOForm<B, FE extends FormElement<?, B, ?> > extends AbstractBeanAw
 	@Override
    public void startViewing(){
       beanHolder.beginTransaction();
-		for(FormElement fe : forms){
-			fe.startViewing();
-		}
+      try{
+         for(FormElement fe : forms){
+            fe.startViewing();
+         }
+      }finally {
+         beanHolder.rollback();
+      }
+
 	}
 
 	@Override
