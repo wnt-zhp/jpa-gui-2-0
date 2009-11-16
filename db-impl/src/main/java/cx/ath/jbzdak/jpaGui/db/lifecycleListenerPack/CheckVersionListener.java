@@ -19,7 +19,7 @@ public class CheckVersionListener extends DefaultLifecycleListener<DBManager, Hi
 
 
      public CheckVersionListener(@Language("SQL") String sql) {
-      super(1500, "CHECK_VERSION_LISTENER");
+      super(2500, "CHECK_VERSION_LISTENER");
       this.sql = sql;
    }
 

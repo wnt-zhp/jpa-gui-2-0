@@ -2,7 +2,6 @@ package cx.ath.jbzdak.jpaGui.db;
 
 import javax.persistence.EntityManager;
 import javax.persistence.FlushModeType;
-import javax.persistence.Query;
 import javax.persistence.TemporalType;
 import java.util.Calendar;
 import java.util.Date;
@@ -18,7 +17,7 @@ public class SimpleQuery implements cx.ath.jbzdak.jpaGui.db.Query{
 
    private final javax.persistence.Query query;
 
-   public SimpleQuery(EntityManager entityManager, Query query) {
+   public SimpleQuery(EntityManager entityManager, javax.persistence.Query query) {
       this.entityManager = entityManager;
       this.query = query;
    }
@@ -45,51 +44,61 @@ public class SimpleQuery implements cx.ath.jbzdak.jpaGui.db.Query{
 
    @Override
    public Query setMaxResults(int maxResult) {
-      return query.setMaxResults(maxResult);
+      query.setMaxResults(maxResult);
+      return this;
    }
 
    @Override
    public Query setFirstResult(int startPosition) {
-      return query.setFirstResult(startPosition);
+      query.setFirstResult(startPosition);
+      return this;
    }
 
    @Override
    public Query setHint(String hintName, Object value) {
-      return query.setHint(hintName, value);
+      query.setHint(hintName, value);
+      return this;
    }
 
    @Override
    public Query setParameter(String name, Object value) {
-      return query.setParameter(name, value);
+      query.setParameter(name, value);
+      return this;
    }
 
    @Override
    public Query setParameter(String name, Date value, TemporalType temporalType) {
-      return query.setParameter(name, value, temporalType);
+      query.setParameter(name, value, temporalType);
+      return this;
    }
 
    @Override
    public Query setParameter(String name, Calendar value, TemporalType temporalType) {
-      return query.setParameter(name, value, temporalType);
+      query.setParameter(name, value, temporalType);
+      return this;
    }
 
    @Override
    public Query setParameter(int position, Object value) {
-      return query.setParameter(position, value);
+      query.setParameter(position, value);
+      return this;
    }
 
    @Override
    public Query setParameter(int position, Date value, TemporalType temporalType) {
-      return query.setParameter(position, value, temporalType);
+      query.setParameter(position, value, temporalType);
+      return this;
    }
 
    @Override
    public Query setParameter(int position, Calendar value, TemporalType temporalType) {
-      return query.setParameter(position, value, temporalType);
+      query.setParameter(position, value, temporalType);
+      return this;
    }
 
    @Override
    public Query setFlushMode(FlushModeType flushMode) {
-      return query.setFlushMode(flushMode);
+      query.setFlushMode(flushMode);
+      return this;
    }
 }

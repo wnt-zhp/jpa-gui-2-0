@@ -2,13 +2,13 @@ package cx.ath.jbzdak.jpaGui.db.dao;
 
 import cx.ath.jbzdak.jpaGui.db.DBManager;
 import cx.ath.jbzdak.jpaGui.db.dao.annotations.LifecyclePhase;
-import static cx.ath.jbzdak.jpaGui.utils.DBUtils.*;
 
 import javax.persistence.EntityManager;
-import java.text.Normalizer.Form;
-import java.util.NoSuchElementException;
-import java.beans.PropertyChangeSupport;
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+import java.text.Normalizer.Form;
+
+import static cx.ath.jbzdak.jpaGui.utils.DBUtils.*;
 
 /**
  * Domyślne dao. Zarządza pojedyńczą encją i ma przypisanego
@@ -221,9 +221,6 @@ public class JPADao<T> implements DAO<T> {
             throw new IllegalArgumentException("Can't find bean");
          }
          setBean(bean);
-         if (getBean() == null) {
-            throw new NoSuchElementException();
-         }
          firePersistenceEVT(LifecyclePhase.PostLoad);
          commitTransaction();
       } catch (RuntimeException e) {
@@ -288,7 +285,7 @@ public class JPADao<T> implements DAO<T> {
    */
    @Override
    public void setBean(T entity) {
-      T oldEntity = entity;
+      T oldEntity = this.bean;
       this.bean = entity;
       if(beginCount!=0){
          this.bean = refreshType.perform(entityManager, entity, manager);
