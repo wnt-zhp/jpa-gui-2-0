@@ -13,7 +13,7 @@ import java.util.ResourceBundle;
  * @author Jacek Bzdak jbzdak@gmail.com
  *         Date: 2009-04-22
  */
-public class AbstractFormElement<T extends Component> implements DisplayFormElement<T> {
+public class DefaultFormElement<T extends Component> implements DisplayFormElement<T> {
 
    private static final Logger LOGGER = Utils.makeLogger();
 
@@ -39,7 +39,7 @@ public class AbstractFormElement<T extends Component> implements DisplayFormElem
       if(bundle != null && name != null && bundle.containsKey(name)){
          return bundle.getString(name);
       }
-      return name;
+      return null;
    }
 
    private static String loadName(String name, ResourceBundle bundle){
@@ -50,15 +50,15 @@ public class AbstractFormElement<T extends Component> implements DisplayFormElem
       return name;
    }
 
-   public AbstractFormElement(T renderer, String name) {
+   public DefaultFormElement(T renderer, String name) {
       this(renderer, name, null, null);
    }
 
-   public AbstractFormElement(T renderer, String name, ResourceBundle bundle) {
+   public DefaultFormElement(T renderer, String name, ResourceBundle bundle) {
       this(renderer, loadName(name, bundle), loadDescription(name + ".shortDescription", bundle), loadDescription(name + ".longDescription", bundle));
    }
 
-   public AbstractFormElement(T renderer, String name, String shortDescription, String longDescription) {
+   public DefaultFormElement(T renderer, String name, String shortDescription, String longDescription) {
       this.renderer = renderer;
       this.name = name;
       this.shortDescription = shortDescription;
@@ -175,4 +175,5 @@ public class AbstractFormElement<T extends Component> implements DisplayFormElem
                                             PropertyChangeListener listener) {
       support.removePropertyChangeListener(propertyName, listener);
    }
+
 }

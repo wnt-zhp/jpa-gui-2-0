@@ -3,14 +3,15 @@ package cx.ath.jbzdak.jpaGui.ui;
 import cx.ath.jbzdak.common.iconManager.IconManager;
 import cx.ath.jbzdak.common.iconManager.IconSize;
 import cx.ath.jbzdak.common.iconManager.NoIconAction;
+import edu.umd.cs.findbugs.annotations.CheckForNull;
+import edu.umd.cs.findbugs.annotations.NonNull;
+import edu.umd.cs.findbugs.annotations.Nullable;
+import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
-
-import edu.umd.cs.findbugs.annotations.NonNull;
-import edu.umd.cs.findbugs.annotations.CheckForNull;
-import edu.umd.cs.findbugs.annotations.Nullable;
-
+import java.io.IOException;
 import java.util.Map;
+import java.util.Properties;
 
 /**
  * @author Jacek Bzdak jbzdak@gmail.com
@@ -26,6 +27,15 @@ public class MainIconManager {
    static{
       ICON_MANAGER.setDefaultSize(MEDIUM);
       ICON_MANAGER.setDefaultCollecion("silk");
+      Properties p = new Properties();
+      try {
+         p.load(MainIconManager.class.getResourceAsStream("mainIcon.properties"));
+      } catch (IOException e) {
+         LoggerFactory.getLogger(MainIconManager.class).error("Errro while loading default icon aliases", e);
+      }
+      for(Map.Entry<Object, Object> entry : p.entrySet()){
+         ICON_MANAGER.setAlias((String) entry.getKey(), (String) entry.getValue());
+      }
    }
 
    public static Icon getIcon(@NonNull String iconName, @NonNull String collectionName, @CheckForNull IconSize size) {

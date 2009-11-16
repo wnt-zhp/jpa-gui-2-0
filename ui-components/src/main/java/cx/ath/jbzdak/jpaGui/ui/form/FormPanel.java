@@ -2,9 +2,9 @@ package cx.ath.jbzdak.jpaGui.ui.form;
 
 import cx.ath.jbzdak.jpaGui.ClassHandler;
 import cx.ath.jbzdak.jpaGui.Utils;
+import cx.ath.jbzdak.jpaGui.ui.MainIconManager;
 import cx.ath.jbzdak.jpaGui.ui.error.ErrorHandlers;
 import cx.ath.jbzdak.jpaGui.ui.error.ErrorHandlers.Formatter;
-import cx.ath.jbzdak.jpaGui.ui.MainIconManager;
 import edu.umd.cs.findbugs.annotations.NonNull;
 import edu.umd.cs.findbugs.annotations.Nullable;
 import net.miginfocom.swing.MigLayout;
@@ -18,8 +18,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.EnumSet;
 import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.Set;
 
 /**
  * @author Jacek Bzdak jbzdak@gmail.com
@@ -39,6 +40,8 @@ public class FormPanel<T extends Component,FE extends DisplayFormElement<T>> ext
    protected Map<String, String> constraints;
 
    private boolean helpButtonVisible;
+
+   private Set<FormPanelVisibility> formPanelVisibilities;
 
    //Komponenty wyświetlane tworone przez tą instancję
 
@@ -66,10 +69,14 @@ public class FormPanel<T extends Component,FE extends DisplayFormElement<T>> ext
 
 
    public FormPanel(@NonNull FE formElement) {
-      this(formElement, null);
+      this(formElement, null, EnumSet.noneOf(FormPanelVisibility.class));
    }
 
-   public FormPanel(@NonNull FE formElement, @Nullable Map<String, String> constraints) {
+     public FormPanel(@NonNull FE formElement, @Nullable Map<String, String> constraints){
+        this(formElement, constraints, EnumSet.noneOf(FormPanelVisibility.class));
+     }
+
+   public FormPanel(@NonNull FE formElement, @Nullable Map<String, String> constraints, Set<FormPanelVisibility> formPanelVisibilities) {
       this.formElement = formElement;
       if(constraints == null){
          constraints =  FormPanelConstraints.createDefaultConstraints();
@@ -109,22 +116,29 @@ public class FormPanel<T extends Component,FE extends DisplayFormElement<T>> ext
          }
       });
       helpButtonVisible = formElement.getLongDescription()!=null;
-      initLayout();
+      initLayout(formPanelVisibilities);
    }
 
-   void initLayout(){
+   void initLayout(Set<FormPanelVisibility> formPanelVisibilities){
       removeAll();
       setLayout(new MigLayout(constraints.get("layout"), constraints.get("columns"), constraints.get("rows")));
-      add(getNameLabel(), constraints.get("nameLabel"));
-      add(formElement.getRenderer(), constraints.get("renderer"));
-      add(getErrorBtn(), constraints.get("errorBtn"));
-      add(errorLabel, constraints.get("errorLabel"));
+      if(!formPanelVisibilities.contains(FormPanelVisibility.HIDE_LABEL)){
+         add(getNameLabel(), constraints.get("nameLabel"));
+      }
+      if(!formPanelVisibilities.contains(FormPanelVisibility.HIDE_RENDERER)){
+         add(formElement.getRenderer(), constraints.get("renderer"));
+      }
+      if(!formPanelVisibilities.contains(FormPanelVisibility.HIDE_ERROR_ICON)){
+         add(getErrorBtn(), constraints.get("errorBtn"));
+         add(errorLabel, constraints.get("errorLabel"));
+      }      
       errorLabel.setVisible(false);
-      if(isHelpButtonVisible()){
-         add(getHelpButton(), constraints.get("helpBtn"));
+      if(!formPanelVisibilities.contains(FormPanelVisibility.HIDE_HELP)){
+         if(isHelpButtonVisible() || formPanelVisibilities.contains(FormPanelVisibility.SHOW_HELP)){
+            add(getHelpButton(), constraints.get("helpBtn"));
+         }
       }
    }
-
 
    @SuppressWarnings({"WeakerAccess"})
    public JButton getHelpButton() {
@@ -191,8 +205,17 @@ public class FormPanel<T extends Component,FE extends DisplayFormElement<T>> ext
          if(!helpButtonVisible){
             helpButton = null; //Coby trafił do GC
          }
-         initLayout();
+         initLayout(formPanelVisibilities);
       }
+   }
+
+   public Set<FormPanelVisibility> getFormPanelVisibilities() {
+      return formPanelVisibilities;
+   }
+
+   public void setFormPanelVisibilities(Set<FormPanelVisibility> formPanelVisibilities) {
+      this.formPanelVisibilities = formPanelVisibilities;
+      initLayout(formPanelVisibilities);
    }
 
    public Object getMessage() {
@@ -221,7 +244,7 @@ public class FormPanel<T extends Component,FE extends DisplayFormElement<T>> ext
 
    public void setConstraints(Map<String, String> constraints) {
       this.constraints = constraints;
-      initLayout();
+      initLayout(formPanelVisibilities);
    }
 
    Icon getNoErrorIcon() {

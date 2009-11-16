@@ -10,7 +10,7 @@ import java.awt.*;
 import java.util.ResourceBundle;
 
 public abstract class PropertyFormElement<T extends Component, B, V, BH extends BeanHolder<? extends B>>
-        extends AbstractFormElement<T> implements FormElement<T,B,V>, BeanHolderAware<B, BH>, FormAware{
+        extends DefaultFormElement<T> implements FormElement<T,B,V>, BeanHolderAware<B, BH>, FormAware{
 
    @SuppressWarnings({"WeakerAccess"})
    protected final Property<B, Object> beanValueProperty;

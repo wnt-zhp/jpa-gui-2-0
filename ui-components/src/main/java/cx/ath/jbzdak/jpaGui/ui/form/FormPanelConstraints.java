@@ -48,7 +48,7 @@ public class FormPanelConstraints {
 
 	public static Map<String, String> createDefaultConstraints(){
 		Map<String, String> emptyConstraints = createEmptyConstraints();
-		emptyConstraints.put("layout", "fillx, hidemode 2, gap 2 2");
+		emptyConstraints.put("layout", "fillx, hidemode 3, gap 2 2");
 		emptyConstraints.put("columns", "[min!|fill, grow|min!|min!]");
 		//emptyConstraints.put("rows", "");
 		//emptyConstraints.put("nameLabel", "");
