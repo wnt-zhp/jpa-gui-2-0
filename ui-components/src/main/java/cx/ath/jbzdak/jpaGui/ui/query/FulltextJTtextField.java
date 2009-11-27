@@ -33,6 +33,7 @@ public class FulltextJTtextField extends JTextField{
 
          }
       });
+      setColumns(15);
 	}
 
 
