@@ -38,7 +38,7 @@ public class MainIconManager {
       }
    }
 
-   public static Icon getIcon(@NonNull String iconName, @NonNull String collectionName, @CheckForNull IconSize size) {
+   public static ImageIcon getIcon(@NonNull String iconName, @NonNull String collectionName, @CheckForNull IconSize size) {
       return ICON_MANAGER.getIcon(iconName, collectionName, size);
    }
 
@@ -50,15 +50,15 @@ public class MainIconManager {
       return ICON_MANAGER.getAliases();
    }
 
-   public static Icon getIcon(@NonNull String iconName) {
+   public static ImageIcon getIcon(@NonNull String iconName) {
       return ICON_MANAGER.getIcon(iconName);
    }
 
-   public static Icon getIcon(@NonNull String iconName, @NonNull String collectionName) {
+   public static ImageIcon getIcon(@NonNull String iconName, @NonNull String collectionName) {
       return ICON_MANAGER.getIcon(iconName, collectionName);
    }
 
-   public static Icon getIcon(@NonNull String iconName, @NonNull IconSize size) {
+   public static ImageIcon getIcon(@NonNull String iconName, @NonNull IconSize size) {
       return ICON_MANAGER.getIcon(iconName, size);
    }
 

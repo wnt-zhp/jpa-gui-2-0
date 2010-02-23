@@ -6,13 +6,17 @@ import static cx.ath.jbzdak.jpaGui.Utils.initLocation;
 import cx.ath.jbzdak.jpaGui.ui.error.ErrorHandlers.Formatter;
 import cx.ath.jbzdak.jpaGui.ui.MainIconManager;
 import net.miginfocom.swing.MigLayout;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class DisplayErrorDetailsDialog extends JDialog{
+public class ErrorDetailsDialog extends JDialog{
+
+   private static final Logger LOGGER = LoggerFactory.getLogger(ErrorDetailsDialog.class);
 
 	private static final long serialVersionUID = 1L;
 
@@ -24,7 +28,11 @@ public class DisplayErrorDetailsDialog extends JDialog{
    private  static final ClassHandler<Formatter> errorhandlers = ErrorHandlers.createLongHandlers();
 
    public static void showErrorDialog(Object message, Frame owner){
-      DisplayErrorDetailsDialog dialog = new DisplayErrorDetailsDialog(owner, true);
+      if (message instanceof Exception) {
+         Exception exception = (Exception) message;
+         LOGGER.warn("Caught exception", exception);
+      }
+      ErrorDetailsDialog dialog = new ErrorDetailsDialog(owner, true);
       dialog.setText(errorhandlers.getHandler(message).getMessage(message));
       Utils.initLocation(dialog);
       dialog.setVisible(true);
@@ -46,23 +54,23 @@ public class DisplayErrorDetailsDialog extends JDialog{
       textArea.setLineWrap(true);
 	}
 
-	public DisplayErrorDetailsDialog() {
+	public ErrorDetailsDialog() {
 		super();
 		initialize();
 	}
 
-	public DisplayErrorDetailsDialog(Dialog owner) {
+	public ErrorDetailsDialog(Dialog owner) {
 		super(owner);
 		initialize();
 	}
 
 	@SuppressWarnings({"SameParameterValue"})
-   public DisplayErrorDetailsDialog(Frame owner, boolean modal) {
+   public ErrorDetailsDialog(Frame owner, boolean modal) {
 		super(owner, modal);
 		initialize();
 	}
 
-	public DisplayErrorDetailsDialog(Frame owner) {
+	public ErrorDetailsDialog(Frame owner) {
 		super(owner);
 		initialize();
 	}

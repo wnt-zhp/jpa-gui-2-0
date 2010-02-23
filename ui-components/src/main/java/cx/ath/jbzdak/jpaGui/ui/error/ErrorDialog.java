@@ -3,7 +3,6 @@ package cx.ath.jbzdak.jpaGui.ui.error;
 import cx.ath.jbzdak.jpaGui.ClassHandler;
 import static cx.ath.jbzdak.jpaGui.Utils.initLocation;
 import cx.ath.jbzdak.jpaGui.genericListeners.HideWindowActionListener;
-import cx.ath.jbzdak.jpaGui.ui.ButtonFactory;
 import cx.ath.jbzdak.jpaGui.ui.MainIconManager;
 import cx.ath.jbzdak.jpaGui.ui.error.ErrorHandlers.Formatter;
 import edu.umd.cs.findbugs.annotations.CheckForNull;
@@ -49,7 +48,7 @@ public class ErrorDialog extends JDialog {
 
 	final JButton closeButton;
 	{
-		closeButton = ButtonFactory.makeButton("dismiss");
+		closeButton = new JButton("Zamknij");
 		closeButton.addActionListener(new HideWindowActionListener(this));
 	}
 
@@ -88,7 +87,7 @@ public class ErrorDialog extends JDialog {
 
 		final JButton rendererEditor;
 
-		final DisplayErrorDetailsDialog dialog = new DisplayErrorDetailsDialog(
+		final ErrorDetailsDialog dialog = new ErrorDetailsDialog(
 				ErrorDialog.this);
 
 		{

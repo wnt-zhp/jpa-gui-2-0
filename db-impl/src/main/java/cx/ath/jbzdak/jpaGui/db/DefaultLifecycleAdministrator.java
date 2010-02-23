@@ -236,6 +236,23 @@ public  class DefaultLifecycleAdministrator<T extends JpaDbManager, USER_OBJECT>
    }
 
    @Override
+   public void clearDB() throws Exception {
+      lock.lock();
+      try{
+         boolean wasStarted = databaseStarted;
+         if(!wasStarted){
+            startDB();
+         }
+         goToPhase(DBLifecyclePhase.CLEAR_DB_CONTENTS);
+         if(!wasStarted){
+            closeDB();
+         }
+      }finally {
+         lock.unlock();
+      }
+   }
+
+   @Override
    public void closeDB() throws Exception {
       if(!databaseStarted){
          return;

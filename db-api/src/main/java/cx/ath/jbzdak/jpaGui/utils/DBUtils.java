@@ -40,12 +40,21 @@ public class DBUtils {
       }
       return id;
    }
+
    public static Object getId(Object object) {
       if(object==null){
          throw new IllegalArgumentException();
       }
       return AnnotationUtils.getProperty(object, getIDMember(object));
    }
+
+   public static Object setId(Object object, Object value, Class valueClass) {
+       if(object==null){
+          throw new IllegalArgumentException();
+       }
+       return AnnotationUtils.setProperty(object, getIDMember(object), value, valueClass);
+    }
+
 
 
 	/**

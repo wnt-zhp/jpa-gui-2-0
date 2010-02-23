@@ -31,7 +31,7 @@ public class AnnotationUtils {
          }
       }
       if(member instanceof Field){
-         String getterName = getAccesorName(member.getName());
+         String getterName = getGetterName(member.getName());
          try {
             Method m = bean.getClass().getMethod(getterName);
             return m.invoke(bean);
@@ -42,11 +42,39 @@ public class AnnotationUtils {
       throw new IllegalArgumentException();
    }
 
-   static String getAccesorName(String name){
+   public static Object setProperty(Object bean, Member member, Object value, Class valueClass){
+      if (member instanceof Method) {
+         Method m = (Method) member;
+         try {
+            return m.invoke(bean, value);
+         } catch (Exception e) {
+           Utils.throwRuntime(e);
+         }
+      }
+      if(member instanceof Field){
+         String getterName = getSetterName(member.getName());
+         try {
+            Method m = bean.getClass().getMethod(getterName, valueClass==null?value.getClass():valueClass);
+            return m.invoke(bean,value);
+         } catch (Exception e) {
+            Utils.throwRuntime(e);
+         }
+      }
+      throw new IllegalArgumentException();
+   }
+
+   static String getGetterName(String name){
       if(name.isEmpty()){
          throw new IllegalArgumentException();
       }
       return "get" + Character.toUpperCase(name.charAt(0)) + name.substring(1);
+   }
+
+    static String getSetterName(String name){
+      if(name.isEmpty()){
+         throw new IllegalArgumentException();
+      }
+      return "set" + Character.toUpperCase(name.charAt(0)) + name.substring(1);
    }
 
 }
