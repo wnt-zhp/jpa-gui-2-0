@@ -1,11 +1,11 @@
 package cx.ath.jbzdak.jpaGui.ui.form;
 
-import cx.ath.jbzdak.jpaGui.ui.FormAware;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+
+import cx.ath.jbzdak.jpaGui.ui.FormAware;
 
 /**
  * @author Jacek Bzdak jbzdak@gmail.com
@@ -15,6 +15,8 @@ public abstract class AbstractForm<B,FE extends FormElement<?, ? super B, ?>> im
 
    protected final List<FE> forms = new ArrayList<FE>();
    protected final List<Validator> validators = new ArrayList<Validator>();
+
+   PropertySettingTime propertySettingTime;
 
    @Override
    public void addValidator(Validator<? super B> v){
@@ -81,4 +83,10 @@ public abstract class AbstractForm<B,FE extends FormElement<?, ? super B, ?>> im
    }
 
 
+   public void setPropertySettingTime(PropertySettingTime propertySettingTime) {
+      this.propertySettingTime = propertySettingTime;
+      for(FormElement element : forms){
+         element.setPropertySettingTime(propertySettingTime);
+      }
+   }
 }

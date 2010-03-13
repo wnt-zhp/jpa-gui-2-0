@@ -10,6 +10,7 @@
     <artifactId>db-api</artifactId>
     <packaging>jar</packaging>
     <dependencies>
+       
         <dependency>
             <artifactId>common</artifactId>
             <groupId>cx.ath.jbzdak.gui</groupId>

@@ -45,7 +45,7 @@ public class H2Test {
       config.getH2Configuration().startDB();
       DBManager manager = config.getH2Configuration().getDbManager();
       DAO<FooBean> dao = manager.getDao(FooBean.class);
-      dao.createEntity();
+      dao.createBean();
       dao.getBean().setName("foo");
       dao.persist();
 
@@ -61,7 +61,7 @@ public class H2Test {
       DBManager manager = config.getH2Configuration().getDbManager();
       DAO<FooBean> dao = manager.getDao(FooBean.class);
       dao.beginTransaction();
-      dao.createEntity();
+      dao.createBean();
       dao.getBean().setName("foo");
       dao.persist();
       dao.commitTransaction();
@@ -87,7 +87,7 @@ public class H2Test {
          DBManager manager = config.getH2Configuration().getDbManager();
          DAO<FooBean> dao = manager.getDao(FooBean.class);
  //ł        dao.beginTransaction();
-         dao.createEntity();
+         dao.createBean();
          dao.getBean().setName("foo");
          dao.persist();
 //         dao.commitTransaction();

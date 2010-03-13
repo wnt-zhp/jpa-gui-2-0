@@ -9,6 +9,7 @@ import java.beans.PropertyChangeSupport;
 import java.text.Normalizer.Form;
 
 import static cx.ath.jbzdak.jpaGui.utils.DBUtils.*;
+import cx.ath.jbzdak.common.AbstractPropertySupported;
 
 /**
  * Domyślne dao. Zarządza pojedyńczą encją i ma przypisanego
@@ -75,6 +76,9 @@ public class JPADao<T> implements DAO<T> {
    public boolean beginTransaction() {
       if (transactionManaged) {
          return false;
+      }
+      if(isAutoCreateEntity() && bean == null){
+         createBean();
       }
       if (entityManager == null || !entityManager.isOpen()) {
          //noinspection deprecation,deprecation
@@ -253,10 +257,10 @@ public class JPADao<T> implements DAO<T> {
    }
 
    /* (non-Javadoc)
-   * @see cx.ath.jbzdak.zarlok.db.dao.DAO#createEntity()
+   * @see cx.ath.jbzdak.zarlok.db.dao.DAO#createBean()
    */
    @Override
-   public void createEntity() {
+   public void createBean() {
       if (bean != null) {
          throw new IllegalStateException();
       }
@@ -275,7 +279,7 @@ public class JPADao<T> implements DAO<T> {
    @Override
    public T getBean() {
       if (autoCreateEntity && bean == null) {
-         createEntity();
+         createBean();
       }
       return bean;
    }

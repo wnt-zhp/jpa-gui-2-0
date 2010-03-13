@@ -37,6 +37,8 @@ public class RelativeDateParser {
 				minus = "-".equals(match.group(1));
 			}
 			int result = parseDniWord(match.group(2));
+         if(result > 10){
+         }
 			if(minus) {
             return -result;
          }

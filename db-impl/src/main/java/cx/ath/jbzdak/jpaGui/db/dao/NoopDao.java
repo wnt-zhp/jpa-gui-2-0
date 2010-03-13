@@ -1,6 +1,9 @@
 package cx.ath.jbzdak.jpaGui.db.dao;
 
-public class NoopDao<T> implements DAO<T> {
+import cx.ath.jbzdak.common.PropertySupported;
+import cx.ath.jbzdak.common.AbstractPropertySupported;
+
+public class NoopDao<T> extends AbstractPropertySupported implements DAO<T> {
 
 	private T entity;
 
@@ -70,7 +73,7 @@ public class NoopDao<T> implements DAO<T> {
 
 
 	@Override
-	public void createEntity() {}
+	public void createBean() {}
 
 
 	@Override

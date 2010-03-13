@@ -1,14 +1,16 @@
 package cx.ath.jbzdak.jpaGui.ui.form;
 
+import org.slf4j.Logger;
+
 import cx.ath.jbzdak.jpaGui.Utils;
 import cx.ath.jbzdak.jpaGui.db.dao.DAO;
-import org.slf4j.Logger;
 
 
 @SuppressWarnings("unchecked")
 public class DAOForm<B, FE extends FormElement<?, B, ?> > extends AbstractBeanAwareForm<B,FE, DAO<? extends B>>{
 
    private static final Logger LOGGER = Utils.makeLogger();
+
 
 	@Override
    public void startEditing(){
@@ -60,5 +62,4 @@ public class DAOForm<B, FE extends FormElement<?, B, ?> > extends AbstractBeanAw
 		}
 	}
 
-   
 }

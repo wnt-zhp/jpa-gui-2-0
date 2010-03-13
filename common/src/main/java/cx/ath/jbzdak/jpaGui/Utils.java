@@ -173,6 +173,9 @@ public class Utils {
 		if(places < 0){
 			throw new IllegalArgumentException();
 		}
+      if(value==null){
+         return  null; 
+      }
       value = value.multiply(BigDecimal.TEN.pow(places));
       value = value.round(new MathContext(0));
 		return value.divide(BigDecimal.TEN.pow(places));

@@ -1,100 +1,97 @@
 package cx.ath.jbzdak.jpaGui.ui.form;
 
-import cx.ath.jbzdak.jpaGui.Formatter;
-import cx.ath.jbzdak.jpaGui.ui.autoComplete.AutocompleteComboBox;
-import cx.ath.jbzdak.jpaGui.ui.autoComplete.ComboBoxElement;
-import cx.ath.jbzdak.jpaGui.ui.autoComplete.AutoCompleteAdaptor;
-import cx.ath.jbzdak.jpaGui.ui.formatted.FormattedFieldElement;
-import cx.ath.jbzdak.jpaGui.ui.formatted.FormattedTextField;
-import org.jdesktop.beansbinding.Property;
-
 import javax.swing.*;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import cx.ath.jbzdak.jpaGui.Formatter;
+import cx.ath.jbzdak.jpaGui.ui.autoComplete.AutoCompleteAdaptor;
+import cx.ath.jbzdak.jpaGui.ui.autoComplete.AutocompleteComboBox;
+import cx.ath.jbzdak.jpaGui.ui.autoComplete.ComboBoxElement;
+import cx.ath.jbzdak.jpaGui.ui.formatted.FormattedFieldElement;
+import cx.ath.jbzdak.jpaGui.ui.formatted.FormattedTextField;
+
 @SuppressWarnings({"unchecked", "WeakerAccess"})
 public class FormFactory<T>  {
 
-    private ResourceBundle resourceBundle;
+   private ResourceBundle resourceBundle;
 
-    private final SimpleDAOForm<T> createdForm = new SimpleDAOForm<T>();
+   private final SimpleDAOForm<T> createdForm = new SimpleDAOForm<T>();
 
-    private String layout = "default";
+   private String layout = "default";
 
-    private Map<String,String> constraints;
+   private Map<String,String> constraints;
 
-    public SimpleDAOForm<T> getCreatedForm() {
-        return createdForm;
-    }
+   public SimpleDAOForm<T> getCreatedForm() {
+      return createdForm;
+   }
 
-    private Map<String, String> getConstraints(Class clazz){
-        if(constraints!=null){
-            return constraints;
-        }
-        return FormPanelConstraints.getConstraints(layout, clazz);
-    }
+   private Map<String, String> getConstraints(Class clazz){
+      if(constraints!=null){
+         return constraints;
+      }
+      return FormPanelConstraints.getConstraints(layout, clazz);
+   }
 
-    @SuppressWarnings({"WeakerAccess"})
-    public FormPanel<FormattedTextField, FormattedFieldElement<T, ?>> decorateFormattedTextField(
-            String labelText,
-            String beanProperty,
-            FormattedTextField field
-    ){
-        FormattedFieldElement<T, ?> elem = new FormattedFieldElement<T, Object>(field, labelText, resourceBundle, beanProperty);
-        FormPanel p =  new FormPanel<FormattedTextField, FormattedFieldElement<T, ?>>(elem, getConstraints(field.getClass()));
+   @SuppressWarnings({"WeakerAccess"})
+   public FormPanel<FormattedTextField, FormattedFieldElement<T, ?>> decorateFormattedTextField(
+           String labelText,
+           String beanProperty,
+           FormattedTextField field
+   ){
+      FormattedFieldElement<T, ?> elem = new FormattedFieldElement<T, Object>(field, labelText, resourceBundle, beanProperty);
+      FormPanel p =  new FormPanel<FormattedTextField, FormattedFieldElement<T, ?>>(elem, getConstraints(field.getClass()));
 
-        createdForm.add(elem);
+      createdForm.add(elem);
 
-        return p;
-    }
+      return p;
+   }
 
-    public FormPanel<FormattedTextField, FormattedFieldElement<T, ?>> decorateFormattedTextField(
-            String labelText,
-            String beanProperty,
-            Formatter formatter
-    ){
-        return decorateFormattedTextField(labelText, beanProperty, new FormattedTextField(formatter));
-    }
+   public FormPanel<FormattedTextField, FormattedFieldElement<T, ?>> decorateFormattedTextField(
+           String labelText,
+           String beanProperty,
+           Formatter formatter
+   ){
+      return decorateFormattedTextField(labelText, beanProperty, new FormattedTextField(formatter));
+   }
 
-    public FormPanel decotrateComboBox(
-            String labelText,
-            String beanProperty,
-            AutocompleteComboBox field
-    ){
-        ComboBoxElement<T, ?> element = new ComboBoxElement<T, Object>(field, labelText, resourceBundle, beanProperty);
-        FormPanel p =  new FormPanel(element, getConstraints(field.getClass()));
-        createdForm.add(element);
-        return p;
-    }
+   public <V> FormPanel<AutocompleteComboBox<V>, ComboBoxElement<T, V>> decotrateComboBox(
+           String labelText,
+           String beanProperty,
+           AutocompleteComboBox field
+   ){
+      ComboBoxElement<T, ?> element = new ComboBoxElement<T, Object>(field, labelText, resourceBundle, beanProperty);
+      FormPanel<AutocompleteComboBox<V>, ComboBoxElement<T, V>> p =  new FormPanel(element, getConstraints(field.getClass()));
+      createdForm.add(element);
+      return p;
+   }
 
-      public FormPanel decotrateComboBox(
-            String labelText,
-            String beanProperty,
-            AutoCompleteAdaptor field
-    ){
-       return decotrateComboBox(labelText, beanProperty, new AutocompleteComboBox(field));
-    }
-
-
-
-      public FormPanel decotrateComboBox(
-            String labelText,
-            String beanProperty,
-            AutoCompleteAdaptor field,
-            boolean strict
-    ){
-       return decotrateComboBox(labelText, beanProperty, new AutocompleteComboBox(field, strict));
-    }
-    public FormPanel<JTextField, JTextFieldFormElement<T>> decotrateJTextField(
-            String labelText,
-            String beanProperty
-    ){
-        JTextFieldFormElement<T> jTextFieldFormElement = new JTextFieldFormElement<T>(new JTextField(), labelText, resourceBundle,
-                beanProperty);
-        FormPanel p =  new FormPanel<JTextField, JTextFieldFormElement<T>>(jTextFieldFormElement,getConstraints(JTextField.class));
-        createdForm.add(jTextFieldFormElement);
-        return p;
-    }
+   public <V> FormPanel<AutocompleteComboBox<V>, ComboBoxElement<T, V>> decorateComboBox(
+           String labelText,
+           String beanProperty,
+           AutoCompleteAdaptor field
+   ){
+      return decotrateComboBox(labelText, beanProperty, new AutocompleteComboBox(field));
+   }
+   public <V> FormPanel<AutocompleteComboBox<V>, ComboBoxElement<T, V>> decotrateComboBox(
+           String labelText,
+           String beanProperty,
+           AutoCompleteAdaptor field,
+           boolean strict
+   ){
+      return decotrateComboBox(labelText, beanProperty, new AutocompleteComboBox(field, strict));
+   }
+   
+   public FormPanel<JTextField, JTextFieldFormElement<T>> decotrateJTextField(
+           String labelText,
+           String beanProperty
+   ){
+      JTextFieldFormElement<T> jTextFieldFormElement = new JTextFieldFormElement<T>(new JTextField(), labelText, resourceBundle,
+              beanProperty);
+      FormPanel p =  new FormPanel<JTextField, JTextFieldFormElement<T>>(jTextFieldFormElement,getConstraints(JTextField.class));
+      createdForm.add(jTextFieldFormElement);
+      return p;
+   }
 
 //    public FormPanel<JTextField, JTextFieldFormElement<T>> decotrateJTextField(
 //            String labelText,
@@ -107,23 +104,23 @@ public class FormFactory<T>  {
 //        return p;
 //    }
 
-    public String getLayout() {
-        return layout;
-    }
+   public String getLayout() {
+      return layout;
+   }
 
-    public Map<String, String> getConstraints() {
-        return constraints;
-    }
+   public Map<String, String> getConstraints() {
+      return constraints;
+   }
 
-    public void setLayout(String layout) {
-        this.layout = layout;
-    }
+   public void setLayout(String layout) {
+      this.layout = layout;
+   }
 
-    public void setConstraints(Map<String, String> constraints) {
-        this.constraints = constraints;
-    }
+   public void setConstraints(Map<String, String> constraints) {
+      this.constraints = constraints;
+   }
 
-    public void setResourceBundle(ResourceBundle resourceBundle) {
-        this.resourceBundle = resourceBundle;
-    }
+   public void setResourceBundle(ResourceBundle resourceBundle) {
+      this.resourceBundle = resourceBundle;
+   }
 }

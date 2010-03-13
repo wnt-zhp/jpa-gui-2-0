@@ -1,15 +1,17 @@
 package cx.ath.jbzdak.jpaGui.ui.autoComplete;
 
-import cx.ath.jbzdak.jpaGui.BeanHolder;
-import cx.ath.jbzdak.jpaGui.BeanHolderAware;
-import cx.ath.jbzdak.jpaGui.ui.FormAware;
-import cx.ath.jbzdak.jpaGui.ui.form.Form;
-import cx.ath.jbzdak.jpaGui.ui.form.PropertyFormElement;
+import org.jdesktop.beansbinding.BeanProperty;
 import org.jdesktop.beansbinding.Property;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ResourceBundle;
+
+import cx.ath.jbzdak.jpaGui.BeanHolder;
+import cx.ath.jbzdak.jpaGui.BeanHolderAware;
+import cx.ath.jbzdak.jpaGui.ui.FormAware;
+import cx.ath.jbzdak.jpaGui.ui.form.Form;
+import cx.ath.jbzdak.jpaGui.ui.form.PropertyFormElement;
 
 /**
  * {@link cx.ath.jbzdak.jpaGui.ui.form.FormElement} obsługujący {@link AutocompleteComboBox}.
@@ -21,19 +23,20 @@ public class ComboBoxElement<B, V> extends PropertyFormElement<AutocompleteCombo
 
    public ComboBoxElement(AutocompleteComboBox renderer, String labelText,
                           Property<B, Object> entityValueProperty) {
-      super(renderer, labelText, entityValueProperty);
+      this(renderer, labelText, null, entityValueProperty);
    }
 
    public ComboBoxElement(AutocompleteComboBox renderer, String labelText,
                           String entityPropertyPath) {
-      super(renderer, labelText, entityPropertyPath);
+      this(renderer, labelText, null, BeanProperty.<Object, Object>create(entityPropertyPath));
    }
 
    public ComboBoxElement(AutocompleteComboBox<V> renderer, String labelText, ResourceBundle bundle, String entityPropertyPath) {
-      super(renderer, labelText, bundle, entityPropertyPath);
+      this(renderer, labelText, bundle, BeanProperty.<Object, Object>create(entityPropertyPath));
    }
 
-   {
+   public ComboBoxElement(AutocompleteComboBox<V> renderer, String labelText, ResourceBundle bundle, Property property) {
+      super(renderer, labelText, bundle, property);
       getRenderer().addPropertyChangeListener("selectedItem", new PropertyChangeListener() {
          @Override
          public void propertyChange(PropertyChangeEvent evt) {
@@ -54,11 +57,12 @@ public class ComboBoxElement<B, V> extends PropertyFormElement<AutocompleteCombo
 
    }
 
-   @Override
    public void setValue(V value) {
-      if (isReadNullValues() || value != null) {
+      V oldValue = getValue();
+       if (isReadNullValues() || value != null) {
          getRenderer().setSelectedItem(value);
       }
+      support.firePropertyChange("value", oldValue, value);
    }
 
    @Override

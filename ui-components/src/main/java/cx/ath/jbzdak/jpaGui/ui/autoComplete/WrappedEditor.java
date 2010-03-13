@@ -1,5 +1,8 @@
 package cx.ath.jbzdak.jpaGui.ui.autoComplete;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import cx.ath.jbzdak.jpaGui.FormattingException;
 import cx.ath.jbzdak.jpaGui.genericListeners.DoStuffDocumentListener;
 
@@ -29,6 +32,8 @@ import java.beans.PropertyChangeSupport;
  */
 public class WrappedEditor implements ComboBoxEditor{
 
+   private static final Logger LOGGER = LoggerFactory.getLogger(WrappedEditor.class);
+
 	private final ComboBoxEditor wrapped;
 
    private final AutocompleteComboBox autocompleteComboBox;
@@ -40,7 +45,7 @@ public class WrappedEditor implements ComboBoxEditor{
 
 	private boolean ignoreSetText = false;
 
-   private boolean formatItems = false;
+   private boolean formatItems = true;
 
 	public WrappedEditor(ComboBoxEditor wrapped, AutocompleteComboBox autocompleteComboBox) {
 		super();
@@ -88,6 +93,7 @@ public class WrappedEditor implements ComboBoxEditor{
             try {
                wrapped.setItem(autocompleteComboBox.getFormatter().formatValue(anObject));
             } catch (FormattingException e) {
+               LOGGER.debug("Error while formatting value {}", e);
                wrapped.setItem(anObject);
             }
          }else{

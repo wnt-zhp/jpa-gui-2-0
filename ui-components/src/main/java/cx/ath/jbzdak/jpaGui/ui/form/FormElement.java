@@ -2,9 +2,14 @@ package cx.ath.jbzdak.jpaGui.ui.form;
 
 import java.awt.*;
 
+import cx.ath.jbzdak.common.annotation.property.Bound;
+import cx.ath.jbzdak.common.annotation.property.DefaultValue;
+
 /**
- * @author Jacek Bzdak jbzdak@gmail.com
- *         Date: 2009-04-22
+ *
+ * @param <T> Komponent
+ * @param <B> Bean którego własność ustawiamy
+ * @param <V> Typ ustawianej własności
  */
 public interface FormElement<T extends Component, B, V> extends DisplayFormElement<T>{
 
@@ -49,12 +54,17 @@ public interface FormElement<T extends Component, B, V> extends DisplayFormEleme
     * Gets last value form this element
     * @return
     */
+   @Bound
    V getValue();
 
    /**
-    * Should this formElement override nonnull values from bean, or not.
+    * Should this formElement override non tull values in element
+    * with null values from  bean
     * @param readNullValues
     */
+   @DefaultValue("true")
 	public void setReadNullValues(boolean readNullValues);
+
+   public void setPropertySettingTime(PropertySettingTime time);
 
 }

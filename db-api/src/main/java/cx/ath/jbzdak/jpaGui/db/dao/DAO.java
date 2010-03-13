@@ -1,5 +1,6 @@
 package cx.ath.jbzdak.jpaGui.db.dao;
 
+import cx.ath.jbzdak.common.annotation.property.DefaultValue;
 import cx.ath.jbzdak.jpaGui.BeanHolder;
 
 public interface DAO<T> extends BeanHolder<T> {
@@ -46,13 +47,14 @@ public interface DAO<T> extends BeanHolder<T> {
 
 	public void clearEntity();
 
-	public void createEntity();
+	public void createBean();
 
    void remove();
 
 	public boolean isAutoCreateEntity();
 
 	@SuppressWarnings({"SameParameterValue"})
+   @DefaultValue("false")
    public void setAutoCreateEntity(boolean autoCreateEntity);
 
 	public boolean isTransactionManaged();

@@ -32,7 +32,7 @@ public abstract class DbAdaptor<V> extends SwingWorkerAdaptor<V> {
 	 * poprzez {@link #getFilter()}
 	 * @return Wyniki przeszukiwania.
 	 */
-	protected abstract Collection<V>  doInBackground(EntityManager query);
+	protected abstract Collection<V>  doInBackground(EntityManager manager);
 
 	@Override
 	protected Collection<V> doInBackground() {

@@ -1,13 +1,16 @@
 package cx.ath.jbzdak.jpaGui.ui.form;
 
-import cx.ath.jbzdak.jpaGui.BeanHolder;
-import cx.ath.jbzdak.jpaGui.BeanHolderAware;
-import cx.ath.jbzdak.jpaGui.ui.FormAware;
 import org.jdesktop.beansbinding.BeanProperty;
 import org.jdesktop.beansbinding.Property;
 
-import java.awt.*;
+import java.awt.Component;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ResourceBundle;
+
+import cx.ath.jbzdak.jpaGui.BeanHolder;
+import cx.ath.jbzdak.jpaGui.BeanHolderAware;
+import cx.ath.jbzdak.jpaGui.ui.FormAware;
 
 public abstract class PropertyFormElement<T extends Component, B, V, BH extends BeanHolder<? extends B>>
         extends DefaultFormElement<T> implements FormElement<T,B,V>, BeanHolderAware<B, BH>, FormAware{
@@ -21,29 +24,40 @@ public abstract class PropertyFormElement<T extends Component, B, V, BH extends 
 
    private Form form;
 
+   private PropertySettingTime propertySettingTime;
+
+   SettingValueErrorAction settingValueErrorAction = SettingValueErrorAction.THROW;
+
+   private final PropertyChangeListener listener = new PropertyChangeListener() {
+      @Override
+      public void propertyChange(PropertyChangeEvent evt) {
+         commit();
+      }
+   };
+
    protected PropertyFormElement(T renderer, String labelText) {
-      super(renderer, labelText);
-      this.beanValueProperty = null;
+      this(renderer, labelText, (ResourceBundle) null, (Property) null);
    }
 
    protected PropertyFormElement(T renderer, String labelText, String entityPropertyPath) {
-      super(renderer, labelText);
-      this.beanValueProperty =  BeanProperty.create(entityPropertyPath);
+      this(renderer, labelText, null, BeanProperty.<Object, Object>create(entityPropertyPath));
    }
 
    protected PropertyFormElement(T renderer, String name, ResourceBundle bundle) {
-      super(renderer, name, bundle);
-      this.beanValueProperty = null;
+      this(renderer, name, bundle, (Property) null);
    }
 
    protected PropertyFormElement(T renderer, String labelText, ResourceBundle bundle, String entityPropertyPath) {
-      super(renderer, labelText, bundle);
-      this.beanValueProperty =  BeanProperty.create(entityPropertyPath);
+      this(renderer, labelText, bundle, BeanProperty.<Object, Object>create(entityPropertyPath));
    }
 
-   protected PropertyFormElement(T renderer, String name, Property<B, Object> beanValueProperty) {
-      super(renderer, name);
-      this.beanValueProperty = beanValueProperty;
+   protected PropertyFormElement(T renderer, String labelText, Property<B, Object> beanValueProperty) {
+      this(renderer, labelText, null, beanValueProperty);
+   }
+
+   protected PropertyFormElement(T renderer, String labelText, ResourceBundle bundle, Property property) {
+      super(renderer, labelText, bundle);
+      this.beanValueProperty =  property;
    }
 
    @Override
@@ -57,11 +71,11 @@ public abstract class PropertyFormElement<T extends Component, B, V, BH extends 
 
    @Override
    public void startEditing() {
-      Object value;
+      Object value = null;
       try {
          value = beanValueProperty.getValue(getBean());
       }catch (RuntimeException e) {
-         throw new RuntimeException(beanValueProperty.toString() + ", entity=" + getBean(), e);
+         settingValueErrorAction.errorWhileSettingValue(e, this);
       }
       if(value != null || readNullValues){
          setValue((V) value);
@@ -142,5 +156,19 @@ public abstract class PropertyFormElement<T extends Component, B, V, BH extends 
 
    public void setForm(Form form) {
       this.form = form;
+   }
+
+   @Override
+   public void setPropertySettingTime(PropertySettingTime time) {
+      this.propertySettingTime = time;
+      if(propertySettingTime == PropertySettingTime.ON_COMMIT){
+         addPropertyChangeListener("value", listener);
+      }else{
+         removePropertyChangeListener("value", listener);
+      }
+   }
+
+   public void setSettingValueErrorAction(SettingValueErrorAction settingValueErrorAction) {
+      this.settingValueErrorAction = settingValueErrorAction;
    }
 }
