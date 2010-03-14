@@ -50,6 +50,12 @@ public class FormattedFieldElement<B, V> extends PropertyFormElement<FormattedTe
       setErrorMessage(getRenderer().getParseResults());
       //noinspection ThrowableResultOfMethodCallIgnored
       setError(getRenderer().getParseResults() != null);
+      getRenderer().addPropertyChangeListener("value", new PropertyChangeListener(){
+         @Override
+         public void propertyChange(PropertyChangeEvent evt) {
+            firePropertyChange("value", evt.getOldValue(), evt.getNewValue());
+         }
+      });
 
    }
 
@@ -65,9 +71,11 @@ public class FormattedFieldElement<B, V> extends PropertyFormElement<FormattedTe
 
    @Override
    public void setValue(V value) {
+      V oldVal = getValue();
       if (isReadNullValues() || value != null) {
          getRenderer().setValueFromBean(value);
       }
+
    }
 
    @Override
@@ -88,9 +96,7 @@ public class FormattedFieldElement<B, V> extends PropertyFormElement<FormattedTe
          FormAware formAware = (FormAware) f;
          formAware.setForm(getForm());
       }
-
    }
-
 
    @Override
    public void setForm(Form form) {

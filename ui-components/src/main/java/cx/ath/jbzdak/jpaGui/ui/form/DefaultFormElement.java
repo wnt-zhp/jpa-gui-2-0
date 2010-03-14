@@ -17,6 +17,10 @@ public class DefaultFormElement<T extends Component> implements DisplayFormEleme
 
    private static final Logger LOGGER = Utils.makeLogger();
 
+   protected final PropertyChangeSupport support = new PropertyChangeSupport(this);
+
+   private final ResourceBundle resourceBundle;
+
    private final T renderer;
 
    private final String name;
@@ -31,9 +35,7 @@ public class DefaultFormElement<T extends Component> implements DisplayFormEleme
 
    private Object errorMessage = null;
    
-   private final ResourceBundle resourceBundle;
 
-   protected final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
    private static String loadDescription(String name, ResourceBundle bundle){
       if(bundle != null && name != null && bundle.containsKey(name)){
@@ -51,19 +53,20 @@ public class DefaultFormElement<T extends Component> implements DisplayFormEleme
    }
 
    public DefaultFormElement(T renderer, String name) {
-      this(renderer, name, null, null);
+      this(renderer, name, null, null, null);
    }
 
    public DefaultFormElement(T renderer, String name, ResourceBundle bundle) {
-      this(renderer, loadName(name, bundle), loadDescription(name + ".shortDescription", bundle), loadDescription(name + ".longDescription", bundle));
+      this(renderer, loadName(name, bundle), loadDescription(name + ".shortDescription", bundle), loadDescription(name + ".longDescription", bundle), bundle);
+
    }
 
-   public DefaultFormElement(T renderer, String name, String shortDescription, String longDescription) {
+   public DefaultFormElement(T renderer, String name, String shortDescription, String longDescription, ResourceBundle resourceBundle) {
       this.renderer = renderer;
       this.name = name;
       this.shortDescription = shortDescription;
       this.longDescription = longDescription;
-      this.resourceBundle = null;
+      this.resourceBundle = resourceBundle;
    }
 
    @Override

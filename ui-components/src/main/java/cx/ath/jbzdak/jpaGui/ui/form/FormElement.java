@@ -67,4 +67,8 @@ public interface FormElement<T extends Component, B, V> extends DisplayFormEleme
 
    public void setPropertySettingTime(PropertySettingTime time);
 
+   public void addValidator(ElementValidator<? super V> validator);
+
+   public boolean removeValidator(ElementValidator<? super V> validator);
+
 }

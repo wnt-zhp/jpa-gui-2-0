@@ -104,8 +104,8 @@ public class FormattedTextField<V> extends JTextField{
    public void setValue(V value) {
 		Object oldValue = this.value;
 		this.value = value;
-		firePropertyChange("value", oldValue, this.value);
       setParseResults(null);
+		firePropertyChange("value", oldValue, this.value);
 	   formatValue();
 	}
 
@@ -126,7 +126,7 @@ public class FormattedTextField<V> extends JTextField{
 	}
 
 	@SuppressWarnings({"WeakerAccess"})
-   public  void formatValue(){
+   public void formatValue(){
 		ignoreSetText = true;
 		try{
          if(!parsingText){

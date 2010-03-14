@@ -7,6 +7,8 @@ import java.awt.Component;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ResourceBundle;
+import java.util.List;
+import java.util.ArrayList;
 
 import cx.ath.jbzdak.jpaGui.BeanHolder;
 import cx.ath.jbzdak.jpaGui.BeanHolderAware;
@@ -17,6 +19,8 @@ public abstract class PropertyFormElement<T extends Component, B, V, BH extends 
 
    @SuppressWarnings({"WeakerAccess"})
    protected final Property<B, Object> beanValueProperty;
+
+   protected List<ElementValidator<? super V>> validators = new ArrayList<ElementValidator<? super V>>(); 
 
    private boolean readNullValues = true;
 
@@ -58,6 +62,19 @@ public abstract class PropertyFormElement<T extends Component, B, V, BH extends 
    protected PropertyFormElement(T renderer, String labelText, ResourceBundle bundle, Property property) {
       super(renderer, labelText, bundle);
       this.beanValueProperty =  property;
+      addPropertyChangeListener("value", new PropertyChangeListener() {
+         @Override
+         public void propertyChange(PropertyChangeEvent evt) {
+            for (ElementValidator<? super V> validator : validators) {
+               try {
+                  setError(validator.validate((V) evt.getNewValue()));
+               } catch (Exception e) {
+                  setErrorMessage(e);
+                  setError(true);
+               }
+            }
+         }
+      });
    }
 
    @Override
@@ -170,5 +187,13 @@ public abstract class PropertyFormElement<T extends Component, B, V, BH extends 
 
    public void setSettingValueErrorAction(SettingValueErrorAction settingValueErrorAction) {
       this.settingValueErrorAction = settingValueErrorAction;
+   }
+
+   public void addValidator(ElementValidator<? super V> validator){
+      validators.add((validator));
+   }
+
+   public boolean removeValidator(ElementValidator<? super V> validator){
+      return  validators.remove(validator);
    }
 }

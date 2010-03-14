@@ -61,8 +61,9 @@ public abstract class UpdateDBPack  extends  DefaultLifecycleListenerPack<DBMana
             NavigableSet<Integer> appropriateVersions = versions.tailSet(currentVersion, false);
             appropriateVersions.remove(currentVersion);
             if(appropriateVersions.isEmpty()){
-               LOGGER.warn("Fired schema update, but there are no update scripts. Either shema needs no update (so you need " +
-                       "to unset DefaultLifecycteAdministrator#schemaNeedsUpdate or you need to include apropriate scripts");
+//               LOGGER.warn("Fired schema update, but there are no update scripts. Either shema needs no update (so you need " +
+//                       "to unset DefaultLifecycteAdministrator#schemaNeedsUpdate or you need to include apropriate scripts");
+               LOGGER.info("Schema up to date");
                return;
             }
             for(Integer version : appropriateVersions){

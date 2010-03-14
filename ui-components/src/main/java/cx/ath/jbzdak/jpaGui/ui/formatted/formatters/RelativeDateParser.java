@@ -58,7 +58,10 @@ public class RelativeDateParser {
 	@SuppressWarnings({"WeakerAccess"})
    public int parseDniWord(String word) throws ParsingException{
 		try{
-			return   Integer.parseInt(word);
+			int dni = Integer.parseInt(word);
+         if(dni > 10){
+            throw new ParsingException("Względne daty można podawać tylko do 10 dni");
+         }
 		}catch (NumberFormatException e) {
          //Jak wyjątek -- idziemy dalej
 		}
