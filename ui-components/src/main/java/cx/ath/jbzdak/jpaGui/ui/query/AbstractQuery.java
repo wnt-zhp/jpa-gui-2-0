@@ -40,7 +40,7 @@ public abstract class AbstractQuery<P, O> implements Query<P, O> {
    @Override
    @OverrideMustInvoke
    public void setQuery(P query) {
-      if(ObjectUtils.equals(this.query,  query)){
+      if(!ObjectUtils.equals(this.query,  query)){
          P oldQuery = this.query;
          this.query = query;
          queryChangedEntry();
