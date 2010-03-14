@@ -62,6 +62,7 @@ public abstract class PropertyFormElement<T extends Component, B, V, BH extends 
    protected PropertyFormElement(T renderer, String labelText, ResourceBundle bundle, Property property) {
       super(renderer, labelText, bundle);
       this.beanValueProperty =  property;
+      setRendererEditable(false);
       addPropertyChangeListener("value", new PropertyChangeListener() {
          @Override
          public void propertyChange(PropertyChangeEvent evt) {
@@ -122,7 +123,11 @@ public abstract class PropertyFormElement<T extends Component, B, V, BH extends 
    @Override
    public void startViewing() {
       setRendererEditable(false);
-      setValue((V) beanValueProperty.getValue(getBean()));
+      try {
+         setValue((V) beanValueProperty.getValue(getBean()));
+      } catch (Exception e) {
+          settingValueErrorAction.errorWhileSettingValue(e, this);
+      }
       startViewingEntry();
    }
 
