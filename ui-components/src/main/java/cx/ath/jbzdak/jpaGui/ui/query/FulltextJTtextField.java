@@ -27,12 +27,6 @@ public class FulltextJTtextField extends JTextField{
 		this.fulltextFilter = fulltextFilter;
 		this.timer = new Timer(timeout, new PushQuery());
 		timer.setRepeats(false);
-      fulltextFilter.addActionListener(new ActionListener(){
-         @Override
-         public void actionPerformed(ActionEvent e) {
-
-         }
-      });
       setColumns(15);
 	}
 

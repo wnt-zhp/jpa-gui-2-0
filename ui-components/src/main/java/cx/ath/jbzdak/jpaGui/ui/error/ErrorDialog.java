@@ -24,7 +24,7 @@ public class ErrorDialog extends JDialog {
 
    public static final int DEFAULT_FIRST_COMUMN_WIDTH = 300;
 
-   public static void displayErrorDialog(List<Object> errors, @CheckForNull Frame frame){
+   public static void displayErrorDialog(List<Object> errors, @CheckForNull Window frame){
       ErrorDialog errorDialog = new ErrorDialog(frame);
       errorDialog.setErrors(errors);
       errorDialog.setVisible(true);
@@ -65,7 +65,7 @@ public class ErrorDialog extends JDialog {
 		initialize();
 	}
 
-	public ErrorDialog(@CheckForNull Frame owner) {
+	public ErrorDialog(@CheckForNull Window owner) {
 		super(owner);
 		initialize();
 	}
