@@ -23,6 +23,6 @@ public class NonNullValidator implements ElementValidator<Object>{
       if(value == null){
          throw new ValidationException(message);
       }
-      return true;
+      return false;
    }
 }
