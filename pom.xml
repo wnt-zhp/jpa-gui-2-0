@@ -24,6 +24,15 @@
                <artifactId>maven-source-plugin</artifactId>
                <version>2.0</version>
             </plugin>
+            <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-compiler-plugin</artifactId>
+               <configuration>
+                  <source>1.6</source>
+                  <target>1.6</target>
+                  <encoding>UTF8</encoding>
+               </configuration>
+            </plugin>
          </plugins>
       </pluginManagement>
    </build>
@@ -103,8 +112,8 @@
          </dependency>
          <dependency>
             <groupId>cx.ath.jbzdak.external.findbugs</groupId>
-	         <artifactId>annotations</artifactId>
-	         <version>1.3.9</version>
+            <artifactId>annotations</artifactId>
+            <version>1.3.9</version>
          </dependency>
       </dependencies>
    </dependencyManagement>
