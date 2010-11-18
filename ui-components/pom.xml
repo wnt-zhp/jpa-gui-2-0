@@ -50,7 +50,7 @@
             <artifactId>commons-collections</artifactId>
         </dependency>
         <dependency>
-            <groupId>edu.umd.cs.findbugs</groupId>
+            <groupId>cx.ath.jbzdak.external.findbugs</groupId>
             <artifactId>annotations</artifactId>
         </dependency>
 
