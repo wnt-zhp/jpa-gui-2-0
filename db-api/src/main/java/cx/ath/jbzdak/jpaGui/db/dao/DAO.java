@@ -64,5 +64,7 @@ public interface DAO<T> extends BeanHolder<T> {
    RefreshType getRefreshType();
 
    void setRefreshType(RefreshType refreshType);
+//
+//   public void refresh(RefreshType refreshType);
 
 }

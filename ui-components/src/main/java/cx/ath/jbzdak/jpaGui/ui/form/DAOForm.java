@@ -30,7 +30,6 @@ public class DAOForm<B, FE extends FormElement<?, B, ?> > extends AbstractBeanAw
       }finally {
          beanHolder.rollback();
       }
-
 	}
 
 	@Override

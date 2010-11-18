@@ -163,7 +163,6 @@ public class Utils {
 		registerTo.getActionMap().put(uid, new AbstractAction(){
 			private static final long serialVersionUID = 1L;
 
-		@Override
 		public void actionPerformed(ActionEvent e) {
 			button.doClick();
 		}});

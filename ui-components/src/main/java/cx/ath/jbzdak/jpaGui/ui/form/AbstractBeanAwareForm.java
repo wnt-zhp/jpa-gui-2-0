@@ -62,6 +62,8 @@ public abstract class AbstractBeanAwareForm<B,FE extends FormElement<?, ? super 
       }
       return  errors;
    }
+
+   
 }
 
 

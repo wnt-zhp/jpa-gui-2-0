@@ -297,6 +297,16 @@ public class JPADao<T> implements DAO<T> {
       support.firePropertyChange("bean", oldEntity, entity);
    }
 
+//   @Override
+//   public void refresh(RefreshType refreshType) {
+//      JPARefreshType jpaRefreshType = JPARefreshType.map(refreshType);
+//      beginTransaction();
+//      try{
+//         setBean(jpaRefreshType.perform(getEntityManager(), getBean(), manager));
+//      }finally {
+//         commitTransaction();
+//      }
+//   }
    /* (non-Javadoc)
    * @see cx.ath.jbzdak.zarlok.db.dao.DAO#isAutoCreateEntity()
    */
