@@ -13,12 +13,6 @@
       <module>configuration</module>
       <module>db-h2</module>
    </modules>
-   <parent>
-      <groupId>cx.ath.jbzdak.gui</groupId>
-      <artifactId>main</artifactId>
-      <version>1.0</version>
-      <relativePath>../gui-main</relativePath>
-   </parent>
    <groupId>cx.ath.jbzdak.gui</groupId>
    <artifactId>jpa-framework</artifactId>
    <version>2.0.1</version>
